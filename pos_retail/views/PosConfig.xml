@@ -63,18 +63,18 @@
                         <button name="set_pricelists_to_pos_sessions_online_without_reload"
                                 icon="fa-arrow-right"
                                 type="object"
-                                string="Push pricelists to sessions online without reload"
+                                string="Envíe listas de precios a sesiones en línea sin recargar"
                                 class="btn-primary"/>
                         <button groups="point_of_sale.group_pos_manager"
                                 class="btn btn-primary"
                                 name="remote_sessions"
                                 type="object"
-                                string="Remote sessions"/>
+                                string="Sesiones remotas"/>
                         <button groups="point_of_sale.group_pos_manager"
                                 class="btn btn-primary"
                                 name="validate_and_post_entries_session"
                                 type="object"
-                                string="Close all Sessions Opened"/>
+                                string="Cerrar todas las sesiones abiertas"/>
                     </header>
                 </xpath>
                 <xpath expr="//field[@name='picking_type_id']" position="attributes">
