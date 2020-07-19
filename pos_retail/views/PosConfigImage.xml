@@ -6,7 +6,7 @@
             <field name="name">pos.config.image.tree</field>
             <field name="model">pos.config.image</field>
             <field name="arch" type="xml">
-                <tree string="Customer Images Screen">
+                <tree string="Pantalla de imagenes del cliente">
                     <field name="name"/>
                 </tree>
             </field>
@@ -16,7 +16,7 @@
             <field name="name">pos.config.image.form</field>
             <field name="model">pos.config.image</field>
             <field name="arch" type="xml">
-                <form string="Image">
+                <form string="Imagen">
                     <field name="image" widget='image' class="oe_avatar"/>
                     <div class="oe_title">
                         <h1>
@@ -32,7 +32,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_config_image">
-            <field name="name">Customer Images Screen</field>
+            <field name="name">Pantalla de imagenes del cliente</field>
             <field name="res_model">pos.config.image</field>
             <field name="view_mode">tree,form</field>
         </record>
