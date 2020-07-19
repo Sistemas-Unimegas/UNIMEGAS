@@ -16,12 +16,12 @@ _logger = logging.getLogger(__name__)
 
 class pos_config_image(models.Model):
     _name = "pos.config.image"
-    _description = "Image show to customer screen"
+    _description = "Imagen mostrada a la pantalla del cliente"
 
-    name = fields.Char('Title', required=1)
-    image = fields.Binary('Image', required=1)
-    config_id = fields.Many2one('pos.config', 'POS config', required=1)
-    description = fields.Text('Description')
+    name = fields.Char('Titulo', required=1)
+    image = fields.Binary('Imagen', required=1)
+    config_id = fields.Many2one('pos.config', 'Configuración POS', required=1)
+    description = fields.Text('Descripción')
 
 
 class pos_config(models.Model):
@@ -37,7 +37,7 @@ class pos_config(models.Model):
                 config.pricelist_id.sync_pricelists_all_pos_online()
                 break
             else:
-                raise UserError('Please active pricelist and set pricelist default')
+                raise UserError('Active la lista de precios y establezca la lista de precios predeterminada')
         return True
 
     def _get_product_field_char(self):
@@ -80,231 +80,231 @@ class pos_config(models.Model):
         'pos_config_restaurant_floor_rel',
         'pos_config_id',
         'floor_id',
-        string="Floors")
+        string="Pisos")
 
     active_design_layout = fields.Boolean(
         'Active Design Layout',
-        help='This future allow you design layout POS Screen \n'
-             'And all your design will fixed with your Screen Display on PC you design \n'
-             'If you open POS Screen another Display Screen difference size with last Display used Design \n'
-             'All layout UI will not the same \n'
-             'Example: If you used Display Screen 14" design, and POS counter apply this design required 14" the same'
+        help='Esta opción le permite diseñar la pantalla POS  \n'
+             'Y todo su diseño se solucionará con su Pantalla en la PC que diseñe \n'
+             'Si abre la pantalla POS otro tamaño de diferencia de pantalla con la última pantalla utilizada Diseño \n'
+             'Toda la interfaz de usuario de diseño no será la misma \n'
+             'Ejemplo: si utilizó un diseño de pantalla de visualización de 14 ", y el contador POS aplica este diseño, se requiere 14" igual'
     )
-    load_design_of_pos_config_id = fields.Many2one('pos.config', 'Load Template Design Of POS')
-    user_id = fields.Many2one('res.users', 'Assigned to')
-    config_access_right = fields.Boolean('Config Access Right', default=1)
-    allow_discount = fields.Boolean('Allow Change Discount', default=1)
-    allow_qty = fields.Boolean('Allow Change Quantity', default=1)
-    allow_price = fields.Boolean('Allow Change Price', default=1)
-    allow_remove_line = fields.Boolean('Allow Remove Line', default=1)
-    allow_numpad = fields.Boolean('Allow Use Numpad', default=1)
-    allow_payment = fields.Boolean('Allow Payment', default=1)
-    allow_customer = fields.Boolean('Allow set Customer', default=1)
-    allow_add_order = fields.Boolean('Allow Add Order', default=1)
-    allow_remove_order = fields.Boolean('Allow Remove Order', default=1)
-    allow_add_product = fields.Boolean('Allow Add Product', default=1)
+    load_design_of_pos_config_id = fields.Many2one('pos.config', 'Diseño de plantilla de carga de POS')
+    user_id = fields.Many2one('res.users', 'Asignado a')
+    config_access_right = fields.Boolean('Configuración de permisos', default=1)
+    allow_discount = fields.Boolean('Permitir cambio en los descuentos', default=1)
+    allow_qty = fields.Boolean('Permitir cantidad de cambio', default=1)
+    allow_price = fields.Boolean('Permitir cambio de precio', default=1)
+    allow_remove_line = fields.Boolean('Permitir remover líneas', default=1)
+    allow_numpad = fields.Boolean('Permitir uso de teclado numérico', default=1)
+    allow_payment = fields.Boolean('Permitir pagos', default=1)
+    allow_customer = fields.Boolean('Permitir establecer un cliente', default=1)
+    allow_add_order = fields.Boolean('Permitir agregar Orden', default=1)
+    allow_remove_order = fields.Boolean('Permitir remover Orden', default=1)
+    allow_add_product = fields.Boolean('Permitir agregar Producto', default=1)
     allow_payment_zero = fields.Boolean(
-        'Allow Payment Zero',
+        'Permitir pago en 0',
         default=1,
-        help='If active, cashier can made order total amount smaller than or equal 0')
+        help='Si está activo, el cajero puede hacer que el monto total del pedido sea menor o igual a 0')
     allow_lock_screen = fields.Boolean(
-        'Lock Screen when Session Start',
+        'Pantalla de bloqueo cuando se inicia la sesión',
         default=0,
-        help='When pos sessions start, \n'
-             'cashiers required open POS via pos pass pin (Setting/Users)')
+        help='Cuando comienzan las sesiones pos, \n'
+             'los cajeros requieren un punto de venta abierto a través del pase PIN (Configuración / Usuarios)')
     allow_offline_mode = fields.Boolean(
-        'Allow Offline Mode',
+        'Permitir modo sin conexión',
         default=1,
-        help='Required Internet of Cashiers Counter Devlice used POS Session online \n'
-             'If have problem internet of Cashier Counter, POS not allow submit Orders to Backend \n'
-             'Example Case Problem: \n'
-             '1) Intenet Offline , Cashiers submit orders to Odoo server and not success \n'
-             '2) And then them clear cache browse , and orders save on Cache of Browse removed \n'
-             '- It mean all orders will lost \n'
-             'So this function active, when any Orders submit to backend, POS auto check Odoo server online or not. If online allow Validate Order'
+        help='Internet requerido de los cajeros Counter Devlice utilizó la sesión POS en línea \n'
+             'Si tiene problemas con Internet del cajero, el punto de venta no permite enviar pedidos al backend \n'
+             'Problema de caso de ejemplo: \n'
+             '1) Intenet sin conexión, los cajeros envían pedidos al servidor Odoo y no tienen éxito \n'
+             '2) Y luego borran la exploración de caché y se eliminan los pedidos guardados en la caché de exploración \n'
+             '- Significa que todos los pedidos se perderán \n'
+             'Entonces, esta función está activa, cuando cualquier pedido se envía al backend, POS verifica automáticamente el servidor Odoo en línea o no. Si está en línea, permita Validar pedido'
     )
     display_point_receipt = fields.Boolean(
-        'Display Point / Receipt', help='Active this field for display loyalty\n'
-                                        ' point plus on bill receipt')
+        'Punto de visualización / recibo', help='Active este campo para mostrar lealtad\n'
+                                        ' punto más en recibo de factura')
     loyalty_id = fields.Many2one(
         'pos.loyalty', 'Loyalty',
         domain=[('state', '=', 'running')])
     loyalty_combine_promotion = fields.Boolean(
-        'Loyalty Combine Promotion',
-        help='If checked: allow each order line, loyalty plus point and promotion apply together \n'
-             'If not checked: When promotion add to order lines, points will not plus'
+        'Promoción de lealtad combinada',
+        help='Si está marcado: permita cada línea de pedido, la lealtad más el punto y la promoción se aplican juntos \n'
+             'Si no está marcada: cuando la promoción se agrega a las líneas de pedido, los puntos no serán más'
     )
     promotion_manual_select = fields.Boolean(
-        'Promotion manual Choice', default=0,
-        help='When you check to this checkbox, \n'
-             'your cashiers will have one button, \n'
-             'when cashiers clicked on it, \n'
-             'all promotions active will display for choose')
+        'Elección manual de promoción', default=0,
+        help='Cuando marque esta casilla de verificación, \n'
+             'Tus cajeros tendrán un botón, \n'
+             'Cuando los cajeros hicieron clic en él, \n'
+             'todas las promociones activas se mostrarán para elegir')
     promotion_auto_add = fields.Boolean(
-        'Promotion auto Apply',
-        help='When you check it,\n'
-             'when your cashiers click payment button,\n'
-             'all promotions active auto add to order cart')
+        'Promoción automática Aplicar',
+        help='Cuando se selecciona,\n'
+             'Cuando sus cajeros hagan clic en el botón de pago,\n'
+             'todas las promociones activas se auto agregan al pedido')
 
-    create_purchase_order = fields.Boolean('Create PO', default=0)
+    create_purchase_order = fields.Boolean('Crear Orden de Compra', default=0)
     create_purchase_order_required_signature = fields.Boolean(
-        'PO Required Signature', default=0)
+        'PO requiere firma', default=0)
     purchase_order_state = fields.Selection([
         ('confirm_order', 'Auto Confirm'),
         ('confirm_picking', 'Auto Delivery'),
     ], 'Purchaser Order Auto',
-        help='This is state of purchase order will process to',
+        help='Este es el estado del pedido que se procesará para',
         default='confirm_order')
     sale_order = fields.Boolean('Create Sale Order', default=0)
     sale_order_auto_confirm = fields.Boolean('Auto Confirm', default=0)
     sale_order_auto_invoice = fields.Boolean('Auto Paid', default=0)
     sale_order_auto_delivery = fields.Boolean('Auto Delivery', default=0)
     sale_order_required_signature = fields.Boolean(
-        'SO Required Signature',
-        help='Allow print receipt when create quotation/order')
+        'Orden de Venta requiere firma',
+        help='Permitir imprimir recibo al crear presupuesto / pedido')
 
     pos_orders_management = fields.Boolean(
-        'POS Order Management',
+        'Gestión de pedidos de punto de venta',
         default=0)
     shipping_order = fields.Boolean(
-        'Shipping Order',
+        'Orden de entrega',
         default=1,
-        help='Create Customer Order Delivery (COD) \n'
-             'Allow cashiers create shipping address and save to Order, do partial payment Order \n'
-             'When Delivery Man success shipping Order, Cashier confirm Order to Paid \n'
-             'If you active this future, please active Partial Payment too\n'
-             'For cashier add one part payment of Customer'
+        help='Crear orden de entrega (COD) \n'
+             'Permitir a los cajeros crear una dirección de envío y guardar en el pedido, hacer un pago parcial \n'
+             'Cuando el hombre de entrega realiza el pedido correctamente, el cajero confirma el pedido pagado \n'
+             'Si activa esta opción, active también el Pago parcial\n'
+             'Para que el cajero agregue una parte del pago del Cliente'
     )
     paid_partial = fields.Boolean(
-        'Allow Partial Payment', default=1,
-        help='Allow cashiers payment one part of Total Amount Order')
+        'Permitir pago parcial', default=1,
+        help='Permita que los cajeros paguen una parte del monto total del pedido')
     load_orders_type = fields.Selection([
-        ('last_7_days', 'Last 7 Days from now'),
-        ('last_1_month', 'Last 30 Month from now'),
-        ('last_1_year', 'Last 1 Year (365 days) from now'),
-        ('load_all', 'Load All'),
+        ('last_7_days', 'Últimos 7 días a partir de ahora'),
+        ('last_1_month', 'Últimos 30 meses a partir de ahora'),
+        ('last_1_year', 'Último 1 año (365 días) a partir de ahora'),
+        ('load_all', 'Cargar todo'),
     ],
         default='last_7_days',
-        string='Period days loading Orders'
+        string='Período días cargando pedidos'
     )
     pos_orders_filter_by_branch = fields.Boolean(
-        'POS Order Filter Branch', default=0,
-        help='If you checked it, \n'
-             'pos session could not see orders of another branch')
+        'Sucursal de filtro de orden POS', default=0,
+        help='Si se selecciona, \n'
+             'pos sesión no puede ver las órdenes de otra sucursal')
     pos_order_period_return_days = fields.Float(
-        'Return Period Days',
-        help='This is period days allow customer \n'
-             'can return Order or one part of Order',
+        'Período de devolución días',
+        help='Esto es días de período permiten al cliente \n'
+             'puede devolver el pedido o una parte del pedido',
         default=30)
     display_pos_order_return_policy = fields.Boolean(
-        'Display Return Policy Receipt',
+        'Mostrar recibo de política de devolución',
         default=1
     )
     pos_order_return_policy = fields.Text(
-        'Return Policy',
-        default='7 days return back'
+        'Política de devoluciones',
+        default='7 días para devoluciones'
     )
     required_reason_return = fields.Boolean(
-        'Required Reason Return',
-        help='Required Cashiers input Reason Return each line if Order is return'
+        'Motivo Requerido Retorno',
+        help='Entrada de cajero requerida Motivo Devuelva cada línea si el Pedido es devuelto'
     )
     hide_buttons_order_return = fields.Boolean(
-        'Hide Buttons if Order Return',
+        'Ocultar botones si la orden vuelve',
         default=0,
-        help='Hide All Buttons when Order is return mode')
-    display_return_days_receipt = fields.Boolean('Display Return Days on Receipt', default=0)
+        help='Ocultar todos los botones cuando la orden es el modo de retorno')
+    display_return_days_receipt = fields.Boolean('Mostrar días de devolución en el recibo', default=0)
     display_onhand = fields.Boolean(
-        'Show Stock on Hand each Product', default=1,
-        help='Display quantity on hand all products on pos screen')
+        'Mostrar stock en mano de cada producto', default=1,
+        help='Muestra la cantidad disponible de todos los productos en la pantalla pos')
     allow_order_out_of_stock = fields.Boolean(
-        'Allow Sale when Product Out Of Stock',
+        'Permitir venta cuando el producto está agotado',
         default=1)
     print_voucher = fields.Boolean(
-        'Create Voucher',
-        help='Allow cashiers create Voucher Manual on POS',
+        'Crear cupón',
+        help='Permitir a los cajeros crear un Cupón Manual en el POS',
         default=0)
     expired_days_voucher = fields.Integer(
-        'Expired days of Voucher',
+        'Días de vencimiento del cupón',
         default=30,
-        help='Total days keep voucher can use, \n'
-             'if out of period days from create date, voucher will expired')
-    sync_multi_session = fields.Boolean('Sync between Sessions', default=0)
+        help='Total de días que puede usar el cupón, \n'
+             'si fuera del período de días desde la fecha de creación, el comprobante caducará')
+    sync_multi_session = fields.Boolean('Sincronizar entre sesiones', default=0)
     sync_to_pos_config_ids = fields.Many2many(
         'pos.config',
         'sync_session_rel',
         'from_id',
         'to_id',
-        string='Sync with POS Configs',
+        string='Sincronizar con configuraciones POS',
         domain="['|', ('pos_branch_id', '=', pos_branch_id), ('pos_branch_id', '=', None)]",
-        help='Any events changes from this pos config will sync direct \n' \
-             'to this pos configs selected here'
+        help='Cualquier cambio de eventos desde esta configuración pos se sincronizará directamente \n' \
+             'a esta configuración pos seleccionada aquí'
     )
     sync_manual_button = fields.Boolean(
-        'Sync Manual Button',
-        help='If active, pos session will have button Sync Selected \n'
-             'When click it, order selected will sync another pos configs added above\n'
-             'Order selected will replace another order of another session the same uid')
-    sync_multi_session_offline = fields.Boolean('Sync Between Session Offline', default=0)
+        'Botón manual de sincronización',
+        help='Si está activo, la sesión pos tendrá el botón Sincronizar seleccionado \n'
+             'Al hacer clic en él, el orden seleccionado sincronizará otras configuraciones de posición agregadas anteriormente\n'
+             'El orden seleccionado reemplazará otro orden de otra sesión con el mismo uid')
+    sync_multi_session_offline = fields.Boolean('Sincronizar entre sesiones sin conexión', default=0)
     sync_multi_session_offline_iot_ids = fields.Many2many('pos.iot', 'pos_config_iot_rel', 'pos_config_id',
-                                                          'iot_box_id', string='IoT Boxes',
-                                                          help='IoT box use for sync between sessions \n'
-                                                               'when Odoo Server Offline or your internet disconected')
-    display_person_add_line = fields.Boolean('Display information Lines', default=0,
-                                             help="When you checked, on pos order lines screen, \n"
-                                                  "will display information person created order \n"
-                                                  "(lines) Eg: create date, updated date ..")
-    internal_transfer = fields.Boolean('Allow Internal Transfer', default=0,
-                                       help='Go Inventory and active multi warehouse and location')
+                                                          'iot_box_id', string='IoT Cajas',
+                                                          help='Uso de la caja de IoT para la sincronización entre sesiones \n'
+                                                               'cuando Odoo Server Offline o su Internet desconectado')
+    display_person_add_line = fields.Boolean('Mostrar líneas de información', default=0,
+                                             help="Cuando marcó, en la pantalla de líneas de orden pos, \n"
+                                                  "mostrará información creada por la persona \n"
+                                                  "(líneas) Ej .: fecha de creación, fecha actualizada ..")
+    internal_transfer = fields.Boolean('Permitir transferencia interna', default=0,
+                                       help='Ir a Inventario y activar almacén múltiple y ubicación')
 
-    discount = fields.Boolean('Global Discount', default=0)
-    delay = fields.Integer('Delay time', default=3000)
+    discount = fields.Boolean('Descuento global', default=0)
+    delay = fields.Integer('Tiempo de retardo', default=3000)
 
-    guide_pos = fields.Boolean('Show Guide POS', default=1)
+    guide_pos = fields.Boolean('Mostrar guía POS', default=1)
 
-    discount_limit = fields.Boolean('Discount Limit', default=0)
-    discount_limit_amount = fields.Float('Discount Limit (%)', default=10)
-    discount_sale_price = fields.Boolean('Discount Sale Price')
+    discount_limit = fields.Boolean('Límite de descuento', default=0)
+    discount_limit_amount = fields.Float('Límite de descuento (%)', default=10)
+    discount_sale_price = fields.Boolean('Precio de venta con descuento')
     discount_sale_price_limit = fields.Float(
-        'Discount Sale Price Limit',
-        help='Cashier could not set discount price bigger than or equal this field'
+        'Límite de descuento en el precio de venta',
+        help='El cajero no pudo establecer un precio de descuento mayor o igual a este campo'
     )
-    return_products = fields.Boolean('Allow Cashier return Products/Orders',
-                                     help='Allow cashier return products, orders',
+    return_products = fields.Boolean('Permitir al cajera devolución de productos / pedidos',
+                                     help='Permitir al cajera devolución de productos, pedidos',
                                      default=0)
     return_duplicate = fields.Boolean(
-        'Allow duplicate Return Order',
-        help='If checked, one Order can return many times'
+        'Permitir pedido de devolución duplicado',
+        help='Si está marcado, un pedido puede regresar muchas veces'
     )
-    lock_order_printed_receipt = fields.Boolean('Lock Order Printed Receipt', default=0)
+    lock_order_printed_receipt = fields.Boolean('Bloquear Orden de Recibo impreso', default=0)
 
-    validate_payment = fields.Boolean('Validate Payment')
-    validate_remove_order = fields.Boolean('Validate Remove Order')
-    validate_new_order = fields.Boolean('Validate New Order')
-    validate_login_pos = fields.Boolean('Validate Login POS')
-    validate_change_minus = fields.Boolean('Validate Pressed +/-')
-    validate_quantity_change = fields.Boolean('Validate Quantity Change')
-    validate_price_change = fields.Boolean('Validate Price Change')
-    validate_discount_change = fields.Boolean('Validate Discount Change')
-    validate_remove_line = fields.Boolean('Validate Remove Line')
-    validate_close_session = fields.Boolean('Validate Close Session')
+    validate_payment = fields.Boolean('Validar pago')
+    validate_remove_order = fields.Boolean('Validar eliminar orden')
+    validate_new_order = fields.Boolean('Validar nueva orden')
+    validate_login_pos = fields.Boolean('Validar Login POS')
+    validate_change_minus = fields.Boolean('Validar presionados +/-')
+    validate_quantity_change = fields.Boolean('Validar cambio de cantidad')
+    validate_price_change = fields.Boolean('Validar cambio de precio')
+    validate_discount_change = fields.Boolean('Validar cambio de descuento')
+    validate_remove_line = fields.Boolean('Validar quitar línea')
+    validate_close_session = fields.Boolean('Validar cierre de sesión')
     apply_validate_return_mode = fields.Boolean(
-        'Validate Return Mode',
-        help='If checked, only applied validate when return order',
+        'Validar modo de retorno',
+        help='Si está marcado, solo se aplica validar cuando se devuelve el pedido',
         default=1)
 
-    print_user_card = fields.Boolean('Print User Card')
+    print_user_card = fields.Boolean('Imprimir tarjeta de usuario')
 
     product_operation = fields.Boolean(
-        'Product Operation', default=0,
-        help='Allow cashiers add pos categories and products on pos screen')
-    quickly_payment_full = fields.Boolean('Quickly Paid Full')
-    note_order = fields.Boolean('Note Order', default=0)
-    note_orderline = fields.Boolean('Note Order Line', default=0)
-    signature_order = fields.Boolean('Signature Order', default=0)
-    display_amount_discount = fields.Boolean('Display Amount Discount', default=1)
+        'Operación del producto', default=0,
+        help='Permitir que los cajeros agreguen categorías y productos pos en la pantalla pos')
+    quickly_payment_full = fields.Boolean('Rápidamente pagado completo')
+    note_order = fields.Boolean('Orden de notas', default=0)
+    note_orderline = fields.Boolean('Nota línea de pedido', default=0)
+    signature_order = fields.Boolean('Orden de firma', default=0)
+    display_amount_discount = fields.Boolean('Mostrar importe de descuento', default=1)
 
     booking_orders = fields.Boolean(
-        'Booking Orders',
+        'Pedidos de reserva',
         default=0,
         help='Orders may be come from many sources locations\n'
              'Example: Web E-Commerce, Call center, or phone call order\n'
