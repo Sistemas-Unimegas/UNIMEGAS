@@ -16,12 +16,11 @@
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='open_session_cb']" position="after">
                     <button groups="point_of_sale.group_pos_manager" class="btn btn-primary" name="remote_sessions"
-                            type="object">Remote Sessions
+                            type="object">Sesiones remotas
                     </button>
                     <button groups="point_of_sale.group_pos_manager" class="btn btn-primary"
                             name="validate_and_post_entries_session" style="margin-top: 5px; border: 1px solid #ff5200"
-                            type="object">Close all
-                        Sessions Opened
+                            type="object">Cierra todas las sesiones abiertas
                     </button>
                 </xpath>
                 <xpath expr="//field[@name='current_session_id']" position="before">
