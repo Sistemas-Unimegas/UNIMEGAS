@@ -29,7 +29,7 @@
                 <xpath expr="//div[hasclass('o_kanban_primary_right')]" position="inside">
                     <div t-if="record.pos_branch_id" class="row">
                         <div class="col-xs-6">
-                            <span>Branch:</span>
+                            <span>Sucursal:</span>
                         </div>
                         <div class="col-xs-6">
                             <span>
