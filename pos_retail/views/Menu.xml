@@ -2,13 +2,13 @@
     <data>
 
         <menuitem id="menu_master_data"
-                  name="Retail Operations"
+                  name="Operaciones de Retail"
                   parent="point_of_sale.menu_point_root"
                   groups="point_of_sale.group_pos_manager"
         />
 
         <menuitem id="menu_product_variant"
-                  name="Variants value"
+                  name="Valor de las variantes"
                   parent="menu_master_data"
                   sequence="7"
                   groups="point_of_sale.group_pos_manager"
@@ -18,30 +18,30 @@
         <menuitem id="menu_variants_action" parent="menu_product_variant" action="product.product_attribute_value_action"/> <!-- v13 only-->
 
         <menuitem id="menu_clients"
-                  name="Clients"
+                  name="Clientes"
                   parent="point_of_sale.menu_point_root"
                   groups="point_of_sale.group_pos_manager"
         />
 
         <menuitem id="menu_catalog_pricelists"
-                  name="Pricelists"
+                  name="Listas de Precios"
                   parent="menu_clients"
                   action="product.product_pricelist_action2"
                   sequence="1"
                   groups="product.group_sale_pricelist"/>
         <menuitem id="menu_action_partner_form"
-                  name="Customers"
+                  name="Clientes"
                   sequence="2"
                   parent="menu_clients"
                   action="base.action_partner_form"/>
         <menuitem id="menu_action_partner_supplier_form"
-                  name="Vendors"
+                  name="Vendedores"
                   parent="menu_clients"
                   sequence="3"
                   action="base.action_partner_supplier_form"/>
 
         <menuitem id="menu_pos_database"
-                  name="Database"
+                  name="Base de Datos"
                   parent="menu_master_data"
                   sequence="100"
                   groups="point_of_sale.group_pos_manager"
