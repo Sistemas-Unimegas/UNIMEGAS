@@ -84,20 +84,20 @@
                 </xpath>
                 <xpath expr="//sheet" position="inside">
                     <notebook>
-                        <page name="design" string="Theme of POS">
+                        <page name="design" string="Tema del POS">
                             <group>
                                 <field name="active_design_layout"/>
                                 <field name="load_design_of_pos_config_id"/>
                             </group>
                         </page>
-                        <page string="Multi Branch" groups="pos_retail.group_branch_manager">
+                        <page string="Multi Sucursal" groups="pos_retail.group_branch_manager">
                             <group>
                                 <group>
                                     <field name="pos_branch_id"/>
                                 </group>
                             </group>
                         </page>
-                        <page string="Sync between Sessions">
+                        <page string="Sincronizar entre sesiones">
                             <group>
                                 <group id="sync_multi_session" string="Sync Setting">
                                     <field name="sync_multi_session"/>
@@ -129,8 +129,8 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Security">
-                            <separator string="Security Rules of cashier"/>
+                        <page string="Seguridad">
+                            <separator string="Reglas de seguridad de los cajeros"/>
                             <group>
                                 <group>
                                     <field name="config_access_right"/>
@@ -160,7 +160,7 @@
                                     <field name="allow_offline_mode"/>
                                 </group>
                             </group>
-                            <separator string="Validation"/>
+                            <separator string="Validaciones"/>
                             <group>
                                 <group>
                                     <field name="validate_payment"/>
@@ -176,7 +176,7 @@
                                     <field name="apply_validate_return_mode"/>
                                     <field name="validate_by_manager"/>
                                 </group>
-                                <group string="Discount">
+                                <group string="Descuentos">
                                     <field name="discount_value"/>
                                     <field name="discount_value_limit"
                                            attrs="{'invisible': [('discount_value', '=', False)], 'required' : [('discount_value', '=', True)]}"/>
@@ -194,7 +194,7 @@
                                            attrs="{'invisible': [('discount_limit', '=', False)], 'required' : [('discount_limit', '=', True)]}"
                                     />
                                 </group>
-                                <group string="Managers Validation"
+                                <group string="Validación de Gerentes"
                                        attrs="{'invisible': [('validate_by_manager', '=', False), ('discount_unlock_by_manager', '=', False)]}">
                                     <field name="manager_ids" widget="many2many_tags"
                                            nolabel="1"
@@ -206,18 +206,18 @@
                                 <field name="start_session_oneclick"/>
                             </group>
                         </page>
-                        <page string="Promotions, Loyalties, Vouchers">
+                        <page string="Promociones, Lealtad, Vales">
                             <group>
-                                <group string="Loyalty Program">
+                                <group string="Programa de Lealtad">
                                     <field name="loyalty_id"/>
                                     <field name="loyalty_combine_promotion"/>
                                 </group>
-                                <group string="Promotions Program">
+                                <group string="Programa de Promociones">
                                     <field name="promotion_manual_select"/>
                                     <field name="promotion_auto_add"/>
                                     <field name="promotion_ids" widget="many2many_tags" colspan="4"/>
                                 </group>
-                                <group string="Voucher Program">
+                                <group string="Programa de Vales">
                                     <field name="print_voucher"/>
                                     <field name="expired_days_voucher"
                                            attrs="{'invisible': [('print_voucher', '=', False)], 'required' : [('print_voucher', '=', True)]}"
@@ -225,9 +225,9 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="POS Orders" name="pos_orders">
+                        <page string="Ordenes del POS" name="pos_orders">
                             <group>
-                                <group string="Sellers">
+                                <group string="Vendedores">
                                     <field name="add_sale_person"/>
                                     <field name="force_seller"
                                            attrs="{'invisible': [('add_sale_person', '=', False)]}"/>
@@ -242,15 +242,15 @@
                                 </group>
                             </group>
                             <group>
-                                <group string="Quotation Orders">
+                                <group string="Órdenes de cotización">
                                     <field name="create_quotation" nolabel="1"/>
                                 </group>
-                                <group string="Customer Order Delivery (COD)">
+                                <group string="Órdenes de Entrega (COD)">
                                     <field name="chat"/>
                                     <field name="shipping_order"/>
                                     <field name="paid_partial"/>
                                 </group>
-                                <group string="POS Orders">
+                                <group string="Órdenes POS">
                                     <field name="pos_orders_management"/>
                                     <field name="load_orders_type"
                                            attrs="{'invisible': [('pos_orders_management', '=', False)], 'required': [('pos_orders_management', '=', True)]}"
@@ -265,7 +265,7 @@
                                     <field name="allow_cashier_select_pricelist"/>
                                     <field name="dynamic_combo"/>
                                 </group>
-                                <group string="Return Products/Order">
+                                <group string="Devolución de Productos/Pedidos">
                                     <field name="hide_buttons_order_return"/>
                                     <field name="return_products"/>
                                     <field name="required_reason_return"
@@ -277,7 +277,7 @@
                                     <field name="display_pos_order_return_policy"/>
                                     <field name="pos_order_return_policy"/>
                                 </group>
-                                <group string="Order Lines Display">
+                                <group string="Visualización de Líneas de las Órdenes">
                                     <field name="auto_remove_line"/>
                                     <field name="change_unit_of_measure"/>
                                     <field name="note_orderline"/>
@@ -298,7 +298,7 @@
                                            attrs="{'required': [('posbox_save_orders', '=', True)], 'invisible': [('posbox_save_orders', '=', False)]}"/>
                                 </group>
                             </group>
-                            <group string="Use Camera Scan Barcode">
+                            <group string="Usar código de barras de escaneo de cámara">
                                 <field name="barcode_scan_with_camera"/>
                                 <field name="barcode_scan_timeout"
                                        attrs="{'invisible': [('barcode_scan_timeout', '=', False)]}"/>
@@ -307,9 +307,9 @@
                                 <field name="service_charge_ids" widget="many2many_tags"/>
                             </group>
                         </page>
-                        <page string="Booking/Delivery Orders">
+                        <page string="Reservas / Pedidos de entrega">
                             <group>
-                                <group string="Booking Orders">
+                                <group string="Pedidos de reserva">
                                     <field name="booking_orders"/>
                                     <field name="load_booked_orders_type"
                                            attrs="{'invisible': [('booking_orders', '=', False)], 'required': [('booking_orders', '=', True)]}"/>
@@ -324,7 +324,7 @@
                                     <field name="booking_allow_confirm_sale"
                                            attrs="{'invisible': [('booking_orders', '=', False)]}"/>
                                 </group>
-                                <group string="Sale/Quotation Orders">
+                                <group string="Órdenes de venta/cotización">
                                     <field name="sale_order"/>
                                     <field name="sale_order_auto_confirm"
                                            attrs="{'invisible': [('sale_order', '=', False)]}"/>
@@ -337,13 +337,13 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Report">
+                        <page string="Reportes">
                             <group>
                                 <group>
                                     <field name="report_no_of_report"/>
                                     <field name="report_current_session_report"/>
                                 </group>
-                                <group string="Product Report">
+                                <group string="Reporte de Productos">
                                     <field name="report_product_summary"/>
                                     <field name="report_product_current_month_date"/>
                                     <field name="report_product_summary_auto_check_product"/>
@@ -351,7 +351,7 @@
                                     <field name="report_product_summary_auto_check_location"/>
                                     <field name="report_product_summary_auto_check_payment"/>
                                 </group>
-                                <group string="Order Report">
+                                <group string="Reporte de Órdenes">
                                     <field name="report_order_summary"/>
                                     <field name="report_order_current_month_date"/>
                                     <field name="report_order_summary_auto_check_order"/>
@@ -359,17 +359,17 @@
                                     <field name="report_order_summary_auto_check_payment"/>
                                     <field name="report_order_summary_default_state"/>
                                 </group>
-                                <group string="Payment Report">
+                                <group string="Reporte de Pagos">
                                     <field name="report_payment_summary"/>
                                     <field name="report_payment_current_month_date"/>
                                 </group>
-                                <group string="Z-Report">
+                                <group string="Z-Reporte">
                                     <field name="report_sale_summary"/>
                                     <field name="report_sale_summary_show_profit"/>
                                 </group>
                             </group>
                         </page>
-                        <page string="Speed Up">
+                        <page string="Velocidad de Carga POS">
                             <group>
                                 <field name="big_datas_sync_backend"/>
                                 <field name="big_datas_turbo"/>
@@ -377,7 +377,7 @@
                             </group>
                             <group>
                                 <button name="reinstall_database"
-                                        string="Install/Reinstall Database"
+                                        string="Instalar/Reinstalar Base de Datos"
                                         class="btn-danger"
                                         type="object"
                                         icon="fa-archive"
@@ -396,7 +396,7 @@
                                 </button>
                             </group>
                         </page>
-                        <page string="Accounting/Invoice">
+                        <page string="Contabilidad / Factura">
                             <group>
                                 <group>
                                     <field name="invoice_offline"/>
@@ -433,7 +433,7 @@
                                 <group>
                                     <field name="analytic_account_id"/>
                                 </group>
-                                <group string="Rounding Payment">
+                                <group string="Redondeo en Pagos">
                                     <field name="rounding_total_paid"/>
                                     <field name="rounding_type"
                                            attrs="{'invisible': [('rounding_total_paid', '=', False)], 'required' : [('rounding_total_paid', '=', True)]}"/>
@@ -447,16 +447,16 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Receipt/Bill">
+                        <page string="Recibo / Factura">
                             <group>
-                                <group string="Receipt Setting">
+                                <group string="Configuración del Recibo">
                                     <field name="review_receipt_before_paid"/>
                                     <field name="print_last_order"/>
                                     <field name="ticket_font_size"/>
                                     <field name="allow_ticket_font_size"/>
                                     <field name="validate_order_without_receipt"/>
                                 </group>
-                                <group string="Display Setting">
+                                <group string="Configuración de Pantalla">
                                     <field name="display_fiscal_position_receipt"/>
                                     <field name="display_image_receipt"/>
                                     <field name="receipt_customer_vat"/>
@@ -471,30 +471,30 @@
                                     <field name="add_picking_field_to_receipt"/>
                                     <field name="add_invoice_field_to_receipt"/>
                                 </group>
-                                <group string="Duplicate Receipt">
+                                <group string="Recibo Duplicado">
                                     <field name="duplicate_receipt"/>
                                     <field name="print_number"
                                            attrs="{'invisible': [('duplicate_receipt', '=', False)]}"/>
                                 </group>
-                                <group string="Automatic">
+                                <group string="Automático">
                                     <field name="auto_nextscreen_when_validate_payment"/>
                                     <field name="auto_print_web_receipt"/>
                                 </group>
-                                <group string="Barcode Setting">
+                                <group string="Configuración del Código de Barras">
                                     <field name="barcode_receipt" nolabel="1"/>
                                 </group>
-                                <group string="Print Report">
+                                <group string="Imprimir Reporte">
                                     <field name="print_delivery_report"/>
                                     <field name="print_order_report"/>
                                 </group>
-                                <group string="Receipt FullSize (A4,A5)">
+                                <group string="Recibo de tamaño completo (A4,A5)">
                                     <field name="receipt_fullsize"/>
                                 </group>
                             </group>
                         </page>
-                        <page string="Purchase Order">
+                        <page string="Orden de Compra">
                             <group>
-                                <group string="Purchase Order">
+                                <group string="Orden de Compra">
                                     <field name="create_purchase_order"/>
                                     <field name="create_purchase_order_required_signature"/>
                                     <field name="purchase_order_state"
@@ -502,9 +502,9 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Warehouse">
+                        <page string="Almacén">
                             <group>
-                                <group string="Stock Locations">
+                                <group string="Ubicaciones de Stock">
                                     <field name="stock_location_id"/>
                                     <field name="stock_location_dest_id"/>
                                     <field name="multi_location"/>
@@ -523,21 +523,21 @@
                                     <field name="multi_location_check_all_stock"
                                            attrs="{'invisible': [('multi_location', '=', False)]}"/>
                                 </group>
-                                <group string="Lot Serial/Number">
+                                <group string="Lote/Número de Serie">
                                     <field name="checking_lot"/>
                                     <field name="multi_lots"/>
                                     <field name="create_lots"/>
                                 </group>
                             </group>
                         </page>
-                        <page string="Products Screen">
+                        <page string="Pantalla de Productos">
                             <group>
                                 <field name="translate_products_name"/>
                                 <field name="set_product_name_from_field"
                                        attrs="{'invisible': [('translate_products_name', '!=', True)], 'required': [('translate_products_name', '=', True)]}"/>
                                 <field name="default_display_cart"/>
                             </group>
-                            <group string="Limited Product Categories">
+                            <group string="Categorías de productos limitadas">
                                 <field name="limit_categories"/>
                                 <field name="iface_available_categ_ids"
                                        widget="many2many_tags"
@@ -566,14 +566,14 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Clients Screen">
+                        <page string="Pantalla de Clientes">
                             <group>
                                 <group string="Validation">
                                     <field name="quickly_search_client"/>
                                     <field name="check_duplicate_email"/>
                                     <field name="check_duplicate_phone"/>
                                 </group>
-                                <group string="Display Screen">
+                                <group string="Pantalla de Visualización">
                                     <field name="hide_title"/>
                                     <field name="hide_country"/>
                                     <field name="hide_barcode"/>
@@ -583,11 +583,11 @@
                                     <field name="hide_phone"/>
                                     <field name="hide_email"/>
                                 </group>
-                                <group string="Security">
+                                <group string="Seguridad">
                                     <field name="update_client"/>
                                     <field name="add_client"/>
                                 </group>
-                                <group string="Required Fields">
+                                <group string="Información obligatoria">
                                     <field name="required_title"/>
                                     <field name="required_street"/>
                                     <field name="required_city"/>
@@ -606,7 +606,7 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Restaurant">
+                        <page string="Restaurante">
                             <group>
                                 <group>
                                     <field name="allow_split_table"/>
@@ -614,7 +614,7 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Extends">
+                        <page string="Extendido">
                             <div id="pos_retail">
                                 <group>
                                     <group>
