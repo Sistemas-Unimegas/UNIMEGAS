@@ -54,7 +54,7 @@
 
 
         <record model="ir.actions.act_window" id="pos_combo_item_action">
-            <field name="name">Item of Combos</field>
+            <field name="name">Producto de Combos</field>
             <field name="res_model">pos.combo.item</field>
             <field name="view_mode">tree,form</field>
         </record>
