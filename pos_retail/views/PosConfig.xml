@@ -99,12 +99,12 @@
                         </page>
                         <page string="Sincronizar entre sesiones">
                             <group>
-                                <group id="sync_multi_session" string="Sync Setting">
+                                <group id="sync_multi_session" string="Configuración de sincronización">
                                     <field name="sync_multi_session"/>
                                     <field name="display_person_add_line"
                                            attrs="{'invisible': [('sync_multi_session', '=', False)]}"/>
                                     <button name="remove_sync_between_session_logs"
-                                            string="Remove Sync Between Session Logs"
+                                            string="Eliminar sincronización entre registros de sesión"
                                             attrs="{'invisible': [('sync_multi_session', '=', False)]}"
                                             type="object"
                                             confirm="We will remove all logs transactions of future Sync Between Sessions send to this POS Config. Are you really want to do it now ?"
