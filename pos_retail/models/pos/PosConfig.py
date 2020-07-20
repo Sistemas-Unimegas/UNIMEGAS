@@ -83,7 +83,7 @@ class pos_config(models.Model):
         string="Pisos")
 
     active_design_layout = fields.Boolean(
-        'Active Design Layout',
+        'Layout de Diseño Activo',
         help='Esta opción le permite diseñar la pantalla POS  \n'
              'Y todo su diseño se solucionará con su Pantalla en la PC que diseñe \n'
              'Si abre la pantalla POS otro tamaño de diferencia de pantalla con la última pantalla utilizada Diseño \n'
@@ -317,59 +317,59 @@ class pos_config(models.Model):
         ('load_all', 'Load All'),
     ],
         default='last_7_days',
-        string='Period days loading Booked Orders'
+        string='Período días cargando pedidos reservados'
     )
     booking_orders_required_cashier_signature = fields.Boolean(
         'Required Signature',
-        help='When your cashiers create Book Order\n'
-             'Will require your cashier signature on order',
+        help='Cuando sus cajeros crean orden de libros\n'
+             'Requerirá su firma de cajero en el pedido',
         default=0)
     booking_orders_alert = fields.Boolean(
-        'Alert Order Coming', default=0,
-        help='When have any Booking Order come from another Source Location to POS\n'
-             'POS will Alert one popup inform your cashier have new Order coming')
+        'Alerta de orden de llegada', default=0,
+        help='Cuando un pedido de reserva proviene de otra ubicación de origen a POS\n'
+             'POS alertará una ventana emergente informará a su cajero que tiene un nuevo pedido')
     booking_allow_confirm_sale = fields.Boolean(
-        'Delivery Booked Orders', default=0,
-        help='Allow Cashier can Confirm Booked Orders and create Delivery Order')
+        'Entrega de pedidos reservados', default=0,
+        help='Permitir cajero puede confirmar pedidos reservados y crear pedido de entrega')
     delivery_orders = fields.Boolean(
-        'Delivery Order',
-        help='Finish Order and Give Receipt to your Shipper delivery Order',
+        'Orden de entrega',
+        help='Finalice el pedido y entregue el recibo a su pedido de entrega del remitente',
         default=0)
-    booking_orders_display_shipping_receipt = fields.Boolean('Shipping Address Receipt', default=0)
-    display_tax_orderline = fields.Boolean('Display Taxes Order Line', default=0)
-    display_tax_receipt = fields.Boolean('Display Taxes Receipt', default=0)
-    display_fiscal_position_receipt = fields.Boolean('Display Fiscal Position on Receipt', default=0)
+    booking_orders_display_shipping_receipt = fields.Boolean('Recibo de dirección de envío', default=0)
+    display_tax_orderline = fields.Boolean('Mostrar línea de pedido de impuestos', default=0)
+    display_tax_receipt = fields.Boolean('Mostrar recibo de impuestos', default=0)
+    display_fiscal_position_receipt = fields.Boolean('Mostrar posición fiscal en el recibo', default=0)
 
-    display_image_orderline = fields.Boolean('Display Image on Order Lines', default=0)
-    display_image_receipt = fields.Boolean('Display Image on Receipt', default=0)
+    display_image_orderline = fields.Boolean('Mostrar imagen en líneas de pedido', default=0)
+    display_image_receipt = fields.Boolean('Mostrar imagen en el recibo', default=0)
     duplicate_receipt = fields.Boolean(
-        'Duplicate Receipt',
-        help='If you need print bigger than 1 receipt / 1 order,\n'
-             ' add bigger than 1')
+        'Recibo duplicado',
+        help='Si necesita imprimir más de 1 recibo / 1 pedido,\n'
+             ' agregar mayor que 1')
     print_number = fields.Integer(
-        'No.of Receipt',
-        help='How many Bill need print on one Order', default=0)
+        'No. de recibos',
+        help='¿Cuántas facturas necesitan imprimir en un pedido', default=0)
     allow_cashier_update_print_number = fields.Boolean(
-        'Allow Cashier Update Print Number',
-        help='If checked, Cashier can change number of receipt via Payment Screen'
+        'Permitir número de impresión de actualización de cajero',
+        help='Si está marcado, el cajero puede cambiar el número de recibo a través de la pantalla de pago'
 
     )
     category_wise_receipt = fields.Boolean(
-        'Category Wise Receipt',
+        'Recibo de la categoría',
         default=0,
-        help='Bill will wise each POS Category')
-    management_invoice = fields.Boolean('Display Invoices Screen', default=0)
+        help='Facturar cada categoría')
+    management_invoice = fields.Boolean('Pantalla de visualización de facturas', default=0)
     load_invoices_type = fields.Selection([
-        ('last_7_days', 'Last 7 Days from now'),
-        ('last_1_month', 'Last 1 Month (30 days) from now'),
-        ('last_1_year', 'Last 1 Year (365 days) from now'),
-        ('load_all', 'Load All'),
+        ('last_7_days', 'Últimos 7 días'),
+        ('last_1_month', 'Último 1 mes (30 días)'),
+        ('last_1_year', 'Último 1 año (365 días)'),
+        ('load_all', 'Cargar todo'),
     ],
         default='last_7_days',
-        string='Period days loading Invoices'
+        string='Periodo días cargando Facturas'
     )
     invoice_offline = fields.Boolean(
-        'Invoice Offline Mode',
+        'Modo sin conexión de factura',
         help='Any Orders come from POS Session always create invoice \n'
              'Invoice will create few second after POS Orders created \n'
              'This future not print invoice number on POS Receipt \n'
@@ -377,11 +377,11 @@ class pos_config(models.Model):
              'Please set Customer Default or all orders on POS required set Customer before do payment'
     )
     invoice_offline_auto_register_payment = fields.Boolean(
-        'Auto Register Payment',
+        'Registro de pago automático',
         help='Any Invoice create from Order will auto register payment and reconcile'
     )
     wallet = fields.Boolean(
-        'Wallet Card',
+        'Tarjeta de monedero electrónico',
         help='Keeping all change money back to Customer Wallet Card\n'
              'Example: customer bought products with total amount is 9.5 USD\n'
              'Customer give your Cashier 10 USD, \n'
@@ -403,128 +403,128 @@ class pos_config(models.Model):
              "And when your cashier choice Journal on POS\n"
              "Invoice create from order will the same Journal selected by cashier")
     send_invoice_email = fields.Boolean(
-        'Send email invoice',
+        'Enviar factura por correo electrónico',
         help='Help cashier send invoice to email of customer',
         default=0)
     pos_auto_invoice = fields.Boolean(
-        'Auto create Invoice',
+        'Auto crear factura',
         help='Auto check to button Invoice on POS Payment Screen',
         default=0)
     receipt_customer_vat = fields.Boolean(
-        'Add Customer Vat on Receipt',
-        help='Show customer VAT(TIN) on receipt header', default=0)
+        'Agregar IVA al cliente en el recibo',
+        help='Mostrar el IVA del cliente (RFC) en el encabezado del recibo', default=0)
     fiscal_position_auto_detect = fields.Boolean(
-        'Fiscal position auto detect',
+        'Detección automática de posición fiscal',
         default=0
     )
     display_sale_price_within_tax = fields.Boolean(
-        'Display Sale Price Within Taxes',
+        'Mostrar precio de venta impuestos incluidos',
         default=1
     )
-    display_cost_price = fields.Boolean('Display Cost Price', default=0)
-    display_product_ref = fields.Boolean('Display Product Ref', default=0)
+    display_cost_price = fields.Boolean('Mostrar costo', default=0)
+    display_product_ref = fields.Boolean('Mostrar referencia del producto', default=0)
     display_product_second_name = fields.Boolean(
-        'Display Product Second Name',
+        'Mostrar el segundo nombre del producto',
         default=1,
         help='If you need show Product Second Name on product record \n'
              'Active it for display second name on order cart and receipt/bill'
     )
-    hide_product_image = fields.Boolean('Hide Product Image', default=0)
-    multi_location = fields.Boolean('Allow Multi Location', default=0)
+    hide_product_image = fields.Boolean('Ocultar la imagen del producto', default=0)
+    multi_location = fields.Boolean('Permitir ubicación múltiple', default=0)
     multi_location_check_stock_line_selected = fields.Boolean(
-        'Check Stock On hand each Product',
-        help='Allow cashier check stock on hand of line in cart selected'
+        'Consultar existencias de cada producto',
+        help='Permite al cajero revisar el inventario de los productos'
     )
     multi_location_update_default_stock = fields.Boolean(
-        'Change default Stock',
-        help='Allow cashier change default pos warehouse stock'
+        'Cambiar stock predeterminado',
+        help='Permitir al cajero cambiar el almacén por defecto'
     )
-    multi_location_check_all_stock = fields.Boolean('Check stock on hand products all stock locations')
+    multi_location_check_all_stock = fields.Boolean('Consultar stock de productos disponibles en todas las ubicaciones de stock')
     update_stock_onhand_realtime = fields.Boolean(
-        'Update Stock onhand Realtime',
-        help='Auto update stock on hand of products realtime \n'
-             'If this future active, may be pos actions will slow when change order selected \n'
-             'Because POS auto update stock on hand of products via event change order selected'
+        'Actualizar stock disponible en tiempo real',
+        help='Actualización automática de stock de productos en tiempo real \n'
+             'Si esta opción está activa, puede haber acciones POS lentas cuando se selecciona el orden de cambio \n'
+             'Debido a que el stock de actualización automática de POS en la mano de productos a través del orden de cambio de evento seleccionado'
     )
     product_view = fields.Selection([
         ('box', 'Box View'),
         ('list', 'List View'),
-    ], default='box', string='Product Screen View Type', required=1)
+    ], default='box', string='Tipo de vista de pantalla del producto', required=1)
     product_image_size = fields.Selection([
         ('default', 'Default'),
         ('small', 'Small'),
         ('big', 'Big')
     ],
         default='big',
-        string='Product Image Size')
-    ticket_font_size = fields.Integer('Bill Font Size', default=12,
+        string='Tamaño de imagen del producto')
+    ticket_font_size = fields.Integer('Tamaño de letra en recibo / factura', default=12,
                                       help='Font Size of Bill print via Web, not support posbox')
     allow_ticket_font_size = fields.Boolean(
-        'Allow Cashier change Fontsize',
+        'Permitir que el cajero cambie el tamaño de la letra',
         help='Allow Cashier change Fontsize of Receipt'
     )
-    customer_default_id = fields.Many2one('res.partner', 'Customer Default', help='When you put customer here, \n'
+    customer_default_id = fields.Many2one('res.partner', 'Cliente predeterminado', help='When you put customer here, \n'
                                                                                   'when cashier create new order, pos auto add this customer to order for default')
-    medical_insurance = fields.Boolean('Medical insurance', default=0)
-    set_guest = fields.Boolean('Set Guests', default=0)
+    medical_insurance = fields.Boolean('Seguro médico', default=0)
+    set_guest = fields.Boolean('Invitados', default=0)
     set_guest_when_add_new_order = fields.Boolean(
-        'Auto Ask Guests',
+        'Auto Preguntar invitados',
         help='When Cashiers add Orders, pos auto popup and ask guest name and guest number')
-    reset_sequence = fields.Boolean('Reset Sequence Order', default=0)
+    reset_sequence = fields.Boolean('Restablecer orden de secuencia', default=0)
     update_tax = fields.Boolean(
-        'Modify Taxes of Lines',
+        'Modificar impuestos de líneas',
         default=0,
         help='Allow Cashiers can change Taxes of Lines')
     update_tax_ids = fields.Many2many(
         'account.tax',
         'pos_config_tax_rel',
         'config_id',
-        'tax_id', string='List Taxes')
+        'tax_id', string='Lista de impuestos')
     subtotal_tax_included = fields.Boolean(
         'Show Tax-Included Prices',
         help='When checked, subtotal each line of Order Cart and Bill/Receipt will display Total Amount with taxes included')
-    cash_out = fields.Boolean('Take Money Out', default=0, help='Allow cashiers take money out')
-    cash_in = fields.Boolean('Push Money In', default=0, help='Allow cashiers input money in')
+    cash_out = fields.Boolean('Sacar dinero', default=0, help='Allow cashiers take money out')
+    cash_in = fields.Boolean('Ponder dinero', default=0, help='Allow cashiers input money in')
     min_length_search = fields.Integer(
-        'Min Character Search',
+        'Caracteres mínimos en la búsqueda',
         default=3,
         help='Allow auto suggestion items when cashiers input on search box')
     review_receipt_before_paid = fields.Boolean(
-        'Display Receipt Before Payment',
+        'Mostrar recibo antes del pago',
         help='On Payment Screen and Client Screen,\n'
              ' receipt will render left page for review',
         default=1)
-    switch_user = fields.Boolean('Switch User', default=0, help='Allow cashiers user change between pos config')
-    change_unit_of_measure = fields.Boolean('Change Unit of Measure', default=0,
+    switch_user = fields.Boolean('Cambio de usuario', default=0, help='Allow cashiers user change between pos config')
+    change_unit_of_measure = fields.Boolean('Cambiar unidad de medida', default=0,
                                             help='Allow cashiers change unit of measure of order lines')
     print_last_order = fields.Boolean(
-        'Print Last Receipt',
+        'Imprimir último recibo',
         default=0,
         help='Allow cashiers print last receipt')
-    printer_on_off = fields.Boolean('On/Off printer', help='Help cashier turn on/off printer via posbox', default=0)
-    check_duplicate_email = fields.Boolean('Check duplicate email', default=0)
-    check_duplicate_phone = fields.Boolean('Check duplicate phone', default=0)
-    hide_title = fields.Boolean('Hide Title', default=1)
-    hide_country = fields.Boolean('Hide Country', default=0)
-    hide_barcode = fields.Boolean('Hide Barcode', default=0)
-    hide_tax = fields.Boolean('Hide Taxes', default=0)
-    hide_pricelist = fields.Boolean('Hide Pricelists', default=0)
-    quickly_search_client = fields.Boolean("Quickly Search Client", default=1)
-    required_title = fields.Boolean('Required Title')
-    required_street = fields.Boolean('Required Street')
-    required_city = fields.Boolean('Required City')
-    required_birthday = fields.Boolean('Required Birthday')
-    required_email = fields.Boolean('Required Email')
-    required_phone = fields.Boolean('Required Phone')
-    required_mobile = fields.Boolean('Required Mobile')
-    required_pricelist = fields.Boolean('Required Pricelist')
+    printer_on_off = fields.Boolean('On/Off impresora', help='Help cashier turn on/off printer via posbox', default=0)
+    check_duplicate_email = fields.Boolean('Verificar correo electrónico duplicado', default=0)
+    check_duplicate_phone = fields.Boolean('Verificar teléfono duplicado', default=0)
+    hide_title = fields.Boolean('Ocultar título', default=1)
+    hide_country = fields.Boolean('Ocultar país', default=0)
+    hide_barcode = fields.Boolean('Ocultar código de barras', default=0)
+    hide_tax = fields.Boolean('Ocultar impuestos', default=0)
+    hide_pricelist = fields.Boolean('Ocultar listas de precios', default=0)
+    quickly_search_client = fields.Boolean("Búsqueda rápida de cliente", default=1)
+    required_title = fields.Boolean('Título obligatorio')
+    required_street = fields.Boolean('Calle obligatoria')
+    required_city = fields.Boolean('Ciudad obligatoria')
+    required_birthday = fields.Boolean('Cumpleaños obligatorio')
+    required_email = fields.Boolean('Email obligatorio')
+    required_phone = fields.Boolean('Teléfono obligatorio')
+    required_mobile = fields.Boolean('Teléfono móvil obligatorio')
+    required_pricelist = fields.Boolean('Lista de precios obligatorio')
     auto_remove_line = fields.Boolean(
-        'Auto Remove Line',
+        'Remover en automático línea en 0',
         default=1,
         help='When cashier set quantity of line to 0, \n'
              'Line auto remove not keep line with qty is 0')
     chat = fields.Boolean(
-        'Chat message',
+        'Mensaje de Chat',
         default=1,
         help='Online support visitors website \n'
              'Take Order from website ecommerce \n'
@@ -532,7 +532,7 @@ class pos_config(models.Model):
     add_sale_person = fields.Boolean('Add Sale Person', default=0)
     default_seller_id = fields.Many2one(
         'res.users',
-        'Default Seller',
+        'Vendedor predeterminado',
         help='This is Seller automatic assigned to new Orders and new Order Lines'
     )
     seller_ids = fields.Many2many(
@@ -540,26 +540,26 @@ class pos_config(models.Model):
         'pos_config_sellers_rel',
         'config_id',
         'user_id',
-        string='Sellers',
+        string='Vendedores',
         help='This is list sellers use for choice and add to Order or Order Line')
     force_seller = fields.Boolean(
-        'Force Seller',
+        'Vendedor obligatorio',
         help='When Your POS session select/change another Seller \n'
              'POS auto assigned New Seller to each Line of Order Cart',
         default=0)
-    fast_remove_line = fields.Boolean('Fast Remove Line', default=1)
-    logo = fields.Binary('Receipt Logo')
-    suggest_cash_amount_payment = fields.Boolean('Suggest Cash Amount Payment')
+    fast_remove_line = fields.Boolean('Eliminación rápida de líneas', default=1)
+    logo = fields.Binary('Logotipo en el recibo')
+    suggest_cash_amount_payment = fields.Boolean('Sugerir pago en efectivo')
     suggest_cash_ids = fields.Many2many('pos.quickly.payment')
     paid_full = fields.Boolean(
-        'Full Fill Cash Payment', default=0,
+        'Pago completo en efectivo', default=0,
         help='Auto Full Fill Cash Payment')
     backup = fields.Boolean(
-        'Backup/Restore Orders Manual', default=0,
+        'Respaldo/Restauración de Ordenes Manualmente', default=0,
         help='Allow cashiers backup and restore orders on pos screen')
-    backup_orders = fields.Text('Backup Orders', readonly=1)
+    backup_orders = fields.Text('Respaldar órdenes', readonly=1)
     backup_orders_automatic = fields.Boolean(
-        'Automatic BackUp Orders',
+        'Automáticamente respaldar órdenes',
         help='Schedule 5 seconds, POS Session automatic backup Orders to BackEnd Odoo \n'
              'If POS Sessions Screen crashed, Computer PC Crashed or Browse Crashed ... could not open POS back \n'
              'Them can change to another PC, Devices and Open POS Session back \n'
@@ -569,9 +569,9 @@ class pos_config(models.Model):
              'With (**), we have not solution for covert It. Required Input Orders Unpaid Manual back'
     )
     change_logo = fields.Boolean(
-        'Change Shop Logo', default=1, help='Allow cashiers change logo of shop on pos screen')
+        'Cambio de logo de ventas', default=1, help='Allow cashiers change logo of shop on pos screen')
     management_session = fields.Boolean(
-        'Management Cash Control',
+        'Control del manejo de efectivo',
         default=0,
         help='Allow pos users can take money in/out session\n'
              'If you active this future please active Cash Control of POS Odoo Original too'
@@ -581,164 +581,164 @@ class pos_config(models.Model):
         'pos_config_cash_inout_product_rel',
         'config_id',
         'product_id',
-        sting='Cash In/Out Reason')
-    barcode_receipt = fields.Boolean('Display Barcode Receipt', default=0)
+        string='Motivo de entrada / salida')
+    barcode_receipt = fields.Boolean('Mostrar código de barras en el recibo', default=0)
     print_delivery_report = fields.Boolean(
-        'Print Delivery Report',
+        'Imprimir reporte de entregas',
         default=0,
         help='If you active it \n'
              'When Cashiers print POS Bill, POS auto print PDF Delivery Order Report'
     )
-    print_order_report = fields.Boolean('Print Order Report',
+    print_order_report = fields.Boolean('Imprimir reporte de Órdenes',
                                         default=0,
                                         help='If you active it \n'
                                              'When Cashiers print POS Bill, POS auto print PDF POS Order Report'
                                         )
-    hide_mobile = fields.Boolean("Hide Client's Mobile", default=1)
-    hide_phone = fields.Boolean("Hide Client's Phone", default=1)
-    hide_email = fields.Boolean("Hide Client's Email", default=1)
-    update_client = fields.Boolean('Allow Update Clients',
+    hide_mobile = fields.Boolean("Ocultar el móvil del cliente", default=1)
+    hide_phone = fields.Boolean("Ocultar el teléfono del cliente", default=1)
+    hide_email = fields.Boolean("Ocultar el email del cliente", default=1)
+    update_client = fields.Boolean('Permitir la actualización de clientes',
                                    help='Uncheck if you dont want cashier change customer information on pos')
     add_client = fields.Boolean(
-        'Allow Add Client',
+        'Permitir agregar nuevos clientes',
         help='Allow POS Session can create new Client')
-    remove_client = fields.Boolean('Allow Remove Clients',
+    remove_client = fields.Boolean('Permitir eliminar clientes del sistema',
                                    help='Uncheck if you dont want cashier remove customers on pos')
-    mobile_responsive = fields.Boolean('Mobile Mode', default=0)
-    report_no_of_report = fields.Integer(string="No.of copy Receipt", default=1)
-    report_signature = fields.Boolean(string="Report Signature", default=0)
+    mobile_responsive = fields.Boolean('Modo Dispositivos Móviles', default=0)
+    report_no_of_report = fields.Integer(string="No. de copias del recibo", default=1)
+    report_signature = fields.Boolean(string="Reporte de firmas", default=0)
 
-    report_product_summary = fields.Boolean(string="Report Product Summary", default=0)
-    report_product_current_month_date = fields.Boolean(string="Report This Month", default=0)
-    report_product_summary_auto_check_product = fields.Boolean('Auto Checked to Product Summary')
-    report_product_summary_auto_check_category = fields.Boolean('Auto Checked to Product Category Summary')
-    report_product_summary_auto_check_location = fields.Boolean('Auto Checked to Product Location Summary')
-    report_product_summary_auto_check_payment = fields.Boolean('Auto Checked to Product Payment Summary')
+    report_product_summary = fields.Boolean(string="Reporte resumen por productos", default=0)
+    report_product_current_month_date = fields.Boolean(string="Reporte de este mes", default=0)
+    report_product_summary_auto_check_product = fields.Boolean('Comprobación automática al resumen del producto')
+    report_product_summary_auto_check_category = fields.Boolean('Resumen de categoría de producto verificado automáticamente')
+    report_product_summary_auto_check_location = fields.Boolean('Resumen de ubicación automática del producto')
+    report_product_summary_auto_check_payment = fields.Boolean('Verificación automática del resumen de pago del producto')
 
-    report_order_summary = fields.Boolean(string='Report Order Summary', default=0)
-    report_order_current_month_date = fields.Boolean(string="Report Current Month", default=0)
-    report_order_summary_auto_check_order = fields.Boolean('Auto Checked to Order Summary')
-    report_order_summary_auto_check_category = fields.Boolean('Auto Checked to Order Category Summary')
-    report_order_summary_auto_check_payment = fields.Boolean('Auto Checked to Order Payment Summary')
+    report_order_summary = fields.Boolean(string='Informe de resumen de pedidos', default=0)
+    report_order_current_month_date = fields.Boolean(string="Reporte de mes actual", default=0)
+    report_order_summary_auto_check_order = fields.Boolean('Auto comprobar sumatoria de órdenes')
+    report_order_summary_auto_check_category = fields.Boolean('Auto comprobar sumatoria de órdenes por categoría')
+    report_order_summary_auto_check_payment = fields.Boolean('Auto comprobar sumatoria de órdenes de pago')
     report_order_summary_default_state = fields.Selection([
-        ('new', 'New'),
-        ('paid', 'Paid'),
-        ('posted', 'Posted'),
-        ('invoiced', 'Invoiced'),
-        ('all', 'All')
-    ], string='Report with state', default='all')
+        ('new', 'Nuevo'),
+        ('paid', 'Pagado'),
+        ('posted', 'Abierto'),
+        ('invoiced', 'Facturado'),
+        ('all', 'Todos')
+    ], string='Informe con estado', default='all')
 
-    report_payment_summary = fields.Boolean(string="Report Payment Summary", default=0)
-    report_payment_current_month_date = fields.Boolean(string="Payment Current Month", default=0)
+    report_payment_summary = fields.Boolean(string="Informe resumen de pago", default=0)
+    report_payment_current_month_date = fields.Boolean(string="Pago Mes Actual", default=0)
 
-    report_sale_summary = fields.Boolean('Report Sale Summary (Z-Report)')
-    report_sale_summary_show_profit = fields.Boolean('Report Sale Summary show Gross/Profit')
-    report_current_session_report = fields.Boolean('Auto checked current session')
+    report_sale_summary = fields.Boolean('Reporte de Resumen de Ventas (Z-Reporte)')
+    report_sale_summary_show_profit = fields.Boolean('Resumen de Ventas (Brutas / Ganancias)')
+    report_current_session_report = fields.Boolean('Sesión actual comprobada automáticamente')
 
-    active_product_sort_by = fields.Boolean('Active Sort By Product', default=0)
+    active_product_sort_by = fields.Boolean('Ordenar por productos Activos', default=0)
     default_product_sort_by = fields.Selection([
-        ('a_z', 'Sort Name A to Z'),
-        ('z_a', 'Sort Name Z to A'),
-        ('low_price', 'Sort from Low to High Sale Price'),
-        ('high_price', 'Sort from High to Low Sale Price'),
-        ('pos_sequence', 'Product POS Sequence')
-    ], string='Default Sort By', default='a_z')
+        ('a_z', 'Ordenar por nombre A a Z'),
+        ('z_a', 'Ordenar por nombre Z a A'),
+        ('low_price', 'Ordenar por precio de venta, menor a mayor'),
+        ('high_price', 'Ordenar por precio de venta, de mayor a menor'),
+        ('pos_sequence', 'Secuencia de productos del POS')
+    ], string='Orden predeterminado', default='a_z')
     add_customer_before_products_already_in_shopping_cart = fields.Boolean(
-        'Required choice Client before Add to Cart',
+        'Elegir obligatorio Cliente antes de Agregar al carrito',
         help='Add customer before products \n'
              'already in shopping cart',
         default=0)
     allow_cashier_select_pricelist = fields.Boolean(
-        'Allow Cashier select Pricelist',
+        'Permitir al cajero seleccionar lista de precios',
         help='If uncheck, pricelist only work when select customer.\n'
              ' Cashiers could not manual choose pricelist',
         default=1)
     big_datas_turbo = fields.Boolean(
-        'Turbo Starting POS Session',
+        'Inicio de sesión turbo POS',
         help='If you active it, any change from backend like pos config, payment method ... not load new when reload POS Session \n'
              'Only use it when everything ready to sell on POS'
     )
     big_datas_sync_backend = fields.Boolean(
-        'Auto Sync Reltime with Backend',
+        'Sincronización automática Reltime en backend',
         help='If have any change Products/Customer. POS auto sync with event change',
         default=1)
     sale_with_package = fields.Boolean(
-        'Sale with Package')
+        'Venta con paquetes')
     allow_set_price_smaller_min_price = fields.Boolean(
-        'Allow Cashier set Price smaller than Sale Price of Product',
+        'Permitir al cajero establecer un precio menor que el precio de venta del producto',
         default=1)
     checking_lot = fields.Boolean(
-        'Validate Lot/Serial Number',
+        'Validar lote / número de serie',
         help='Validate lot name input by cashiers is wrong or correctly')
 
     sync_sales = fields.Boolean(
-        'Sync Sales/Quotations', default=1,
+        'Sincronizar ventas / cotizaciones', default=1,
         help='Synchronize quotations/sales order between backend and pos')
     auto_nextscreen_when_validate_payment = fields.Boolean(
-        'Auto Next Screen',
+        'Pantalla siguiente automática',
         help='Auto Next Screen when Cashiers Validate Order',
         default=0)
-    auto_print_web_receipt = fields.Boolean('Auto Print Web Receipt', default=0)
-    multi_lots = fields.Boolean('Allow Multi Lots/Serial', help='One order line can set many lots')
-    create_lots = fields.Boolean('Allow Create Lots/Serial', help='Allow cashier create lots on pos')
+    auto_print_web_receipt = fields.Boolean('Recibo web de impresión automática', default=0)
+    multi_lots = fields.Boolean('Permitir múltiples lotes / serie', help='One order line can set many lots')
+    create_lots = fields.Boolean('Permitir crear lotes / serie', help='Allow cashier create lots on pos')
     promotion_ids = fields.Many2many(
         'pos.promotion',
         'pos_config_promotion_rel',
         'config_id',
         'promotion_id',
-        string='Promotions Applied')
+        string='Promociones Aplicadas')
     replace_payment_screen = fields.Boolean(
-        'Replace Payment Screen', default=0,
+        'Reemplazar pantalla de pago', default=0,
         help='If checked, payment screen and products made to one \n'
              'Keyboard of payment screen will turn off\n'
              'This future only support on PC, without mobile tablet')
-    pos_branch_id = fields.Many2one('pos.branch', 'Branch')
+    pos_branch_id = fields.Many2one('pos.branch', 'Sucursal')
 
     stock_location_ids = fields.Many2many(
-        'stock.location', string='Stock Locations',
+        'stock.location', string='Ubicaciones de stock',
         help='Stock Locations for cashier select checking stock on hand \n'
              'and made picking source location from location selected',
         domain=[('usage', '=', 'internal')])
-    validate_by_manager = fields.Boolean('Validate by Managers')
-    discount_unlock_by_manager = fields.Boolean('Unlock Limit Discount by Manager')
+    validate_by_manager = fields.Boolean('Validar por gerentes')
+    discount_unlock_by_manager = fields.Boolean('Desbloquear límite de descuento por el gerente')
     manager_ids = fields.Many2many('res.users', 'pos_config_res_user_manager_rel', 'config_id', 'user_id',
-                                   string='Manager Validation')
-    stock_location_id = fields.Many2one('stock.location', string='POS Default Source Location',
+                                   string='Validación del gerente')
+    stock_location_id = fields.Many2one('stock.location', string='Ubicación de origen predeterminada de POS',
                                         related='picking_type_id.default_location_src_id',
                                         readonly=1)
-    stock_location_dest_id = fields.Many2one('stock.location', string='POS Default Dest Location',
+    stock_location_dest_id = fields.Many2one('stock.location', string='POS Ubicación predeterminada del destino',
                                              related='picking_type_id.default_location_dest_id',
                                              readonly=1)
-    receipt_display_subtotal = fields.Boolean('Receipt Display Sub Total', default=1)
-    receipt_display_taxes = fields.Boolean('Receipt Display Taxes', default=1)
-    receipt_display_warehouse = fields.Boolean('Receipt Display Warehouse', default=0)
+    receipt_display_subtotal = fields.Boolean('Pantalla de recepción Subtotal', default=1)
+    receipt_display_taxes = fields.Boolean('Desplegar impuestos en el recibo', default=1)
+    receipt_display_warehouse = fields.Boolean('Desplegar almacén en el recibo', default=0)
     receipt_header_style = fields.Selection([
-        ('left', 'Left'),
-        ('center', 'Center'),
-        ('right', 'Right')
+        ('left', 'Izquierda'),
+        ('center', 'Centro'),
+        ('right', 'Derecha')
     ],
         default='left',
-        string='Header Receipt Style',
+        string='Estilo del encabezado del recibo',
         help='Header style, this future only apply on posbox and printer connected\n'
              'Not apply for printer direct web browse'
     )
     receipt_fullsize = fields.Boolean(
-        'Receipt FullSize',
+        'Recibo de tamaño completo',
         help='Replace POS Receipt default of Odoo Original \n'
              'To POS Receipt Report fullsize, allow Print Page A4 A5 ...'
     )
     validate_order_without_receipt = fields.Boolean(
-        'Validate Order without Receipt',
+        'Validar pedido sin recibo',
         help='If checked, on pos payment screen, \n'
              'will have one button allow validate order without print Receipt',
         default=1
     )
-    discount_value = fields.Boolean('Discount Value')
+    discount_value = fields.Boolean('Valor de descuento')
     discount_value_limit = fields.Float(
-        'Discount Value Limit',
+        'Límite de valor de descuento',
         help='This is limited money cashier can setff'
     )
-    posbox_save_orders = fields.Boolean('Save Orders on PosBox')
+    posbox_save_orders = fields.Boolean('Guardar pedidos en PosBox')
     posbox_save_orders_iot_ids = fields.Many2many(
         'pos.iot',
         'pos_config_iot_save_orders_rel',
@@ -747,11 +747,11 @@ class pos_config(models.Model):
         string='IoT boxes'
     )
     posbox_save_orders_server_ip = fields.Char(
-        'Odoo Public Ip Address',
+        'Dirección de Odoo Public Ip',
         help='Example Ip: 192.168.100.100'
     )
     posbox_save_orders_server_port = fields.Char(
-        'Odoo Public Port Number',
+        'Número de puerto público de Odoo',
         default='8069',
         help='Example Port: 8069'
     )
@@ -759,32 +759,32 @@ class pos_config(models.Model):
         'account.analytic.account',
         'Analytic Account'
     )
-    limit_categories = fields.Boolean("Restrict Available Product Categories")
+    limit_categories = fields.Boolean("Restringir categorías de productos disponibles")
     iface_available_categ_ids = fields.Many2many(
         'pos.category',
-        string='Available PoS Product Categories',
+        string='Categorías de productos PoS disponibles',
         help='The point of sale will only display products \n'
              'which are within one of the selected category trees. \n'
              'If no category is specified, all available products will be shown')
-    hide_dock = fields.Boolean('Hide Dock', default=0)
+    hide_dock = fields.Boolean('Ocultar el Dock', default=0)
     barcode_scan_with_camera = fields.Boolean(
-        'Use Camera Scan Barcode',
+        'Usar lector de código de barras de las cámaras de POS',
         help='If you check it, and your device use POS have camera \n'
              'You can use camera of device scan barcode for add products, return orders ....\n'
              'This future only supported web browse and SSL \n'
              'SSL required if you are on cloud. As without SSL permission of camera not work.'
     )
     barcode_scan_timeout = fields.Float(
-        'Times timeout',
+        'Tiempo de espera',
         default=1000,
         help='Period times timeout for next scan\n'
              '1000 = 1 second\n'
              'I good time for scan we think 1000'
     )
-    rounding_total_paid = fields.Boolean('Rounding Amount Paid')
+    rounding_total_paid = fields.Boolean('Monto de redondeo pagado')
     rounding_type = fields.Selection([
-        ('rounding_by_decimal_journal', 'By Decimal Rounding of Journal'),
-        ('rounding_integer', 'Rounding to Integer'),
+        ('rounding_by_decimal_journal', 'Por redondeo decimal del diario'),
+        ('rounding_integer', 'Redondeando a entero'),
     ],
         default='rounding_integer',
         help='By Decimal Rounding Journal: We will follow rounding of Journal Decimal Rounding Amount\n'
@@ -793,7 +793,7 @@ class pos_config(models.Model):
              'From decimal from 0.25 to 0.75 become 0.5\n'
              'From decimal from 0.75 to 0.999 become to 1')
     dynamic_combo = fields.Boolean(
-        'Dynamic Combo',
+        'Combo dinámico',
         help='One Order Line can add many combo items,\n'
              'Combo items is product have checked Combo Item field \n'
              'When Combo Item add, price extra will included to Order Line selected \n'
@@ -805,15 +805,15 @@ class pos_config(models.Model):
         'pos_config_service_charge_rel',
         'config_id',
         'charge_id',
-        string='Services Charge'
+        string='Cargos por servicio'
     )
     payment_reference = fields.Boolean(
-        'Payment Reference',
+        'Referencia del pago',
         help='Allow cashier add reference Note each payment line'
     )
-    display_margin = fields.Boolean('Display Margin %')
+    display_margin = fields.Boolean('Desplegar margen %')
     turbo_sync_orders = fields.Boolean(
-        'Turbo Sync Orders',
+        'Sincronización turbo de órdenes',
         default=0,
         help='Cashiers push orders from Session always save Order state Draft \n'
              'System automatic process Orders (create picking, add payment ...) And processing Orders to Paid\n'
@@ -821,45 +821,45 @@ class pos_config(models.Model):
              'This future only apply on Orders not request Invoice'
     )
     customer_facing_screen = fields.Boolean(
-        'Active Customer Facing Screen',
+        'Pantalla activa de cara al cliente',
         help='If you have not IoT/pos Boxes, you can active it and use client facing screen'
     )
     allow_split_table = fields.Boolean('Allow Split Table')
     allow_merge_table = fields.Boolean('Merge/Combine Tables')
     start_session_oneclick = fields.Boolean(
-        'Start Session One Click'
+        'Iniciar sesión con un click'
     )
     translate_products_name = fields.Boolean(
-        'Load Translate Products Name',
+        'Cargar traducción de productos',
         help='When active, all products name language will load correct language of language POS User started session',
         default=0
     )
     set_product_name_from_field = fields.Selection(
         _get_product_field_char,
         default='name',
-        string='Product Name display by field',
+        string='Nombre del producto mostrado por campo',
         help="Choose the field of the table Product which will be used for Product Display"
     )
     replace_partners_name = fields.Boolean(
-        'Replace Partners Name',
+        'Reemplazar nombre de socios',
         help='When active, partners name will replace buy field you choose bellow',
         default=0
     )
     set_partner_name_from_field = fields.Selection(
         _get_customer_field_char,
         default='name',
-        string='Customer Name display from field',
+        string='Visualización del nombre del cliente desde el campo',
         help="Choose the field of the table Customer which will be used for Customer Display"
     )
     default_display_cart = fields.Boolean(
-        'Default Display Cart',
+        'Carrito de visualización predeterminado',
         default=1,
         help='If uncheck, default Product Screen cart list will automatic invisible'
     )
     search_customer_not_found_auto_fill_to_field = fields.Selection(
         _get_customer_field_char,
         default='mobile',
-        string='Search customer not found, auto full fill value inputed on search box to field',
+        string='No se encontró el cliente de búsqueda, se introdujo el valor de llenado completo automático en el cuadro de búsqueda para colocar',
         help="Please choice one field of table Customer \n"
              "If pos user search not found customer and click add new customer \n"
              "Value of search box automatic full fill to this field selected here"
@@ -867,19 +867,19 @@ class pos_config(models.Model):
     add_picking_field_to_receipt = fields.Selection(
         _get_picking_field_char,
         default='name',
-        string='Add Picking Field to Receipt',
+        string='Agregar campo de selección al recibo',
         help="Please choose one field of Delivery Object\n"
              "Display to your POS receipt"
     )
     add_invoice_field_to_receipt = fields.Selection(
         _get_invoice_field_char,
         default='name',
-        string='Add Invoice Field to Receipt',
+        string='Agregar campo de factura al recibo',
         help="Please choose one field of Invoice Object\n"
              "for Display to your POS receipt"
     )
     create_quotation = fields.Boolean(
-        'Create Quotation Order',
+        'Crear orden de cotización',
         help='Allow cashier create Quotation Order, \n'
              'If customer full fill payment order, automatic processing to paid \n'
              'Else cashier can cancel quotation direct POS screen'
