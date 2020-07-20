@@ -13,7 +13,7 @@
                             </span>
                         </div>
                         <div class="summary-detail">
-                            Taxes
+                            Impuestos
                             <span class='value taxes'>
                                 <t t-esc="widget.format_currency(widget.pos.get_order().get_total_with_tax() - widget.pos.get_order().get_total_without_tax())"/>
                             </span>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="summary-box-right">
                         <div class="summary-detail">
-                            Discount
+                            Descuento
                             <span class='discount'>
                                 <t t-esc="widget.format_currency(widget.pos.get_order().get_total_discount())"/>
                             </span>
@@ -43,7 +43,7 @@
                                 <t t-esc="widget.pos.get_order().pricelist.name"/>
                             </t>
                             <t t-else="">
-                                Set Pricelist
+                                Listas de Precios
                             </t>
                         </span>
                     </div>
@@ -51,7 +51,7 @@
                 <t t-if="widget.pos.config.quickly_payment_full">
                     <div class='button quickly_paid'>
                         <span class="pricelist-name">
-                            CheckOut Full
+                            Check Out Completo
                         </span>
                     </div>
                 </t>
@@ -59,19 +59,19 @@
             <div class="actionpad-buttons" style="display: none">
                 <div t-attf-class='button set-customer #{ ( widget.pos.get_client() and widget.pos.get_client().name.length > 10) ? "decentered" : "" }'>
                     <span class="customer-name">
-                        <i class="material-icons" style="margin-top: 10px">person</i>
+                        <i class="material-icons" style="margin-top: 10px">persona</i>
                         <t t-if="widget.pos.get_client()">
                             <t t-esc="widget.pos.get_client().name"/>
                         </t>
                         <t t-if="!widget.pos.get_client()">
-                            Set Customer
+                            Clientes
                         </t>
                     </span>
                 </div>
                 <t t-if="widget.pos.config.allow_payment">
                     <div class='button pay'>
                         <span class="customer-name">
-                            CheckOut
+                            Check Out
                         </span>
                     </div>
                 </t>
@@ -83,10 +83,10 @@
         <t t-jquery="span[class='price']" t-operation="replace">
             <span class="remove-item">
                 <i class="fa fa-fw fa-trash" aria-label="Remove Line" role="img" title="Remove Line"/>
-                <span class="keyboard-shortcut">Del</span>
+                <span class="keyboard-shortcut">Borrar</span>
             </span>
             <span class="edit-item">
-                <i class="material-icons" aria-label="Detail Line" role="img" title="Detail Line">edit</i>
+                <i class="material-icons" aria-label="Detail Line" role="img" title="Detail Line">editar</i>
             </span>
             <span class="price">
                 <t t-if="!widget.pos.config.subtotal_tax_included">
@@ -127,7 +127,7 @@
                                     <t t-esc="tax.name"/>
                                 </div>
                             </t>
-                            with Taxes: <t t-esc="widget.format_currency(line.get_tax())"/>
+                            con Impuestos: <t t-esc="widget.format_currency(line.get_tax())"/>
                         </li>
                     </t>
                     <t t-if="line.discount">
@@ -137,7 +137,7 @@
                                     <t t-esc="widget.format_currency(line.get_price_discount())"/>
                                 </span>
                             </t>
-                            with Discount: <t t-esc="line.discount"/>%
+                            con Descuento: <t t-esc="line.discount"/>%
                         </li>
                     </t>
                 </t>
@@ -161,7 +161,7 @@
                         <t t-esc="product.name_second"/>
                     </t>
                     <t t-if="line.get_product().tracking!=='none'">
-                        <i t-attf-class="material-icons line-lot-icon oe_icon #{line.has_valid_product_lot() ? 'oe_green' : 'oe_red' }">list</i>
+                        <i t-attf-class="material-icons line-lot-icon oe_icon #{line.has_valid_product_lot() ? 'oe_green' : 'oe_red' }">lista</i>
                     </t>
                 </span>
                 <div class="info extra_functions"/>
@@ -173,10 +173,10 @@
         <t t-set="count" t-value="1"/>
         <tr style="border-bottom: 1px solid">
             <td class="text-center"></td>
-            <td class="text-left">Name</td>
-            <td class="text-left">Point Of Sale</td>
-            <td class="text-left">Responsive</td>
-            <td class="text-left">Opening Date</td>
+            <td class="text-left">Nombre</td>
+            <td class="text-left">Punto de Venta</td>
+            <td class="text-left">Responsivo</td>
+            <td class="text-left">Fecha de apertura</td>
         </tr>
         <t t-foreach="sub_datas || []" t-as="session">
             <tr class='line-select' t-att-data-id="session.id">
@@ -199,14 +199,14 @@
                         <span class="keyboard-shortcut">
                             <i class="fa fa-keyboard"/> ~
                         </span>
-                        <span class="pricelist-name">Set PriceList</span>
+                        <span class="pricelist-name">Lista de Precio</span>
                     </div>
                 </span>
                 <t t-if="widget.pos.config.create_quotation">
                     <span class="orderwidget-button create_quotation">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">calendar_today</i>
-                            Create Quotation
+                            Crear Cotización
                         </div>
                     </span>
                 </t>
@@ -214,7 +214,7 @@
                     <span class="orderwidget-button edit_voucher_card">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">card_giftcard</i>
-                            Create Voucher
+                            Crear Vale
                         </div>
                     </span>
                 </t>
@@ -222,7 +222,7 @@
                     <span class="orderwidget-button input_reason_return">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">question_answer</i>
-                            Reason Return
+                            Motivo de la Devolución
                         </div>
                     </span>
                 </t>
@@ -230,7 +230,7 @@
                     <span class="orderwidget-button set_seller">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">person_add</i>
-                            Set Seller
+                            Vendedor
                         </div>
                     </span>
                 </t>
@@ -238,7 +238,7 @@
                     <span class="orderwidget-button set_note">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">message</i>
-                            Set Note
+                            Notas
                         </div>
                         <span class="keyboard-shortcut"><i class="fa fa-keyboard"/> U</span>
                     </span>
@@ -247,7 +247,7 @@
                     <span class="orderwidget-button set_tags">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">label</i>
-                            Set Tags
+                            Etiquetas
                         </div>
                         <span class="keyboard-shortcut"><i class="fa fa-keyboard"/> T</span>
                     </span>
@@ -255,26 +255,26 @@
                 <span class="orderwidget-button set_unit_measure">
                     <div class="orderwidget-button-name">
                         <i class="material-icons">list</i>
-                        Set Unit of Measure
+                        Unidad de Medida
                     </div>
                 </span>
                 <span class="orderwidget-button set-dynamic-com">
                     <div class="orderwidget-button-name">
                         <i class="material-icons">dashboard</i>
-                        Set Combo
+                        Combos
                     </div>
                 </span>
                 <span class="orderwidget-button suggest_buy_more">
                     <div class="orderwidget-button-name">
                         <i class="material-icons">build</i>
-                        View Suggest
+                        Productos Opcionales
                     </div>
                 </span>
                 <t t-if="widget.pos.discounts and widget.pos.discounts.length">
                     <span class="orderwidget-button set_discount">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">trending_down</i>
-                            Set Discount
+                            Descuentos
                         </div>
                     </span>
                 </t>
@@ -282,7 +282,7 @@
                     <span class="orderwidget-button find-order">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">history</i>
-                            Order Histories
+                            Historial de Ordenes
                         </div>
                     </span>
                 </t>
@@ -290,7 +290,7 @@
                     <span class="orderwidget-button service-charge">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">book</i>
-                            Set Services
+                            Servicios
                         </div>
                     </span>
                 </t>
@@ -298,33 +298,33 @@
                     <span class="orderwidget-button shipping-order">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">local_shipping</i>
-                            Shipping Order
+                            Orden de Entrega
                         </div>
                     </span>
                 </t>
                 <span class="orderwidget-button multi_variant" title="Set Customize, Variants for Product">
                     <div class="orderwidget-button-name">
                         <i class="material-icons">subject</i>
-                        Set Variants
+                        Variantes del Producto
                     </div>
                 </span>
                 <span class="orderwidget-button change_cross_selling" title="Suggest Sale">
                     <div class="orderwidget-button-name">
                         <i class="material-icons">reorder</i>
-                        Suggest
+                        Productos Opcionales
                     </div>
                 </span>
                 <span class="orderwidget-button product_packaging" title="Set Package">
                     <div class="orderwidget-button-name">
                         <i class="material-icons">view_module</i>
-                        Set Package
+                        Paquetes
                     </div>
                 </span>
                 <t t-if="widget.pos.config.discount_value and widget.pos.config.discount_value_limit > 0">
                     <span class="orderwidget-button discount-value">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">trending_down</i>
-                            Discounts Value
+                            Valor de Descuento
                         </div>
                     </span>
                 </t>
@@ -332,7 +332,7 @@
                     <span class="orderwidget-button signature-receipt">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">edit</i>
-                            Signature Receipt
+                            Firmar Recibo
                         </div>
                     </span>
                 </t>
@@ -340,7 +340,7 @@
                     <span class="orderwidget-button remove_shopping_cart">
                         <div class="orderwidget-button-name">
                             <i class="material-icons">clear</i>
-                            Remove Line
+                            Quitar línea
                         </div>
                     </span>
                 </t>
@@ -351,8 +351,8 @@
                 <div class="line" style="display: none">
                     <div class='entry total'>
                         <span class="badge">Total: </span>
-                        <span class="value">0.00 €</span>
-                        <div class='subentry'>Taxes: <span class="value">0.00€</span></div>
+                        <span class="value">0.00 MXN</span>
+                        <div class='subentry'>Impuestos: <span class="value">0.00 MXN</span></div>
                     </div>
                 </div>
                 <t t-if="widget.pos.get_order()">
@@ -363,7 +363,7 @@
                             <div class="summary-box-left">
                                 <div class="summary-detail">
                                     <i class="fa fa-barcode"/>
-                                    Origin
+                                    Origen
                                     <span>
                                         <t t-esc="order.origin"/>
                                     </span>
@@ -374,7 +374,7 @@
                             <div class="summary-box-left">
                                 <div class="summary-detail">
                                     <i class="fa fa-calendar"/>
-                                    Date Order
+                                    Fecha de la Venta
                                     <span>
                                         <t t-esc="order.date_order"/>
                                     </span>
@@ -385,7 +385,7 @@
                             <div class="summary-box-right">
                                 <div class="summary-detail">
                                     <i class="fa fa-map"/>
-                                    Shipping to
+                                    Enviar a
                                     <span class='value delivery_address'></span>
                                 </div>
                             </div>
@@ -394,7 +394,7 @@
                             <div class="summary-box-right">
                                 <div class="summary-detail">
                                     <i class="fa fa-clock"/>
-                                    Shipping date
+                                    Fecha de envío
                                     <span class='value delivery_date'></span>
                                 </div>
                             </div>
@@ -402,7 +402,7 @@
                         <t t-if="widget.pos.config.note_order">
                             <div class="summary-box-left action-box take-note">
                                 <div class="summary-detail">
-                                    Note to Receipt
+                                    Nota de recepción
                                     <i class="material-icons">create</i>
                                     <span class="order-note"/>
                                 </div>
@@ -411,7 +411,7 @@
                         <t t-if="widget.pos.config.signature_order">
                             <div class="summary-box-right action-box signature-note">
                                 <div class="summary-detail">
-                                    Signature to Receipt
+                                    Firma de recibido
                                     <i class="material-icons">attach_file</i>
                                     <span class='value'>
                                         <img class="product-img signature" src=""/>
