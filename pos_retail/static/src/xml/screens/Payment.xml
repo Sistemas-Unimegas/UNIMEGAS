@@ -121,24 +121,24 @@
     <t t-extend="PaymentScreen-Paymentlines">
         <t t-jquery="div[class*='message']" t-operation="replace">
             <div class='message'>
-                Please select a payment method of left page.
+                Selecciona un método de pago de la izquierda..
                 <br/>
                 <div class="keyboard-shortcut" style="text-align: left !important; font-size: 13px !important">
-                    1) If Amount due is 0 you can press <span class="keyboard-shortcut">Enter</span> for Checkout Order quickly.
+                    1) Si el monto es 0, puede presionar <span class="keyboard-shortcut">Enter</span> para procesar el pedido rápido.
                     <br/>
-                    2) Automatic full fill amount please press <span class="keyboard-shortcut">Space</span>
+                    2) Cantidad de llenado automático completo, presiona <span class="keyboard-shortcut"> la barra espaciadora </span>
                     <br/>
-                    3) Press :<span class="keyboard-shortcut">C</span> for switch to customers screen and set customer
+                    3) Presiona :<span class="keyboard-shortcut">C</span> para cambiar a la pantalla de clientes y configurar el cliente
                     <br/>
-                    4) Press :<span class="keyboard-shortcut">I</span> If you want Order to Invoice
-                    4) Press :<span class="keyboard-shortcut">F1 to F9</span> for select payment method
+                    4) Presiona :<span class="keyboard-shortcut">I</span> si quieres facturar
+                    4) Presiona :<span class="keyboard-shortcut">F1 a F9</span> para seleccionar el método de pago.
                 </div>
             </div>
         </t>
         <t t-jquery="t[t-esc*='line.name']" t-operation="after">
             <t t-if="line.voucher_code">
                 <li class="voucher_code">
-                    Added Voucher: <i class="fa fa-gift"/>
+                    Vale agregado: <i class="fa fa-gift"/>
                     <t t-esc='line.voucher_code'/>
                 </li>
             </t>
@@ -163,18 +163,18 @@
     <t t-extend="PaymentScreenWidget">
         <t t-jquery="span[class='button next']" t-operation="replace">
             <span class="button next highlight" data-tag="next" style="">
-                CheckOut
+                Check Out
                 <span class="keyboard-shortcut">Enter</span>
             </span>
         </t>
         <t t-jquery="span[class*='button back']" t-operation="replace">
             <span class="button back">
-                Back
+                Regresar
                 <span class="keyboard-shortcut">ESC</span>
             </span>
         </t>
         <t t-jquery="h1" t-operation="replace">
-            <h1>Payment</h1>
+            <h1>Pago</h1>
             <span class="card-issue"/>
         </t>
         <t t-jquery="div[class*='left-content']" t-operation="replace">
@@ -188,56 +188,56 @@
                 <section class='paymentlines-detail'>
                     <div class="summary-box-left">
                         <div class="summary-detail">
-                            Welcome:
+                            Bienvenido:
                             <span class="value client-name">
                             </span>
                         </div>
                     </div>
                     <div class="summary-box-left">
                         <div class="summary-detail">
-                            Credit Card:
+                            Tarjeta:
                             <span class="value credit-card">
                             </span>
                         </div>
                     </div>
                     <div class="summary-box-left">
                         <div class="summary-detail">
-                            Order Ref:
+                            Referencia de la Orden:
                             <span class="value order-ref">
                             </span>
                         </div>
                     </div>
                     <div class="summary-box-left">
                         <div class="summary-detail">
-                            Wallet Card:
+                            Monedero electrónico:
                             <span class="value wallet-card">
                             </span>
                         </div>
                     </div>
                     <div class="summary-box-right">
                         <div class="summary-detail">
-                            Remaining Amount:
+                            Cantidad restante:
                             <span class="value remaining-amount">
                             </span>
                         </div>
                     </div>
                     <div class="summary-box-left">
                         <div class="summary-detail">
-                            Loyalty Points:
+                            Puntos Programa Lealtad:
                             <span class="value points-card">
                             </span>
                         </div>
                     </div>
                     <div class="summary-box-right">
                         <div class="summary-detail">
-                            Due Amount:
+                            Monto a pagar:
                             <span class='value due-amount'>
                             </span>
                         </div>
                     </div>
                     <div class="summary-box-right">
                         <div class="summary-detail">
-                            Change Amount:
+                            Cambio:
                             <span class='value change-amount'>
                             </span>
                         </div>
@@ -258,7 +258,7 @@
                                     <t t-esc="widget.pos.get_client().name"/>
                                 </t>
                                 <t t-if="!widget.pos.get_client()">
-                                    Customer
+                                    Cliente
                                 </t>
                             </span>
                         </div>
@@ -266,7 +266,7 @@
                                 <t t-if='widget.pos.get_order()'>
                                     <div t-attf-class='button js_invoice #{ widget.pos.get_order().is_to_invoice() ? "highlight" : ""} '>
                                         <i class='fa fa-file-text-o'/>
-                                        Invoice
+                                        Facturar
                                         <span class="keyboard-shortcut">I</span>
                                     </div>
                                 </t>
@@ -286,7 +286,7 @@
                         <t t-if='widget.pos.config.iface_cashdrawer'>
                             <div class='button js_cashdrawer'>
                                 <i class='fa fa-archive'/>
-                                Open Cashbox
+                                Abrir cajón de dinero
                             </div>
                         </t>
                         <t t-if="widget.pos.config.paid_full">
@@ -295,7 +295,7 @@
                                     <img src="/pos_retail/static/src/icons/confirm.png" class="pos_logo"/>
                                 </div>
                                 <div class="button-name">
-                                    Paid Full
+                                    Pago completo
                                     <span class="keyboard-shortcut">F</span>
                                 </div>
                             </span>
@@ -307,7 +307,7 @@
                                     <img src="/pos_retail/static/src/icons/save.png" class="pos_logo"/>
                                 </div>
                                 <div class="button-name">
-                                    Partial Payment
+                                    Pago parcial
                                     <span class="keyboard-shortcut">P</span>
                                 </div>
                             </span>
@@ -319,7 +319,7 @@
                                     <img src="/pos_retail/static/src/icons/tip.png" class="pos_logo"/>
                                 </div>
                                 <div class="button-name">
-                                    Number of Receipt: <t t-esc="widget.pos.config.print_number"/>
+                                    Número de recibo: <t t-esc="widget.pos.config.print_number"/>
                                 </div>
                             </span>
                         </t>
@@ -330,7 +330,7 @@
                                     <img src="/pos_retail/static/src/icons/tip.png" class="pos_logo"/>
                                 </div>
                                 <div class="button-name">
-                                    Wise Category Receipt
+                                    Categoría del recibo
                                 </div>
                             </span>
                         </t>
@@ -340,7 +340,7 @@
                                     <img src="/pos_retail/static/src/icons/tip.png" class="pos_logo"/>
                                 </div>
                                 <div class="button-name">
-                                    Font Size Bill <t t-esc="widget.pos.config.ticket_font_size"/>
+                                    Tamaño de letra para el ticket <t t-esc="widget.pos.config.ticket_font_size"/>
                                 </div>
                             </span>
                         </t>
@@ -351,7 +351,7 @@
                                     <img src="/pos_retail/static/src/icons/tip.png" class="pos_logo"/>
                                 </div>
                                 <div class="button-name">
-                                    Display Barcode
+                                    Desplegar Código de Barras
                                 </div>
                             </span>
                         </t>
@@ -362,7 +362,7 @@
                                     <img src="/pos_retail/static/src/icons/tip.png" class="pos_logo"/>
                                 </div>
                                 <div class="button-name">
-                                    Auto Next Screen
+                                    Pantalla siguiente automática
                                 </div>
                             </span>
                         </t>
@@ -373,7 +373,7 @@
                                     <img src="/pos_retail/static/src/icons/tip.png" class="pos_logo"/>
                                 </div>
                                 <div class="button-name">
-                                    Auto popup Print
+                                    Impresión emergente automática
                                 </div>
                             </span>
                         </t>
@@ -384,7 +384,7 @@
                                     <img src="/pos_retail/static/src/icons/tip.png" class="pos_logo"/>
                                 </div>
                                 <div class="button-name">
-                                    Validate not Print Receipt
+                                    Validar no impresión de ticket
                                 </div>
                             </span>
                         </t>
@@ -411,7 +411,7 @@
             <t t-if="order and order.get_note()">
                 <section class='set-note'>
                     <div class="order-note-information">
-                        <div class="title">Order Notes</div>
+                        <div class="title">Notas de la Orden</div>
                         <div class="order-note">
                             <t t-esc="order.get_note() || ''"/>
                         </div>
@@ -419,7 +419,7 @@
                 </section>
                 <section class='signature-order'>
                     <div class="order-note-information">
-                        <div class="title">Customer Signature</div>
+                        <div class="title">Firma del Cliente</div>
                         <img class="product-img signature"
                              t-att-src="order.get_signature() || ''"
                              style="max-height:400px;max-width:100px"
@@ -432,7 +432,7 @@
             <t t-if="widget.pos.invoice_journals.length > 0">
                 <div class='invoice_journals'>
                     <p class="label payment-method-label"
-                       style="color: black;font-size: 20px;">Invoice Journal Selected</p>
+                       style="color: black;font-size: 20px;">Diario de Facturación</p>
                 </div>
             </t>
         </t>
@@ -447,7 +447,7 @@
                         <t t-esc="widget.pos.get_client().name"/>
                     </t>
                     <t t-if="!widget.pos.get_client()">
-                        Customer
+                        Cliente
                     </t>
                     <span class="keyboard-shortcut">C</span>
                 </div>
@@ -458,7 +458,7 @@
                         <img src="/pos_retail/static/src/icons/voucher.png" class="pos_logo"/>
                     </div>
                     <div class="button-name">
-                        Use Voucher
+                        Usar Vale
                         <span class="keyboard-shortcut">V</span>
                     </div>
                 </span>
@@ -471,7 +471,7 @@
                             <img src="/pos_retail/static/src/icons/email.png" class="pos_logo"/>
                         </div>
                         <div class="button-name">
-                            Mail Invoice
+                            Factura por Email
                             <span class="keyboard-shortcut">N</span>
                         </div>
                     </span>
@@ -482,7 +482,7 @@
                             <img src="/pos_retail/static/src/icons/signature.png" class="pos_logo"/>
                         </div>
                         <div class="button-name">
-                            Signature
+                            Firma
                             <span class="keyboard-shortcut">S</span>
                         </div>
                     </span>
@@ -493,7 +493,7 @@
                             <img src="/pos_retail/static/src/icons/note.png" class="pos_logo"/>
                         </div>
                         <div class="button-name">
-                            Change Note
+                            Cambiar notas
                             <span class="keyboard-shortcut">N</span>
                         </div>
                     </span>
@@ -504,7 +504,7 @@
                             <img src="/pos_retail/static/src/icons/trash.png" class="pos_logo"/>
                         </div>
                         <div class="button-name">
-                            Remove Promotions
+                            Quitar promociones
                             <span class="keyboard-shortcut">R</span>
                         </div>
                     </span>
@@ -515,7 +515,7 @@
                             <img src="/pos_retail/static/src/icons/trash.png" class="pos_logo"/>
                         </div>
                         <div class="button-name">
-                            Add promotions
+                            Agregar promociones
                         </div>
                     </span>
                 </t>
@@ -526,7 +526,7 @@
                         <img src="/pos_retail/static/src/icons/credit_card.png" class="pos_logo"/>
                     </div>
                     <div class="button-name">
-                        Add Credit
+                        Agregar Crédito
                         <span class="keyboard-shortcut">D</span>
                     </div>
                 </span>
@@ -537,7 +537,7 @@
                         <img src="/pos_retail/static/src/icons/wallet.png" class="pos_logo"/>
                     </div>
                     <div class="button-name">
-                        Add Wallet
+                        Agregar monedero
                         <span class="keyboard-shortcut">W</span>
                     </div>
                 </span>
@@ -561,7 +561,7 @@
                         <img src="/pos_retail/static/src/icons/invoice.png" class="pos_logo"/>
                     </div>
                     <div class="button-name">
-                        Invoice
+                        Factura
                         <span class="keyboard-shortcut">I</span>
                     </div>
                 </span>
@@ -589,7 +589,7 @@
                         <img src="/pos_retail/static/src/icons/open_cashbox.png" class="pos_logo"/>
                     </div>
                     <div class="button-name">
-                        Open Cashbox
+                        Abrir cajón de dinero
                     </div>
                 </span>
             </t>
