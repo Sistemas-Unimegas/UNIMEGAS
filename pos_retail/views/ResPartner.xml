@@ -18,7 +18,7 @@
                 <xpath expr="//page[@name='internal_notes']" position="before">
                     <page string="Point of sale" name="pos" groups="point_of_sale.group_pos_manager">
                         <group>
-                            <group string="Special Name">
+                            <group string="Nombre Especial">
                                 <field name="special_name" nolabel="1"/>
                             </group>
                             <group string="Branch" groups="pos_retail.group_branch_manager">
