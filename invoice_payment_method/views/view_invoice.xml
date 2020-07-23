@@ -1,0 +1,14 @@
+<odoo>
+  <data>
+  <record id="view_invoice_move_form__inherit" model="ir.ui.view">
+    <field name="name">view.invoice-move.form.inheriti</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_move_form"/>
+    <field name="arch" type="xml">
+          <xpath expr="//field[@name='l10n_mx_edi_usage']" position="after">
+          <field name="tipo_factura" string="Metodo de pago"/>
+        </xpath>
+    </field>
+   </record>
+  </data>
+</odoo>
