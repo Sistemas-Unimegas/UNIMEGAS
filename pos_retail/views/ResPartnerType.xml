@@ -6,7 +6,7 @@
             <field name="name">res.partner.type.form</field>
             <field name="model">res.partner.type</field>
             <field name="arch" type="xml">
-                <form string="type">
+                <form string="tipo">
                     <sheet>
                         <h1>
                             <field name="name"/>
@@ -24,7 +24,7 @@
             <field name="name">res.partner.type.tree</field>
             <field name="model">res.partner.type</field>
             <field name="arch" type="xml">
-                <tree string="type">
+                <tree string="tipo">
                     <field name="name"/>
                     <field name="from_amount_total_orders"/>
                     <field name="to_amount_total_orders"/>
@@ -36,7 +36,7 @@
             <field name="name">res.partner.type.search</field>
             <field name="model">res.partner.type</field>
             <field name="arch" type="xml">
-                <search string="type">
+                <search string="tipo">
                     <field name="name"/>
                 </search>
             </field>
@@ -44,7 +44,7 @@
 
 
         <record model="ir.actions.act_window" id="res_partner_type_action">
-            <field name="name">Customer Type</field>
+            <field name="name">Tipo de Cliente</field>
             <field name="res_model">res.partner.type</field>
             <field name="view_mode">tree,form</field>
         </record>
