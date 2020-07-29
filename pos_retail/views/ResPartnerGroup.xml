@@ -6,7 +6,7 @@
             <field name="name">res.partner.group.form</field>
             <field name="model">res.partner.group</field>
             <field name="arch" type="xml">
-                <form string="Group">
+                <form string="Grupos">
                     <sheet>
                         <field name="image" widget='image' class="oe_avatar"/>
                         <h1>
@@ -16,7 +16,7 @@
                             <field name="pricelist_applied"/>
                             <field name="pricelist_id" attrs="{'invisible': [('pricelist_applied', '=', False)], 'required': [('pricelist_applied', '=', True)]}"/>
                         </group>
-                        <group string="Card Design">
+                        <group string="Diseño de Tarjetas">
                             <field name="height"/>
                             <field name="width"/>
                         </group>
@@ -29,7 +29,7 @@
             <field name="name">res.partner.group.tree</field>
             <field name="model">res.partner.group</field>
             <field name="arch" type="xml">
-                <tree string="Group">
+                <tree string="Grupos">
                     <field name="name"/>
                     <field name="pricelist_applied"/>
                     <field name="pricelist_id"/>
@@ -41,7 +41,7 @@
             <field name="name">res.partner.group.search</field>
             <field name="model">res.partner.group</field>
             <field name="arch" type="xml">
-                <search string="Group">
+                <search string="Grupos">
                     <field name="name"/>
                     <field name="pricelist_id"/>
                 </search>
@@ -50,7 +50,7 @@
 
 
         <record model="ir.actions.act_window" id="res_partner_group_action">
-            <field name="name">Groups/Membership</field>
+            <field name="name">Grupos/Membresías</field>
             <field name="res_model">res.partner.group</field>
             <field name="view_mode">tree,form</field>
         </record>
