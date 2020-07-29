@@ -50,7 +50,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_loyalty_category">
-            <field name="name">Loyalty Type</field>
+            <field name="name">Tipos de Lealtad</field>
             <field name="res_model">pos.loyalty.category</field>
             <field name="view_mode">tree,form</field>
         </record>
@@ -194,7 +194,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_loyalty">
-            <field name="name">Loyalty Programs</field>
+            <field name="name">Programas de Lealtad</field>
             <field name="res_model">pos.loyalty</field>
             <field name="view_mode">tree,form</field>
         </record>
@@ -273,7 +273,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_loyalty_rule">
-            <field name="name">Loyalty Rules</field>
+            <field name="name">Reglas de Lealtad</field>
             <field name="res_model">pos.loyalty.rule</field>
             <field name="view_mode">tree,form</field>
         </record>
@@ -360,7 +360,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_loyalty_reward">
-            <field name="name">Loyalty Rewards</field>
+            <field name="name">Recompensas de lealtad</field>
             <field name="res_model">pos.loyalty.reward</field>
             <field name="view_mode">tree,form</field>
         </record>
@@ -458,7 +458,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_loyalty_point">
-            <field name="name">Loyalty Points</field>
+            <field name="name">Puntos de Lealtad</field>
             <field name="res_model">pos.loyalty.point</field>
             <field name="view_mode">tree,form</field>
         </record>
