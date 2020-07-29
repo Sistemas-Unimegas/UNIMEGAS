@@ -11,7 +11,7 @@
             <field name="name">pos.loyalty.category.form</field>
             <field name="model">pos.loyalty.category</field>
             <field name="arch" type="xml">
-                <form string="Loyalty Category">
+                <form string="Categorías de Lealtad">
                     <sheet>
                         <group>
                             <field name="name"/>
@@ -42,7 +42,7 @@
             <field name="name">pos.loyalty.category.filter</field>
             <field name="model">pos.loyalty.category</field>
             <field name="arch" type="xml">
-                <search string="Loyalty filter">
+                <search string="Filtros de Lealtad">
                     <field name="name"/>
                     <field name="code"/>
                 </search>
@@ -69,7 +69,7 @@
                 <form string="Programa de Lealtad">
                     <header>
                         <field name="state" widget="statusbar" clickable="true"/>
-                        <button name="active_all_pos" string="Active all pos" type="object"
+                        <button name="active_all_pos" string="Activar todos los POS" type="object"
                                 groups="point_of_sale.group_pos_manager" class="btn-primary"/>
                     </header>
                     <sheet>
@@ -84,15 +84,15 @@
                             <field name="rounding_down"/>
                             <field name="rounding" attrs="{'invisible': [('rounding_down', '=', True)]}"/>
                         </group>
-                        <group string="Rules">
+                        <group string="Reglas">
                             <field name="rule_ids" nolabel="1">
-                                <tree string="Rule">
+                                <tree string="Regla">
                                     <field name="name"/>
                                     <field name="type"/>
                                     <field name="coefficient"/>
                                     <field name="min_amount"/>
                                 </tree>
-                                <form string="Loyalty Rules">
+                                <form string="Reglas de Lealtad">
                                     <sheet>
                                         <div class="oe_title">
                                             <label for="name" class="oe_edit_only"/>
@@ -120,18 +120,18 @@
                                 </form>
                             </field>
                         </group>
-                        <group string="Rewards">
+                        <group string="Recompensas">
                             <field name="reward_ids" nolabel="1">
-                                <tree string="Rewards">
+                                <tree string="Recompensas">
                                     <field name="name"/>
                                     <field name="type"/>
                                     <field name="coefficient"/>
                                     <field name="min_amount"/>
                                 </tree>
-                                <form string="Reward">
+                                <form string="Recompensas">
                                     <sheet>
                                         <div class="oe_title">
-                                            <label for="name" class="oe_edit_only" string="Name of reward"/>
+                                            <label for="name" class="oe_edit_only" string="Nombre de recompensa"/>
                                             <h1>
                                                 <field name="name" class="oe_inline"/>
                                             </h1>
@@ -165,7 +165,7 @@
                                 </form>
                             </field>
                         </group>
-                        <group string="POS applied">
+                        <group string="POS aplicado">
                             <field name="config_ids" nolabel="1" readonly="1"/>
                         </group>
                     </sheet>
@@ -226,7 +226,7 @@
             <field name="name">pos.loyalty.rule.form</field>
             <field name="model">pos.loyalty.rule</field>
             <field name="arch" type="xml">
-                <form string="Loyalty Rules">
+                <form string="Reglas de Lealtad">
                     <header>
                         <field name="state" widget="statusbar" clickable="true"/>
                     </header>
@@ -264,7 +264,7 @@
             <field name="name">pos.loyalty.rule.filter</field>
             <field name="model">pos.loyalty.rule</field>
             <field name="arch" type="xml">
-                <search string="Rules">
+                <search string="Reglas">
                     <field name="name"/>
                     <field name="type"/>
                     <field name="state"/>
@@ -290,7 +290,7 @@
             <field name="priority">1</field>
             <field name="model">pos.loyalty.reward</field>
             <field name="arch" type="xml">
-                <tree string="Rewards">
+                <tree string="Recompensas">
                     <field name="name"/>
                     <field name="type"/>
                     <field name="min_amount"/>
@@ -304,13 +304,13 @@
             <field name="model">pos.loyalty.reward</field>
             <field name="priority">1</field>
             <field name="arch" type="xml">
-                <form string="Reward">
+                <form string="Recompensas">
                     <header>
                         <field name="state" widget="statusbar" clickable="true"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
-                            <label for="name" class="oe_edit_only" string="Name of reward"/>
+                            <label for="name" class="oe_edit_only" string="Nombre de recompensa"/>
                             <h1>
                                 <field name="name" class="oe_inline"/>
                             </h1>
@@ -350,7 +350,7 @@
             <field name="name">pos.loyalty.reward.filter</field>
             <field name="model">pos.loyalty.reward</field>
             <field name="arch" type="xml">
-                <search string="Rewards">
+                <search string="Recompensas">
                     <field name="name"/>
                     <field name="loyalty_id"/>
                     <field name="type"/>
@@ -393,7 +393,7 @@
             <field name="model">pos.loyalty.point</field>
             <field name="priority">20</field>
             <field name="arch" type="xml">
-                <tree string="Loyalty Points">
+                <tree string="Puntos de lealtad">
                     <field name="loyalty_id"/>
                     <field name="order_id"/>
                     <field name="type"/>
@@ -409,7 +409,7 @@
             <field name="name">pos.loyalty.point.form</field>
             <field name="model">pos.loyalty.point</field>
             <field name="arch" type="xml">
-                <form string="Loyalty Point">
+                <form string="Punto de Lealtad">
                     <header>
                         <field name="state" widget="statusbar" clickable="true"/>
                     </header>
@@ -440,7 +440,7 @@
             <field name="name">pos.loyalty.point.filter</field>
             <field name="model">pos.loyalty.point</field>
             <field name="arch" type="xml">
-                <search string="Loyalty Points Filter">
+                <search string="Filtro de puntos de Lealtad">
                     <field name="loyalty_id"/>
                     <field name="order_id"/>
                     <field name="type"/>
@@ -448,10 +448,10 @@
                     <field name="end_date"/>
                     <field name="point"/>
                     <field name="state"/>
-                    <group expand="0" string="Group By">
-                        <filter string="Customer" name="groupby_partner" domain="[]" context="{'group_by': 'partner_id'}"/>
-                        <filter string="Type" name="groupby_type" domain="[]" context="{'group_by': 'type'}"/>
-                        <filter string="State" name="groupby_state" domain="[]" context="{'group_by': 'state'}"/>
+                    <group expand="0" string="Agrupar por">
+                        <filter string="Cliente" name="groupby_partner" domain="[]" context="{'group_by': 'partner_id'}"/>
+                        <filter string="Tipo" name="groupby_type" domain="[]" context="{'group_by': 'type'}"/>
+                        <filter string="Estado" name="groupby_state" domain="[]" context="{'group_by': 'state'}"/>
                     </group>
                 </search>
             </field>
