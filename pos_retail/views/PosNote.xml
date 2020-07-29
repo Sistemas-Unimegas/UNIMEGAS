@@ -20,7 +20,7 @@
             <field name="name">pos.note.tree</field>
             <field name="model">pos.note</field>
             <field name="arch" type="xml">
-                <tree string="notes">
+                <tree string="notas">
                     <field name="name"/>
                 </tree>
             </field>
@@ -37,7 +37,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_note">
-            <field name="name">Notes</field>
+            <field name="name">Notas</field>
             <field name="res_model">pos.note</field>
             <field name="view_mode">tree,form</field>
         </record>

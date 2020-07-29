@@ -26,7 +26,7 @@
             <field name="name">pos.cache.database.tree</field>
             <field name="model">pos.cache.database</field>
             <field name="arch" type="xml">
-                <tree string="notes">
+                <tree string="notas">
                     <field name="res_id"/>
                     <field name="res_model"/>
                     <field name="deleted"/>
