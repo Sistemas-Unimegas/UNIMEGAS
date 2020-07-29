@@ -61,7 +61,7 @@
 
 
         <record model="ir.actions.act_window" id="res_partner_credit_action">
-            <field name="name">Credits</field>
+            <field name="name">Créditos</field>
             <field name="res_model">res.partner.credit</field>
             <field name="view_mode">tree,form</field>
         </record>
