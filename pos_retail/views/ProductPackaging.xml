@@ -51,7 +51,7 @@
 
 
         <record id="action_product_packaging" model="ir.actions.act_window">
-            <field name="name">Product Packaging</field>
+            <field name="name">Empaquetado de producto</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.packaging</field>
             <field name="view_mode">tree,form</field>

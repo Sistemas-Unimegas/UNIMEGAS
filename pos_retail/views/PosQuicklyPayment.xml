@@ -6,7 +6,7 @@
             <field name="name">pos.quickly.payment.form</field>
             <field name="model">pos.quickly.payment</field>
             <field name="arch" type="xml">
-                <form string="Quickly Payment">
+                <form string="Pago rápidamente">
                     <sheet>
                         <group>
                             <group>
@@ -25,7 +25,7 @@
             <field name="name">pos.quickly.payment.tree</field>
             <field name="model">pos.quickly.payment</field>
             <field name="arch" type="xml">
-                <tree string="Quickly Payment">
+                <tree string="Pago rápidamente">
                     <field name="name"/>
                     <field name="type"/>
                     <field name="amount"/>
@@ -34,7 +34,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_quickly_payment">
-            <field name="name">Quickly Payment</field>
+            <field name="name">Pago rápidamente</field>
             <field name="res_model">pos.quickly.payment</field>
             <field name="view_mode">tree,form</field>
         </record>

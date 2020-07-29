@@ -6,7 +6,7 @@
             <field name="name">product.barcode.form</field>
             <field name="model">product.barcode</field>
             <field name="arch" type="xml">
-                <form string="Barcodes">
+                <form string="Códigos de barras">
                     <sheet>
                         <div class="oe_title">
                             <label for="barcode" class="oe_edit_only" string="Barcode"/>
@@ -30,7 +30,7 @@
             <field name="name">product.barcode.tree</field>
             <field name="model">product.barcode</field>
             <field name="arch" type="xml">
-                <tree string="Barcodes">
+                <tree string="Códigos de barras">
                     <field name="barcode"/>
                     <field name="product_tmpl_id"/>
                     <field name="product_id"/>
@@ -45,7 +45,7 @@
             <field name="name">product.barcode.search</field>
             <field name="model">product.barcode</field>
             <field name="arch" type="xml">
-                <search string="Barcodes">
+                <search string="Códigos de barras">
                     <field name="barcode"/>
                     <field name="product_tmpl_id"/>
                     <field name="list_price"/>
@@ -56,7 +56,7 @@
 
 
         <record model="ir.actions.act_window" id="product_barcode_action">
-            <field name="name">Barcodes</field>
+            <field name="name">Códigos de barras</field>
             <field name="res_model">product.barcode</field>
             <field name="view_mode">tree,form</field>
         </record>

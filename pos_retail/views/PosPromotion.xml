@@ -224,7 +224,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_promotion">
-            <field name="name">Promotions Scheme</field>
+            <field name="name">Esquema de Promociones</field>
             <field name="res_model">pos.promotion</field>
             <field name="view_mode">tree,form</field>
         </record>

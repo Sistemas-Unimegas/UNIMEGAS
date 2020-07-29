@@ -241,7 +241,7 @@
             <field name="name">product.variant.form</field>
             <field name="model">product.variant</field>
             <field name="arch" type="xml">
-                <form string="Variants of product">
+                <form string="Variantes de productos">
                     <sheet>
                         <group>
                             <group>
@@ -266,7 +266,7 @@
             <field name="name">product.variant.tree</field>
             <field name="model">product.variant</field>
             <field name="arch" type="xml">
-                <tree string="Variants of product">
+                <tree string="Variantes de productos">
                     <field name="product_tmpl_id"/>
                     <field name="attribute_id"/>
                     <field name="value_id" domain="[('attribute_id', '=', attribute_id)]"/>
@@ -283,7 +283,7 @@
             <field name="name">product.variant.search</field>
             <field name="model">product.variant</field>
             <field name="arch" type="xml">
-                <search string="Variants of product">
+                <search string="Variantes de productos">
                     <field name="product_tmpl_id"/>
                     <field name="attribute_id"/>
                     <field name="value_id"/>
@@ -298,7 +298,7 @@
 
 
         <record model="ir.actions.act_window" id="product_variant_action">
-            <field name="name">Variants of products</field>
+            <field name="name">Variantes de productos</field>
             <field name="res_model">product.variant</field>
             <field name="view_mode">tree,form</field>
         </record>
@@ -311,7 +311,7 @@
         />
 
         <record model="ir.actions.act_window" id="product_combo">
-            <field name="name">Combo/Packs</field>
+            <field name="name">Combos/Paquetes</field>
             <field name="res_model">product.template</field>
             <field name="domain">[('is_combo', '=', True)]</field>
             <field name="view_mode">tree,form</field>

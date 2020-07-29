@@ -22,7 +22,7 @@
             <field name="name">pos.tag.tree</field>
             <field name="model">pos.tag</field>
             <field name="arch" type="xml">
-                <tree string="Tags">
+                <tree string="Etiquetas">
                     <field name="name"/>
                     <field name="color"/>
                     <field name="is_return_reason"/>
@@ -42,7 +42,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_tag1">
-            <field name="name">Tags</field>
+            <field name="name">Etiquetas</field>
             <field name="res_model">pos.tag</field>
             <field name="domain">[('is_return_reason', '=', False)]</field>
             <field name="context">{'default_is_return_reason': False}</field>
@@ -50,7 +50,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_tag2">
-            <field name="name">Return Reasons</field>
+            <field name="name">Razones de devoluciones</field>
             <field name="res_model">pos.tag</field>
             <field name="domain">[('is_return_reason', '=', True)]</field>
             <field name="context">{'default_is_return_reason': True}</field>

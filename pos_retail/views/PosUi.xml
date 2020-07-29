@@ -6,7 +6,7 @@
             <field name="name">pos.ui.tree</field>
             <field name="model">pos.ui</field>
             <field name="arch" type="xml">
-                <tree string="Receipt Design">
+                <tree string="Diseño de la recepción">
                     <field name="config_id"/>
                     <field name="tag"/>
                     <field name="top"/>
@@ -26,7 +26,7 @@
             <field name="name">pos.ui.form</field>
             <field name="model">pos.ui</field>
             <field name="arch" type="xml">
-                <form string="Receipt Design">
+                <form string="Diseño de la recepción">
                     <sheet>
                         <group>
                             <group>
@@ -60,7 +60,7 @@
             <field name="name">pos.ui.filter</field>
             <field name="model">pos.ui</field>
             <field name="arch" type="xml">
-                <search string="Receipt Design">
+                <search string="Diseño de la recepción">
                     <field name="config_id"/>
                     <field name="tag"/>
                 </search>
@@ -68,7 +68,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_ui">
-            <field name="name">POS UI Designs</field>
+            <field name="name">Diseño de la interface POS</field>
             <field name="res_model">pos.ui</field>
             <field name="view_mode">tree,form</field>
         </record>

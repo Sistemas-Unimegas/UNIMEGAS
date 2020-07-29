@@ -50,7 +50,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_pos_sale_extra">
-            <field name="name">Sale Extra List</field>
+            <field name="name">Lista Extra de Venta</field>
             <field name="res_model">pos.sale.extra</field>
             <field name="view_mode">tree,form</field>
         </record>
