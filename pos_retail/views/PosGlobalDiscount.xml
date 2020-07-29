@@ -6,7 +6,7 @@
             <field name="name">pos.global.discount.form</field>
             <field name="model">pos.global.discount</field>
             <field name="arch" type="xml">
-                <form string="Global Discount">
+                <form string="Descuento global">
                     <sheet>
                         <group>
                             <group>
@@ -29,7 +29,7 @@
             <field name="name">pos.global.discount.tree</field>
             <field name="model">pos.global.discount</field>
             <field name="arch" type="xml">
-                <tree string="Global Discounts">
+                <tree string="Descuento global">
                     <field name="name"/>
                     <field name="type"/>
                     <field name="amount"/>
@@ -42,7 +42,7 @@
             <field name="name">pos.global.discount.search</field>
             <field name="model">pos.global.discount</field>
             <field name="arch" type="xml">
-                <search string="Global Discounts">
+                <search string="Descuento global">
                     <field name="name"/>
                     <field name="amount"/>
                     <field name="product_id"/>
@@ -51,7 +51,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_global_pos_discount">
-            <field name="name">Global Discounts</field>
+            <field name="name">Descuentos globales</field>
             <field name="res_model">pos.global.discount</field>
             <field name="view_mode">tree,form</field>
         </record>
