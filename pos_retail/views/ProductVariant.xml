@@ -6,7 +6,7 @@
             <field name="name">product.variant.form</field>
             <field name="model">product.variant</field>
             <field name="arch" type="xml">
-                <form string="Variants of product">
+                <form string="Variantes de productos">
                     <sheet>
                         <group>
                             <group>
@@ -29,7 +29,7 @@
             <field name="name">product.variant.tree</field>
             <field name="model">product.variant</field>
             <field name="arch" type="xml">
-                <tree string="Variants of products">
+                <tree string="Variantes de productos">
                     <field name="product_tmpl_id"/>
                     <field name="product_id"/>
                     <field name="uom_id"/>
@@ -44,7 +44,7 @@
             <field name="name">product.variant.search</field>
             <field name="model">product.variant</field>
             <field name="arch" type="xml">
-                <search string="Variants of products">
+                <search string="Variantes de productos">
                     <field name="product_tmpl_id"/>
                     <field name="product_id"/>
                     <field name="uom_id"/>
@@ -55,7 +55,7 @@
 
 
         <record model="ir.actions.act_window" id="product_variant_action">
-            <field name="name">Variants of products</field>
+            <field name="name">Variantes de productos</field>
             <field name="res_model">product.variant</field>
             <field name="view_mode">tree,form</field>
         </record>
