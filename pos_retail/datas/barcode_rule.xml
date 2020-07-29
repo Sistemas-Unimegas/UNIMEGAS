@@ -4,7 +4,7 @@
 
 
         <record id="barcode_rule_voucher" model="barcode.rule">
-            <field name="name">Scan Voucher</field>
+            <field name="name">Escanear comprobante</field>
             <field name="barcode_nomenclature_id" ref="barcodes.default_barcode_nomenclature"/>
             <field name="sequence">100</field>
             <field name="type">voucher</field>
@@ -13,7 +13,7 @@
         </record>
 
         <record id="barcode_rule_return_order" model="barcode.rule">
-            <field name="name">Return order</field>
+            <field name="name">Orden de devolución</field>
             <field name="barcode_nomenclature_id" ref="barcodes.default_barcode_nomenclature"/>
             <field name="sequence">101</field>
             <field name="type">order</field>
@@ -22,7 +22,7 @@
         </record>
 
         <record id="barcode_rule_login_security" model="barcode.rule">
-            <field name="name">Login Security</field>
+            <field name="name">Seguridad de inicio de sesión</field>
             <field name="barcode_nomenclature_id" ref="barcodes.default_barcode_nomenclature"/>
             <field name="sequence">102</field>
             <field name="type">login_security</field>
@@ -31,7 +31,7 @@
         </record>
 
         <record id="barcode_rule_fast_order_number" model="barcode.rule">
-            <field name="name">Fast order number</field>
+            <field name="name">Número de pedido rápido</field>
             <field name="barcode_nomenclature_id" ref="barcodes.default_barcode_nomenclature"/>
             <field name="sequence">103</field>
             <field name="type">fast_order_number</field>
@@ -40,7 +40,7 @@
         </record>
 
         <record id="barcode_rule_return_product" model="barcode.rule">
-            <field name="name">Return Products</field>
+            <field name="name">Productos devueltos</field>
             <field name="barcode_nomenclature_id" ref="barcodes.default_barcode_nomenclature"/>
             <field name="sequence">104</field>
             <field name="type">return_products</field>

@@ -2,7 +2,7 @@
     <data noupdate="1">
 
         <record id="res_partner_return_order" model="res.partner">
-            <field name="name">Customer Return</field>
+            <field name="name">Devolución del cliente</field>
         </record>
 
     </data>

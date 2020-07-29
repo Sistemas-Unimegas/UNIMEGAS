@@ -9,8 +9,8 @@ _logger = logging.getLogger(__name__)
 class PosOrderLineLot(models.Model):
     _inherit = "pos.pack.operation.lot"
 
-    quantity = fields.Float('Quantity')
-    lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial Number')
+    quantity = fields.Float('Cantidad')
+    lot_id = fields.Many2one('stock.production.lot', 'Lote/Número de serie')
 
 class PosOrder(models.Model):
     _inherit = "pos.order"

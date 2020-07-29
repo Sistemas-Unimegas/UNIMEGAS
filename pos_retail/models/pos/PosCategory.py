@@ -8,27 +8,27 @@ class pos_category(models.Model):
     _inherit = "pos.category"
 
     is_category_combo = fields.Boolean(
-        'Is Combo Category',
-        help='If it checked, \n'
-             'When Pop-Up combo items show on POS Screen\n'
-             'Pop-Up Only show POS Categories have Is Combo Category checked'
+        'Es una categoría de combo',
+        help='Si está seleccionado, \n'
+             'Cuando los combos aparecen en la pantalla POS\n'
+             'La ventana emergente solo muestra que las categorías de POS tienen marcada la categoría de Combo'
     )
-    sale_limit_time = fields.Boolean('Sale Limit Time')
-    from_time = fields.Float('From Time')
-    to_time = fields.Float('To Time')
-    submit_all_pos = fields.Boolean('Submit all Point Of Sale')
+    sale_limit_time = fields.Boolean('Tiempo límite de venta')
+    from_time = fields.Float('Hora inicial')
+    to_time = fields.Float('Hora final')
+    submit_all_pos = fields.Boolean('Enviar a todos los puntos de venta')
     pos_branch_ids = fields.Many2many(
         'pos.branch',
         'pos_category_branch_rel',
         'categ_id',
         'branch_id',
-        string='Branches Applied')
+        string='Sucursales aplicadas')
     pos_config_ids = fields.Many2many(
         'pos.config',
         'pos_category_config_rel',
         'categ_id',
         'config_id',
-        string='Point Of Sale Applied')
+        string='POS aplicados')
 
     @api.model
     def create(self, vals):

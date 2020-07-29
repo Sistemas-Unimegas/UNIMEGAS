@@ -10,25 +10,25 @@ _logger = logging.getLogger(__name__)
 
 class pos_remote_session(models.TransientModel):
     _name = "pos.remote.session"
-    _description = "Help manage remote sessions"
+    _description = "Ayuda a administrar sesiones remotas"
 
-    message = fields.Text('Message')
+    message = fields.Text('Mensaje')
     config_ids = fields.Many2many('pos.config', 'remote_session_config_rel', 'wiz_id', 'config_id',
-                                  'POS config need to do', required=1)
+                                  'La configuración POS necesita hacer', required=1)
     action = fields.Selection([
-        ('reload_session', 'Reload Session'),
-        ('open_session', 'Open Session'),
-        ('validate_and_post_entries', 'Validate and Post Entries'),
-        ('close_session', 'Close Session'),
-        ('lock_session', 'Lock Session'),
-        ('unlock_session', 'UnLock Session'),
-        ('remove_cache', 'Remove Cache')
-    ], string='Action To Do', required=1)
+        ('reload_session', 'Recargar sesión'),
+        ('open_session', 'Abrir sesión'),
+        ('validate_and_post_entries', 'Validar y publicar entradas'),
+        ('close_session', 'Cerrar sesión'),
+        ('lock_session', 'Bloquear sesión'),
+        ('unlock_session', 'Desbloquear sesión'),
+        ('remove_cache', 'Eliminar caché')
+    ], string='Acción a hacer', required=1)
 
     def send_notifications(self):
         for record in self:
             if not record.config_ids:
-                raise UserError(_('Warning, please add pos config the first'))
+                raise UserError(_('Advertencia, agregue pos config primero'))
             vals = {}
             for config in record.config_ids:
                 action = record.action

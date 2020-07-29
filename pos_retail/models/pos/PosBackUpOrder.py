@@ -7,10 +7,10 @@ _logger = logging.getLogger(__name__)
 
 class PosBackUpOrders(models.Model):
     _name = "pos.backup.orders"
-    _description = "This is table save all orders on POS Session, if POS Session Crash. POS Users can restore back all Orders"
+    _description = "Esta es la tabla para guardar todos los pedidos en la sesión POS, si la sesión POS falla. Los usuarios de POS pueden restaurar todos los pedidos"
 
     config_id = fields.Many2one('pos.config', required=1)
-    unpaid_orders = fields.Text('UnPaid Orders')
+    unpaid_orders = fields.Text('Órdenes sin pagar')
 
     def automation_backup_orders(self, vals):
         old_backups = self.search([

@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 class AccountBankStatement(models.Model):
     _inherit = "account.bank.statement"
 
-    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
+    pos_branch_id = fields.Many2one('pos.branch', string='Sucursal')
 
     @api.model
     def create(self, vals):
@@ -30,14 +30,14 @@ class AccountBankStatement(models.Model):
 class AccountBankStatementLine(models.Model):
     _inherit = "account.bank.statement.line"
 
-    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
+    pos_branch_id = fields.Many2one('pos.branch', string='Sucursal')
     voucher_id = fields.Many2one('pos.voucher', 'Voucher', readonly=1)
-    pos_session_id = fields.Many2one('pos.session', 'POS Session')
+    pos_session_id = fields.Many2one('pos.session', 'Sesión POS')
     pos_cash_type = fields.Selection([
-        ('none', 'None'),
-        ('in', 'In'),
-        ('out', 'Out')
-    ], string='POS Cash Type', default='none')
+        ('none', 'Ninguno'),
+        ('in', 'Entrada'),
+        ('out', 'Salida')
+    ], string='POS tipo efectivo', default='none')
 
     @api.model
     def create(self, vals):

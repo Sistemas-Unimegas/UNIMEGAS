@@ -2,19 +2,19 @@
     <data noupdate="0">
 
         <record id="res_partner_type0" model="res.partner.type">
-            <field name="name">Sliver</field>
+            <field name="name">Plata</field>
             <field name="from_amount_total_orders">0</field>
             <field name="to_amount_total_orders">499</field>
         </record>
 
         <record id="res_partner_type1" model="res.partner.type">
-            <field name="name">Gold</field>
+            <field name="name">Oro</field>
             <field name="from_amount_total_orders">500</field>
             <field name="to_amount_total_orders">999</field>
         </record>
 
         <record id="res_partner_type2" model="res.partner.type">
-            <field name="name">Vip</field>
+            <field name="name">VIP</field>
             <field name="from_amount_total_orders">1000</field>
             <field name="to_amount_total_orders">9999</field>
         </record>

@@ -8,9 +8,9 @@ _logger = logging.getLogger(__name__)
 
 class remove_pos_order(models.TransientModel):
     _name = "remove.pos.order"
-    _description = "Remove pos order"
+    _description = "Eliminar orden POS"
 
-    pos_security_pin = fields.Char("Pos security pin")
+    pos_security_pin = fields.Char("PIN de seguridad POS")
 
     def remove_pos_orders(self):
         _logger.info('BEGIN remove_pos_orders')
@@ -18,14 +18,14 @@ class remove_pos_order(models.TransientModel):
         order_obj = self.env['pos.order']
         orders = self.env['pos.order'].browse(self.env.context.get('active_ids', []))
         if not user.pos_delete_order:
-            raise UserError(_('Warning!\n'
-                              'You are not allowed to perform this operation !'))
+            raise UserError(_('Advertencia!\n'
+                              'No tienes permiso para realizar esta operación !'))
         if user.pos_security_pin != self.pos_security_pin:
-            raise UserError(_('Warning!\n'
-                              'Please Enter correct PIN!'))
+            raise UserError(_('Advertencia!\n'
+                              'Por favor, introduzca el PIN correcto!'))
         if not orders:
-            raise UserError(_('Warning!\n'
-                              'Please select order!'))
+            raise UserError(_('Advertencia!\n'
+                              'Por favor seleccione la orden!'))
         order_ids = [order.id for order in orders]
         self.env.cr.execute(''' select id from account_bank_statement_line
                     WHERE pos_statement_id in %s''' % (

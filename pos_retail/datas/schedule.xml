@@ -4,7 +4,7 @@
     <data noupdate="0">
 
         <record id="schedule_refresh_call_log" model="ir.cron">
-            <field name="name">POS auto refresh call log</field>
+            <field name="name">Registro de llamadas de actualización automática de POS</field>
             <field name="model_id" ref="pos_retail.model_pos_call_log"/>
             <field name="state">code</field>
             <field name="code">model.refresh_logs()</field>
@@ -15,7 +15,7 @@
         </record>
 
         <record id="schedule_auto_expired_points" model="ir.cron">
-            <field name="name">POS auto expired points</field>
+            <field name="name">Puntos de caducidad automática de POS</field>
             <field name="model_id" ref="pos_retail.model_pos_loyalty_point"/>
             <field name="state">code</field>
             <field name="code">model.cron_expired_points()</field>

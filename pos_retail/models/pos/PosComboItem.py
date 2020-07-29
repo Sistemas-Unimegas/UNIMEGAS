@@ -6,12 +6,12 @@ from odoo.exceptions import UserError
 class pos_combo_item(models.Model):
     _name = "pos.combo.item"
     _rec_name = "product_id"
-    _description = "Management Product Pack/Combo"
+    _description = "Gestión de productos de Paquetes/Combo"
 
-    required = fields.Boolean('Is Required', default=0)
+    required = fields.Boolean('Es requerido', default=0)
     product_id = fields.Many2one(
         'product.product',
-        'Product',
+        'Producto',
         required=True,
         domain=[('available_in_pos', '=', True)])
     product_combo_id = fields.Many2one(
@@ -20,30 +20,30 @@ class pos_combo_item(models.Model):
         required=True,
         domain=[('available_in_pos', '=', True)])
     quantity = fields.Float(
-        'Quantity',
+        'Cantidad',
         required=1,
         default=1)
     price_extra = fields.Float(
-        'Price Extra',
-        help='This price will plus to sale price of product combo')
+        'Precio extra',
+        help='Este precio se sumará al precio de venta del producto en el combo')
     default = fields.Boolean(
-        'Default Selected',
+        'Seleccionado por default',
         default=1)
     tracking = fields.Boolean(
-        'Tracking Lot/Serial',
-        help='Allow cashier set serial/lot to combo items')
+        'Rastreo de Lotes/Series',
+        help='Permite al cajero establecer series/lotes a los productos del combo')
     uom_id = fields.Many2one(
-        'uom.uom', 'Unit of measure')
+        'uom.uom', 'Unidad de medida')
 
     @api.model
     def create(self, vals):
         if vals.get('quantity', 0) < 0:
-            raise UserError('Quantity can not smaller 0')
+            raise UserError('La cantidad no debe ser mejor a 0')
         return super(pos_combo_item, self).create(vals)
 
     def write(self, vals):
         if vals.get('quantity', 0) < 0:
-            raise UserError('Quantity can not smaller 0')
+            raise UserError('La cantidad no debe ser menor a 0')
         return super(pos_combo_item, self).write(vals)
 
     @api.onchange('product_id')

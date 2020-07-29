@@ -370,45 +370,45 @@ class pos_config(models.Model):
     )
     invoice_offline = fields.Boolean(
         'Modo sin conexión de factura',
-        help='Any Orders come from POS Session always create invoice \n'
-             'Invoice will create few second after POS Orders created \n'
-             'This future not print invoice number on POS Receipt \n'
-             'Only create invoice each order and auto post invoice when POS Order submitted to backend \n'
-             'Please set Customer Default or all orders on POS required set Customer before do payment'
+        help='Cualquier pedido proveniente de la sesión POS siempre crea una factura \n'
+             'La factura se creará unos segundos después de que se hayan creado los pedidos de POS \n'
+             'Esta opción no imprime el número de factura en el recibo POS \n'
+             'Solo cree una factura cada pedido y contabilice automáticamente la factura cuando el pedido POS se envíe al backend \n'
+             'Establezca el valor predeterminado del cliente o todos los pedidos en POS requieren establecer el cliente antes de realizar el pago'
     )
     invoice_offline_auto_register_payment = fields.Boolean(
         'Registro de pago automático',
-        help='Any Invoice create from Order will auto register payment and reconcile'
+        help='Cualquier factura que se cree a partir del pedido registrará automáticamente el pago y se conciliará'
     )
     wallet = fields.Boolean(
         'Tarjeta de monedero electrónico',
-        help='Keeping all change money back to Customer Wallet Card\n'
-             'Example: customer bought products with total amount is 9.5 USD\n'
-             'Customer give your Cashier 10 USD, \n'
-             'Default your cashier will return back change money 0.5 USD\n'
-             'But Customer no want keep it, \n'
-             'They need change money including to Wallet Card for next order\n'
-             'Next Time customer come back, \n'
-             'When your cashier choice client have Wallet Credit Amount bigger than 0\n'
-             'Customer will have one more payment method via Wallet Credit')
+        help='Mantener todo el dinero de cambio devuelto a la Tarjeta de billetera del cliente\n'
+             'Ejemplo: el cliente compró productos con un monto total de 9.5 USD\n'
+             'El cliente le da a su cajero 10 USD, \n'
+             'Por defecto, su cajero le devolverá el cambio de dinero 0.5 USD\n'
+             'Pero el cliente no quiere mantenerlo, \n'
+             'Necesitan cambiar dinero, incluida la Tarjeta Wallet para el próximo pedido\n'
+             'La próxima vez que vuelva el cliente, \n'
+             'Cuando su cliente de opción de cajero tiene un Monto de crédito de Wallet mayor a 0\n'
+             'El cliente tendrá un método de pago más a través de Wallet Credit')
     invoice_journal_ids = fields.Many2many(
         'account.journal',
         'pos_config_invoice_journal_rel',
         'config_id',
         'journal_id',
-        'Dynamic Account Journal',
+        'Diario de cuenta dinámico',
         domain=[('type', '=', 'sale')],
-        help="Default POS Odoo save Invoice Journal from only one Invoicing Journal of POS Config\n"
-             "This future allow you add many Journals here\n"
-             "And when your cashier choice Journal on POS\n"
-             "Invoice create from order will the same Journal selected by cashier")
+        help="POS predeterminado Odoo guardar el diario de facturas de un solo diario de facturación de la configuración de POS\n"
+             "Esta opción le permite agregar muchos diarios aquí\n"
+             "Y cuando el cajero selecciona el Diario en POS\n"
+             "La factura creada a partir del pedido será el mismo Diario seleccionado por el cajero")
     send_invoice_email = fields.Boolean(
         'Enviar factura por correo electrónico',
-        help='Help cashier send invoice to email of customer',
+        help='Ayuda al cajero a enviar la factura al correo electrónico del cliente',
         default=0)
     pos_auto_invoice = fields.Boolean(
         'Auto crear factura',
-        help='Auto check to button Invoice on POS Payment Screen',
+        help='Selección automática al botón Factura en la pantalla de pago de POS',
         default=0)
     receipt_customer_vat = fields.Boolean(
         'Agregar IVA al cliente en el recibo',
@@ -426,8 +426,8 @@ class pos_config(models.Model):
     display_product_second_name = fields.Boolean(
         'Mostrar el segundo nombre del producto',
         default=1,
-        help='If you need show Product Second Name on product record \n'
-             'Active it for display second name on order cart and receipt/bill'
+        help='Si necesita mostrar el segundo nombre del producto en el registro del producto \n'
+             'Actívelo para mostrar el segundo nombre en el carrito del pedido y el recibo / factura'
     )
     hide_product_image = fields.Boolean('Ocultar la imagen del producto', default=0)
     multi_location = fields.Boolean('Permitir ubicación múltiple', default=0)
@@ -447,61 +447,61 @@ class pos_config(models.Model):
              'Debido a que el stock de actualización automática de POS en la mano de productos a través del orden de cambio de evento seleccionado'
     )
     product_view = fields.Selection([
-        ('box', 'Box View'),
-        ('list', 'List View'),
+        ('box', 'Vista de caja'),
+        ('list', 'Vista de lista'),
     ], default='box', string='Tipo de vista de pantalla del producto', required=1)
     product_image_size = fields.Selection([
         ('default', 'Default'),
-        ('small', 'Small'),
-        ('big', 'Big')
+        ('small', 'Pequeño'),
+        ('big', 'Grande')
     ],
         default='big',
         string='Tamaño de imagen del producto')
     ticket_font_size = fields.Integer('Tamaño de letra en recibo / factura', default=12,
-                                      help='Font Size of Bill print via Web, not support posbox')
+                                      help='Tamaño de fuente de impresión de facturas vía web, no soporta la posbox')
     allow_ticket_font_size = fields.Boolean(
         'Permitir que el cajero cambie el tamaño de la letra',
-        help='Allow Cashier change Fontsize of Receipt'
+        help='Permitir al cajero cambiar el tamaño de fuente del recibo'
     )
-    customer_default_id = fields.Many2one('res.partner', 'Cliente predeterminado', help='When you put customer here, \n'
-                                                                                  'when cashier create new order, pos auto add this customer to order for default')
+    customer_default_id = fields.Many2one('res.partner', 'Cliente predeterminado', help='Cuando pones al cliente aquí, \n'
+                                                                                  'cuando el cajero crea un nuevo pedido, pos agrega automáticamente este cliente al pedido por defecto')
     medical_insurance = fields.Boolean('Seguro médico', default=0)
     set_guest = fields.Boolean('Invitados', default=0)
     set_guest_when_add_new_order = fields.Boolean(
         'Auto Preguntar invitados',
-        help='When Cashiers add Orders, pos auto popup and ask guest name and guest number')
+        help='Cuando los cajeros agregan pedidos, coloque una ventana emergente automática y pregunte el nombre y el número de invitado')
     reset_sequence = fields.Boolean('Restablecer orden de secuencia', default=0)
     update_tax = fields.Boolean(
         'Modificar impuestos de líneas',
         default=0,
-        help='Allow Cashiers can change Taxes of Lines')
+        help='Permitir a los cajeros puedan cambiar los impuestos de líneas')
     update_tax_ids = fields.Many2many(
         'account.tax',
         'pos_config_tax_rel',
         'config_id',
         'tax_id', string='Lista de impuestos')
     subtotal_tax_included = fields.Boolean(
-        'Show Tax-Included Prices',
-        help='When checked, subtotal each line of Order Cart and Bill/Receipt will display Total Amount with taxes included')
-    cash_out = fields.Boolean('Sacar dinero', default=0, help='Allow cashiers take money out')
-    cash_in = fields.Boolean('Ponder dinero', default=0, help='Allow cashiers input money in')
+        'Mostrar precios con impuestos incluidos',
+        help='Cuando está marcado, el subtotal de cada línea de Carrito de pedido y Factura / Recibo mostrará el Monto total con impuestos incluidos')
+    cash_out = fields.Boolean('Sacar dinero', default=0, help='Permitir a los cajeros sacar dinero')
+    cash_in = fields.Boolean('Ponder dinero', default=0, help='Permitir a los cajeros ingresar dinero')
     min_length_search = fields.Integer(
         'Caracteres mínimos en la búsqueda',
         default=3,
-        help='Allow auto suggestion items when cashiers input on search box')
+        help='Permitir elementos de sugerencia automática cuando los cajeros ingresan en el cuadro de búsqueda')
     review_receipt_before_paid = fields.Boolean(
         'Mostrar recibo antes del pago',
-        help='On Payment Screen and Client Screen,\n'
-             ' receipt will render left page for review',
+        help='En pantalla de pago y pantalla de cliente,\n'
+             ' el recibo mostrará la página izquierda para su revisión',
         default=1)
-    switch_user = fields.Boolean('Cambio de usuario', default=0, help='Allow cashiers user change between pos config')
+    switch_user = fields.Boolean('Cambio de usuario', default=0, help='Permitir a los cajeros cambiar de usuario entre la configuración pos')
     change_unit_of_measure = fields.Boolean('Cambiar unidad de medida', default=0,
-                                            help='Allow cashiers change unit of measure of order lines')
+                                            help='Permitir a los cajeros cambiar la unidad de medida de las líneas de pedido')
     print_last_order = fields.Boolean(
         'Imprimir último recibo',
         default=0,
-        help='Allow cashiers print last receipt')
-    printer_on_off = fields.Boolean('On/Off impresora', help='Help cashier turn on/off printer via posbox', default=0)
+        help='Permitir a los cajeros imprimir el último recibo')
+    printer_on_off = fields.Boolean('On/Off impresora', help='Ayudar al cajero a poner en on/off la impresora vía el posbox', default=0)
     check_duplicate_email = fields.Boolean('Verificar correo electrónico duplicado', default=0)
     check_duplicate_phone = fields.Boolean('Verificar teléfono duplicado', default=0)
     hide_title = fields.Boolean('Ocultar título', default=1)
@@ -521,19 +521,19 @@ class pos_config(models.Model):
     auto_remove_line = fields.Boolean(
         'Remover en automático línea en 0',
         default=1,
-        help='When cashier set quantity of line to 0, \n'
-             'Line auto remove not keep line with qty is 0')
+        help='Cuando el cajero establece la cantidad de línea en 0, \n'
+             'La eliminación automática de línea no mantiene la línea con cantidad igual a 0')
     chat = fields.Boolean(
         'Mensaje de Chat',
         default=1,
-        help='Online support visitors website \n'
-             'Take Order from website ecommerce \n'
-             'Discuss between users backend and between pos sessions')
-    add_sale_person = fields.Boolean('Add Sale Person', default=0)
+        help='Sitio web de visitantes de soporte en línea \n'
+             'Tomar orden del comercio electrónico del sitio web \n'
+             'Discutir entre usuarios de backend y entre sesiones pos')
+    add_sale_person = fields.Boolean('Añadir vendedor', default=0)
     default_seller_id = fields.Many2one(
         'res.users',
         'Vendedor predeterminado',
-        help='This is Seller automatic assigned to new Orders and new Order Lines'
+        help='Este es el vendedor asignado automáticamente a nuevos pedidos y nuevas líneas de pedido'
     )
     seller_ids = fields.Many2many(
         'res.users',
@@ -541,11 +541,11 @@ class pos_config(models.Model):
         'config_id',
         'user_id',
         string='Vendedores',
-        help='This is list sellers use for choice and add to Order or Order Line')
+        help='Esta es la lista que los vendedores usan para elegir y agregar a la orden o línea de orden')
     force_seller = fields.Boolean(
         'Vendedor obligatorio',
-        help='When Your POS session select/change another Seller \n'
-             'POS auto assigned New Seller to each Line of Order Cart',
+        help='Cuando su sesión POS seleccione / cambie otro vendedor \n'
+             'Punto de venta asignado automáticamente Nuevo Vendedor a cada Carrito de Línea de Pedido',
         default=0)
     fast_remove_line = fields.Boolean('Eliminación rápida de líneas', default=1)
     logo = fields.Binary('Logotipo en el recibo')
@@ -553,28 +553,28 @@ class pos_config(models.Model):
     suggest_cash_ids = fields.Many2many('pos.quickly.payment')
     paid_full = fields.Boolean(
         'Pago completo en efectivo', default=0,
-        help='Auto Full Fill Cash Payment')
+        help='Pago automático en efectivo por llenado completo')
     backup = fields.Boolean(
         'Respaldo/Restauración de Ordenes Manualmente', default=0,
-        help='Allow cashiers backup and restore orders on pos screen')
+        help='Permitir a los cajeros respaldar y restaurar pedidos en la pantalla de pos')
     backup_orders = fields.Text('Respaldar órdenes', readonly=1)
     backup_orders_automatic = fields.Boolean(
         'Automáticamente respaldar órdenes',
-        help='Schedule 5 seconds, POS Session automatic backup Orders to BackEnd Odoo \n'
-             'If POS Sessions Screen crashed, Computer PC Crashed or Browse Crashed ... could not open POS back \n'
-             'Them can change to another PC, Devices and Open POS Session back \n'
-             'Last Orders not Paid will automatic restore \n'
-             'Nothing Unpaid Orders lost on POS Session \n'
-             'Only Case will lost UnPaid Orders: POS Users turnoff Internet and them Remove Cache of Browse (**)\n'
-             'With (**), we have not solution for covert It. Required Input Orders Unpaid Manual back'
+        help='Programe 5 segundos, órdenes de copia de seguridad automáticas de sesión POS para BackEnd Odoo \n'
+             'Si la pantalla de sesiones de POS se bloqueó, la PC de la computadora se bloqueó o se bloqueó la exploración ... no se pudo abrir el POS \n'
+             'Ellos pueden cambiar a otra PC, dispositivos y abrir sesión de POS nuevamente \n'
+             'Los últimos pedidos no pagados se restaurarán automáticamente \n'
+             'No se pierden pedidos no pagados en la sesión POS \n'
+             'Solo Case perderá pedidos sin pagar: los usuarios de POS desactivan Internet y los eliminan de la caché de Browse (**)\n'
+             'Con (**), No tenemos solución para encubrirlo. Ordenes de entrada requeridas Sin pagar Manual atrás'
     )
     change_logo = fields.Boolean(
-        'Cambio de logo de ventas', default=1, help='Allow cashiers change logo of shop on pos screen')
+        'Cambio de logo de ventas', default=1, help='Permitir que los cajeros cambien el logotipo de la tienda en la pantalla pos')
     management_session = fields.Boolean(
         'Control del manejo de efectivo',
         default=0,
-        help='Allow pos users can take money in/out session\n'
-             'If you active this future please active Cash Control of POS Odoo Original too'
+        help='Permitir que los usuarios pos puedan tomar dinero dentro / fuera de sesión\n'
+             'Si activa esta opción, active también el Control de efectivo de POS Odoo Original'
     )
     cash_inout_reason_ids = fields.Many2many(
         'product.product',
@@ -586,24 +586,24 @@ class pos_config(models.Model):
     print_delivery_report = fields.Boolean(
         'Imprimir reporte de entregas',
         default=0,
-        help='If you active it \n'
-             'When Cashiers print POS Bill, POS auto print PDF Delivery Order Report'
+        help='Si usted lo activa \n'
+             'Cuando los cajeros imprimen la factura POS, imprimen automáticamente el informe de pedido de entrega en PDF'
     )
     print_order_report = fields.Boolean('Imprimir reporte de Órdenes',
                                         default=0,
-                                        help='If you active it \n'
-                                             'When Cashiers print POS Bill, POS auto print PDF POS Order Report'
+                                        help='Si lo activa \n'
+                                             'Cuando los cajeros imprimen la factura del punto de venta, la impresión automática del punto de venta PDF POS Reporte de Orden'
                                         )
     hide_mobile = fields.Boolean("Ocultar el móvil del cliente", default=1)
     hide_phone = fields.Boolean("Ocultar el teléfono del cliente", default=1)
     hide_email = fields.Boolean("Ocultar el email del cliente", default=1)
     update_client = fields.Boolean('Permitir la actualización de clientes',
-                                   help='Uncheck if you dont want cashier change customer information on pos')
+                                   help='Desmarque si no desea que el cajero cambie la información del cliente en el POS')
     add_client = fields.Boolean(
         'Permitir agregar nuevos clientes',
         help='Allow POS Session can create new Client')
     remove_client = fields.Boolean('Permitir eliminar clientes del sistema',
-                                   help='Uncheck if you dont want cashier remove customers on pos')
+                                   help='Desmarque si no desea que el cajero elimine a los clientes en el POS')
     mobile_responsive = fields.Boolean('Modo Dispositivos Móviles', default=0)
     report_no_of_report = fields.Integer(string="No. de copias del recibo", default=1)
     report_signature = fields.Boolean(string="Reporte de firmas", default=0)
@@ -645,22 +645,22 @@ class pos_config(models.Model):
     ], string='Orden predeterminado', default='a_z')
     add_customer_before_products_already_in_shopping_cart = fields.Boolean(
         'Elegir obligatorio Cliente antes de Agregar al carrito',
-        help='Add customer before products \n'
-             'already in shopping cart',
+        help='Agregar cliente antes de productos \n'
+             'ya en el carrito de compras',
         default=0)
     allow_cashier_select_pricelist = fields.Boolean(
         'Permitir al cajero seleccionar lista de precios',
-        help='If uncheck, pricelist only work when select customer.\n'
-             ' Cashiers could not manual choose pricelist',
+        help='Si no está marcada, la lista de precios solo funciona cuando se selecciona un cliente.\n'
+             ' Los cajeros no pueden elegir manualmente la lista de precios',
         default=1)
     big_datas_turbo = fields.Boolean(
         'Inicio de sesión turbo POS',
-        help='If you active it, any change from backend like pos config, payment method ... not load new when reload POS Session \n'
-             'Only use it when everything ready to sell on POS'
+        help='Si lo activa, cualquier cambio desde el backend como la configuración de la posición, el método de pago ... no se carga nuevo al volver a cargar la sesión POS \n'
+             'Úselo solo cuando todo esté listo para vender en el POS'
     )
     big_datas_sync_backend = fields.Boolean(
         'Sincronización automática Reltime en backend',
-        help='If have any change Products/Customer. POS auto sync with event change',
+        help='Si tiene algún cambio Productos / Cliente. Sincronización automática de POS con cambio de evento',
         default=1)
     sale_with_package = fields.Boolean(
         'Venta con paquetes')
@@ -669,18 +669,18 @@ class pos_config(models.Model):
         default=1)
     checking_lot = fields.Boolean(
         'Validar lote / número de serie',
-        help='Validate lot name input by cashiers is wrong or correctly')
+        help='Validar la entrada del nombre del lote por parte de los cajeros es incorrecta o correcta')
 
     sync_sales = fields.Boolean(
         'Sincronizar ventas / cotizaciones', default=1,
-        help='Synchronize quotations/sales order between backend and pos')
+        help='Sincronice presupuestos / pedidos de cliente entre el backend y el POS')
     auto_nextscreen_when_validate_payment = fields.Boolean(
         'Pantalla siguiente automática',
-        help='Auto Next Screen when Cashiers Validate Order',
+        help='Pantalla siguiente automática cuando los cajeros validan la orden',
         default=0)
     auto_print_web_receipt = fields.Boolean('Recibo web de impresión automática', default=0)
-    multi_lots = fields.Boolean('Permitir múltiples lotes / serie', help='One order line can set many lots')
-    create_lots = fields.Boolean('Permitir crear lotes / serie', help='Allow cashier create lots on pos')
+    multi_lots = fields.Boolean('Permitir múltiples lotes / serie', help='Una línea de pedido puede establecer muchos lotes')
+    create_lots = fields.Boolean('Permitir crear lotes / serie', help='Permitir cajero crear lotes en el pos')
     promotion_ids = fields.Many2many(
         'pos.promotion',
         'pos_config_promotion_rel',
@@ -689,15 +689,15 @@ class pos_config(models.Model):
         string='Promociones Aplicadas')
     replace_payment_screen = fields.Boolean(
         'Reemplazar pantalla de pago', default=0,
-        help='If checked, payment screen and products made to one \n'
-             'Keyboard of payment screen will turn off\n'
-             'This future only support on PC, without mobile tablet')
+        help='Si está marcado, pantalla de pago y productos hechos a uno \n'
+             'La pantalla del teclado de pago se apagará\n'
+             'Esta opción solo es compatible con PC, sin tableta móvil')
     pos_branch_id = fields.Many2one('pos.branch', 'Sucursal')
 
     stock_location_ids = fields.Many2many(
         'stock.location', string='Ubicaciones de stock',
-        help='Stock Locations for cashier select checking stock on hand \n'
-             'and made picking source location from location selected',
+        help='Ubicaciones de existencias para el cajero seleccionan las existencias de cheques disponibles \n'
+             'e hizo elegir la ubicación de origen de la ubicación seleccionada',
         domain=[('usage', '=', 'internal')])
     validate_by_manager = fields.Boolean('Validar por gerentes')
     discount_unlock_by_manager = fields.Boolean('Desbloquear límite de descuento por el gerente')
@@ -719,24 +719,24 @@ class pos_config(models.Model):
     ],
         default='left',
         string='Estilo del encabezado del recibo',
-        help='Header style, this future only apply on posbox and printer connected\n'
-             'Not apply for printer direct web browse'
+        help='Estilo de encabezado, este futuro solo se aplica en posbox y la impresora conectada\n'
+             'No se aplica para el navegador web directo de la impresora'
     )
     receipt_fullsize = fields.Boolean(
         'Recibo de tamaño completo',
-        help='Replace POS Receipt default of Odoo Original \n'
-             'To POS Receipt Report fullsize, allow Print Page A4 A5 ...'
+        help='Reemplazar el valor predeterminado de recepción POS de Odoo Original \n'
+             'Para el Informe de recibo de POS a tamaño completo, permita Imprimir página A4 A5 ...'
     )
     validate_order_without_receipt = fields.Boolean(
         'Validar pedido sin recibo',
-        help='If checked, on pos payment screen, \n'
-             'will have one button allow validate order without print Receipt',
+        help='Si está marcado, en la pantalla de pago pos, \n'
+             'tendrá un botón para validar el pedido sin imprimir el recibo',
         default=1
     )
     discount_value = fields.Boolean('Valor de descuento')
     discount_value_limit = fields.Float(
         'Límite de valor de descuento',
-        help='This is limited money cashier can setff'
+        help='Esto es dinero limitado al cajero'
     )
     posbox_save_orders = fields.Boolean('Guardar pedidos en PosBox')
     posbox_save_orders_iot_ids = fields.Many2many(
@@ -744,42 +744,42 @@ class pos_config(models.Model):
         'pos_config_iot_save_orders_rel',
         'config_id',
         'iot_id',
-        string='IoT boxes'
+        string='IoT equipos'
     )
     posbox_save_orders_server_ip = fields.Char(
         'Dirección de Odoo Public Ip',
-        help='Example Ip: 192.168.100.100'
+        help='ejemploº Ip: 192.168.100.100'
     )
     posbox_save_orders_server_port = fields.Char(
         'Número de puerto público de Odoo',
         default='8069',
-        help='Example Port: 8069'
+        help='ejemplo Port: 8069'
     )
     analytic_account_id = fields.Many2one(
         'account.analytic.account',
-        'Analytic Account'
+        'Contabilidad analítica'
     )
     limit_categories = fields.Boolean("Restringir categorías de productos disponibles")
     iface_available_categ_ids = fields.Many2many(
         'pos.category',
         string='Categorías de productos PoS disponibles',
-        help='The point of sale will only display products \n'
-             'which are within one of the selected category trees. \n'
-             'If no category is specified, all available products will be shown')
+        help='El punto de venta solo mostrará productos \n'
+             'que están dentro de uno de los árboles de categoría seleccionados. \n'
+             'Si no se especifica ninguna categoría, se mostrarán todos los productos disponibles')
     hide_dock = fields.Boolean('Ocultar el Dock', default=0)
     barcode_scan_with_camera = fields.Boolean(
         'Usar lector de código de barras de las cámaras de POS',
-        help='If you check it, and your device use POS have camera \n'
-             'You can use camera of device scan barcode for add products, return orders ....\n'
-             'This future only supported web browse and SSL \n'
-             'SSL required if you are on cloud. As without SSL permission of camera not work.'
+        help='Si lo marca, y su dispositivo usa POS, tiene cámara \n'
+             'Puede usar la cámara del código de barras de escaneo del dispositivo para agregar productos, devolver pedidos ....\n'
+             'Este futuro solo admite navegación web y SSL \n'
+             'Se requiere SSL si está en la nube. Como sin el permiso SSL de la cámara no funciona.'
     )
     barcode_scan_timeout = fields.Float(
         'Tiempo de espera',
         default=1000,
-        help='Period times timeout for next scan\n'
-             '1000 = 1 second\n'
-             'I good time for scan we think 1000'
+        help='Período de tiempo de espera para el siguiente escaneo\n'
+             '1000 = 1 segundo\n'
+             'Es buen momento para escanear, pensamos 1000'
     )
     rounding_total_paid = fields.Boolean('Monto de redondeo pagado')
     rounding_type = fields.Selection([
@@ -787,18 +787,18 @@ class pos_config(models.Model):
         ('rounding_integer', 'Redondeando a entero'),
     ],
         default='rounding_integer',
-        help='By Decimal Rounding Journal: We will follow rounding of Journal Decimal Rounding Amount\n'
-             'Rounding Integer: \n'
-             'From decimal from 0 to 0.25 become 0\n'
-             'From decimal from 0.25 to 0.75 become 0.5\n'
-             'From decimal from 0.75 to 0.999 become to 1')
+        help='Por diario de redondeo decimal: seguiremos el redondeo de la cantidad de redondeo decimal del diario\n'
+             'Redondeo entero: \n'
+             'De decimal de 0 a 0.25 se convierte en 0\n'
+             'De decimal de 0.25 a 0.75 se convierte en 0.5\n'
+             'De decimal de 0.75 a 0.999 se convierte en 1')
     dynamic_combo = fields.Boolean(
         'Combo dinámico',
-        help='One Order Line can add many combo items,\n'
-             'Combo items is product have checked Combo Item field \n'
-             'When Combo Item add, price extra will included to Order Line selected \n'
-             'If you active this future, please go to Products and check to Combo Item field \n'
-             'And set Combo Price, POS Combo Category both for product combo item')
+        help='Una línea de pedido puede agregar muchos elementos combinados,\n'
+             'Los elementos combinados son productos que han marcado el campo Elemento combinado \n'
+             'Cuando se agrega un artículo combinado, el precio adicional se incluirá en la línea de pedido seleccionada \n'
+             'Si activa este futuro, vaya a Productos y marque el campo Elemento combinado \n'
+             'Y establezca el precio combinado, la categoría combinada de punto de venta tanto para el artículo combinado del producto')
 
     service_charge_ids = fields.Many2many(
         'pos.service.charge',
@@ -809,80 +809,80 @@ class pos_config(models.Model):
     )
     payment_reference = fields.Boolean(
         'Referencia del pago',
-        help='Allow cashier add reference Note each payment line'
+        help='Permitir cajero agregar referencia Anote cada línea de pago'
     )
     display_margin = fields.Boolean('Desplegar margen %')
     turbo_sync_orders = fields.Boolean(
         'Sincronización turbo de órdenes',
         default=0,
-        help='Cashiers push orders from Session always save Order state Draft \n'
-             'System automatic process Orders (create picking, add payment ...) And processing Orders to Paid\n'
-             'Cashiers will push Orders from POS Session very fast, no need waiting times \n'
-             'This future only apply on Orders not request Invoice'
+        help='Los cajeros envían los pedidos de la sesión siempre guardan el estado del pedido Borrador \n'
+             'Sistema de procesamiento automático de pedidos (crear picking, agregar pago ...) y procesar pedidos a pagar\n'
+             'Los cajeros enviarán los pedidos de la sesión POS muy rápido, sin necesidad de tiempos de espera \n'
+             'Este futuro solo se aplica a pedidos que no soliciten factura'
     )
     customer_facing_screen = fields.Boolean(
         'Pantalla activa de cara al cliente',
-        help='If you have not IoT/pos Boxes, you can active it and use client facing screen'
+        help='Si no tiene equipos IoT / pos, puede activarlo y usar la pantalla orientada al cliente'
     )
-    allow_split_table = fields.Boolean('Allow Split Table')
-    allow_merge_table = fields.Boolean('Merge/Combine Tables')
+    allow_split_table = fields.Boolean('Permitir tabla dividida')
+    allow_merge_table = fields.Boolean('Combinar tablas')
     start_session_oneclick = fields.Boolean(
         'Iniciar sesión con un click'
     )
     translate_products_name = fields.Boolean(
         'Cargar traducción de productos',
-        help='When active, all products name language will load correct language of language POS User started session',
+        help='Cuando está activo, el idioma del nombre de todos los productos cargará el idioma correcto del usuario',
         default=0
     )
     set_product_name_from_field = fields.Selection(
         _get_product_field_char,
         default='name',
         string='Nombre del producto mostrado por campo',
-        help="Choose the field of the table Product which will be used for Product Display"
+        help="Elija el campo de la tabla Producto que se utilizará para la Visualización del producto"
     )
     replace_partners_name = fields.Boolean(
         'Reemplazar nombre de socios',
-        help='When active, partners name will replace buy field you choose bellow',
+        help='Cuando está activo, el nombre de los socios reemplazará el campo de compra que elija a continuación',
         default=0
     )
     set_partner_name_from_field = fields.Selection(
         _get_customer_field_char,
         default='name',
         string='Visualización del nombre del cliente desde el campo',
-        help="Choose the field of the table Customer which will be used for Customer Display"
+        help="Elija el campo de la tabla Cliente que se utilizará para la Visualización del cliente"
     )
     default_display_cart = fields.Boolean(
         'Carrito de visualización predeterminado',
         default=1,
-        help='If uncheck, default Product Screen cart list will automatic invisible'
+        help='Si no está marcada, la lista predeterminada del carrito de la pantalla del producto será invisible automáticamente'
     )
     search_customer_not_found_auto_fill_to_field = fields.Selection(
         _get_customer_field_char,
         default='mobile',
         string='No se encontró el cliente de búsqueda, se introdujo el valor de llenado completo automático en el cuadro de búsqueda para colocar',
-        help="Please choice one field of table Customer \n"
-             "If pos user search not found customer and click add new customer \n"
-             "Value of search box automatic full fill to this field selected here"
+        help="Por favor, elija un campo de mesa Cliente \n"
+             "Si la búsqueda de usuario pos no encontró el cliente y haga clic en agregar nuevo cliente \n"
+             "El valor del cuadro de búsqueda se completa automáticamente en este campo seleccionado aquí"
     )
     add_picking_field_to_receipt = fields.Selection(
         _get_picking_field_char,
         default='name',
         string='Agregar campo de selección al recibo',
-        help="Please choose one field of Delivery Object\n"
-             "Display to your POS receipt"
+        help="Elija un campo de Objeto de entrega\n"
+             "Mostrar a su recibo POS"
     )
     add_invoice_field_to_receipt = fields.Selection(
         _get_invoice_field_char,
         default='name',
         string='Agregar campo de factura al recibo',
-        help="Please choose one field of Invoice Object\n"
-             "for Display to your POS receipt"
+        help="Elija un campo del objeto de factura\n"
+             "fo Mostrar en su recibo POS"
     )
     create_quotation = fields.Boolean(
         'Crear orden de cotización',
-        help='Allow cashier create Quotation Order, \n'
-             'If customer full fill payment order, automatic processing to paid \n'
-             'Else cashier can cancel quotation direct POS screen'
+        help='Permitir cajero crear orden de cotización, \n'
+             'Si el cliente completa la orden de pago, el procesamiento automático a pagado \n'
+             'De lo contrario, el cajero puede cancelar la pantalla de POS directo'
     )
 
     def remove_sync_between_session_logs(self):
@@ -964,15 +964,15 @@ class pos_config(models.Model):
         if vals.get('allow_discount', False) or vals.get('allow_qty', False) or vals.get('allow_price', False):
             vals['allow_numpad'] = True
         if vals.get('expired_days_voucher', None) and vals.get('expired_days_voucher') < 0:
-            raise UserError('Expired days of voucher could not smaller than 0')
+            raise UserError('Los días vencidos del comprobante no podían ser menores a 0')
             if config.pos_order_period_return_days <= 0:
-                raise UserError('Period days return orders and products required bigger than or equal 0 day')
+                raise UserError('Período días de devolución de pedidos y productos requeridos mayores o iguales a 0 días')
         res = super(pos_config, self).write(vals)
         for config in self:
             if vals.get('management_session', False) and not vals.get('default_cashbox_id'):
                 if not config.default_cashbox_id and not config.cash_control:
                     raise UserError(
-                        'Your POS config missed config Default Opening (Cash Control), Please go to Cash control and set Default Opening')
+                        'Su configuración de POS se perdió la configuración Apertura predeterminada (Control de efectivo), vaya a Control de efectivo y configure Apertura predeterminada')
         return res
 
     @api.model
@@ -980,13 +980,13 @@ class pos_config(models.Model):
         if vals.get('allow_discount', False) or vals.get('allow_qty', False) or vals.get('allow_price', False):
             vals['allow_numpad'] = True
         if vals.get('expired_days_voucher', 0) < 0:
-            raise UserError('Expired days of voucher could not smaller than 0')
+            raise UserError('Los días vencidos del comprobante no podían ser menores a 0')
         config = super(pos_config, self).create(vals)
         if config.pos_order_period_return_days <= 0:
-            raise UserError('Period days return orders and products required bigger than or equal 0 day')
+            raise UserError('Período días de devolución de pedidos y productos requeridos mayores o iguales a 0 días')
         if config.management_session and not config.default_cashbox_id and not config.cash_control:
             raise UserError(
-                'Your POS config missed config Default Opening (Cash Control), Please go to Cash control and set Default Opening')
+                'Su configuración de POS se perdió la configuración Apertura predeterminada (Control de efectivo), vaya a Control de efectivo y configure Apertura predeterminada')
         return config
 
     @api.model

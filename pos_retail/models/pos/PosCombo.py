@@ -5,42 +5,42 @@ from odoo.exceptions import UserError
 
 class PosComboLimit(models.Model):
     _name = "pos.combo.limit"
-    _description = "Combo Limit Items"
+    _description = "Límite de productos en Combo"
 
     product_tmpl_id = fields.Many2one(
         'product.template',
-        'Product',
+        'Producto',
         required=True
     )
     pos_categ_id = fields.Many2one(
         'pos.category',
-        string='POS Category',
+        string='Categoría POS',
         required=True,
     )
     quantity_limited = fields.Integer(
-        'Quantity Limited',
+        'Límite de Cantidad',
         default=10,
         required=True,
-        help='Total Quantity Items of this Category can add to Combo'
+        help='Cantidad total que los artículos de esta categoría pueden agregar al Combo'
     )
     default_product_ids = fields.Many2many(
         'product.product',
         'pos_combo_limit_product_product_rel',
         'combo_limit_id',
         'product_id',
-        string='Default Items',
-        help='Default Items automatic add to Combo, when cashier add this Combo to Order Cart'
+        string='Artículos default',
+        help='Artículos default que se agregarán al combo, cuando el cajero agrega el combo a la orden de venta'
     )
 
 class PosComboItem(models.Model):
     _name = "pos.combo.item"
     _rec_name = "product_id"
-    _description = "Management Product Pack/Combo"
+    _description = "Gestión de productos Paquete/Combo"
 
-    required = fields.Boolean('Is Required', default=0)
+    required = fields.Boolean('Es requerido', default=0)
     product_id = fields.Many2one(
         'product.product',
-        'Product',
+        'Producto',
         required=True,
         domain=[('available_in_pos', '=', True)])
     product_combo_id = fields.Many2one(
@@ -49,30 +49,30 @@ class PosComboItem(models.Model):
         required=True,
         domain=[('available_in_pos', '=', True)])
     quantity = fields.Float(
-        'Quantity',
+        'Cantidad',
         required=1,
         default=1)
     price_extra = fields.Float(
-        'Price Extra',
-        help='This price will plus to sale price of product combo')
+        'Precio extra',
+        help='Este precio se sumará al precio de venta del producto en el combo')
     default = fields.Boolean(
-        'Default Selected',
+        'Seleccionado por default',
         default=1)
     tracking = fields.Boolean(
-        'Tracking Lot/Serial',
-        help='Allow cashier set serial/lot to combo items')
+        'Rastreo de Lotes/Serie',
+        help='Permite al cajero establecer la serie/lote de los productos del combo')
     uom_id = fields.Many2one(
-        'uom.uom', 'Unit of measure')
+        'uom.uom', 'Unidad de medida')
 
     @api.model
     def create(self, vals):
         if vals.get('quantity', 0) < 0:
-            raise UserError('Quantity can not smaller 0')
+            raise UserError('Cantidad no puede ser menor a 0')
         return super(PosComboItem, self).create(vals)
 
     def write(self, vals):
         if vals.get('quantity', 0) < 0:
-            raise UserError('Quantity can not smaller 0')
+            raise UserError('Cantidad no puede ser menor a 0')
         return super(PosComboItem, self).write(vals)
 
     @api.onchange('product_id')

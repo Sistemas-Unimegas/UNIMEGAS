@@ -4,24 +4,24 @@ from odoo import api, fields, models
 class pos_discount(models.Model):
 
     _name = "pos.global.discount"
-    _description = "Management Global Discount"
+    _description = "Gestión de descuento global"
 
-    name = fields.Char('Name', required=1)
-    amount = fields.Float('Discount Amount', required=1)
+    name = fields.Char('Nombre', required=1)
+    amount = fields.Float('Importe de descuento', required=1)
     product_id = fields.Many2one(
         'product.product',
-        'Global Discount',
+        'Descuento global',
         domain=[
             ('sale_ok', '=', True),
             ('available_in_pos', '=', True)
         ],
         required=1)
-    reason = fields.Char('Reason', required=1)
+    reason = fields.Char('Razón', required=1)
     type = fields.Selection([
         ('percent', '%'),
-        ('fixed', 'Fixed Amount')
+        ('fixed', 'Cantidad fija')
     ],
-        string='Type',
+        string='Tipo',
         default='percent',
         required=1
     )
@@ -30,7 +30,7 @@ class pos_discount(models.Model):
         'pos_global_discount_branch_rel',
         'discount_id',
         'branch_id',
-        string='Branchs'
+        string='Sucursal'
     )
 
     @api.model

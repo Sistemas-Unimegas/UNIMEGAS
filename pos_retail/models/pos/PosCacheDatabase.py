@@ -13,13 +13,13 @@ _logger = logging.getLogger(__name__)
 
 class PosCacheDatabase(models.Model):
     _name = "pos.cache.database"
-    _description = "Management POS database"
+    _description = "Gestión de la base de datos POS"
     _rec_name = "res_id"
     _order = 'res_model'
 
     res_id = fields.Char('Id')
-    res_model = fields.Char('Model')
-    deleted = fields.Boolean('Deleted', default=0)
+    res_model = fields.Char('Modelo')
+    deleted = fields.Boolean('Eliminada', default=0)
 
     # TODO: When pos session start each table, pos need call this function for get any modifiers from backend
     def get_modifiers_backend(self, write_date, res_model, config_id=None):

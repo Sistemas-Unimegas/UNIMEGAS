@@ -6,29 +6,29 @@ _logger = logging.getLogger(__name__)
 
 class PosBranch(models.Model):
     _name = "pos.branch"
-    _description = "Branch of shops"
+    _description = "Sucursales"
 
-    name = fields.Char('Name', required=1)
+    name = fields.Char('Nombre', required=1)
     user_id = fields.Many2one(
         'res.users',
-        'Branch Manager',
+        'Gerente de la sucursal',
         required=1,
-        help='Manager of this Branch'
+        help='Gerente de esta sucursal'
     )
     user_ids = fields.Many2many(
         'res.users',
         'pos_branch_res_users_rel',
         'branch_id',
         'user_id',
-        string='Branch Users',
-        help='If users have added here, them will see any datas have linked to this Branch'
+        string='Usuarios de la sucursal',
+        help='Si los usuarios han agregado aquí, verán cualquier dato que se haya vinculado a esta Sucursal'
     )
     config_ids = fields.One2many(
         'pos.config',
         'pos_branch_id',
-        string='POS of this Branch',
+        string='POS de esta sucursal',
         readonly=1,
-        help='Point of Sales have assigned this Branch'
+        help='El punto de ventas ha sido asignado a esta sucursal'
     )
 
 
@@ -36,5 +36,5 @@ class PosBranch(models.Model):
         if self.env.user.pos_branch_id:
             return self.env.user.pos_branch_id.id
         else:
-            _logger.info('User %s have not set Branch' % self.env.user.login)
+            _logger.info('Usuario %s no tiene sucursal' % self.env.user.login)
             return None

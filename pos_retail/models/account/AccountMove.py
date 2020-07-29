@@ -9,7 +9,7 @@ class AccountMove(models.Model):
 
     _inherit = "account.move"
 
-    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
+    pos_branch_id = fields.Many2one('pos.branch', string='Sucursal')
 
     @api.model
     def create(self, vals):
@@ -39,7 +39,7 @@ class AccountMoveLine(models.Model):
 
     pos_branch_id = fields.Many2one(
         'pos.branch',
-        string='Branch',
+        string='Sucursal',
         related='move_id.pos_branch_id',
         store=True,
         readonly=1

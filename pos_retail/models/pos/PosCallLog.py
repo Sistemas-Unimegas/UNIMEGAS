@@ -11,16 +11,16 @@ _logger = logging.getLogger(__name__)
 class pos_call_log(models.Model):
     _rec_name = "call_model"
     _name = "pos.call.log"
-    _description = "Log datas of pos sessions"
+    _description = "Registrar datos de sesiones POS"
 
     min_id = fields.Integer('Min Id', required=1, index=True, readonly=1)
     max_id = fields.Integer('Max Id', required=1, index=True, readonly=1)
-    call_domain = fields.Char('Domain', required=1, index=True, readonly=1)
-    call_results = fields.Char('Results', readonly=1)
-    call_model = fields.Char('Model', required=1, index=True, readonly=1)
-    call_fields = fields.Char('Fields', index=True, readonly=1)
-    active = fields.Boolean('Active', default=True)
-    write_date = fields.Datetime('Write date', readonly=1)
+    call_domain = fields.Char('Dominio', required=1, index=True, readonly=1)
+    call_results = fields.Char('Resultados', readonly=1)
+    call_model = fields.Char('Modelos', required=1, index=True, readonly=1)
+    call_fields = fields.Char('Campos', index=True, readonly=1)
+    active = fields.Boolean('Activo', default=True)
+    write_date = fields.Datetime('Fecha de escritura', readonly=1)
 
     def compare_database_write_date(self, model, pos_write_date):
         last_logs = self.search([('call_model', '=', model), ('write_date', '<', pos_write_date)])

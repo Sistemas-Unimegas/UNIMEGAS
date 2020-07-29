@@ -6,10 +6,10 @@ class barcode_rule(models.Model):
     _inherit = "barcode.rule"
 
     type = fields.Selection(selection_add=[
-        ('order', 'Return Order'),
-        ('return_products', 'Return Products'),
+        ('order', 'Orden de devolución'),
+        ('return_products', 'Productos devueltos'),
         ('voucher', 'Voucher'),
-        ('login_security', 'Login Security'),
-        ('fast_order_number', 'Fast order number'),
+        ('login_security', 'inicio de sesión seguro'),
+        ('fast_order_number', 'Número de pedido rápido'),
     ])
 

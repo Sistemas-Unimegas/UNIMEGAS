@@ -25,62 +25,62 @@ _logger = logging.getLogger(__name__)
 class POSOrder(models.Model):
     _inherit = 'pos.order'
 
-    delivery_date = fields.Datetime('Delivery Date ')
-    delivered_date = fields.Datetime('Delivered Date ')
-    delivery_address = fields.Char('Delivery Address')
-    delivery_phone = fields.Char('Delivery Phone', help='Phone of Customer for Shipping')
-    shipping_id = fields.Many2one('res.partner', 'Shipping Address')
+    delivery_date = fields.Datetime('Fecha de entrega ')
+    delivered_date = fields.Datetime('Fecha entregado ')
+    delivery_address = fields.Char('Dirección de entrega')
+    delivery_phone = fields.Char('Teléfono de Entrega', help='Teléfono del cliente para envío')
+    shipping_id = fields.Many2one('res.partner', 'Dirección de Envío')
     statement_ids = fields.One2many(
         'account.bank.statement.line',
         'pos_statement_id',
-        string='Bank Payments',
+        string='Pagos bancarios',
         states={'draft': [('readonly', False)]},
         readonly=True)
-    picking_ids = fields.One2many('stock.picking', 'pos_order_id', 'Delivery Orders')
+    picking_ids = fields.One2many('stock.picking', 'pos_order_id', 'Pedidos de entrega')
     promotion_ids = fields.Many2many(
         'pos.promotion',
         'pos_order_promotion_rel',
         'order_id',
         'promotion_id',
-        string='Promotions')
+        string='Promociones')
     ean13 = fields.Char('Ean13', readonly=1)
-    expire_date = fields.Datetime('Expire Date')
-    is_return = fields.Boolean('Is Return')
-    is_returned = fields.Boolean('Is Returned')
-    add_credit = fields.Boolean('Add Credit')
-    return_order_id = fields.Many2one('pos.order', 'Return from Order')
+    expire_date = fields.Datetime('Fecha de caducidad')
+    is_return = fields.Boolean('Es una devolución')
+    is_returned = fields.Boolean('Ya fué devuelto')
+    add_credit = fields.Boolean('Agregar crédito')
+    return_order_id = fields.Many2one('pos.order', 'Regresar de una orden')
     email = fields.Char('Email')
-    email_invoice = fields.Boolean('Email Invoice')
-    plus_point = fields.Float('Plus Point', readonly=1)
-    redeem_point = fields.Float('Redeem Points', readonly=1)
-    signature = fields.Binary('Signature', readonly=1)
-    parent_id = fields.Many2one('pos.order', 'Parent Order', readonly=1)
-    sale_id = fields.Many2one('sale.order', 'Sale Order', readonly=1)
-    partial_payment = fields.Boolean('Partial Payment')
-    medical_insurance_id = fields.Many2one('medical.insurance', 'Medical Insurance')
+    email_invoice = fields.Boolean('Factura por correo electrónico')
+    plus_point = fields.Float('Punto extra', readonly=1)
+    redeem_point = fields.Float('Canjear puntos', readonly=1)
+    signature = fields.Binary('Firma', readonly=1)
+    parent_id = fields.Many2one('pos.order', 'Orden principal', readonly=1)
+    sale_id = fields.Many2one('sale.order', 'Orden de Venta', readonly=1)
+    partial_payment = fields.Boolean('Pago parcial')
+    medical_insurance_id = fields.Many2one('medical.insurance', 'Seguro médico')
     margin = fields.Float(
-        'Margin',
+        'Margen',
         compute='_compute_margin',
         store=True
     )
     booking_id = fields.Many2one(
         'sale.order',
-        'Covert from Sale Order',
-        help='This order covert from Quotation Sale order',
+        'Cubrir desde la Orden de Venta',
+        help='Esta orden cubierta de la orden de venta de cotización',
         readonly=1)
-    sale_journal = fields.Many2one('account.journal', string='Sales Journal', readonly=0, related=None, )
-    location_id = fields.Many2one('stock.location', string="Source Location", related=None, readonly=1)
-    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
-    is_paid_full = fields.Boolean('Is Paid Full', compute='_checking_payment_full')
-    currency_id = fields.Many2one('res.currency', string='Currency', readonly=1, related=False)
+    sale_journal = fields.Many2one('account.journal', string='Diario de Ventas', readonly=0, related=None, )
+    location_id = fields.Many2one('stock.location', string="Origen", related=None, readonly=1)
+    pos_branch_id = fields.Many2one('pos.branch', string='Sucursal')
+    is_paid_full = fields.Boolean('Pagado total', compute='_checking_payment_full')
+    currency_id = fields.Many2one('res.currency', string='Moneda', readonly=1, related=False)
     analytic_account_id = fields.Many2one(
         'account.analytic.account',
-        'Analytic Account'
+        'Cuenta analítica'
     )
     state = fields.Selection(selection_add=[
-        ('quotation', 'Quotation')
+        ('quotation', 'Cotización')
     ])
-    is_quotation = fields.Boolean('Is Quotation Order')
+    is_quotation = fields.Boolean('Es una Cotización')
 
     def print_report(self):
         for order in self:
@@ -108,7 +108,7 @@ class POSOrder(models.Model):
         for order in self:
             if order.picking_id or order.account_move:
                 raise UserError(_(
-                    'Error, Order have Delivery Order or Account move, it not possible cancel, please return products'))
+                    'Error, el pedido tiene un pedido de entrega o un movimiento de cuenta, no es posible cancelar, devuelva los productos'))
             order.lines.write({
                 'price_unit': 0,
                 'price_subtotal': 0,
@@ -138,7 +138,7 @@ class POSOrder(models.Model):
         for order in self:
             if order._is_pos_order_paid():
                 raise UserError(_(
-                    'Not allow remove Order have payment information. Please set to Cancel, Order Ref %s' % order.name))
+                    'No permite eliminar La orden tiene información de pago. Configure en Cancelar, Ref. Pedido %s' % order.name))
             self.env['pos.cache.database'].remove_record(self._inherit, order.id)
         return super(POSOrder, self).unlink()
 
@@ -266,7 +266,7 @@ class POSOrder(models.Model):
 
     def action_pos_order_send(self):
         if not self.partner_id:
-            raise Warning(_('Customer not found on this Point of Sale Orders.'))
+            raise Warning(_('Cliente no encontrado en este punto de venta.'))
         self.ensure_one()
         template = self.env.ref('pos_retail.email_template_edi_pos_orders', False)
         compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
@@ -817,76 +817,76 @@ class POSOrder(models.Model):
 class POSOrderLine(models.Model):
     _inherit = "pos.order.line"
 
-    plus_point = fields.Float('Plus Point', readonly=1)
-    redeem_point = fields.Float('Redeem Point', readonly=1)
+    plus_point = fields.Float('Punto extra', readonly=1)
+    redeem_point = fields.Float('Canje de puntos', readonly=1)
     partner_id = fields.Many2one(
         'res.partner',
         related='order_id.partner_id',
-        string='Partner',
+        string='Cliente',
         readonly=1)
-    promotion = fields.Boolean('Applied Promotion', readonly=1)
-    promotion_id = fields.Many2one('pos.promotion', 'Promotion', readonly=1, ondelete="set null")
-    promotion_reason = fields.Char(string='Promotion Reason', readonly=1)
-    is_return = fields.Boolean('Is Return')
+    promotion = fields.Boolean('Promoción Aplicada', readonly=1)
+    promotion_id = fields.Many2one('pos.promotion', 'Promoción', readonly=1, ondelete="set null")
+    promotion_reason = fields.Char(string='Motivo de la promoción', readonly=1)
+    is_return = fields.Boolean('Es una devolución')
     order_uid = fields.Text('order_uid', readonly=1)
-    user_id = fields.Many2one('res.users', 'Sale Person')
+    user_id = fields.Many2one('res.users', 'Vendedor')
     session_info = fields.Text('session_info', readonly=1)
     uid = fields.Text('uid', readonly=1)
     variant_ids = fields.Many2many(
         'product.variant',
         'order_line_variant_rel',
         'line_id', 'variant_id',
-        string='Variant Items', readonly=1)
+        string='Variantes del producto', readonly=1)
     tag_ids = fields.Many2many(
         'pos.tag',
         'pos_order_line_tag_rel',
         'line_id',
         'tag_id',
-        string='Tags / Reasons Return')
-    note = fields.Text('Note')
-    discount_reason = fields.Char('Discount Reason')
-    medical_insurance = fields.Boolean('Discount Medical Insurance')
+        string='Etiquetas / Motivos de la devolución')
+    note = fields.Text('Notas')
+    discount_reason = fields.Char('Motivo del descuento')
+    medical_insurance = fields.Boolean('Descuento en seguro médico')
     margin = fields.Float(
-        'Margin',
+        'Margen',
         compute='_compute_multi_margin',
         store=True,
         multi='multi_margin',
     )
     margin_percent = fields.Float(
-        'Margin %',
+        'Margen %',
         compute='_compute_multi_margin',
         store=True,
         multi='multi_margin',
     )
     purchase_price = fields.Float(
-        'Cost Price',
+        'Costo',
         compute='_compute_multi_margin',
         store=True,
         multi='multi_margin')
     reward_id = fields.Many2one('pos.loyalty.reward', 'Reward')
-    packaging_id = fields.Many2one('product.packaging', string='Package/Box')
+    packaging_id = fields.Many2one('product.packaging', string='Paquete/Caja')
     config_id = fields.Many2one(
         'pos.config',
         related='order_id.session_id.config_id',
-        string="Point of Sale")
+        string="POS")
     pos_branch_id = fields.Many2one(
         'pos.branch',
         related='order_id.pos_branch_id',
-        string='Branch',
+        string='Sucursal',
         readonly=1,
         index=True,
         store=True)
-    manager_user_id = fields.Many2one('res.users', 'Manager Approved')
+    manager_user_id = fields.Many2one('res.users', 'Gerente Aprobado')
     analytic_account_id = fields.Many2one(
         'account.analytic.account',
         related='order_id.analytic_account_id',
         store=True,
         readonly=1,
-        string='Analytic Account'
+        string='Cuenta analítica'
     )
-    returned_qty = fields.Float('Returned Qty')
-    returned_order_line_id = fields.Many2one('pos.order.line', 'Returned from Line')
-    uom_id = fields.Many2one('uom.uom', 'Uom', readonly=1)
+    returned_qty = fields.Float('Cantidad devuelta')
+    returned_order_line_id = fields.Many2one('pos.order.line', 'Regresado de la línea')
+    uom_id = fields.Many2one('uom.uom', 'UdM', readonly=1)
 
     @api.depends('product_id', 'qty', 'price_subtotal', 'order_id.note')
     def _compute_multi_margin(self):

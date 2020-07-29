@@ -5,55 +5,55 @@ from odoo.exceptions import UserError
 
 class PosPromotion(models.Model):
     _name = "pos.promotion"
-    _description = "Management Promotion on pos"
+    _description = "Gestión de promociones en el POS"
     _order = "type"
 
-    sequence = fields.Integer(help="Gives the sequence promotion when displaying a list of promotions active")
-    name = fields.Char('Name', required=1)
-    active = fields.Boolean('Active', default=1)
+    sequence = fields.Integer(help="Da la promoción de secuencia cuando se muestra una lista de promociones activas")
+    name = fields.Char('Nombre', required=1)
+    active = fields.Boolean('Activo', default=1)
     start_date = fields.Datetime(
-        'Active Date',
+        'Fecha de activación',
         default=fields.Datetime.now(),
         required=1
     )
-    end_date = fields.Datetime('Expired Date', required=1)
+    end_date = fields.Datetime('Fecha de término', required=1)
     type = fields.Selection([
-        ('1_discount_total_order', '1. Discount each Amount Total Order'),
-        ('2_discount_category', '2. Discount each POS Category'),
-        ('3_discount_by_quantity_of_product', '3. Discount each Quantity of Product'),
-        ('4_pack_discount', '4. Buy full Package or One part of Package. Discount Items'),
-        ('5_pack_free_gift', '5. Buy full Package or one Part of Package. Free Items'),
-        ('6_price_filter_quantity', '6. Sale off all Products'),
-        ('7_special_category', '7. Each Category each Discount'),
-        ('8_discount_lowest_price', '8. Discount lowest Price'),
-        ('9_multi_buy', '9. Multi Product - Multi Price'),
-        ('10_buy_x_get_another_free', '10. Buy 10A get 1A, Buy 15A get 1A, Buy 20A get 2A'),
-        ('11_first_order', '11. Discount % first Order'),
-        ('12_buy_total_items_free_items', '12. Buy total Items free some Items')
+        ('1_discount_total_order', '1. Descuento de cada cantidad de pedido total'),
+        ('2_discount_category', '2. Descuente cada categoría POS'),
+        ('3_discount_by_quantity_of_product', '3. Descuento de cada cantidad de producto'),
+        ('4_pack_discount', '4. Compre el paquete completo o una parte del paquete. Artículos de descuento'),
+        ('5_pack_free_gift', '5. Compre el paquete completo o una parte del paquete. Artículos gratis'),
+        ('6_price_filter_quantity', '6. Venta de todos los productos'),
+        ('7_special_category', '7. Cada categoría cada descuento'),
+        ('8_discount_lowest_price', '8. Descuento precio más bajo'),
+        ('9_multi_buy', '9. Producto múltiple - Precio múltiple'),
+        ('10_buy_x_get_another_free', '10. Compre 10A obtenga 1A, Compre 15A obtenga 1A, Compre 20A obtenga 2A'),
+        ('11_first_order', '11. Descuento % primera orden'),
+        ('12_buy_total_items_free_items', '12. Compre artículos totales gratis algunos artículos')
     ], 'Type',
         default='1_discount_total_order',
         equired=1,
         help=
-        '1:  Order total Amount >= 100 EUR discount 10%, >= 200 EUR discount 20% ... \n'
-        '2:  Drink discount 10%, Food discount 20% ... \n'
-        '3:  Buy 3A discount 10%, Buy 6A discount 20%, Buy 10A discount 35% ....\n'
-        '4:  Buy 10A + 10B discount X, Y, Z .. OR Buy 10A or 10B discount X and Y and Z\n'
-        '5:  Buy 10A + 10B free X,Y,Z OR Buy 10A or 10B free X and Y and Z \n'
-        '6:  Buy smaller than 10A price 10 EUR, Buy bigger than 20A price 15 EUR ....\n'
-        '7:  Discount or free gift when customer buy product of category selected \n'
-        '8:  Set discount on product lowest price of list products customer buy\n'
-        '9:  Allow set multi Product with Quantity and multi Price\n'
-        '10: Set Minimum Quantities is 10, Buy 10A get 1A, Buy 15A get 1A, Buy 20A get 2A\n'
-        '11. Discount first Order of Customer \n'
-        '12. If total items in Cart bigger than or equal X (quantities) will free some items. Example Set Minimum Quantities is 10, will free 1A + 2B, if Quantities smaller than or equal 20 free 2A + 4B')
+        '1:  Importe total del pedido> = 100 EUR de descuento 10%,> = 200 EUR de descuento 20% ... \n'
+        '2:  Descuento de bebida 10%, descuento de comida 20% ... \n'
+        '3:  Compre 3A descuento 10%, Compre 6A descuento 20%, Compre 10A descuento 35% ....\n'
+        '4:  Compre 10A + 10B de descuento X, Y, Z .. O Compre 10A o 10B de descuento X e Y y Z\n'
+        '5:  Compre 10A + 10B gratis X, Y, Z O Compre 10A o 10B gratis X e Y y Z \n'
+        '6:  Compre más pequeño que 10A precio 10 EUR, compre más grande que 20A precio 15 EUR ....\n'
+        '7:  Descuento o regalo gratis cuando el cliente compra el producto de la categoría seleccionada \n'
+        '8:  Establecer descuento en el precio más bajo del producto de la lista de productos que el cliente compra\n'
+        '9:  Permitir establecer producto múltiple con cantidad y precio múltiple\n'
+        '10: Las cantidades mínimas establecidas son 10, Compre 10A obtenga 1A, Compre 15A obtenga 1A, Compre 20A obtenga 2A\n'
+        '11. Descuento primer pedido del cliente \n'
+        '12. Si el total de artículos en el carrito es mayor o igual a X (cantidades) se liberarán algunos artículos. Las cantidades mínimas establecidas de ejemplo son 10, liberarán 1A + 2B, si las cantidades son menores o iguales a 20 libres 2A + 4B')
     method = fields.Selection([
         ('only_one', 'OR'),
         ('all', 'AND')
     ],
         default='only_one',
-        string='Condition Or / And',
-        help='- Only One (or) : Buy 10A or  10B free 1X \n'
-             '- All      (and): Buy 10A and 10B free 1X')
+        string='Condición Or / And',
+        help='- Solo uno (or) : Compre 10A o 10B gratis 1X \n'
+             '- Todos    (and): Compre 10A y 10B gratis 1X')
     discount_first_order = fields.Float('Discount First Order %')
     product_id = fields.Many2one(
         'product.product',

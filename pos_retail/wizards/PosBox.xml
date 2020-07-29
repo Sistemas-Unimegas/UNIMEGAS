@@ -13,7 +13,7 @@
 
     <act_window
             id="action_pos_box_out"
-            name="Take Money In/Out"
+            name="Tomar dinero Entrada / Salida"
             binding_model="pos.session"
             res_model="cash.box.out"
             view_mode="form"

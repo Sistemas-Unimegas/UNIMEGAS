@@ -7,8 +7,8 @@ class PosPayment(models.Model):
     _inherit = "pos.payment"
 
     voucher_id = fields.Many2one('pos.voucher', 'Voucher')
-    voucher_code = fields.Char('Voucher Code')
-    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
+    voucher_code = fields.Char('Voucher Código')
+    pos_branch_id = fields.Many2one('pos.branch', string='Sucursal')
     ref = fields.Char('Ref')
 
     @api.model

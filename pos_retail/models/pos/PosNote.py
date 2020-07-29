@@ -3,6 +3,6 @@ from odoo import models, fields, api, _
 
 class pos_note(models.Model):
     _name = "pos.note"
-    _description = "Management Order Note"
+    _description = "Gestión de Notas de la orden"
 
-    name = fields.Text('Note', required=1)
+    name = fields.Text('Notas', required=1)

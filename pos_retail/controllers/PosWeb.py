@@ -45,8 +45,8 @@ class pos_controller(PosController):
 
         display_ifaces = []
         return pos_display_template.render({
-            'title': "Odoo -- Point of Sale",
-            'breadcrumb': 'POS Client display',
+            'title': "Odoo -- Punto de Venta",
+            'breadcrumb': 'Visualización del cliente POS',
             'cust_js': cust_js,
         })
 

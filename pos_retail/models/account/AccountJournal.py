@@ -7,15 +7,15 @@ class account_journal(models.Model):
 
     pos_method_type = fields.Selection([
         ('default', 'Default'),
-        ('rounding', 'Rounding'),
-        ('wallet', 'Wallet'),
+        ('rounding', 'Redondeo'),
+        ('wallet', 'Billetera'),
         ('voucher', 'Voucher'),
-        ('credit', 'Credit/Debt'),
-        ('return', 'Return Order')
-    ], default='default', string='POS Method', required=1)
+        ('credit', 'Credito/Debito'),
+        ('return', 'Orden de devolución')
+    ], default='default', string='Método POS', required=1)
     decimal_rounding = fields.Integer(
-        'POS Decimal Rounding',
+        'POS redondeo decimal',
         default=1,
-        help='Example: \n'
-             'Amount Paid is 1.94, set rounding 1, Amount Paid become 1.9 \n'
-             'Amount Paid is 1.94, set rounding 0, Amount Paid become 2')
+        help='Ejemplo: \n'
+             'El monto pagado es 1.94, redondeo de 1, El monto a pagar será 1.9 \n'
+             'El monto pagado es 1.94, redondeo de 0, El monto a pagar será 2')
