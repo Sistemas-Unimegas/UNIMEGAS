@@ -7,8 +7,8 @@ from odoo.addons.point_of_sale.wizard.pos_box import PosBox
 class CashBoxOut(PosBox):
     _inherit = 'cash.box.out'
 
-    product_id = fields.Many2one('product.product', string='Reason')
-    name = fields.Char('Description', required=1)
+    product_id = fields.Many2one('product.product', string='Razón')
+    name = fields.Char('Descripción', required=1)
 
     @api.model
     @api.onchange('product_id')
@@ -23,9 +23,9 @@ class CashBoxOut(PosBox):
         if active_model == 'pos.session' and active_ids:
             session = self.env[active_model].browse(active_ids)[0]
             if not session.cash_journal_id:
-                raise UserError(_("There is no cash register for this PoS Session"))
+                raise UserError(_("No hay caja registradora para esta sesión de PoS"))
             if session.state == 'closed':
-                raise UserError(_("Not allow push money in/out when session closed"))
+                raise UserError(_("No permitir la entrada / salida de dinero cuando se cierra la sesión"))
             if self.product_id:
                 product = self.product_id
                 account_id = None
@@ -34,15 +34,15 @@ class CashBoxOut(PosBox):
                                  product.categ_id.property_account_income_categ_id.id
                     if not account_id:
                         raise UserError(_(
-                            "You have to define an income account on the related"
-                            " product %s") % (product.name))
+                            "Tiene que definir una cuenta de ingresos en el producto"
+                            " relacionado %s") % (product.name))
                 else:
                     account_id = product.property_account_expense_id.id or \
                                  product.categ_id.property_account_expense_categ_id.id
                     if not account_id:
                         raise UserError(_(
-                            "You have to define an expense account on the related"
-                            " product %s") % (product.name))
+                            "Tiene que definir una cuenta de gastos en el producto"
+                            " relacionado %s") % (product.name))
                 values['account_id'] = account_id
             values['ref'] = session.name
             values['journal_id'] = session.cash_journal_id.id
@@ -65,8 +65,8 @@ class CashBoxOut(PosBox):
                                self.env[active_model].browse(active_ids)
                                if session.cash_register_id]
             if not bank_statements:
-                return ("There is no cash register for this PoS Session")
+                return ("No hay caja registradora para esta sesión de PoS")
             self.with_context(context)._run(bank_statements)
-            return ("Register Cash succeed Amount %s" % amount)
+            return ("Registro Efectivo con éxito Monto %s" % amount)
         else:
-            return ("Reason and Amount is Required Fields ")
+            return ("Motivo y cantidad son campos obligatorios ")
