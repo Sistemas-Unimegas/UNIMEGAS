@@ -90,7 +90,7 @@
                         </group>
                     </group>
                     <field name="commission_rate"/>
-                    <group name="combo" string="Combo Items Limited Setting" attrs="{'invisible': ['|', ('is_combo_item', '=', True), ('is_combo', '=', True)]}">
+                    <group name="combo" string="Configuración limitada de Combos" attrs="{'invisible': ['|', ('is_combo_item', '=', True), ('is_combo', '=', True)]}">
                         <field name="combo_limit_ids" nolabel="1" colspan="4">
                             <tree string="Combo Items Limited" editable="1">
                                 <field name="pos_categ_id" domain="[('is_category_combo', '=', True)]"/>
