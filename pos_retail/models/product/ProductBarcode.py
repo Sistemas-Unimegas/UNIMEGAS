@@ -4,17 +4,17 @@ from odoo import api, fields, models, _
 class ProductBarcode(models.Model):
     _name = 'product.barcode'
     _rec_name = 'barcode'
-    _description = "Product multi Barcode"
+    _description = "Producto multi Código de Barras"
 
-    product_tmpl_id = fields.Many2one('product.template', 'Product Template', required=1)
-    product_id = fields.Many2one('product.product', compute='_get_product_id', string='Product')
-    quantity = fields.Float('Quantity', required=1)
+    product_tmpl_id = fields.Many2one('product.template', 'Plantilla del Producto', required=1)
+    product_id = fields.Many2one('product.product', compute='_get_product_id', string='Producto')
+    quantity = fields.Float('Cantidad', required=1)
     list_price = fields.Float(
-        'List Price',
-        help='If cashier scan this barcode, this price auto set to line',
+        'Precio de Lista',
+        help='Si el cajero escanea este código de barras, este precio se establece automáticamente en línea',
         required=1)
-    uom_id = fields.Many2one('uom.uom', string='Unit of Measure', required=1)  # v12 only
-    barcode = fields.Char('Barcode', required=1)
+    uom_id = fields.Many2one('uom.uom', string='Unidad de Medida', required=1)  # v12 only
+    barcode = fields.Char('Código de Barras', required=1)
 
     def _get_product_id(self):
         for barcode in self:
