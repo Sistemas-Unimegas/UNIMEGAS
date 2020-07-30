@@ -11,8 +11,8 @@ _logger = logging.getLogger(__name__)
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    combo_item_id = fields.Many2one('pos.combo.item', 'Combo Item')
-    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
+    combo_item_id = fields.Many2one('pos.combo.item', 'Producto del Combo')
+    pos_branch_id = fields.Many2one('pos.branch', string='Sucursal')
 
     @api.model
     def create(self, vals):
@@ -28,7 +28,7 @@ class StockMove(models.Model):
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
-    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
+    pos_branch_id = fields.Many2one('pos.branch', string='Sucursal')
 
     @api.model
     def create(self, vals):

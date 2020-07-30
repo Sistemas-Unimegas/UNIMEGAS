@@ -15,9 +15,9 @@ version_info = odoo.release.version_info[0]
 class stock_production_lot(models.Model):
     _inherit = 'stock.production.lot'
 
-    barcode = fields.Char('Barcode')
-    replace_product_public_price = fields.Boolean('Replace public price of product')
-    public_price = fields.Float('Sale price')
+    barcode = fields.Char('Código de barras')
+    replace_product_public_price = fields.Boolean('Reemplazar precio público del producto')
+    public_price = fields.Float('Precio de Venta')
 
     @api.model
     def create(self, vals):

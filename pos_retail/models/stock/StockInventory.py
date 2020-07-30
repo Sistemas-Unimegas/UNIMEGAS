@@ -7,7 +7,7 @@ class StockInventory(models.Model):
 
     pos_branch_id = fields.Many2one(
         'pos.branch',
-        string='Branch'
+        string='Sucursal'
     )
 
     @api.model

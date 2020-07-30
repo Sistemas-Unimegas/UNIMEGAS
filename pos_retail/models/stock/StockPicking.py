@@ -8,9 +8,9 @@ _logger = logging.getLogger(__name__)
 class stock_picking(models.Model):
     _inherit = "stock.picking"
 
-    is_picking_combo = fields.Boolean('Is Picking Combo')
-    pos_order_id = fields.Many2one('pos.order', 'POS order')
-    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
+    is_picking_combo = fields.Boolean('Está enviando el combo?')
+    pos_order_id = fields.Many2one('pos.order', 'POS orden de venta')
+    pos_branch_id = fields.Many2one('pos.branch', string='Surcusal')
 
     @api.model
     def create(self, vals):

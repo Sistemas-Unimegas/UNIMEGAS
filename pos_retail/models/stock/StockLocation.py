@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 class StockLocation(models.Model):
     _inherit = "stock.location"
 
-    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
+    pos_branch_id = fields.Many2one('pos.branch', string='Sucursal')
 
     @api.model
     def create(self, vals):
