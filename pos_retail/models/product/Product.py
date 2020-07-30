@@ -39,7 +39,7 @@ class ProductTemplate(models.Model):
     combo_limit = fields.Integer(
         'Límite de artículo de Combo',
         help='Los elementos combinados de límite pueden permitir agregar / combo')
-    is_credit = fields.Boolean('Is Credit', default=False)
+    is_credit = fields.Boolean('Es Crédito', default=False)
     multi_category = fields.Boolean('Multi Categoría')
     pos_categ_ids = fields.Many2many(
         'pos.category',
