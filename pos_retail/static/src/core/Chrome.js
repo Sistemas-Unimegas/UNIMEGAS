@@ -108,29 +108,29 @@ odoo.define('pos_retail.chromes', function (require) {
                     }
                     var list = [
                         {
-                            label: 'Only Close your POS Session',
+                            label: 'Solo cerrar la sesión del POS',
                             item: 'default',
                         },
                         {
-                            label: 'Logout POS Session and auto Closing Posting Entries Current Session',
+                            label: 'Cerrar sesión del POS y cerrar automáticamente las entradas de contables de la Sesión actual',
                             item: 'logout_and_closing_session',
                         },
                         {
-                            label: 'Logout POS Session and Odoo both',
+                            label: 'Cerrar la sesión del POS y cerrar Odoo',
                             item: 'logout_session_and_odoo',
                         },
                         {
-                            label: 'Logout POS Session, auto Closing Posting Entries current Session and Odoo both',
+                            label: 'Cerrar la sesión del POS, cerrar las entradas contables y cerrar Odoo',
                             item: 'logout_session_include_closing_session_and_odoo',
                         },
                         {
-                            label: 'Closing Posting Entries current Session and Print Z-Report',
+                            label: 'Cerrar las entradas de la sesión actual e imprimir el Z-Report',
                             item: 'closing_and_print_z_report',
                         },
                     ]
                     return self.gui.show_popup('selection', {
-                        title: _t('Logout Type'),
-                        body: _t('Please choose one Logout Type you wanted to do'),
+                        title: _t('Tipo de Cierre de Sesión'),
+                        body: _t('Selecciona el tipo de Cierre de Sesión correspondiente'),
                         list: list,
                         confirm: function (session_logout_type) {
                             if (session_logout_type == 'default') {
@@ -138,8 +138,8 @@ odoo.define('pos_retail.chromes', function (require) {
                             } else if (session_logout_type == 'logout_and_closing_session') {
                                 return self.pos.gui.closing_session().then(function () {
                                     self.pos.gui.show_popup('dialog', {
-                                        title: _t('Alert'),
-                                        body: _t('Your Session closed and Posting Entries, please dont take more Orders'),
+                                        title: _t('Alerta'),
+                                        body: _t('Su sesión es cerrada y las entradas se publican, no tome más pedidos de venta'),
                                         color: 'success'
                                     })
                                     return self.pos.gui.close()
@@ -152,8 +152,8 @@ odoo.define('pos_retail.chromes', function (require) {
                             } else if (session_logout_type == 'logout_session_include_closing_session_and_odoo') {
                                 return self.pos.gui.closing_session().then(function () {
                                     self.pos.gui.show_popup('dialog', {
-                                        title: _t('Alert'),
-                                        body: _t('Your Session closed and Posting Entries, please dont take more Orders'),
+                                        title: _t('Alerta'),
+                                        body: _t('Su sesión cerrada y entradas publicadas, no tome más pedidos'),
                                         color: 'success'
                                     })
                                     web_framework.blockUI();
@@ -164,8 +164,8 @@ odoo.define('pos_retail.chromes', function (require) {
                             } else if (session_logout_type == 'closing_and_print_z_report') {
                                 return self.pos.gui.closing_session().then(function () {
                                     self.pos.gui.show_popup('dialog', {
-                                        title: _t('Alert'),
-                                        body: _t('Your Session closed and Posting Entries, please dont take more Orders'),
+                                        title: _t('Alerta'),
+                                        body: _t('Su sesión cerrada y entradas publicadas, no tome más pedidos'),
                                         color: 'success'
                                     })
                                     var params = {
