@@ -344,7 +344,7 @@
                                 <input class='detail vat'           name='vat'     t-att-value='partner.vat || ""'></input>
                             </div>
                         </t>
-
+<!--
         <t t-if="!widget.pos.config.hide_tax">
             <div class='client-detail'>
                 <span class='label'>Posición fiscal</span>
@@ -360,6 +360,7 @@
 
             </div>
         </t>
+-->
 
                         <t t-if="!widget.pos.config.hide_pricelist">
                             <div t-attf-class='client-detail #{widget.pos.pricelists.length &lt;= 1 ? "oe_hidden" : ""}'>
