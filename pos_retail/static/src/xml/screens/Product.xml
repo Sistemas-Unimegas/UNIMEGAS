@@ -867,7 +867,7 @@
                     </div>
                 </t>
                 <div class="searchbox search-products">
-                    <input class="search-products" placeholder="Buscar Productos (ESC para regresar)"/>
+                    <input class="search-products" placeholder="Buscar Productos"/>
                     <span class="search-clear left">
                         <i class="fa fa-search"/>
                     </span>
