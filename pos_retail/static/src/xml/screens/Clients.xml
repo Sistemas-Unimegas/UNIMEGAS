@@ -345,21 +345,21 @@
                             </div>
                         </t>
 
-                        <t t-if="!widget.pos.config.hide_tax">
-                            <div class='client-detail'>
-                                <span class='label'>Posición fiscal</span>
+        <t t-if="!widget.pos.config.hide_tax">
+            <div class='client-detail'>
+                <span class='label'>Posición fiscal</span>
 
-                                    <select class='form-control voucher-select partner_input' name='property_account_position_id'>
-                                        <option value=''>Ninguno</option>
-                                        <t t-foreach='widget.pos.property_account_position_id' t-as='property_account_position_id'>
-                                            <option t-att-value='property_account_position_id'>
-                                                <t t-esc='property_account_position_id.name'/>
-                                            </option>
-                                        </t>
-                                    </select>
-
-                            </div>
+                    <select class='form-control voucher-select partner_input' name='property_account_position_id'>
+                        <option value=''>Ninguno</option>
+                        <t t-foreach='widget.pos.property_account_position_id' t-as='account_position'>
+                            <option t-att-value='account_position.id'>
+                                <t t-esc='account_position.name'/>
+                            </option>
                         </t>
+                    </select>
+
+            </div>
+        </t>
 
                         <t t-if="!widget.pos.config.hide_pricelist">
                             <div t-attf-class='client-detail #{widget.pos.pricelists.length &lt;= 1 ? "oe_hidden" : ""}'>
