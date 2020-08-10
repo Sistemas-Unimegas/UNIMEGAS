@@ -344,6 +344,14 @@
                                 <input class='detail vat'           name='vat'     t-att-value='partner.vat || ""'></input>
                             </div>
                         </t>
+
+                        <t t-if="!widget.pos.config.hide_tax">
+                            <div class='client-detail'>
+                                <span class='label'>Posición fiscal</span>
+                                <input class='form-control voucher-select partner_input' name='property_account_position_id'     t-att-value='partner.property_account_position_id || ""'></input>
+                            </div>
+                        </t>
+
                         <t t-if="!widget.pos.config.hide_pricelist">
                             <div t-attf-class='client-detail #{widget.pos.pricelists.length &lt;= 1 ? "oe_hidden" : ""}'>
                                 <span class='label'>Lista de Precios</span>
