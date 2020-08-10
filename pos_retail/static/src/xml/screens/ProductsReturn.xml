@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="RefundProductScreenHeader">
-        <div class="oe_status shop_logo quickly-return-products" title="Quickly Refund Products">
+        <div class="oe_status shop_logo quickly-return-products" title="Reembolsar productos rápidamente">
             <img class="logo_shop_header" src="/pos_retail/static/src/icons/refund.png"/>
         </div>
     </t>
@@ -19,7 +19,7 @@
                         <span class='search-clear'></span>
                     </span>
                     <span class='searchbox'></span>
-                    <span class="button confirm_return highlight">Confirm Return</span>
+                    <span class="button confirm_return highlight">Confirmar devolución</span>
                 </sector>
                 <section class="full-content">
                     <div class='window'>
@@ -30,10 +30,10 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center"></th>
-                                                <th>Internal Ref</th>
-                                                <th>Name</th>
-                                                <th>Price</th>
-                                                <th>Qty Return</th>
+                                                <th>SKU</th>
+                                                <th>Nombre</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad a devolver</th>
                                                 <td></td>
                                             </tr>
                                         </thead>
