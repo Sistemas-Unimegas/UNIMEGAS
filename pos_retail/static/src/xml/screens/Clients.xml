@@ -48,13 +48,13 @@
                             <div class="client-details-left">
                                 <div class="row">
                                     <span class='label voucher-label'>
-                                        Name
+                                        Nombre
                                     </span>
                                     <input class="form-control partner_input input_required" name="name" required="true" />
                                 </div>
                                 <t t-if="widget.pos.partner_titles">
                                     <div class="row">
-                                        <span class='label voucher-label'>Title</span>
+                                        <span class='label voucher-label'>Título</span>
                                         <select class='form-control voucher-select partner_input' name='title'>
                                              <t t-foreach='widget.pos.partner_titles' t-as='partner_title'>
                                                 <option t-att-value='partner_title.id'>
@@ -65,11 +65,11 @@
                                     </div>
                                 </t>
                                 <div class="row">
-                                    <span class='label voucher-label'>Street</span>
+                                    <span class='label voucher-label'>Domicilio</span>
                                     <input class="form-control partner_input" name="street" required="true" />
                                 </div>
                                 <div class="row">
-                                    <span class='label voucher-label'>City</span>
+                                    <span class='label voucher-label'>Ciudad</span>
                                     <input class="form-control partner_input" name="city" required="true" />
                                 </div>
                                 <div class="row">
@@ -77,38 +77,38 @@
                                     <input class="form-control partner_input" name="email" required="true" />
                                 </div>
                                 <div class="row">
-                                    <span class='label voucher-label'>Phone</span>
+                                    <span class='label voucher-label'>Teléfono</span>
                                     <input class="form-control partner_input" name="phone" required="true" />
                                 </div>
                                 <div class="row">
-                                    <span class='label voucher-label'>Mobile</span>
+                                    <span class='label voucher-label'>Móvil</span>
                                     <input class="form-control partner_input" name="mobile" required="true" />
                                 </div>
                             </div>
                             <div class="client-details-right">
                                 <div class="row">
-                                    <span class='label voucher-label'>Birthday</span>
+                                    <span class='label voucher-label'>Cumpleaños</span>
                                     <input class="form-control partner_input datepicker" name="birthday_date"/>
                                 </div>
                                 <div class="row">
-                                    <span class='label voucher-label'>Barcode</span>
+                                    <span class='label voucher-label'>C. Barras</span>
                                     <input class="form-control partner_input" name="barcode" required="true" />
                                 </div>
                                 <div class="row">
-                                    <span class='label voucher-label'>Tax ID</span>
+                                    <span class='label voucher-label'>Impuestos</span>
                                     <input class="form-control partner_input" name="vat" required="true" />
                                 </div>
                                 <div class="row">
-                                    <span class='label voucher-label'>Postcode</span>
+                                    <span class='label voucher-label'>C.P.</span>
                                     <input class="form-control partner_input" name="zip" required="true" />
                                 </div>
                                 <div class='row'>
-                                    <span class='label voucher-label'>Internal notes</span>
+                                    <span class='label voucher-label'>Notas</span>
                                     <input class='form-control partner_input' name='comment'></input>
                                 </div>
                                 <t t-if="widget.pos.pricelists">
                                     <div class="row">
-                                        <span class='label voucher-label'>Pricelist</span>
+                                        <span class='label voucher-label'>Lista de Precios</span>
                                         <select class='form-control voucher-select partner_input' name='property_product_pricelist'>
                                              <t t-foreach='widget.pos.pricelists' t-as='pricelist'>
                                                 <option t-att-value='pricelist.id'>
@@ -119,9 +119,9 @@
                                     </div>
                                 </t>
                                 <div class="row">
-                                    <span class='label voucher-label'>Country</span>
+                                    <span class='label voucher-label'>País</span>
                                     <select class='form-control voucher-select partner_input' name='country_id'>
-                                        <option value=''>None</option>
+                                        <option value=''>Ninguno</option>
                                         <t t-foreach='widget.pos.countries' t-as='country'>
                                             <option t-att-value='country.id'>
                                                 <t t-esc='country.name'/>
@@ -134,10 +134,10 @@
                         <span class="card-issue"/>
                         <div class="form-footer text-center">
                             <div class="btn btn-success pull-right confirm">
-                                Confirm <i class="fa fa-keyboard"></i> (Enter)
+                                Confirmar <i class="fa fa-keyboard"></i> (Enter)
                             </div>
                             <div class="btn btn-danger pull-left cancel">
-                                Close <i class="fa fa-keyboard"></i> (ESC)
+                                Cerrar <i class="fa fa-keyboard"></i> (ESC)
                             </div>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
     <t t-extend="ClientListScreenWidget">
         <t t-jquery="span[class*='button back']" t-operation="replace">
             <span class="button back">
-                Back
+                Regresar
                 <span class="keyboard-shortcut">
                     <i class="fa fa-keyboard"/>
                     ESC
@@ -162,12 +162,12 @@
                     <tr>
                         <th><a href="#" class="sort sort_by_id">ID</a></th>
                         <t t-if="!widget.pos.config.hide_title">
-                            <th>Title</th>
+                            <th>Título</th>
                         </t>
-                        <th><a href="#" class="sort sort_by_name">Name</a></th>
+                        <th><a href="#" class="sort sort_by_name">Nombre</a></th>
                         <th>
                             <a href="#" class="sort sort_by_address">
-                                Address
+                                Dirección
                                 <span class="keyboard-shortcut">
                                     <i class="fa fa-keyboard"/>
                                     Enter
@@ -175,16 +175,16 @@
                             </a>
                         </th>
                         <t t-if="!widget.pos.config.hide_phone">
-                            <th><a href="#" class="sort sort_by_phone">Phone</a></th>
+                            <th><a href="#" class="sort sort_by_phone">Teléfono</a></th>
                         </t>
                         <t t-if="!widget.pos.config.hide_mobile">
-                            <th><a href="#" class="sort sort_by_mobile">Mobile</a></th>
+                            <th><a href="#" class="sort sort_by_mobile">Móvil</a></th>
                         </t>
-                        <th><a href="#" class="sort sort_by_birthdate">BirthDate</a></th>
-                        <th><a href="#" class="sort sort_by_pos_loyalty_point">Points</a></th>
-                        <th><a href="#" class="sort sort_by_balance">Credit</a></th>
+                        <th><a href="#" class="sort sort_by_birthdate">Cumpleañis</a></th>
+                        <th><a href="#" class="sort sort_by_pos_loyalty_point">Puntos</a></th>
+                        <th><a href="#" class="sort sort_by_balance">Crédito</a></th>
                         <t t-if="!widget.pos.config.hide_pricelist">
-                            <th>Pricelist</th>
+                            <th>Lista de Precio</th>
                         </t>
                     </tr>
                 </thead>
@@ -244,8 +244,8 @@
     <t t-extend="ClientDetailsEdit">
         <t t-jquery="section[class*='client-details']" t-operation="replace">
             <div class="header">
-                <button class='btn btn-default button undo'>Discard</button>
-                <button class='btn btn-success button save'>Save</button>
+                <button class='btn btn-default button undo'>Descartar</button>
+                <button class='btn btn-success button save'>Guardar</button>
             </div>
             <section class='touch-scrollable scrollable-y client-details' style="max-height: 600px;min-height: 300px;height: fit-content;">
                 <div class='client-picture'>
@@ -261,14 +261,14 @@
                     <span class="card-issue"/>
                     <div class='client-details-left'>
                         <div class='client-detail'>
-                            <span class='label'>Name</span>
+                            <span class='label'>Nombre</span>
                             <input class='detail client-name' name='name' t-att-value='partner.name' placeholder='Name'></input>
                         </div>
                         <t t-if="widget.pos.partner_titles">
                             <div class='client-detail'>
-                                <span class='label'>Title</span>
+                                <span class='label'>Título</span>
                                 <select class='detail client-address-country needsclick' name='title'>
-                                    <option value=''>None</option>
+                                    <option value=''>Ninguno</option>
                                     <t t-foreach='widget.pos.partner_titles' t-as='partner_title'>
                                         <option t-att-value='partner_title.id' t-att-selected="partner.title ? ((partner_title.id === partner.title[0]) ? true : undefined) : undefined">
                                             <t t-esc='partner_title.name'/>
@@ -278,28 +278,28 @@
                             </div>
                         </t>
                         <div class='client-detail'>
-                            <span class='label'>Street</span>
+                            <span class='label'>Calle</span>
                             <input class='detail client-address-street' name='street' t-att-value='partner.street || ""' placeholder='Street'></input>
                         </div>
                         <div class='client-detail'>
-                            <span class='label'>City</span>
+                            <span class='label'>Ciudad</span>
                             <input class='detail client-address-city' name='city' t-att-value='partner.city || ""' placeholder='City'></input>
                         </div>
                         <div class='client-detail'>
-                            <span class='label'>Postcode</span>
+                            <span class='label'>CP</span>
                             <input class='detail client-address-zip' name='zip' t-att-value='partner.zip || ""' placeholder='ZIP'></input>
                         </div>
                         <div class='client-detail'>
                             <div class='client-detail'>
-                                <span class='label'>Internal notes</span>
+                                <span class='label'>Notas</span>
                                 <input class='detail client-comment' name='comment' t-att-value='partner.comment || ""' placeholder='Internal note'></input>
                             </div>
                         </div>
                         <t t-if="!widget.pos.config.hide_country">
                             <div class='client-detail'>
-                                <span class='label'>Country</span>
+                                <span class='label'>País</span>
                                 <select class='detail client-address-country needsclick' name='country_id'>
-                                    <option value=''>None</option>
+                                    <option value=''>Ninguno</option>
                                     <t t-foreach='widget.pos.countries' t-as='country'>
                                         <option t-att-value='country.id' t-att-selected="partner.country_id ? ((country.id === partner.country_id[0]) ? true : undefined) : undefined">
                                             <t t-esc='country.name'/>
@@ -318,37 +318,37 @@
                         </t>
                         <t t-if="!widget.pos.config.hide_phone">
                             <div class='client-detail'>
-                                <span class='label'>Phone</span>
+                                <span class='label'>Teléfono</span>
                                 <input class='detail client-phone'  name='phone'    type='tel'      t-att-value='partner.phone || ""'></input>
                             </div>
                         </t>
                         <t t-if="!widget.pos.config.hide_mobile and !widget.pos.config.hide_phone">
                             <div class='client-detail'>
-                                <span class='label'>Mobile</span>
+                                <span class='label'>Móvil</span>
                                 <input class='detail client-mobile'  name='mobile'    type='mobile'      t-att-value='partner.mobile || ""'></input>
                             </div>
                         </t>
                         <div class='client-detail'>
-                            <span class='label'>Birthday</span>
+                            <span class='label'>Cumpleaños</span>
                             <input class='detail client-birthday_date datepicker'  name='birthday_date'  t-att-value='partner.birthday_date || ""'></input>
                         </div>
                         <t t-if="!widget.pos.config.hide_barcode">
                             <div class='client-detail'>
-                                <span class='label'>Barcode</span>
+                                <span class='label'>C.Barras</span>
                                 <input class='detail barcode'       name='barcode'    t-att-value='partner.barcode || ""'></input>
                             </div>
                         </t>
                         <t t-if="!widget.pos.config.hide_tax">
                             <div class='client-detail'>
-                                <span class='label'>Tax ID</span>
+                                <span class='label'>Impuesto</span>
                                 <input class='detail vat'           name='vat'     t-att-value='partner.vat || ""'></input>
                             </div>
                         </t>
                         <t t-if="!widget.pos.config.hide_pricelist">
                             <div t-attf-class='client-detail #{widget.pos.pricelists.length &lt;= 1 ? "oe_hidden" : ""}'>
-                                <span class='label'>Pricelist</span>
+                                <span class='label'>Lista de Precios</span>
                                 <select class='detail client-address-country needsclick' name='property_product_pricelist'>
-                                    <option value=''>None</option>
+                                    <option value=''>Ninguno</option>
                                     <t t-foreach='widget.pos.pricelists' t-as='pricelist'>
                                         <option t-att-value='pricelist.id' t-att-selected="pricelist.id ? ( partner.property_product_pricelist and (pricelist.id === partner.property_product_pricelist[0]) ? true : undefined) : undefined">
                                             <t t-esc='pricelist.name'/>
@@ -367,13 +367,13 @@
         <t t-jquery="section[class*='client-details']" t-operation="before">
             <t t-if="widget.pos.config.update_client">
                 <div class="header">
-                    <button class='btn btn-default button edit'>Edit</button>
+                    <button class='btn btn-default button edit'>Editar</button>
                     <button class='btn btn-default button purchased-histories'>
-                        Purchase Histories<span class="notification"><t t-esc="partner.orders_count"/></span>
+                        Historial de Compras<span class="notification"><t t-esc="partner.orders_count"/></span>
                     </button>
                     <button class='btn btn-default button print_card'>
                         <i class="fa fa-print"/>
-                        Print Member Card
+                        Imprimir Tarjeta 
                     </button>
                 </div>
             </t>
@@ -382,7 +382,7 @@
         <t t-jquery="div[class*='client-details-left']" t-operation="append">
             <t t-if="!widget.pos.config.hide_title">
                 <div class='client-detail'>
-                    <span class='label'>Title</span>
+                    <span class='label'>Título</span>
                     <span class='detail'>
                         <t t-if="partner.title">
                             <t t-esc="partner.title[1]"/>
@@ -395,19 +395,19 @@
             </t>
             <t t-if="!widget.pos.config.hide_mobile">
                 <div class='client-detail'>
-                    <span class='label'>Mobile</span>
+                    <span class='label'>Móvil</span>
                     <span class='detail'><t t-esc='partner.mobile || "N/A"'/></span>
                 </div>
             </t>
             <t t-if="partner.vat">
                 <div class='client-detail'>
-                    <span class='label'>TIN</span>
+                    <span class='label'>RFC</span>
                     <span class='detail'><t t-esc='partner.vat'/></span>
                 </div>
             </t>
             <t t-if="partner.comment">
                 <div class='client-detail'>
-                    <span class='label'>Internal notes</span>
+                    <span class='label'>Notas Internas</span>
                     <span class='detail'><t t-esc='partner.comment'/></span>
                 </div>
             </t>
@@ -415,16 +415,16 @@
         <t t-jquery="div[class*='client-details-right']" t-operation="append">
             <t t-if="partner.property_account_position_id">
                 <div class='client-detail'>
-                    <span class='label'>Fiscal Position</span>
+                    <span class='label'>Posición Fiscal</span>
                     <span class='detail'><t t-esc='partner.property_account_position_id[1]'/></span>
                 </div>
             </t>
             <div class='client-detail'>
-                <span class='label'>Wallet</span>
+                <span class='label'>Tarjeta electrónica</span>
                 <span class='detail'><t t-esc='widget.format_currency_no_symbol(partner.wallet)'/></span>
             </div>
             <div class='client-detail'>
-                <span class='label'>Credit</span>
+                <span class='label'>Credito</span>
                 <span class='detail'><t t-esc='widget.chrome.format_currency_no_symbol(partner.balance)'/></span>
             </div>
         </t>
