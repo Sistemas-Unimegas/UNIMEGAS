@@ -163,7 +163,7 @@
     <t t-extend="PaymentScreenWidget">
         <t t-jquery="span[class='button next']" t-operation="replace">
             <span class="button next highlight" data-tag="next" style="">
-                Check Out
+                Finalizar
                 <span class="keyboard-shortcut">Enter</span>
             </span>
         </t>
