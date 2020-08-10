@@ -348,7 +348,7 @@
             <div class='client-detail'>
                 <span class='label'>Posición fiscal</span>
 
-                    <input class='' name='vat' t-att-value='partner.property_account_position_id.name || ""'></input>
+                    <input class='' name='vat' t-att-value='partner.property_account_position_id || ""'></input>
 
             </div>
 
