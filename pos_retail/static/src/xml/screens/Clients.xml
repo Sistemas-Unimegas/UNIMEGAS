@@ -351,7 +351,7 @@
 
                                     <select class='form-control voucher-select partner_input' name='property_account_position_id'>
                                         <option value=''>Ninguno</option>
-                                        <t t-foreach='widget.pos.countries' t-as='property_account_position_id'>
+                                        <t t-foreach='widget.pos.property_account_position_id' t-as='property_account_position_id'>
                                             <option t-att-value='property_account_position_id'>
                                                 <t t-esc='property_account_position_id.name'/>
                                             </option>
