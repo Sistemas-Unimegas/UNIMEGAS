@@ -9,7 +9,7 @@
                 <form string="Log">
                     <header>
                         <button name="refresh_logs"
-                                string="Reinstall Datas"
+                                string="Reinstalar base de datos"
                                 type="object"
                                 groups="point_of_sale.group_pos_manager" class="btn-primary"/>
                     </header>
