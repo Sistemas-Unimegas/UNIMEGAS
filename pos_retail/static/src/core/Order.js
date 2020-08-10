@@ -188,7 +188,7 @@ odoo.define('pos_retail.order', function (require) {
             if (json.shipping_id) {
                 var shipping_client = this.pos.db.get_partner_by_id(json.shipping_id);
                 if (!shipping_client) {
-                    console.error('ERROR: trying to load a partner not available in the pos');
+                    console.error('ERROR: intentando cargar un Cliente no disponible en el pos');
                 } else {
                     this.set_shipping_client(shipping_client);
                 }
@@ -449,13 +449,13 @@ odoo.define('pos_retail.order', function (require) {
             var lots = this.pos.lot_by_product_id[this.selected_orderline.product.id];
             if (!lots) {
                 return this.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: this.selected_orderline.product.display_name + _t(' have not any lots created before')
+                    title: _t('Advertencia'),
+                    body: this.selected_orderline.product.display_name + _t(' no ha creado ningún lote antes')
                 })
             }
             this.pos.gui.show_popup('popup_set_multi_lots', {
-                'title': _t('Set lots for Product:  ' + this.selected_orderline.product.display_name),
-                'body': _t('Allow you set multi lot  ' + this.selected_orderline.product.display_name + _t(', please made sure total quantities of lots the same of quantity of ') + this.selected_orderline.product.display_name + ' in cart.'),
+                'title': _t('Establecer lotes para el producto:  ' + this.selected_orderline.product.display_name),
+                'body': _t('Permitir configurar lote múltiple  ' + this.selected_orderline.product.display_name + _t(', Asegúrese de que las cantidades totales de lotes sean iguales a la cantidad de ') + this.selected_orderline.product.display_name + ' en el carrito.'),
                 'selected_orderline': this.selected_orderline,
                 'lots': this.pos.lot_by_product_id[this.selected_orderline.product.id],
                 confirm: function (lot_ids) {
@@ -499,25 +499,25 @@ odoo.define('pos_retail.order', function (require) {
         _get_client_content: function (client) {
             var content = '';
             if (client.mobile) {
-                content += 'Mobile: ' + client.mobile + ' , ';
+                content += 'Móvil: ' + client.mobile + ' , ';
             }
             if (client.phone) {
-                content += 'Mobile: ' + client.phone + ' , ';
+                content += 'Teléfono: ' + client.phone + ' , ';
             }
             if (client.email) {
                 content += 'Email: ' + client.email + ' , ';
             }
             if (client.address) {
-                content += 'Address: ' + client.address + ' , ';
+                content += 'Dirección: ' + client.address + ' , ';
             }
             if (client.balance) {
-                content += 'Credit: ' + this.pos.gui.chrome.format_currency(client.balance) + ' , ';
+                content += 'Crédito: ' + this.pos.gui.chrome.format_currency(client.balance) + ' , ';
             }
             if (client.wallet) {
-                content += 'Wallet Card: ' + this.pos.gui.chrome.format_currency(client.wallet) + ' , ';
+                content += 'Tarjeta de puntos: ' + this.pos.gui.chrome.format_currency(client.wallet) + ' , ';
             }
             if (client.pos_loyalty_point) {
-                content += 'Loyalty Point: ' + this.pos.gui.chrome.format_currency_no_symbol(client.pos_loyalty_point) + ' , ';
+                content += 'Tarjeta de lealtad: ' + this.pos.gui.chrome.format_currency_no_symbol(client.pos_loyalty_point) + ' , ';
             }
             return content
         },
@@ -536,8 +536,8 @@ odoo.define('pos_retail.order', function (require) {
             }
             if (this.is_return || this.get_total_with_tax() <= 0) {
                 return this.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: _t('this Return or Amount with tax smaller than 0 not allow do partial payment'),
+                    title: _t('Advertencia'),
+                    body: _t('esta devolución o monto con impuesto menor a 0 no permite hacer un pago parcial'),
                 });
             }
             this.partial_payment = true;
@@ -549,8 +549,8 @@ odoo.define('pos_retail.order', function (require) {
             var self = this;
             if (this.is_return || this.get_total_with_tax() <= 0) {
                 return this.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: _t('this Return or Amount with tax smaller than 0 not allow do partial payment'),
+                    title: _t('Advertencia'),
+                    body: _t('esta devolución o monto con impuesto menor a 0 no permite hacer un pago parcial'),
                 });
             }
             this['pos_session_id'] = pos_session_id;
@@ -578,7 +578,7 @@ odoo.define('pos_retail.order', function (require) {
                     return order['partner_id'] && order['partner_id'][0] == client['id'] && order['state'] == 'draft';
                 });
                 if (partial_payment_orders.length != 0) {
-                    var warning_message = 'Customer selected have orders: ';
+                    var warning_message = 'El cliente seleccionado tiene órdenes : ';
                     for (var i = 0; i < partial_payment_orders.length; i++) {
                         warning_message += partial_payment_orders[i]['name'];
                         warning_message += '(' + partial_payment_orders[i]['date_order'] + ')';
@@ -588,7 +588,7 @@ odoo.define('pos_retail.order', function (require) {
                             warning_message += ',';
                         }
                     }
-                    warning_message += ' not payment full';
+                    warning_message += ' pendientes de pago total';
                     this.pos.gui.show_popup('confirm', {
                         title: client.name,
                         body: warning_message,
@@ -609,13 +609,13 @@ odoo.define('pos_retail.order', function (require) {
                     if (list.length > 0 && this.pos.gui.popup_instances['selection']) {
                         setTimeout(function () {
                             self.pos.gui.show_popup('selection', {
-                                title: _t('Please add group/membership to customer ' + client.name),
+                                title: _t('Por favor agregue grupo / membresía al cliente ' + client.name),
                                 list: list,
                                 confirm: function (group) {
                                     if (!self.pos.pricelist_by_id || !self.pos.pricelist_by_id[group.pricelist_id[0]]) {
                                         return self.pos.gui.show_popup('dialog', {
-                                            title: _t('Warning'),
-                                            body: _t('Your POS not added pricelist') + group.pricelist_id[1],
+                                            title: _t('Advertencia'),
+                                            body: _t('Su POS no tiene listas de precios disponibles') + group.pricelist_id[1],
                                         })
                                     }
                                     var pricelist = self.pos.pricelist_by_id[group.pricelist_id[0]];
@@ -666,9 +666,9 @@ odoo.define('pos_retail.order', function (require) {
                 this.pos.gui.show_screen('products');
                 this.discount = this.pos.discount_by_id[client['discount_id'][0]];
                 this.pos.gui.show_screen('products');
-                var body = client['name'] + ' have discount ' + self.discount['name'] + '. Do you want to apply ?';
+                var body = client['name'] + ' tiene descuento ' + self.discount['name'] + '. Desea aplicarlo ?';
                 return this.pos.gui.show_popup('confirm', {
-                    'title': _t('Customer special discount ?'),
+                    'title': _t('Descuento especial al Cliente ?'),
                     'body': body,
                     confirm: function () {
                         self.add_global_discount(self.discount);
@@ -687,7 +687,7 @@ odoo.define('pos_retail.order', function (require) {
         validate_payment: function () {
             if (this.pos.config.validate_payment) { // TODO: validate payment
                 this.pos.gui.show_screen('products');
-                this.pos._validate_by_manager("this.pos.gui.show_screen('payment')", 'Do Payment Order');
+                this.pos._validate_by_manager("this.pos.gui.show_screen('payment')", 'Hacer orden de pago');
             }
         },
         validate_payment_order: function () {
@@ -702,7 +702,7 @@ odoo.define('pos_retail.order', function (require) {
                             this.pos.gui.show_screen('products');
                             return this.pos.gui.show_popup('confirm', {
                                 'title': _t('Error'),
-                                'body': _t('Product ' + orderline.product.display_name + ' null lots. Because your pos active multi lots, required add lots')
+                                'body': _t('Producto ' + orderline.product.display_name + ' no tiene lotes. Debido a que sus lotes múltiples están activos en el POS, requieren agregar lotes')
                             });
                         }
                         var sum = 0;
@@ -712,8 +712,8 @@ odoo.define('pos_retail.order', function (require) {
                         if (sum != orderline.quantity && sum != 0) {
                             this.pos.gui.show_screen('products');
                             return this.pos.gui.show_popup('confirm', {
-                                'title': _t('Lots of Product: ') + orderline.product.display_name + _(' have wrongs'),
-                                'body': _t('Total quantity of lines is: ' + orderline.quantity + _t(', but you only input total quantities of lots is: ') + sum)
+                                'title': _t('Lotes del Producto: ') + orderline.product.display_name + _(' tienen errores'),
+                                'body': _t('La cantidad total de líneas es : ' + orderline.quantity + _t(', pero la cantidad de lotes ingresados es : ') + sum)
                             });
                         }
                     }
@@ -724,23 +724,23 @@ odoo.define('pos_retail.order', function (require) {
                     self.pos.gui.show_screen('products');
                     self.pos.gui.show_screen('clientlist');
                     self.pos.gui.show_popup('dialog', {
-                        title: _t('Warning'),
-                        body: _t('Please add client the first')
+                        title: _t('Advertencia'),
+                        body: _t('Agregue al cliente primero')
                     })
                 }, 300);
             }
             if (this && this.orderlines.models.length == 0) {
                 this.pos.gui.show_screen('products');
                 return this.pos.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: _t('Your order cart is blank')
+                    title: _t('Advertencia'),
+                    body: _t('El carrito de ventas está vacío')
                 })
             }
             if (this.remaining_point && this.remaining_point < 0) {
                 this.pos.gui.show_screen('products');
                 return this.pos.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: _t('You could not applied redeem point bigger than client point'),
+                    title: _t('Advertencia'),
+                    body: _t('No se pudo aplicar un punto para canjear más grande que los puntos que tiene el cliente'),
                 });
             }
             this.validate_order_return();
@@ -751,8 +751,8 @@ odoo.define('pos_retail.order', function (require) {
             if (this.is_to_invoice() && !this.get_client()) {
                 this.pos.gui.show_screen('clientlist');
                 this.pos.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: _t('Please add client the first')
+                    title: _t('Advertencia'),
+                    body: _t('Agregue al cliente primero')
                 });
                 return false;
             }
@@ -766,8 +766,8 @@ odoo.define('pos_retail.order', function (require) {
                 if (line_missed_input_return_reason) {
                     this.pos.gui.show_screen('products');
                     return this.pos.gui.show_popup('dialog', {
-                        title: _t('Alert'),
-                        body: _t('Please input return reason for each line'),
+                        title: _t('Advertencia'),
+                        body: _t('Ingrese el motivo de devolución de cada línea'),
                     });
                 } else {
                     return false
@@ -780,8 +780,8 @@ odoo.define('pos_retail.order', function (require) {
             var lines = this.orderlines.models;
             if (!lines.length) {
                 return this.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: _t('Please add product first, your order cart is empty')
+                    title: _t('Advertencia'),
+                    body: _t('Primero agregue el producto, su carrito de pedido está vacío')
                 })
             }
             if (discount.type == 'percent') {
@@ -804,8 +804,8 @@ odoo.define('pos_retail.order', function (require) {
             var product = this.pos.db.get_product_by_id(this.pos.config.discount_product_id[0]);
             if (product === undefined) {
                 this.pos.gui.show_popup('error', {
-                    title: _t("No discount product found"),
-                    body: _t("The discount product seems misconfigured. Make sure it is flagged as 'Can be Sold' and 'Available in Point of Sale'."),
+                    title: _t("No se ha encontrado ningún producto con descuento"),
+                    body: _t("El producto con descuento parece estar mal configurado. Asegúrese de que esté marcado como 'Se puede vender' y 'Disponible en el punto de venta'."),
                 });
                 return;
             }
@@ -827,13 +827,13 @@ odoo.define('pos_retail.order', function (require) {
             if (base_to_discount <= discount) {
                 return this.pos.gui.show_popup('error', {
                     title: _t("Error"),
-                    body: _t("If set this discount, order total amount become smaller than 0, could not apply"),
+                    body: _t("Si establece este descuento, el monto total del pedido se vuelve menor que 0, no se puede aplicar"),
                 });
             }
             if (this.pos.config.discount_value_limit < discount) {
                 return this.pos.gui.show_popup('error', {
                     title: _t("Error"),
-                    body: _t("It not possible sell discount bigger than " + this.pos.gui.chrome.format_currency_no_symbol(this.pos.config.discount_value_limit)),
+                    body: _t("No es posible aplicar un descuento mayor que " + this.pos.gui.chrome.format_currency_no_symbol(this.pos.config.discount_value_limit)),
                 });
             }
             order.add_product(product, {
@@ -864,8 +864,8 @@ odoo.define('pos_retail.order', function (require) {
             if (this.add_credit && !this.get_client()) {
                 this.pos.gui.show_screen('clientlist');
                 return this.pos.gui.show_popup('dialog', {
-                    title: 'Warning',
-                    body: 'Please add customer need add credit'
+                    title: 'Advertencia',
+                    body: 'Por favor, agregue el cliente, y necesita agregar crédito'
                 })
             }
         },
@@ -1365,8 +1365,8 @@ odoo.define('pos_retail.order', function (require) {
                 this.price_extra = price_extra;
                 this.trigger('change', this);
                 this.pos.gui.show_popup('dialog', {
-                    title: _t('Alert'),
-                    body: _t('Automatic set Items of Combo Bundle/Pack to ' + selected_orderline.product.display_name),
+                    title: _t('Advertencia'),
+                    body: _t('Establecer automáticamente los elementos del combo / paquete a ' + selected_orderline.product.display_name),
                     color: 'success'
                 })
             }
@@ -1450,7 +1450,7 @@ odoo.define('pos_retail.order', function (require) {
             var self = this;
             if (this.product && (parseFloat(price) < this.product.minimum_list_price) && !this.packaging && !this.promotion && this.product.id != discount_product_id) {
                 return this.pos.gui.show_popup('number', {
-                    'title': _t('Product have minimum price smaller list price, please input price need to change'),
+                    'title': _t('El producto tiene un precio más pequeño que el mínimo de la lista de precios, ingrese el precio para cambiarlo'),
                     'value': 0,
                     'confirm': function (price) {
                         return self.set_unit_price(price);
@@ -1689,14 +1689,14 @@ odoo.define('pos_retail.order', function (require) {
             });
             if (cross_items.length) {
                 this.pos.gui.show_popup('popup_cross_selling', {
-                    title: _t('Please, Suggest Customer buy more products bellow'),
+                    title: _t('Por favor, sugiera al cliente que compre los productos a continuación'),
                     widget: this,
                     cross_items: cross_items
                 });
             } else {
                 this.pos.gui.show_popup('dialog', {
-                    title: 'Warning',
-                    body: 'You not active cross selling or product have not items cross selling'
+                    title: 'Advertencia',
+                    body: 'No tiene ventas cruzadas activas o el producto no tiene artículos de venta cruzada'
                 });
             }
         },
@@ -1748,7 +1748,7 @@ odoo.define('pos_retail.order', function (require) {
             });
             if (cross_items.length && this.pos.gui.popup_instances['popup_cross_selling']) {
                 this.pos.gui.show_popup('popup_cross_selling', {
-                    title: _t('Please, Suggest Customer buy more products bellow'),
+                    title: _t('Por favor, sugiera al cliente que compre los productos a continuación'),
                     widget: this,
                     cross_items: cross_items
                 });
@@ -1833,7 +1833,7 @@ odoo.define('pos_retail.order', function (require) {
                 }
                 var stock_available = stock_datas[product.id];
                 if (line_quantity > stock_available) {
-                    return _t(product.name + ' available on stock is ' + stock_available + ' . Not allow sale bigger than this quantity')
+                    return _t(product.name + ' el inventario disponible es ' + stock_available + ' . No se permiten ventas superiores a esta cantidad')
                 }
             }
             return true
@@ -1842,7 +1842,7 @@ odoo.define('pos_retail.order', function (require) {
             var self = this;
             var update_combo_items = false;
             if (this.uom_id || this.redeem_point) {
-                keep_price = 'keep price because changed uom id or have redeem point'
+                keep_price = 'mantener el precio porque cambió la identificación de usuario o tiene puntos de canje'
             }
             if (this.pos.the_first_load == false && quantity != 'remove' && !this.pos.config['allow_order_out_of_stock'] && quantity && quantity != 'remove' && this.order.syncing != true && this.product['type'] != 'service') {
                 var current_qty = 0;
@@ -1856,8 +1856,8 @@ odoo.define('pos_retail.order', function (require) {
                 if (this.pos.db.stock_datas[this.product.id] && current_qty > this.pos.db.stock_datas[this.product.id] && this.product['type'] == 'product') {
                     var product = this.pos.db.get_product_by_id(this.product.id);
                     this.pos.gui.show_popup('dialog', { // TODO: only show dialog warning, when do payment will block
-                        title: _t('Warning'),
-                        body: product['name'] + _t(' available for sell is ') + this.pos.db.stock_datas[this.product.id],
+                        title: _t('Advertencia'),
+                        body: product['name'] + _t(' disponible para vender es ') + this.pos.db.stock_datas[this.product.id],
                     });
                 }
             }
