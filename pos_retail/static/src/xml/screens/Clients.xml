@@ -424,7 +424,7 @@
                 <span class='detail'><t t-esc='widget.format_currency_no_symbol(partner.wallet)'/></span>
             </div>
             <div class='client-detail'>
-                <span class='label'>Credito</span>
+                <span class='label'>Crédito</span>
                 <span class='detail'><t t-esc='widget.chrome.format_currency_no_symbol(partner.balance)'/></span>
             </div>
         </t>
