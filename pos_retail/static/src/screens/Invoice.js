@@ -383,8 +383,8 @@ odoo.define('pos_retail.screen_invoices', function (require) {
             });
             this.$('.post').click(function () {
                 self.gui.show_popup('confirm', {
-                    title: _t('Alert'),
-                    body: _t('Are you want post invoice ?'),
+                    title: _t('Aviso'),
+                    body: _t('¿Quieres publicar la factura?'),
                     confirm: function () {
                         return rpc.query({
                             model: 'account.move',
@@ -392,8 +392,8 @@ odoo.define('pos_retail.screen_invoices', function (require) {
                             args: [[self.invoice_selected.id]]
                         }).then(function (status) {
                             self.pos.gui.show_popup('dialog', {
-                                title: _t('Alert'),
-                                body: _t('Posted invoice ' + self.invoice_selected.name),
+                                title: _t('Aviso'),
+                                body: _t('Factura registrada ' + self.invoice_selected.name),
                                 color: 'success'
                             })
                         }, function (err) {
@@ -404,7 +404,7 @@ odoo.define('pos_retail.screen_invoices', function (require) {
             });
             this.$('.register_payment').click(function () {
                 self.gui.show_popup('popup_invoice_register_payment', {
-                    title: _t('Register Payment: ' + self.invoice_selected.name),
+                    title: _t('Registrar pago: ' + self.invoice_selected.name),
                     invoice: self.invoice_selected,
                     confirm: function (invoice_id, journal_id, amount) {
                         var payment_type = 'outbound';
@@ -421,8 +421,8 @@ odoo.define('pos_retail.screen_invoices', function (require) {
                         }
                         if (!payment_method_id) {
                             return self.pos.gui.show_popup('confirm', {
-                                title: _t('Warning'),
-                                body: _t('Register Payment with Journal ' + journal.name + ', not set Inbound and OutBound Payment Method')
+                                title: _t('Advertencia'),
+                                body: _t('Registrar pago con diario ' + journal.name + ', no establecido Método de pago')
                             })
                         }
                         var payment = {
