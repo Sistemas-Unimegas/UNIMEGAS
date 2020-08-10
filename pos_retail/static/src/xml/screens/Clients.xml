@@ -180,7 +180,7 @@
                         <t t-if="!widget.pos.config.hide_mobile">
                             <th><a href="#" class="sort sort_by_mobile">Móvil</a></th>
                         </t>
-                        <th><a href="#" class="sort sort_by_birthdate">Cumpleañis</a></th>
+                        <th><a href="#" class="sort sort_by_birthdate">Cumpleaños</a></th>
                         <th><a href="#" class="sort sort_by_pos_loyalty_point">Puntos</a></th>
                         <th><a href="#" class="sort sort_by_balance">Crédito</a></th>
                         <t t-if="!widget.pos.config.hide_pricelist">
