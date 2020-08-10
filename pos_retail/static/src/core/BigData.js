@@ -737,7 +737,7 @@ odoo.define('pos_retail.big_data', function (require) {
 
     models.load_models([
         {
-            label: 'Reload Session',
+            label: 'Recargar Sesión',
             condition: function (self) {
                 return self.pos_session.required_reinstall_cache;
             },
@@ -768,7 +768,7 @@ odoo.define('pos_retail.big_data', function (require) {
 
     models.load_models([
         {
-            label: 'Products Stock On Hand',
+            label: 'Productos - Inventario disponible',
             condition: function (self) {
                 return self.config.display_onhand;
             },
@@ -788,14 +788,14 @@ odoo.define('pos_retail.big_data', function (require) {
             retail: true,
         },
         {
-            label: 'Products',
+            label: 'Productos',
             installed: true,
             loaded: function (self) {
                 return self.indexed_db.get_datas(self, 'product.product', self.session.model_ids['product.product']['max_id'] / 100000 + 1)
             }
         },
         {
-            label: 'Installing Products',
+            label: 'Instalando Productos',
             condition: function (self) {
                 return self.total_products == 0;
             },
@@ -804,14 +804,14 @@ odoo.define('pos_retail.big_data', function (require) {
             }
         },
         {
-            label: 'Partners',
+            label: 'Clientes',
             installed: true,
             loaded: function (self) {
                 return self.indexed_db.get_datas(self, 'res.partner', self.session.model_ids['res.partner']['max_id'] / 100000 + 1)
             }
         },
         {
-            label: 'Installing Partners',
+            label: 'Instalando Clientes',
             condition: function (self) {
                 return self.total_clients == 0;
             },
@@ -820,7 +820,7 @@ odoo.define('pos_retail.big_data', function (require) {
             }
         },
         {
-            label: 'POS Orders',
+            label: 'POS Órdenes',
             model: 'pos.order',
             condition: function (self) {
                 return self.config.pos_orders_management;
@@ -896,7 +896,7 @@ odoo.define('pos_retail.big_data', function (require) {
                 self.db.save_pos_orders(orders);
             }
         }, {
-            label: 'POS Order Lines',
+            label: 'POS Líneas de las Órdenes',
             model: 'pos.order.line',
             fields: [
                 'name',
@@ -934,7 +934,7 @@ odoo.define('pos_retail.big_data', function (require) {
                 self.db.save_pos_order_line(order_lines);
             }
         }, {
-            label: 'Sale Orders',
+            label: 'Órdenes de Ventas',
             model: 'sale.order',
             fields: [
                 'create_date',
