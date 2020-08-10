@@ -359,7 +359,7 @@
 
     <t t-name="product_onhand">
         <t t-if="product['type'] == 'product'">
-            <span class="qty_available" title="Stock on Hand of Product">
+            <span class="qty_available" title="Inventario disponible del Producto">
                 <span class="value">
                     <t t-if="product.qty_available &gt; 0 or product.qty_available &lt; 0">
                         <t t-esc="product.qty_available.toFixed(0)"/>
@@ -548,7 +548,7 @@
     <t t-name="ProductPrice">
         <t t-if="widget.pos.config.display_sale_price_within_tax">
             <t t-if="!product.to_weight">
-                <span class="price-tag" title="Tax not Included" data-tag="price-tag"
+                <span class="price-tag" title="Impuesto No Incluido" data-tag="price-tag"
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <t t-esc="widget.format_currency(widget.pos.get_price_with_tax(product, pricelist), 'Product Price')"/>
                     <span class="cart_qty oe_hidden">
@@ -558,7 +558,7 @@
                 </span>
             </t>
             <t t-if="product.to_weight">
-                <span class="price-tag" title="Tax not Included" data-tag="price-tag"
+                <span class="price-tag" title="Impuesto No Incluido" data-tag="price-tag"
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <t t-esc="widget.format_currency(widget.pos.get_price_with_tax(product, pricelist), 'Product Price') + '/' + widget.pos.units_by_id[product.uom_id[0]].name"/>
                     <span class="cart_qty oe_hidden">
@@ -570,7 +570,7 @@
         </t>
         <t t-if="!widget.pos.config.display_sale_price_within_tax">
             <t t-if="!product.to_weight">
-                <span class="price-tag" title="Tax Included" data-tag="price-tag"
+                <span class="price-tag" title="Impuesto Incluido" data-tag="price-tag"
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <i class="fa fa-compress-alt"/>
                     <t t-esc="widget.format_currency(product.get_price(pricelist, 1), 'Product Price')"/>
@@ -581,7 +581,7 @@
                 </span>
             </t>
             <t t-if="product.to_weight">
-                <span class="price-tag" title="Tax Included" data-tag="price-tag"
+                <span class="price-tag" title="Impuesto Incluido" data-tag="price-tag"
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <i class="fa fa-compress-alt"/>
                     <t t-esc="widget.format_currency(product.get_price(pricelist, 1), 'Product Price')  + '/' + widget.pos.units_by_id[product.uom_id[0]].name"/>
@@ -844,9 +844,9 @@
                 </span>
                 <t t-if="widget.pos.config.allow_customer">
                     <div class="search-box find_customer"
-                         title="Fast find Client via Phone/Mobile here. Keyboard Event: k">
+                         title="Encuentre Clientes rápidamente a través del teléfono / móvil aquí. Evento de teclado: k">
                         <input autocomplete="off" class="ui-autocomplete-input find_partner_input" id="find_partner_id"
-                               placeholder="Search Customers"/>
+                               placeholder="Buscar Clientes"/>
                         <span class="keyboard-shortcut">( K )</span>
                         <span class="search-clear left">
                             <i class="fa fa-search"></i>
@@ -867,7 +867,7 @@
                     </div>
                 </t>
                 <div class="searchbox search-products">
-                    <input class="search-products" placeholder="Search Products (Quit ESC)"/>
+                    <input class="search-products" placeholder="Buscar Productos (ESC para regresar)"/>
                     <span class="search-clear left">
                         <i class="fa fa-search"/>
                     </span>
@@ -899,9 +899,9 @@
     </t>
 
     <t t-name="ProductSortWidget">
-        <div class="oe_status shop_logo products-sort-by" title="Sort By Products">
+        <div class="oe_status shop_logo products-sort-by" title="Ordenar por Productos">
             <span class='js_msg oe_hidden'>0</span>
-            <img class="logo_shop_header" src="/pos_retail/static/src/icons/sort_by.png" title="Products sort"/>
+            <img class="logo_shop_header" src="/pos_retail/static/src/icons/sort_by.png" title="ordenar Productos"/>
         </div>
     </t>
 
@@ -909,10 +909,10 @@
         <div class="oe_status js_synch products-view-type">
             <span class='js_msg oe_hidden'>0</span>
             <div class="js_connected oe_icon">
-                <i class='fa fa-fw fa-th' role="img" aria-label="List" title="Product List View, Keyboard Event: v"></i>
+                <i class='fa fa-fw fa-th' role="img" aria-label="List" title="Vista de lista de productos, evento de teclado: v"></i>
             </div>
             <div class="js_connecting oe_icon oe_hidden">
-                <i class='fa fa-fw fa-list' role="img" aria-label="Box" title="Product Box View, Keyboard Event: v"></i>
+                <i class='fa fa-fw fa-list' role="img" aria-label="Box" title="Vista de cuadros de los productos, evento de teclado: v"></i>
             </div>
             <span class="keyboard-shortcut">V</span>
         </div>
