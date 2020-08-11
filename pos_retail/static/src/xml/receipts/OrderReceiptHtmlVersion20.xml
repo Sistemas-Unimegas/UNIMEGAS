@@ -15,7 +15,7 @@
         <t class="receipt-header" data-tag="el_header">
             <t t-if='receipt.company.contact_address'>
                 <div class="receipt-line field_design" data-tag="el_address">
-                    <span>Address</span>
+                    <span>Dirección</span>
                     <span class="pos-receipt-right-align">
                         <t t-esc="receipt.company.contact_address"/>
                     </span>
@@ -23,7 +23,7 @@
             </t>
             <t t-if='receipt.company.phone'>
                 <div class="receipt-line field_design" data-tag="el_phone">
-                    <span>Phone</span>
+                    <span>Teléfono</span>
                     <span class="pos-receipt-right-align">
                         <t t-esc="receipt.company.phone"/>
                     </span>
@@ -31,7 +31,7 @@
             </t>
             <t t-if='receipt.company.vat'>
                 <div class="receipt-line field_design" data-tag="el_vat">
-                    VAT:
+                    RFC:
                     <span class="pos-receipt-right-align">
                         <t t-esc="receipt.company.vat"/>
                     </span>
@@ -47,7 +47,7 @@
             </t>
             <t t-if='receipt.company.contact_address'>
                 <div class="receipt-line field_design" data-tag="el_web">
-                    Website
+                    Web
                     <span class="pos-receipt-right-align">
                         <t t-esc="receipt.company.website"/>
                     </span>
@@ -55,7 +55,7 @@
             </t>
             <t t-if='receipt.company.company_registry'>
                 <div class="receipt-line field_design" data-tag="el_company_regis">
-                    Register No:
+                    Registro No:
                     <span class="pos-receipt-right-align">
                         <t t-esc="receipt.company.company_registry"/>
                     </span>
@@ -63,7 +63,7 @@
             </t>
             <t t-if='receipt.cashier'>
                 <div class="receipt-line field_design" data-tag="el_user">
-                    <span>Cashier</span>
+                    <span>Cajero(a)</span>
                     <span class="pos-receipt-right-align">
                         <t t-esc="receipt.cashier"/>
                     </span>
@@ -71,7 +71,7 @@
             </t>
             <t t-if="widget.pos.config.display_fiscal_position_receipt and order.fiscal_position">
                 <div class="receipt-line field_design" data-tag="el_fiscal_position">
-                    Fiscal Position
+                    Posición Fiscal
                     <span class="pos-receipt-right-align">
                         <t t-esc="order.fiscal_position.name"/>
                     </span>
@@ -100,7 +100,7 @@
             <t t-if="order.plus_point">
                 <div class="receipt-line">
                     <span class="field_design" data-tag="el_plus_point">
-                        Points Plus
+                        Puntos extras
                     </span>
                     <span class="pos-receipt-right-align field_design" data-tag="el_plus_point_value">
                         <t t-esc="order.plus_point"/>
@@ -110,7 +110,7 @@
             <t t-if="order.redeem_point">
                 <div class="receipt-line">
                     <span class="field_design" data-tag="el_redeem_point">
-                        Points Redeem
+                        Canjear puntos
                     </span>
                     <span class="pos-receipt-right-align field_design" data-tag="el_redeem_value">
                         <t t-esc="order.redeem_point"/>
@@ -121,7 +121,7 @@
             <t t-if="client">
                 <div class="receipt-line">
                     <span class="field_design" data-tag="el_client_info">
-                        Customer
+                        Cliente
                     </span>
                     <span class="pos-receipt-right-align field_design" data-tag="el_client_info_value">
                         --------------------------
@@ -129,7 +129,7 @@
                 </div>
                 <div class="receipt-line">
                     <span class="field_design" data-tag="el_client">
-                        Name
+                        Nombre
                     </span>
                     <span class="pos-receipt-right-align field_design" data-tag="el_client_value">
                         <t t-esc="client.name"/>
@@ -138,7 +138,7 @@
                 <t t-if="client.street">
                     <div class="receipt-line">
                         <span class="field_design" data-tag="el_client_street">
-                            Street
+                            Dirección
                         </span>
                         <span class="pos-receipt-right-align field_design" data-tag="el_client_street_value">
                             <t t-esc="client.street"/>
@@ -148,7 +148,7 @@
                 <t t-if="client.vat and widget.pos.config.receipt_customer_vat">
                     <div class="receipt-line">
                         <span class="field_design" data-tag="el_client_vat">
-                            Tin
+                            RFC
                         </span>
                         <span class="pos-receipt-right-align field_design" data-tag="el_client_vat_value">
                             <t t-esc="client.vat"/>
@@ -168,7 +168,7 @@
                 <t t-if="client.phone or client.mobile">
                     <div class="receipt-line">
                         <span class="field_design" data-tag="el_client_mobile">
-                            Phone/Mobile
+                            Teléfono
                         </span>
                         <span class="pos-receipt-right-align field_design" data-tag="el_client_mobile_value">
                             <t t-esc="client.phone || client.mobile"/>
@@ -178,7 +178,7 @@
             </t>
             <t t-if="invoice_ref">
                 <div class="receipt-line field_design" data-tag="el_invoice">
-                    Invoice Ref
+                    Factura Ref
                     <span class="pos-receipt-right-align">
                         <t t-esc="invoice_ref"/>
                     </span>
@@ -186,7 +186,7 @@
             </t>
             <t t-if="picking_ref">
                 <div class="receipt-line field_design" data-tag="el_invoice">
-                    Delivery Ref
+                    Entrega Ref
                     <span class="pos-receipt-right-align">
                         <t t-esc="picking_ref"/>
                     </span>
@@ -194,7 +194,7 @@
             </t>
             <t t-if="order.location and order.location.name and widget.pos.config.receipt_display_warehouse">
                 <div class="receipt-line field_design" data-tag="el_location">
-                    Stock
+                    Inventario
                     <span class="pos-receipt-right-align">
                         <t t-esc="order.location.name"/>
                     </span>
@@ -204,7 +204,7 @@
                 <br/>
                 <div class="receipt-line">
                     <span class="amount_total">
-                        SHIPPING INFORMATION
+                        INFORMACIÓN DE ENVÍO
                     </span>
                     <div class="receipt-line">
                         Customer:
@@ -224,7 +224,7 @@
                         </span>
                     </div>
                     <div class="receipt-line">
-                        Phone:
+                        Teléfono:
                         <span class="pos-receipt-right-align">
                             <t t-if="receipt.shipping_client.phone">
                                 <t t-esc="receipt.shipping_client.phone"/>
@@ -235,7 +235,7 @@
                         </span>
                     </div>
                     <div class="receipt-line">
-                        Comment:
+                        Comentarios:
                         <span class="pos-receipt-right-align">
                             <t t-if="receipt.shipping_client.comment">
                                 <t t-esc="receipt.shipping_client.comment"/>
@@ -255,14 +255,14 @@
             <t t-if="widget.pos.config.booking_orders_display_shipping_receipt and order.delivery_address">
                 <br/>
                 <div class="receipt-line">
-                    Shipping
+                    Envío
                     <span class="pos-receipt-right-align">
                         --------------------------
                     </span>
                 </div>
                 <t t-if='order.delivery_address'>
                     <div class="receipt-line">
-                        Ship Address
+                        Dirección de envío
                         <span class="pos-receipt-right-align">
                             <t t-esc="receipt.company.delivery_address"/>
                         </span>
@@ -270,7 +270,7 @@
                 </t>
                 <t t-if='order.delivery_date'>
                     <div class="receipt-line">
-                        Ship Date
+                        Fecha de envío
                         <span class="pos-receipt-right-align">
                             <t t-esc="receipt.company.delivery_date"/>
                         </span>
@@ -278,7 +278,7 @@
                 </t>
                 <t t-if='order.delivery_phone'>
                     <div class="receipt-line">
-                        Ship Phone
+                        Teléfono de envío
                         <span class="pos-receipt-right-align">
                             <t t-esc="receipt.company.delivery_phone"/>
                         </span>
@@ -287,7 +287,7 @@
             </t>
             <t t-if="order.origin">
                 <div class="receipt-line">
-                    Origin
+                    Origen
                     <span class="pos-receipt-right-align">
                         <t t-esc="receipt.origin"/>
                     </span>
@@ -295,7 +295,7 @@
             </t>
             <t t-if="order.date_order">
                 <div class="receipt-line">
-                    Date Order
+                    Fecha de la Orden
                     <span class="pos-receipt-right-align">
                         <t t-esc="receipt.date_order"/>
                     </span>
@@ -303,7 +303,7 @@
             </t>
             <t t-if="order.delivery_man">
                 <div class="receipt-line">
-                    Delivery Man
+                    Repartidor
                     <span class="pos-receipt-right-align">
                         <t t-esc="receipt.delivery_man.name"/>
                     </span>
@@ -355,7 +355,7 @@
                 </t>
                 <t t-if="receipt.currency">
                     <div class="receipt-line">
-                        Currency
+                        Moneda
                         <span t-esc='receipt.currency.name' class="pos-receipt-right-align"/>
                     </div>
                 </t>
@@ -391,7 +391,7 @@
                 </t>
             </div>
             <div class="receipt-line">
-                <span class="field_design" data-tag="el_field_change">CHANGE</span>
+                <span class="field_design" data-tag="el_field_change">CAMBIO</span>
                 <span class="pos-receipt-right-align field_design" data-tag="el_field_change_value">
                     <t t-esc="widget.format_currency_no_symbol(receipt.change)"/>
                 </span>
@@ -399,7 +399,7 @@
             <br/>
             <t t-if='receipt.total_discount'>
                 <div class="receipt-line">
-                    <span class="amount_total field_design" data-tag="el_field_discount">Discounts</span>
+                    <span class="amount_total field_design" data-tag="el_field_discount">Descuento</span>
                     <span class="pos-receipt-right-align field_design" data-tag="el_field_discount_value">
                         <t t-esc="widget.format_currency_no_symbol(receipt.total_discount)"/>
                     </span>
@@ -416,7 +416,7 @@
                             </div>
                         </t>
                         <div class="receipt-line">
-                            <span class="amount_total">Total Taxes</span>
+                            <span class="amount_total">Impuestos</span>
                             <span t-esc='widget.format_currency_no_symbol(receipt.total_tax)' class="pos-receipt-right-align"/>
                         </div>
                         <br/>
@@ -455,13 +455,13 @@
             </div>
             <t t-if="order.note">
                 <div class="receipt-line">
-                    <span class="amount_total">Note</span>
+                    <span class="amount_total">Notas</span>
                     <span t-esc='order.note' class="pos-receipt-right-align"/>
                 </div>
             </t>
             <t t-if="order.signature">
                 <div class="receipt-line">
-                    <span class="amount_total">Signature</span>
+                    <span class="amount_total">Firma</span>
                     <span class="pos-receipt-right-align">
                         <img class="product-img signature"
                              t-att-src="widget.pos.get_order().get_signature() || ''"
@@ -472,10 +472,10 @@
             </t>
             <t t-if="widget.pos.config.display_return_days_receipt">
                 <div class="receipt-line">
-                    <span class="amount_total">Period Times Return</span>
+                    <span class="amount_total">Tiempo para devoluciones</span>
                     <span class="pos-receipt-right-align">
                         <t t-esc="widget.pos.config.pos_order_period_return_days"/>
-                        days
+                        días
                     </span>
                 </div>
             </t>
@@ -517,30 +517,30 @@
     <t t-name="OrderReceiptLineExtra">
         <t t-if="line.discount">
             <div class="receipt-line pos-receipt-left-padding">
-                Disc: <t t-esc="line.discount"/> %
+                Desc: <t t-esc="line.discount"/> %
             </div>
         </t>
         <t t-if="line.price_extra">
             <div class="receipt-line pos-receipt-left-padding">
-                Price extra: <t t-esc="widget.format_currency_no_symbol(line.price_extra, 'Price extra')"/>
+                Precio extra: <t t-esc="widget.format_currency_no_symbol(line.price_extra, 'Price extra')"/>
             </div>
         </t>
         <t t-if="line.discount_extra">
             <div class="receipt-line pos-receipt-left-padding">
-                Discount extra: <t t-esc="line.discount_extra"/>
+                Descuento extra: <t t-esc="line.discount_extra"/>
                 %
             </div>
         </t>
         <t t-if="widget.pos.config.display_tax_receipt and line.get_tax() > 0">
             <div class="receipt-line pos-receipt-left-padding">
-                Tax:
+                Impuesto:
                 <t t-esc="widget.format_currency_no_symbol(line.get_tax())"/>
             </div>
         </t>
         <t t-if="line.pack_lot_lines and line.pack_lot_lines.models">
             <t t-foreach="line.pack_lot_lines.models" t-as="lot_model">
                 <div class="receipt-line ">
-                    Lot: <t t-esc="lot_model.attributes.lot_name"/>
+                    Lote: <t t-esc="lot_model.attributes.lot_name"/>
                 </div>
             </t>
         </t>
@@ -566,23 +566,23 @@
         </t>
         <t t-if="line.get_line_note()">
             <div class="receipt-line pos-receipt-left-padding">
-                Notes:
+                Notas:
                 <t t-esc="line.get_line_note()"/>
             </div>
         </t>
         <t t-if="line.variants">
             <t t-foreach="line.variants" t-as="variant">
                 <div class="receipt-line pos-receipt-left-padding">
-                    Variant:
+                    Variantes:
                     <t t-esc="variant.value_id[1]"/>
-                    with
+                    con
                     <t t-esc="widget.format_currency_no_symbol(variant.price_extra, 'Price extra')"/>
                 </div>
             </t>
         </t>
         <t t-if="line.tags and line.tags.length">
             <div class="receipt-line pos-receipt-left-padding">
-                Tags:
+                Etiquetas:
                 <t t-foreach="line.tags" t-as="tag">
                     <t t-esc="tag.name"/>
                 </t>
@@ -593,9 +593,9 @@
     <t t-name="OrderReceiptLines">
         <table class='receipt-orderlines' style="display:inline-table; width: 100%; margin-top: 3mm">
             <tr>
-                <th class="line-header" style="width:50%; text-align: left; padding: 3px; font-weight: 500; font-size: 0.75em">Product</th>
-                <th class="line-header" style="width:20%; text-align: left; padding: 3px; font-weight: 500; font-size: 0.75em">Price</th>
-                <th class="line-header" style="width:10%; text-align: left; padding: 3px; font-weight: 500; font-size: 0.75em">Qty</th>
+                <th class="line-header" style="width:50%; text-align: left; padding: 3px; font-weight: 500; font-size: 0.75em">Producto</th>
+                <th class="line-header" style="width:20%; text-align: left; padding: 3px; font-weight: 500; font-size: 0.75em">Precio</th>
+                <th class="line-header" style="width:10%; text-align: left; padding: 3px; font-weight: 500; font-size: 0.75em">Cant</th>
                 <th class="line-header" style="text-align: right; padding: 3px; font-weight: 500; font-size: 0.75em">Sub Total</th>
             </tr>
             <t t-foreach='orderlines' t-as='line'>
@@ -1674,7 +1674,7 @@
                         <div class="col-md-6">
                             <p>
                                 <h1 style="text-align:right;font-weight:bold;font-size: 50px !important; font-stretch:narrower;padding:5px">
-                                    INVOICE
+                                    FACTURA
                                 </h1>
                             </p>
                         </div>
@@ -1708,7 +1708,7 @@
                                     <td style="padding-left: 0mm" class="text-right"><t t-esc="receipt.company.phone or ''"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left">VAT</td>
+                                    <td class="text-left">RFC</td>
                                     <td style="padding-left: 0mm" class="text-right"><t t-esc="receipt.company.vat or ''"/></td>
                                 </tr>
                                 <tr>
@@ -1733,7 +1733,7 @@
                         <div class="col-md-6">
                             <table class="full-size">
                                 <tr>
-                                    <td class="text-left">Order Ref</td>
+                                    <td class="text-left">Orden Ref</td>
                                     <td style="padding-left: 0mm" class="text-right add-right"><t t-esc="receipt.name"/></td>
                                 </tr>
                                 <tr>
@@ -1782,12 +1782,12 @@
                     <section class="row" style="height: 210mm">
                         <table class='full-size-receipt-orderlines'>
                             <tr>
-                                <th class="full-size-product-name" style="font-size: 18px">Product</th>
-                                <th class="full-size-product-qty" style="font-size: 18px">Qty</th>
-                                <th class="full-size-product-wty" style="font-size: 18px">Warranty</th>
-                                <th class="full-size-product-price" style="font-size: 18px">Price</th>
-                                <th class="full-size-product-disc" style="font-size: 18px">Disc</th>
-                                <th class="full-size-product-taxes" style="font-size: 18px">Taxes</th>
+                                <th class="full-size-product-name" style="font-size: 18px">Producto</th>
+                                <th class="full-size-product-qty" style="font-size: 18px">Cant</th>
+                                <th class="full-size-product-wty" style="font-size: 18px">Garantía</th>
+                                <th class="full-size-product-price" style="font-size: 18px">Precio</th>
+                                <th class="full-size-product-disc" style="font-size: 18px">Desc</th>
+                                <th class="full-size-product-taxes" style="font-size: 18px">Impuesto</th>
                                 <th class="full-size-product-subtotal" style="font-size: 18px">Sub Total</th>
                             </tr>
                             <t t-foreach='orderlines' t-as='line'>
@@ -1806,24 +1806,24 @@
                                         <t t-call='product_name'/>
                                         <t t-if="line.discount">
                                             <div class="receipt-line pos-receipt-left-padding">
-                                                Disc: <t t-esc="line.discount"/> %
+                                                Desc: <t t-esc="line.discount"/> %
                                             </div>
                                         </t>
                                         <t t-if="line.price_extra">
                                             <div class="receipt-line pos-receipt-left-padding">
-                                                Price extra: <t t-esc="widget.format_currency_no_symbol(line.price_extra, 'Price extra')"/>
+                                                Precio extra: <t t-esc="widget.format_currency_no_symbol(line.price_extra, 'Price extra')"/>
                                             </div>
                                         </t>
                                         <t t-if="line.discount_extra">
                                             <div class="receipt-line pos-receipt-left-padding">
-                                                Discount extra: <t t-esc="line.discount_extra"/>
+                                                Descuento extra: <t t-esc="line.discount_extra"/>
                                                 %
                                             </div>
                                         </t>
                                         <t t-if="line.pack_lot_lines and line.pack_lot_lines.models">
                                             <t t-foreach="line.pack_lot_lines.models" t-as="lot_model">
                                                 <div class="receipt-line ">
-                                                    Lot: <t t-esc="lot_model.attributes.lot_name"/>
+                                                    Lote: <t t-esc="lot_model.attributes.lot_name"/>
                                                 </div>
                                             </t>
                                         </t>
@@ -1849,23 +1849,23 @@
                                         </t>
                                         <t t-if="line.get_line_note()">
                                             <div class="receipt-line pos-receipt-left-padding">
-                                                Notes:
+                                                Notas:
                                                 <t t-esc="line.get_line_note()"/>
                                             </div>
                                         </t>
                                         <t t-if="line.variants">
                                             <t t-foreach="line.variants" t-as="variant">
                                                 <div class="receipt-line pos-receipt-left-padding">
-                                                    Variant:
+                                                    Variantes:
                                                     <t t-esc="variant.value_id[1]"/>
-                                                    with
+                                                    con
                                                     <t t-esc="widget.format_currency_no_symbol(variant.price_extra, 'Price extra')"/>
                                                 </div>
                                             </t>
                                         </t>
                                         <t t-if="line.tags and line.tags.length">
                                             <div class="receipt-line pos-receipt-left-padding">
-                                                Tags:
+                                                Etiquetas:
                                                 <t t-foreach="line.tags" t-as="tag">
                                                     <t t-esc="tag.name"/>
                                                 </t>
@@ -1902,8 +1902,8 @@
                         </section>
                         <section class="col-md-6 float-right">
                             <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"><span>Sub Total</span> <span class="float-right"><t t-esc='widget.format_currency_no_symbol(receipt.subtotal)'/></span></p>
-                            <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"><span>Taxes</span> <span class="float-right"><t t-esc="widget.format_currency_no_symbol(receipt.total_tax)"/></span></p>
-                            <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"> <span>Discount</span> <span class="float-right"><t t-esc="widget.format_currency_no_symbol(receipt.total_discount)"/></span></p>
+                            <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"><span>Impuestos</span> <span class="float-right"><t t-esc="widget.format_currency_no_symbol(receipt.total_tax)"/></span></p>
+                            <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"> <span>Descuento</span> <span class="float-right"><t t-esc="widget.format_currency_no_symbol(receipt.total_discount)"/></span></p>
                             <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400; border-top: 1px solid black"><span>Total</span> <span class="float-right"><t t-esc='widget.format_currency_no_symbol(receipt.total_with_tax)'/></span></p>
                             <t t-if="paymentlines">
                                 <t t-foreach='paymentlines' t-as='line'>
@@ -1914,13 +1914,13 @@
                                 </t>
                                 <br/>
                             </t>
-                            <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"><span>Change</span> <span class="float-right"><t t-esc="widget.format_currency_no_symbol(receipt.change)"/></span></p>
+                            <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"><span>Cambio</span> <span class="float-right"><t t-esc="widget.format_currency_no_symbol(receipt.change)"/></span></p>
                         </section>
                     </section>
                     <section class="row" style="margin-top:5px;font-weight:495;">
                         <div class="col-md-6">
                             <t t-if="widget.pos.config.display_pos_order_return_policy">
-                                <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"> Return Policy Applies </p>
+                                <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"> Aplica la política de devolución </p>
                                 <t t-if="widget.pos.config.pos_order_return_policy">
                                     <p class="full-size-p-style" style="font-size: 20px !important; padding: 0px ;font-weight: 400"><t t-esc="widget.pos.config.pos_order_return_policy"/></p>
                                 </t>
@@ -1944,7 +1944,7 @@
                     </section>
                     <section class="row" style="margin-top:5px;font-weight:495;">
                         <div class="col-md-4">
-                            <p class="text-left" style="font-size: 16px !important">Customer Signature: ........................................</p>
+                            <p class="text-left" style="font-size: 16px !important">Firma del Cliente: ........................................</p>
                         </div>
                         <div class="col-md-4">
                             <p class="text-center" style="font-size: 16px !important"><t t-esc="receipt.date.localestring.split(',')[0]"/> <t t-esc="receipt.date.localestring.split(',')[1]"/></p>
