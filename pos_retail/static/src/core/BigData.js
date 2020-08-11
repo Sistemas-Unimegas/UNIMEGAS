@@ -18,7 +18,7 @@ odoo.define('pos_retail.big_data', function (require) {
     var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
     if (!indexedDB) {
-        window.alert("Your browser doesn't support a stable version of IndexedDB.")
+        window.alert("Su navegador no admite una versión estable de IndexedDB.")
     }
 
     // TODO testing case:
@@ -184,7 +184,7 @@ odoo.define('pos_retail.big_data', function (require) {
         sync_with_backend: function (model, datas, dont_check_write_time) {
             var self = this;
             if (datas.length == 0) {
-                console.warn('Data sync is old times. Reject:' + model);
+                console.warn('La sincronización de datos es antigua. Rechazar:' + model);
                 return false;
             }
             this.db.set_last_write_date_by_model(model, datas);
@@ -280,12 +280,12 @@ odoo.define('pos_retail.big_data', function (require) {
             if (error && error.message && error.message.code && error.message.code == -32098) {
                 return this.gui.show_popup('error', {
                     title: error.message.code,
-                    body: 'Your Odoo Server Offline',
+                    body: 'Tu servidor Odoo sin conexión',
                 })
             } else {
                 return this.gui.show_popup('error', {
                     title: 'Error',
-                    body: 'Odoo offline mode or backend codes have issues. Please contact your admin system',
+                    body: 'El modo fuera de línea de Odoo o los códigos de backend tienen problemas. Comuníquese con su administrador del sistema',
                 })
             }
         },
@@ -370,7 +370,7 @@ odoo.define('pos_retail.big_data', function (require) {
             this.get_modifiers_backend_all_models().then(function (total_sync) {
                 setTimeout(_.bind(self._bind_sync_backend, self), 5000);
                 if (total_sync > 0) {
-                    console.log('updated direct backend total rows: ' + total_sync)
+                    console.log('filas totales de backend actualizadas: ' + total_sync)
                 }
             }, function (err) {
                 console.error(err);
@@ -409,12 +409,12 @@ odoo.define('pos_retail.big_data', function (require) {
             if (model == 'product.product') {
                 this.total_products += results.length;
                 var process_time = this.get_process_time(this.total_products, this.model_ids[model]['count']) * 100;
-                this.chrome.loading_message(_t('Products Installed : ' + process_time.toFixed(0) + ' %'), process_time / 100);
+                this.chrome.loading_message(_t('Productos agregados : ' + process_time.toFixed(0) + ' %'), process_time / 100);
             }
             if (model == 'res.partner') {
                 this.total_clients += results.length;
                 var process_time = this.get_process_time(this.total_clients, this.model_ids[model]['count']) * 100;
-                this.chrome.loading_message(_t('Partners Installed : ' + process_time.toFixed(0) + ' %'), process_time / 100);
+                this.chrome.loading_message(_t('Clientes agregados : ' + process_time.toFixed(0) + ' %'), process_time / 100);
 
             }
             var object = _.find(this.model_lock, function (object_loaded) {
@@ -500,10 +500,10 @@ odoo.define('pos_retail.big_data', function (require) {
             for (var i = 0; i <= 50; i++) {
                 indexedDB.deleteDatabase(dbName + '_' + i);
             }
-            console.log('remove_indexed_db succeed !')
+            console.log('remove_indexed_db exitoso !')
         },
         update_turbo_database: function () {
-            console.log('Begin automatic updating Turbo Cache');
+            console.log('Comenzar la actualización automática de Turbo Cache');
             var self = this;
             this.load_server_data_without_loaded().then(function (results) {
                 var cached = [];
@@ -680,7 +680,7 @@ odoo.define('pos_retail.big_data', function (require) {
         },
         do_update_products_cache: function (product_datas) {
             var self = this;
-            console.warn('do_update_products_cache total products: ' + product_datas.length);
+            console.warn('do_update_products_cache productos en total: ' + product_datas.length);
             this.pos.db.add_products(_.map(product_datas, function (product) {
                 var using_company_currency = self.pos.config.currency_id[0] === self.pos.company.currency_id[0];
                 if (self.pos.company_currency) {
@@ -768,7 +768,7 @@ odoo.define('pos_retail.big_data', function (require) {
 
     models.load_models([
         {
-            label: 'Productos - Inventario disponible',
+            label: 'Productos : Inventario disponible',
             condition: function (self) {
                 return self.config.display_onhand;
             },
@@ -1135,8 +1135,8 @@ odoo.define('pos_retail.big_data', function (require) {
             if (client && client['id'] && this.pos.deleted['res.partner'] && this.pos.deleted['res.partner'].indexOf(client['id']) != -1) {
                 client = null;
                 return this.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: _t('This client deleted from backend')
+                    title: _t('Advertencia'),
+                    body: _t('Este cliente ha sido borrado del sistema')
                 })
             }
             _super_Order.set_client.apply(this, arguments);
