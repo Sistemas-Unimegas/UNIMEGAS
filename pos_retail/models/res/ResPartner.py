@@ -11,11 +11,11 @@ _logger = logging.getLogger(__name__)
 
 class res_partner_type(models.Model):
     _name = "res.partner.type"
-    _description = "Tipo de socio, filtra por importe total comprado en tus tiendas"
+    _description = "Type of partner, filter by amount total bought from your shops"
 
-    name = fields.Char('Nombre', required=1)
-    from_amount_total_orders = fields.Float('Del monto total', help='Mínimo de la cantidad total comprada en su tienda')
-    to_amount_total_orders = fields.Float('A la cantidad total', help='Máximo de la cantidad total comprada en su tienda')
+    name = fields.Char('Name', required=1)
+    from_amount_total_orders = fields.Float('From amount total', help='Min of total amount bought from your shop')
+    to_amount_total_orders = fields.Float('To amount total', help='Max of total amount bought from your shop')
 
     def get_type_from_total_amount(self, amount):
         types = self.search([])
@@ -32,74 +32,74 @@ class res_partner(models.Model):
     wallet = fields.Float(
         digits=(16, 4),
         compute='_compute_wallet',
-        string='Monto de la tarjeta',
-        help='Esta cantidad de billetera del cliente, guarda todo el cambio de dinero cuando se paga el pedido en pos')
+        string='Wallet Amount',
+        help='This wallet amount of customer, keep all money change when paid order on pos')
     credit = fields.Float(
         digits=(16, 4),
         compute='_compute_debit_credit_balance',
-        string='Crédito',
-        help='El monto de crédito que este cliente puede usar')
+        string='Credit',
+        help='Credit amount of this customer can use')
     debit = fields.Float(
         digits=(16, 4),
         compute='_compute_debit_credit_balance',
-        string='Débito',
-        help='Importe de débito de este cliente')
+        string='Debit',
+        help='Debit amount of this customer')
     balance = fields.Float(
         digits=(16, 4),
         compute='_compute_debit_credit_balance',
         string='Balance',
-        help='Cantidad de saldo que el cliente puede usar pagado en POS')
+        help='Balance amount customer can use paid on pos')
     limit_debit = fields.Float(
-        'Límite de débito',
-        help='Cantidad de crédito límite que se puede agregar a este cliente')
+        'Limit Debit',
+        help='Limit credit amount can add to this customer')
     credit_history_ids = fields.One2many(
         'res.partner.credit',
         'partner_id',
-        'Historial de crédito')
+        'Credit Histories')
     pos_loyalty_point_import = fields.Float(
-        'Importación de puntos de lealtad',
+        'Loyalty Points Import',
         default=0,
-        help='El sistema de administración puede importar puntos para este cliente')
+        help='Admin system can import point for this customer')
     pos_loyalty_point = fields.Float(
         digits=(16, 4),
         compute="_get_point",
-        string='Puntos de lealtad',
-        help='El punto total del cliente puede usar el programa de recompensas del sistema pos')
+        string='Loyalty Points',
+        help='Total point of customer can use reward program of pos system')
     pos_loyalty_type = fields.Many2one(
         'pos.loyalty.category',
-        'Tipo de lealtad',
-        help='Tipo de cliente de programa de lealtad')
+        'Loyalty Type',
+        help='Customer type of loyalty program')
     pos_loyalty_point_ids = fields.One2many(
         'pos.loyalty.point',
         'partner_id',
-        'Historial de puntos')
+        'Point Histories')
     discount_id = fields.Many2one(
         'pos.global.discount',
-        'POS descuento',
-        help='Descuento (%) aplicado automáticamente para este cliente')
-    birthday_date = fields.Date('Cumpleaños')
+        'Pos discount',
+        help='Discount (%) automatic apply for this customer')
+    birthday_date = fields.Date('Birthday Date')
     group_ids = fields.Many2many(
         'res.partner.group',
         'res_partner_group_rel',
         'partner_id',
         'group_id',
-        string='Nombre de grupos')
+        string='Groups Name')
     pos_order_ids = fields.One2many(
         'pos.order',
         'partner_id',
-        'POS Orden')
+        'POS Order')
     pos_total_amount = fields.Float(
-        'POS monto total',
-        help='Cantidad total que el cliente compró en su tienda',
+        'POS Amount Total',
+        help='Total amount customer bought from your shop',
         readonly=1)
     pos_partner_type_id = fields.Many2one(
         'res.partner.type',
-        string='POS tipo de Cliente',
+        string='POS Partner Type',
         readonly=1)
     pos_branch_id = fields.Many2one(
         'pos.branch',
-        'Sucursal')
-    special_name = fields.Char('Nombre especial')
+        'Branch')
+    special_name = fields.Char('Special Name')
 
     def update_branch_to_partner(self, vals):
         for partner in self:
@@ -126,6 +126,8 @@ class res_partner(models.Model):
             partner.update({'birthday_date': birthday_date})
         if partner.get('property_product_pricelist', False):
             partner['property_product_pricelist'] = int(partner['property_product_pricelist'])
+        if partner.get('property_account_position_id', False):
+            partner['property_account_position_id'] = int(partner['property_account_position_id'])
         for key, value in partner.items():
             if value == "false":
                 partner[key] = False
@@ -183,7 +185,7 @@ class res_partner(models.Model):
             vals.update({'pos_branch_id': self.env['pos.branch'].sudo().get_default_branch()})
         partner = super(res_partner, self).create(vals)
         if partner.birthday_date and (partner.birthday_date >= fields.Date.context_today(self)):
-            raise UserError('La fecha de nacimiento no podría ser mayor que hoy')
+            raise UserError('Birth date could not bigger than today')
         self.env['pos.cache.database'].insert_data(self._inherit, partner.id)
         return partner
 
@@ -195,7 +197,7 @@ class res_partner(models.Model):
             if partner.active == False:
                 self.env['pos.cache.database'].remove_record(self._inherit, partner.id)
             if partner.birthday_date and (partner.birthday_date >= fields.Date.context_today(self)):
-                raise UserError('La fecha de nacimiento no podría ser mayor que la de hoy')
+                raise UserError('Birth date could not bigger than today')
         return res
 
     def unlink(self):

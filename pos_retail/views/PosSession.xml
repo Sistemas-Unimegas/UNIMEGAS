@@ -15,7 +15,7 @@
                     <field name="lock_state" groups="point_of_sale.group_pos_manager"/>
                 </xpath>
                 <xpath expr="//notebook" position="inside">
-                    <page name="statements" string="Extractos bancarios">
+                    <page name="statements" string="Bank Statements">
                         <group>
                             <field name="statement_ids" colspan="4" nolabel="4" readonly="1"/>
                         </group>
@@ -26,10 +26,10 @@
                 </xpath>
                 <xpath expr="//button" position="before">
                     <button id="backup_validate_closing_control"
-                            confirm="confirmando, ¿Estás cerrando la sesión?"
+                            confirm="Are you want close session ?"
                             name="action_pos_session_validate"
                             type="object"
-                            string="Cerrar sesión"
+                            string="Close Session"
                             states="new_session"
                             attrs="{'invisible': [('cash_control', '=', True)]}"/>
                 </xpath>

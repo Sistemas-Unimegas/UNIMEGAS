@@ -207,6 +207,12 @@ odoo.define('pos_retail.screen_payment', function (require) {
             this._super();
             this.reload_payment_methods();
             this.order_changes();
+            var order = this.pos.get_order();
+            console.log("order>>>>>>>>>", order)
+            $('#l10n_mx_edi_usage').change(function(e){
+                let code = $(e.currentTarget).val();
+                order.set_uso_code(code);
+            });
         },
         finalize_validation: function () {
             // TODO: if pos config missed setting Invoicing / Invoice Journal (invoice_journal_id)

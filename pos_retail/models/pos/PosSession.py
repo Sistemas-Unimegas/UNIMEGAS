@@ -17,17 +17,17 @@ _logger = logging.getLogger(__name__)
 class PosSession(models.Model):
     _inherit = "pos.session"
 
-    required_reinstall_cache = fields.Boolean('Reinstalar base de datos', default=0,
-                                              help='Se reinstalá la base de datos de productos')
-    mobile_responsive = fields.Boolean('Dispositivo móvil')
-    pos_branch_id = fields.Many2one('pos.branch', string='Sucursal')
+    required_reinstall_cache = fields.Boolean('Reinstall Datas', default=0,
+                                              help='If checked, when session start, all pos caches will remove and reinstall')
+    mobile_responsive = fields.Boolean('Mobile Display')
+    pos_branch_id = fields.Many2one('pos.branch', string='Branch')
     lock_state = fields.Selection([
-        ('unlock', 'Desbloqueado'),
-        ('locked', 'Bloqueado')
+        ('unlock', 'Un lock'),
+        ('locked', 'Locked')
     ], default='unlock',
-        string='Estado de bloqueo',
-        help='Desbloqueado: cuando se inicie el POS, no se bloqueará la pantalla\n'
-             'locked: cuando se inicie el POS, se bloqueará la pantalla de forma automática')
+        string='Lock state',
+        help='Unlock: when pos session start, pos not lock screen\n'
+             'locked: when pos session start, pos auto lock screen')
 
     def close_session_and_validate(self):
         for session in self:
@@ -70,7 +70,7 @@ class PosSession(models.Model):
             return rescue_session.id
         new_session = self.create({
             'config_id': closed_session.config_id.id,
-            'name': _('(BACKUP %(session)s)') % {'session': closed_session.name},
+            'name': _('(BACKUP FOR %(session)s)') % {'session': closed_session.name},
             'rescue': True,
         })
         new_session.action_pos_session_open()
@@ -82,9 +82,9 @@ class PosSession(models.Model):
         if len(orders_not_done) >= 1:
             for session in self:
                 if session.rescue:
-                    raise UserError(_('No es posible cerrar la copia de seguridad de la sesión si los pedidos no se cierran por completo, \n '
-                                      'Registre el pago o cancele los pedidos con referencia en la lista:  %s ' % [order.pos_reference for order in orders_not_done]))
-            _logger.warning('El total de órdenes no terminadas es %s' % len(orders_not_done))
+                    raise UserError(_('It not possible close session backup if have orders not full fill payment, \n '
+                                      'Please register payment or cancel orders with reference in list:  %s ' % [order.pos_reference for order in orders_not_done]))
+            _logger.warning('Total orders_not_done is %s' % len(orders_not_done))
             for order in orders_not_done:
                 rescue_session_id = self._get_backup_session(order)
                 order.write({'session_id': rescue_session_id})
@@ -126,9 +126,9 @@ class PosSession(models.Model):
         else:
             vals.update({'pos_branch_id': self.env['pos.branch'].sudo().get_default_branch()})
         if config.pos_branch_id and not self.env.user.pos_branch_id:
-            raise UserError('[ %s ] ha establecido Sucursal es [ %s ] pero el usuario de su cuenta no está configurado a Sucursal. \n'
-                            'Comuníquese con el administrador del sistema \n'
-                            'Y vaya a Configuración / Usuarios: elección de usuario [ %s ] Pestaña Punto de venta y configuración de sucursal' % (
+            raise UserError('[ %s ] have set Branch is [ %s ] but your account user not set Branch like that. \n'
+                            'Please contact your admin system \n'
+                            'And go to Setting/Users: choice user [ %s ] Tab Point of Sale and setting Branch' % (
                                 config.name, config.pos_branch_id.name, self.env.user.login))
         return super(PosSession, self).create(vals)
 
@@ -250,7 +250,7 @@ class AccountBankStmtCashWizard(models.Model):
     _inherit = 'account.bank.statement.cashbox'
     _description = 'Account Bank Statement Cashbox Details'
 
-    description = fields.Char("Descripción")
+    description = fields.Char("Description")
 
     def validate_from_ui(self, session_id, balance, values):
         """ Create , Edit , Delete of Closing Balance Grid
@@ -267,7 +267,7 @@ class AccountBankStmtCashWizard(models.Model):
         else:
             self = session.cash_register_id.cashbox_end_id
         if not self:
-            self = self.create({'description': "Creado en el POS"})
+            self = self.create({'description': "Created from POS"})
             if self and (balance == 'end'):
                 account_bank_statement = session.cash_register_id
                 account_bank_statement.write({'cashbox_end_id': self.id})
@@ -304,20 +304,20 @@ class AccountBankStmtCashWizard(models.Model):
         if (balance == 'end'):
             if bnk_stmt.difference < 0:
                 if self.env.user.id == SUPERUSER_ID:
-                    return (_('necesita enviar más %s %s') %
+                    return (_('you have to send more %s %s') %
                             (bnk_stmt.currency_id.symbol,
                              abs(bnk_stmt.difference)))
                 else:
-                    return (_('necesita enviar un monto mayor'))
+                    return (_('you have to send more amount'))
             elif bnk_stmt.difference > 0:
                 if self.env.user.id == SUPERUSER_ID:
-                    return (_('es posible que se pierdan algunas facturas iguales a %s %s')
+                    return (_('you may be missed some bills equal to %s %s')
                             % (bnk_stmt.currency_id.symbol,
                                abs(bnk_stmt.difference)))
                 else:
-                    return (_('se perdieron algunas facturas'))
+                    return (_('you may be missed some bills'))
             else:
-                return (_('hizo un trabajo excelente !!'))
+                return (_('you done a Great Job'))
         else:
             return
 
@@ -335,8 +335,8 @@ class AccountBankStmtCashWizard(models.Model):
                     bnk_stmt.currency_id.symbol,
                     abs(bnk_stmt.difference)))
             elif bnk_stmt.difference > 0:
-                raise UserError(_('se perdieron algunas facturas '
-                                  'iguales a %s %s') % (
+                raise UserError(_('you may be missed some '
+                                  'bills equal to %s %s') % (
                                     bnk_stmt.currency_id.symbol,
                                     abs(bnk_stmt.difference)))
             else:

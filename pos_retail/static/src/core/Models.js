@@ -16,7 +16,7 @@ odoo.define('pos_retail.model', function (require) {
 
     models.load_models([
         {
-            label: 'La IP / puerto de su servidor Odoo y todas las cajas POS',
+            label: 'Your Odoo Server IP/Port and All POS Boxes',
             model: 'pos.iot',
             condition: function (self) {
                 if (self.config.posbox_save_orders && self.config.posbox_save_orders_iot_ids.length) {
@@ -47,6 +47,12 @@ odoo.define('pos_retail.model', function (require) {
     ]);
     var _super_PosModel = models.PosModel.prototype;
     models.PosModel = models.PosModel.extend({
+        load_server_data: function () {
+            var self = this;
+            return _super_PosModel.load_server_data.apply(this, arguments).then(function () {
+                self.db.get_fiscal_positions();
+            });
+        },
         _bind_iot: function () { // TODO: get notifications update from another sessions the same bus id
             // TODO: timeout 30 seconds, auto checking status of all pos boxes
             var self = this;
@@ -62,21 +68,21 @@ odoo.define('pos_retail.model', function (require) {
                         self.set('synch', {state: 'disconnected', pending: 1});
                         self.gui.show_popup('dialog', {
                             title: _t('Warning'),
-                            body: _t('El servidor Odoo no funciona o el PosBox de la red tiene un problema, IoT no pudo hacer ping a su Odoo con ip ' + self.config.posbox_save_orders_server_ip + ' y puerto:' + self.config.posbox_save_orders_server_port)
+                            body: _t('Odoo server down or network PosBox have problem, IoT could not ping to your Odoo with ip ' + self.config.posbox_save_orders_server_ip + ' and port:' + self.config.posbox_save_orders_server_port)
                         })
                     } else {
-                        console.log('IP del servidor de ping Odoo: http://' + self.config.posbox_save_orders_server_ip + ':8069 del IoT')
+                        console.log('Ping Odoo server IP: http://' + self.config.posbox_save_orders_server_ip + ':8069 from IoT succeed')
                     }
                 }).catch(function (error) {
                     self.gui.show_popup('dialog', {
-                        title: _t('Advertencia'),
-                        body: _t('Su sesión no pudo conectarse a posbox, la dirección IP de posbox es incorrecta o su red y la red posbox no son la misma red lan')
+                        title: _t('Warning'),
+                        body: _t('Your session could not connect to posbox, ip address of posbox is wrong or your network and posbox network not the same lan network')
                     })
                 });
                 iot.rpc('/pos/push/orders', {
                     database: this.session.db,
                 }, {shadow: true, timeout: 65000}).then(function (result) {
-                    console.log('Resultado de las órdenes de envío de Call IoT Box al servidor Odoo: ' + result)
+                    console.log('Result of Call IoT Box push orders to Odoo Server: ' + result)
                     self.set('synch', {state: 'connected', pending: 1});
                 }).catch(function (error) {
                     self.set('synch', {state: 'disconnected', pending: 1});
@@ -90,7 +96,7 @@ odoo.define('pos_retail.model', function (require) {
             var self = this;
             if (this.iot_boxes_save_orders) {
                 if (orders.length) {
-                    console.log('Enviar pedidos directos a posbox: ' + orders.length)
+                    console.log('Send direct orders to posbox: ' + orders.length)
                     for (var i = 0; i < this.iot_boxes_save_orders.length; i++) {
                         this.iot_boxes_save_orders[i].rpc("/pos/save/orders", {
                             database: this.session.db,
@@ -108,7 +114,7 @@ odoo.define('pos_retail.model', function (require) {
                             return order_ids
 
                         }).catch(function (reason) {
-                            console.error('Error al enviar pedidos:', orders);
+                            console.error('Failed to send orders:', orders);
                             self.gui.show_sync_error_popup();
                             throw reason;
                         });
@@ -170,25 +176,25 @@ odoo.define('pos_retail.model', function (require) {
             if (quickly_search_client) {
                 this.gui.show_screen(keep_screen);
                 this.gui.show_popup('popup_selection_extend', {
-                    title: _t('Buscar Cliente'),
+                    title: _t('Find Customer'),
                     fields: ['name', 'email', 'phone', 'mobile'],
                     header_button: '<button type="submit" style="color: black; background: none" class="btn btn-round btn-just-icon">\n' +
-                        '                      <i class="material-icons">agregar</i>\n' +
+                        '                      <i class="material-icons">person_add</i>\n' +
                         '                    </button>',
                     header_button_action: function () {
                         return self.gui.show_popup('popup_create_customer', {
-                            title: _t('Agregar Cliente')
+                            title: _t('Create new Customer')
                         })
                     },
                     sub_datas: this.db.get_partners_sorted(5),
                     sub_search_string: this.db.partner_search_string,
                     sub_record_by_id: this.db.partner_by_id,
                     sub_template: 'clients_list',
-                    sub_button: '<div class="btn btn-success pull-right go_clients_screen">Ir a Pantalla de Clientes</div>',
+                    sub_button: '<div class="btn btn-success pull-right go_clients_screen">Go Clients Screen</div>',
                     sub_button_action: function () {
                         self.gui.show_screen('clientlist')
                     },
-                    body: 'Selecciona un cliente',
+                    body: 'Please select one client',
                     confirm: function (client_id) {
                         var client = self.db.get_partner_by_id(client_id);
                         if (client) {
@@ -217,12 +223,12 @@ odoo.define('pos_retail.model', function (require) {
                 }
                 if (list.length <= 0) {
                     self.gui.show_popup('dialog', {
-                        title: _t('Advertencia'),
-                        body: _t('Tipo de Producto no es inventariable')
+                        title: _t('Warning'),
+                        body: _t('Product type not Stockable Product')
                     })
                 } else {
                     return self.gui.show_popup('popup_selection_extend', {
-                        title: _t('Toda la cantidad disponible de producto ' + self.product_need_update.name),
+                        title: _t('All Quantity Available of Product ' + self.product_need_update.name),
                         fields: ['location', 'qty_available'],
                         sub_datas: list,
                         sub_template: 'stocks_list',
@@ -231,7 +237,7 @@ odoo.define('pos_retail.model', function (require) {
                             var location = self.stock_location_by_id[location_id];
                             setTimeout(function () {
                                 return self.gui.show_popup('number', {
-                                    'title': _t('Actualizar la cantidad de producto de ' + self.product_need_update.name + ' a la ubicación ' + location.name),
+                                    'title': _t('Update Product Quantity of ' + self.product_need_update.name + ' to Location ' + location.name),
                                     'value': 0,
                                     'confirm': function (new_quantity) {
                                         var new_quantity = parseFloat(new_quantity);
@@ -252,7 +258,7 @@ odoo.define('pos_retail.model', function (require) {
                                             self._do_update_quantity_onhand([self.product_need_update.id]);
                                             return self.gui.show_popup('confirm', {
                                                 title: values['product'],
-                                                body: values['location'] + ' tiene cantidad disponible: ' + values['quantity'],
+                                                body: values['location'] + ' have new on hand: ' + values['quantity'],
                                                 color: 'success'
                                             })
                                         }, function (err) {
@@ -279,8 +285,8 @@ odoo.define('pos_retail.model', function (require) {
             }
             if (!client) {
                 this.gui.show_popup('dialog', {
-                    title: 'Advertencia',
-                    body: 'No pudimos encontrar el historial de pedidos, primero configure el cliente'
+                    title: 'Warning',
+                    body: 'We could not find purchased orders histories, please set client first'
                 });
                 this.gui.show_screen('clientlist')
             } else {
@@ -289,11 +295,11 @@ odoo.define('pos_retail.model', function (require) {
                 });
                 if (orders.length) {
                     return this.gui.show_popup('popup_selection_extend', {
-                        title: _t('Historial de compras de ') + client.name,
+                        title: _t('Purchased Histories of ') + client.name,
                         fields: ['name', 'ean13', 'date_order', 'pos_reference'],
                         sub_datas: orders,
                         sub_template: 'purchased_orders',
-                        body: 'Seleccione un vendedor',
+                        body: 'Please select one sale person',
                         confirm: function (order_id) {
                             var order = self.db.order_by_id[order_id];
                             self.gui.screen_instances['pos_orders_screen'].order_selected = order;
@@ -302,8 +308,8 @@ odoo.define('pos_retail.model', function (require) {
                     })
                 } else {
                     this.gui.show_popup('confirm', {
-                        title: 'Advertencia',
-                        body: 'Su POS no está activo, Gestión de pedidos de POS o el Cliente actual no tiene ningún Pedido'
+                        title: 'Warning',
+                        body: 'Your POS not active POS Order Management or Current Client have not any Purchased Orders'
                     })
                 }
             }
@@ -370,10 +376,10 @@ odoo.define('pos_retail.model', function (require) {
             return this._get_stock_on_hand_by_location_ids([], location_ids).then(function (stock_datas_by_location_id) {
                 self.stock_datas_by_location_id = stock_datas_by_location_id;
                 var location = self.get_picking_source_location();
-                console.log('ubicación de inventario seleccionada: ' + location.name);
+                console.log('selected stock location: ' + location.name);
                 var stock_datas = self.stock_datas_by_location_id[location.id];
                 if (!stock_datas) {
-                    console.warn('No se pudieron encontrar los datos de inventario de la ubicación: ' + location.name);
+                    console.warn('Could not found stock datas of location: ' + location.name);
                     return;
                 }
                 self.db.stock_datas = stock_datas_by_location_id[location.id];
@@ -404,33 +410,33 @@ odoo.define('pos_retail.model', function (require) {
             });
             if (manager_validate.length == 0) {
                 this.gui.show_popup('confirm', {
-                    title: 'Advertencia',
-                    body: 'Su configuración de POS / seguridad de la pestaña no está configurada. Los Supervisores aprueban',
+                    title: 'Warning',
+                    body: 'Your POS Setting / Tab Security not set Managers Approve',
                 })
             }
-            var popup_title = _t('Solo el Supervisor puede aprobar esta acción');
+            var popup_title = _t('Only Manager can approve this Action');
             if (title) {
                 popup_title += ' : ' + title;
             }
             return this.gui.show_popup('selection', {
                 title: popup_title,
-                body: _t('Solo el Supervisor puede aprobar esta acción'),
+                body: _t('Only Manager can approve this Action'),
                 list: manager_validate,
                 confirm: function (manager_user) {
                     if (!manager_user.pos_security_pin) {
                         return self.gui.show_popup('confirm', {
-                            title: _t('Advertencia'),
-                            body: manager_user.name + _t(' no ha establecido el pin de seguridad POS en la configuración del usuario')
+                            title: _t('Warning'),
+                            body: manager_user.name + _t(' have not set pos security pin on User Setting')
                         })
                     } else {
                         return self.gui.show_popup('ask_password', {
-                            title: _t('Aprobado por: ') + manager_user.name,
-                            body: _t('Por favor solicite ' + manager_user.name + ' e ingrese POS Password PIN aquí, para validar esta acción'),
+                            title: _t('Approve by: ') + manager_user.name,
+                            body: _t('Please request ' + manager_user.name + ' and input POS Pass Pin here, for validate this action'),
                             confirm: function (password) {
                                 if (manager_user['pos_security_pin'] != password) {
                                     self.gui.show_popup('dialog', {
-                                        title: _t('Advertencia'),
-                                        body: _t('POS PIN de seguridad de ') + manager_user.name + _t(' Incorrecto.')
+                                        title: _t('Warning'),
+                                        body: _t('Pos Security Pin of ') + manager_user.name + _t(' Incorrect.')
                                     });
                                     setTimeout(function () {
                                         self._validate_by_manager(action_will_do_if_passing_security, title);
@@ -664,6 +670,7 @@ odoo.define('pos_retail.model', function (require) {
             _super_PosModel.initialize.apply(this, arguments);
             var wait_res_company = this.get_model('res.company');
             wait_res_company.fields.push('logo');
+
         },
         add_new_order: function () {
             var self = this;
@@ -850,12 +857,12 @@ odoo.define('pos_retail.model', function (require) {
             if (error && error.message && error.message.code && error.message.code == -32098) {
                 return this.gui.show_popup('confirm', {
                     title: error.message.code,
-                    body: 'Tu servidor Odoo sin conexión',
+                    body: 'Your Odoo Server Offline',
                 })
             } else {
                 return this.gui.show_popup('confirm', {
                     title: 'Error',
-                    body: 'El modo fuera de línea de Odoo o los códigos de backend tienen problemas. Comuníquese con su administrador del sistema',
+                    body: 'Odoo offline mode or backend codes have issues. Please contact your admin system',
                 })
             }
         }
@@ -867,7 +874,7 @@ odoo.define('pos_retail.model', function (require) {
                     Else all return false and popup warning message
              */
             var self = this;
-            console.log('-> scannee el código: ' + parsed_code.code);
+            console.log('-> scan barcode: ' + parsed_code.code);
             var product = this.db.get_product_by_barcode(parsed_code.code);
             var lot_by_barcode = this.lot_by_barcode;
             var lots = lot_by_barcode[parsed_code.code];
@@ -935,8 +942,8 @@ odoo.define('pos_retail.model', function (require) {
                                 return true
                             } else {
                                 this.gui.show_popup('dialog', {
-                                    title: 'Advertencia',
-                                    body: 'El número del lote es correcto pero el producto del lote no está disponible en POS'
+                                    title: 'Warning',
+                                    body: 'Lot name is correct but product of lot not available on POS'
                                 });
                                 return false;
                             }
@@ -970,8 +977,8 @@ odoo.define('pos_retail.model', function (require) {
                         return true
                     } else {
                         return this.gui.show_popup('dialog', {
-                            title: 'Advertencia',
-                            body: 'El número del lote es correcto pero el producto del lote no está disponible en POS'
+                            title: 'Warning',
+                            body: 'Lot name is correct but product of lot not available on POS'
                         });
                     }
                 }
@@ -991,7 +998,7 @@ odoo.define('pos_retail.model', function (require) {
                     })
                 }
                 this.gui.show_popup('selection', {
-                    title: _t('Seleccione el producto'),
+                    title: _t('Select product'),
                     list: products,
                     confirm: function (product) {
                         var selectedOrder = self.get('selectedOrder');
@@ -1019,18 +1026,18 @@ odoo.define('pos_retail.model', function (require) {
                 return true
             } else if (product && barcodes) { // multi barcode, if have product and barcodes
                 var list = [{
-                    'label': product['name'] + '| precio: ' + product['lst_price'] + ' | cantidad: 1 ' + '| y Unidad: ' + product['uom_id'][1],
+                    'label': product['name'] + '| price: ' + product['lst_price'] + ' | qty: 1 ' + '| and Uoms: ' + product['uom_id'][1],
                     'item': product,
                 }];
                 for (var i = 0; i < barcodes.length; i++) {
                     var barcode = barcodes[i];
                     list.push({
-                        'label': barcode['product_id'][1] + '| precio: ' + barcode['lst_price'] + ' | cantidad: ' + barcode['quantity'] + '| y Unidad: ' + barcode['uom_id'][1],
+                        'label': barcode['product_id'][1] + '| price: ' + barcode['lst_price'] + ' | qty: ' + barcode['quantity'] + '| and Uoms: ' + barcode['uom_id'][1],
                         'item': barcode,
                     });
                 }
                 this.gui.show_popup('selection', {
-                    title: _t('Seleccione producto'),
+                    title: _t('Select product'),
                     list: list,
                     confirm: function (item) {
                         var barcode;
@@ -1078,7 +1085,7 @@ odoo.define('pos_retail.model', function (require) {
                         });
                     }
                     this.gui.show_popup('selection', {
-                        title: _t('Seleccione producto'),
+                        title: _t('Select product'),
                         list: list,
                         confirm: function (barcode) {
                             var product = self.db.product_by_id[barcode['product_id'][0]];
@@ -1215,8 +1222,8 @@ odoo.define('pos_retail.model', function (require) {
                 var line_return = lines[i];
                 if (line_return['is_return']) {
                     return this.gui.show_popup('confirm', {
-                        title: 'Advertencia',
-                        body: 'Este pedido ya tiene devolución, no es posible hacer otra devolución'
+                        title: 'Warning',
+                        body: 'This order is order return before, could made return again'
                     })
                 }
                 var price = line_return['price_unit'];
@@ -1226,7 +1233,7 @@ odoo.define('pos_retail.model', function (require) {
                 var quantity = 0;
                 var product = this.db.get_product_by_id(line_return.product_id[0]);
                 if (!product) {
-                    console.error('No se encuentra el producto: ' + line_return.product_id[0]);
+                    console.error('Could not find product: ' + line_return.product_id[0]);
                     continue
                 }
                 var line = new models.Orderline({}, {
@@ -1264,7 +1271,7 @@ odoo.define('pos_retail.model', function (require) {
                 if (quantity > 0) {
                     quantity = -quantity;
                 }
-                line.set_quantity(quantity, 'mantener el precio cuando se regresa');
+                line.set_quantity(quantity, 'keep price when return');
             }
             if (this.combo_picking_by_order_id) {
                 var combo_picking_id = this.combo_picking_by_order_id[return_order_id];
@@ -1276,8 +1283,8 @@ odoo.define('pos_retail.model', function (require) {
                         var product = this.db.get_product_by_id(move.product_id[0]);
                         if (!product) {
                             this.pos.gui.show_popup('dialog', {
-                                title: 'Advertencia',
-                                body: 'Producto ID ' + move.product_id[1] + ' se ha retirado del POS. Revise'
+                                title: 'Warning',
+                                body: 'Product ID ' + move.product_id[1] + ' have removed out of POS. Take care'
                             });
                             continue
                         }
@@ -1293,7 +1300,7 @@ odoo.define('pos_retail.model', function (require) {
                         line['is_return'] = true;
                         line.set_unit_price(price);
                         line.price_manually_set = true;
-                        line.set_quantity(-move.product_uom_qty, 'mantener el precio cuando se regresa');
+                        line.set_quantity(-move.product_uom_qty, 'keep price when return');
                     }
                 }
             }
@@ -1313,8 +1320,8 @@ odoo.define('pos_retail.model', function (require) {
                         }
                         last_paid = self.gui.chrome.format_currency(last_paid);
                         self.gui.show_popup('dialog', {
-                            'title': _t('Advertencia'),
-                            'body': 'El pedido seleccionado para devolución tiene un pago parcial y el cliente  pagó: ' + last_paid + ' . Devuelva el dinero al cliente correctamente',
+                            'title': _t('Warning'),
+                            'body': 'Selected Order need return is partial payment, and customer only paid: ' + last_paid + ' . Please return back money to customer correctly',
                         });
                         resolve()
                     }, function (error) {
@@ -1354,7 +1361,7 @@ odoo.define('pos_retail.model', function (require) {
                 var quantity = 0;
                 var product = this.db.get_product_by_id(line_refill.product_id[0]);
                 if (!product) {
-                    console.error('No se puede encontrar el producto: ' + line_refill.product_id[0]);
+                    console.error('Could not find product: ' + line_refill.product_id[0]);
                     continue
                 }
                 var line = new models.Orderline({}, {
@@ -1380,7 +1387,7 @@ odoo.define('pos_retail.model', function (require) {
                 } else {
                     quantity = line_refill['qty']
                 }
-                line.set_quantity(quantity, 'mantener el precio cuando se regresa');
+                line.set_quantity(quantity, 'keep price when return');
             }
         },
         lock_order: function () {
@@ -1407,7 +1414,7 @@ odoo.define('pos_retail.model', function (require) {
         },
         load_server_data_by_model: function (model) {
             var self = this;
-
+            console.log(model, 'model')
             var tmp = {};
             var fields = typeof model.fields === 'function' ? model.fields(self, tmp) : model.fields;
             var domain = typeof model.domain === 'function' ? model.domain(self, tmp) : model.domain;
@@ -1454,8 +1461,8 @@ odoo.define('pos_retail.model', function (require) {
             self.posmodel.switchSign = this;
             if (self.posmodel.config.validate_change_minus) {
                 return self.posmodel.gui.show_popup('ask_password', {
-                    title: 'POS password PIN ?',
-                    body: 'Utilice el pin de seguridad POS para desbloquear',
+                    title: 'Pos pass pin ?',
+                    body: 'Please use pos security pin for unlock',
                     confirm: function (value) {
                         var pin;
                         if (self.posmodel.config.manager_validate) {
@@ -1466,8 +1473,8 @@ odoo.define('pos_retail.model', function (require) {
                         }
                         if (value != pin) {
                             return self.posmodel.gui.show_popup('dialog', {
-                                title: 'Error',
-                                body: 'el POS PIN de seguridad no es correcto'
+                                title: 'Wrong',
+                                body: 'Pos security pin not correct'
                             })
                         } else {
                             return _super_NumpadState.switchSign.apply(this.pos.switchSign, arguments);
@@ -1529,8 +1536,8 @@ odoo.define('pos_retail.model', function (require) {
         set_amount: function (value) {
             if (this.add_partial_amount_before) {
                 return this.pos.gui.show_popup('confirm', {
-                    title: _t('Advertencia'),
-                    body: this.ref + _t(' .No permite editar el monto de esta línea de pago. Si desea editar, elimine esta línea')
+                    title: _t('Warning'),
+                    body: this.ref + _t(' .Not allow edit amount of this payment line. If you wanted edit, please remove this Line')
                 })
             }
             _super_Paymentline.set_amount.apply(this, arguments);

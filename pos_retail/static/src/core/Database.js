@@ -16,6 +16,7 @@ odoo.define('pos_retail.database', function (require) {
     // 1. odoo core looping products for store to database parameter
     //    - And if big products (few millions products) will made browse crash
     //    - And we need cache faster than, store values for quickly search
+
     _super_db.add_products = function (products) {
         var stored_categories = this.product_by_category_id;
         if (!products instanceof Array) {
@@ -307,6 +308,25 @@ odoo.define('pos_retail.database', function (require) {
             this.write_date_by_model = {};
             // TODO: save unpaid orders and auto push to BackEnd for revert back Orders
             this.backup_orders = [];
+            this.fiscal_positions = [];
+        },
+
+        get_fiscal_positions: function(){
+            var self = this;
+            var FiscalPositionsPromise = new Promise(function(resolve, reject){
+                rpc.query({
+                    model: 'account.fiscal.position',
+                    method: 'search_read',
+                    fields: ['id', 'name'],
+                }).then(function (res) {
+                    resolve(res)
+                }, function (error) {
+                    reject(error)
+                })
+            })
+            FiscalPositionsPromise.then(function(res){
+                self.fiscal_positions = res;
+            });
         },
         save: function (store, data) {
             try {

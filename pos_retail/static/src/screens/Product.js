@@ -1016,37 +1016,37 @@ odoo.define('pos_retail.screen_product_list', function (require) {
         _get_content_of_product: function (product) {
             var content = '';
             if (product.pos_categ_id) {
-                content += 'Categoría: ' + product.pos_categ_id[1] + ', ';
+                content += 'Category: ' + product.pos_categ_id[1] + ', ';
             }
             if (product.default_code) {
                 content += 'Ref: ' + product.default_code + ', ';
             }
             if (product.barcode) {
-                content += 'Código de Barras: ' + product.barcode + ', ';
+                content += 'Barcode: ' + product.barcode + ', ';
             }
             if (product.qty_available != null) {
-                content += 'Dispoible: ' + product.qty_available + ', ';
+                content += 'Stock Available: ' + product.qty_available + ', ';
             }
             if (product.standard_price) {
-                content += 'Precio: ' + this.gui.chrome.format_currency(product.standard_price) + ', ';
+                content += 'Cost Price: ' + this.gui.chrome.format_currency(product.standard_price) + ', ';
             }
             if (product.description) {
-                content += 'Descripción: ' + product.description + ', ';
+                content += 'Description: ' + product.description + ', ';
             }
             if (product.description_picking) {
-                content += 'Descripción del Empaque: ' + product.description_picking + ', ';
+                content += 'Description Picking: ' + product.description_picking + ', ';
             }
             if (product.description_sale) {
-                content += 'Descripción de Ventas: ' + product.description_sale + ', ';
+                content += 'Description Sale: ' + product.description_sale + ', ';
             }
             if (product.uom_id) {
-                content += 'Unidad de Venta: ' + product.uom_id[1] + ', ';
+                content += 'Sale Unit: ' + product.uom_id[1] + ', ';
             }
             if (product.uom_po_id) {
-                content += 'Unidad de Compra: ' + product.uom_po_id[1] + ', ';
+                content += 'Purchase Unit: ' + product.uom_po_id[1] + ', ';
             }
             if (product.weight) {
-                content += 'Peso: ' + product.weight + ', ';
+                content += 'Weight: ' + product.weight + ', ';
             }
             return content;
         },

@@ -219,6 +219,7 @@ odoo.define('pos_retail.screen_client_list', function (require) {
 
     screens.ClientListScreenWidget.include({
         init: function (parent, options) {
+//            this.integer_client_details = ['country_id', 'state_id', 'property_product_pricelist', 'property_account_position_id'];
             this._super(parent, options);
             var self = this;
             this.pos.bind('client:save_changes', function () {
@@ -525,6 +526,7 @@ odoo.define('pos_retail.screen_client_list', function (require) {
             this.$('.client-details-contents .detail').each(function (idx, el) {
                 fields[el.name] = el.value || false;
             });
+            console.log("fields>>>>>>>", fields)
             if (!fields['name']) {
                 return this.wrong_input('input[name="name"]', '(*) Field name is required');
             } else {
@@ -605,6 +607,7 @@ odoo.define('pos_retail.screen_client_list', function (require) {
             } else {
                 this.passed_input('select[name="property_product_pricelist"]');
             }
+
             return this._super(partner);
         },
         saved_client_details: function (partner_id) {

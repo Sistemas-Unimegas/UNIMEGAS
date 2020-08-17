@@ -12,7 +12,7 @@
 
     <t t-name="KeyBoard_Guide_Widget">
         <div class="debug-widget keyboard oe_hidden" style="min-width: 1000px">
-            <h1>Atajos del teclado</h1>
+            <h1>Keyboard Shortcut</h1>
             <div class="toggle">
                 <i class='fa fa-times'/>
             </div>
@@ -21,47 +21,47 @@
                     <div class="keyboard__row keyboard__row--h1">
                         <div data-key="27" class="key--word supported">
                             <span class="label">ESC</span>
-                            <span>Cerrar pantalla emergente</span>
+                            <span>Close PopUp or Back Screen</span>
                         </div>
                         <div data-key="112" class="key--fn">
                             <span class="label">F1</span>
-                            <span>Abrir guía del teclado</span>
+                            <span>Open KeyBoard Guider</span>
                         </div>
                         <div data-key="113" class="key--fn supported">
                             <span class="label">F2</span>
-                            <span>Imprimir último recibo</span>
+                            <span>Print Last Receipt</span>
                         </div>
                         <div data-key="114" class="key--fn supported">
                             <span class="label">F3</span>
-                            <span>Notas</span>
+                            <span>Note Order</span>
                         </div>
                         <div data-key="115" class="key--fn supported">
                             <span class="label">F4</span>
-                            <span>Historial de compras</span>
+                            <span>Open Purchased Histories</span>
                         </div>
                         <div data-key="116" class="key--fn supported">
                             <span class="label">F5</span>
-                            <span>Recargar POS</span>
+                            <span>Reload POS</span>
                         </div>
                         <div data-key="117" class="key--fn supported">
                             <span class="label">F6</span>
-                            <span>Control de efectivo</span>
+                            <span>Open Cash Control</span>
                         </div>
                         <div data-key="118" class="key--fn supported">
                             <span class="label">F7</span>
-                            <span>Listas de precios</span>
+                            <span>Price Lists</span>
                         </div>
                         <div data-key="119" class="key--fn supported">
                             <span class="label">F8</span>
-                            <span>Imprimir factura</span>
+                            <span>Print Bill</span>
                         </div>
                         <div data-key="120" class="key--fn supported">
                             <span class="label">F9</span>
-                            <span>Reportes</span>
+                            <span>Reporting</span>
                         </div>
                         <div data-key="121" class="key--fn supported">
                             <span>F10</span>
-                            <span>Agregar cargos por servicios</span>
+                            <span>Add Charge Service</span>
                         </div>
                         <div data-key="122" class="key--fn">
                             <span>F11</span>
@@ -106,61 +106,61 @@
                         </div>
                         <div class="key--double supported" data-key="189">
                             <div class="label">_</div>
-                            <div>1 (cant, desc, precio)</div>
+                            <div>1 (qty, disc, price)</div>
                         </div>
                         <div class="key--double supported" data-key="187">
                             <div class="label">+</div>
-                            <div>1 (cant, desc, precio)</div>
+                            <div>1 (qty, disc, price)</div>
                         </div>
                         <div class="key--bottom-right key--word key--w4 supported" data-key="8" style="width: 100px">
-                            <div class="label">Retroceso</div>
-                            <div>Deshacer (Eliminar línea)</div>
+                            <div class="label">BackSpace</div>
+                            <div>Undo (Remove Line)</div>
                         </div>
                     </div>
                     <div class="keyboard__row">
                         <div class="key--bottom-left key--word key--w4 supported" data-key="9">
                             <span class="label">Tab</span>
-                            <span>Promociones</span>
+                            <span>Promotions</span>
                         </div>
                         <div class="key--letter supported" data-char="Q">
                             <span class="label">Q</span>
-                            <span>Modo cantidad</span>
+                            <span>Mode Quantity</span>
                         </div>
                         <div class="key--letter supported" data-char="W">
                             <span class="label">W</span>
-                            <span>Agregar nueva categoría</span>
+                            <span>Add New Category</span>
                         </div>
                         <div class="key--letter supported" data-char="E">
                             <span class="label">E</span>
-                            <span>Nuevo producto</span>
+                            <span>New Product</span>
                         </div>
                         <div class="key--letter supported" data-char="R">
                             <span class="label">R</span>
-                            <span>Quitar pedido seleccionado</span>
+                            <span>Remove Selected Order</span>
                         </div>
                         <div class="key--letter supported" data-char="T">
                             <span class="label">T</span>
-                            <span>Establecer etiquetas</span>
+                            <span>Set Tags to Line</span>
                         </div>
                         <div class="key--letter supported" data-char="Y">
                             <span class="label">Y</span>
-                            <span>Descuento en la línea</span>
+                            <span>Disc to Line</span>
                         </div>
                         <div class="key--letter supported" data-char="U">
                             <span class="label">U</span>
-                            <span>Agregar nota a la línea</span>
+                            <span>Set Note to Line</span>
                         </div>
                         <div class="key--letter supported" data-char="I">
                             <span class="label">I</span>
-                            <span>Ir a pantalla de Facturación</span>
+                            <span>Go Invoices Screen</span>
                         </div>
                         <div class="key--letter supported" data-char="O">
                             <span class="label">O</span>
-                            <span>Ir a pantalla de pedidos</span>
+                            <span>Go Orders Screen</span>
                         </div>
                         <div class="key--letter supported" data-char="P">
                             <span class="label">P</span>
-                            <span>Modo Precios</span>
+                            <span>Mode Price</span>
                         </div>
                         <div class="key--double" data-key="219" data-char="{[">
                             <div>{</div>
@@ -177,43 +177,43 @@
                     </div>
                     <div class="keyboard__row">
                         <div class="key--bottom-left key--word key--w5" data-key="20">
-                            <span>Bloq Mayús</span>
+                            <span>Caps Lock</span>
                         </div>
                         <div class="key--letter supported" data-char="A">
                             <span class="label">A</span>
-                            <span>Nuevo Cliente</span>
+                            <span>New Client</span>
                         </div>
                         <div class="key--letter supported" data-char="S">
                             <span class="label">S</span>
-                            <span>Buscar Productos</span>
+                            <span>Lookup Products</span>
                         </div>
                         <div class="key--letter supported" data-char="D">
                             <span class="label">D</span>
-                            <span>Modo Desc %</span>
+                            <span>Mode Disc %</span>
                         </div>
                         <div class="key--letter supported" data-char="F">
                             <span class="label">F</span>
-                            <span>Pago Automático Completo</span>
+                            <span>Auto Payment Full</span>
                         </div>
                         <div class="key--letter supported" data-char="G">
                             <span class="label">G</span>
-                            <span>Abrir Aplicaciones</span>
+                            <span>Open Apps</span>
                         </div>
                         <div class="key--letter supported" data-char="H">
                             <span class="label">H</span>
-                            <span>Inicio Productos</span>
+                            <span>Back Home Products</span>
                         </div>
                         <div class="key--letter supported" data-char="J">
                             <span class="label">J</span>
-                            <span>Pantalla de Tablets</span>
+                            <span>Tables Screen</span>
                         </div>
                         <div class="key--letter supported" data-char="K">
                             <span class="label">K</span>
-                            <span>Buscar Clientes</span>
+                            <span>Lookup Clients</span>
                         </div>
                         <div class="key--letter supported" data-char="L">
                             <span class="label">L</span>
-                            <span>Bloquear Pantalla</span>
+                            <span>Locked Screen</span>
                         </div>
                         <div class="key--double" data-key="186">
                             <div>:</div>
@@ -225,34 +225,34 @@
                         </div>
                         <div class="key--bottom-right key--word key--w5 supported" data-key="13">
                             <span class="label">Enter</span>
-                            <span>Ir a Pantalla de Pagos</span>
+                            <span>Go Payment Screen</span>
                         </div>
                     </div>
                     <div class="keyboard__row">
                         <div class="key--bottom-left key--word key--w6" data-key="16">
-                            <span>Mayúscula</span>
+                            <span>Shift</span>
                         </div>
                         <div class="key--letter" data-char="Z">Z</div>
                         <div class="key--letter" data-char="X">X</div>
                         <div class="key--letter supported" data-char="C">
                             <span class="label">C</span>
-                            <span>Ir a Pantalla de Clientes</span>
+                            <span>Go Clients Screen</span>
                         </div>
                         <div class="key--letter supported" data-char="V">
                             <span class="label">V</span>
-                            <span>Cambiar a Vista de Productos</span>
+                            <span>Change Product View</span>
                         </div>
                         <div class="key--letter supported" data-char="B">
                             <span class="label">B</span>
-                            <span>Pedidos Reservados</span>
+                            <span>Open Booked Orders</span>
                         </div>
                         <div class="key--letter supported" data-char="N">
                             <span class="label">N</span>
-                            <span>Nueva Orden</span>
+                            <span>New Order</span>
                         </div>
                         <div class="key--letter supported" data-char="M">
                             <span class="label">M</span>
-                            <span>Ocultar/Mostrar Numérico</span>
+                            <span>Hide/Show Numpad</span>
                         </div>
                         <div class="key--double" data-key="188">
                             <div>,</div>
@@ -262,7 +262,7 @@
                         </div>
                         <div class="key--double supported" data-key="191">
                             <div>/</div>
-                            <span>Salir de la Sesión</span>
+                            <span>Logout Session</span>
                         </div>
                         <div class="key--bottom-right key--word key--w6" data-key="16-R">
                             <span class="label"></span>
@@ -282,8 +282,8 @@
                             <span class="label"></span>
                         </div>
                         <div class="key--double key--right key--space supported" data-key="32" data-char=" ">
-                            <span class="label">Espacio</span>
-                            <span>Ir a Pantalla de Pagos</span>
+                            <span class="label">Space</span>
+                            <span>Go Payment Screen</span>
                         </div>
                         <div class="key--bottom-left key--word key--w3" data-key="93-R">
                             <span class="label"></span>
@@ -313,126 +313,126 @@
 
     <t t-name="KeyBoard_Guide_Widget1">
         <div class="debug-widget oe_hidden">
-            <h1>Atajos del Teclado</h1>
+            <h1>Keyboard Shortcut</h1>
             <div class="toggle">
                 <i class='fa fa-times'/>
             </div>
             <div class="content">
-                <p class="category">Pantalla de Productos (Desplazar el mouse para ver más ...)</p>
+                <p class="category">Products Screen (Scroll Your Mouse View more ...)</p>
                 <ul>
-                    <li class="button">Número
+                    <li class="button">Number
                         <span class="guide">0 to 9</span>
                     </li>
-                    <li class="button">Más/Reducir +- 1
+                    <li class="button">Plus/Reduce +- 1
                         <span class="guide">+/-</span>
                     </li>
-                    <li class="button">Borrar
+                    <li class="button">Clear Input
                         <span class="guide">Backspace</span>
                     </li>
-                    <li class="button">Quitar la línea seleccionada
+                    <li class="button">Remove Selected Line
                         <span class="guide">Del</span>
                     </li>
-                    <li class="button">Buscar Productos
+                    <li class="button">Search Products
                         <span class="guide">s</span>
                     </li>
-                    <li class="button">Buscar Clientes (teléfono/email)
+                    <li class="button">Search Client (mobile/email)
                         <span class="guide">k</span>
                     </li>
-                    <li class="button">Limpiar cuadro de búsqueda
+                    <li class="button">Clear Search Box
                         <span class="guide">ESC</span>
                     </li>
-                    <li class="button">Cambiar a modo Cantidad
+                    <li class="button">Change mode Quantity
                         <span class="guide">q</span>
                     </li>
-                    <li class="button">Cambiar a modo Descuentos
+                    <li class="button">Change mode Discount
                         <span class="guide">d</span>
                     </li>
-                    <li class="button">Cambiar a modo Precios
+                    <li class="button">Change mode Price
                         <span class="guide">p</span>
                     </li>
-                    <li class="button">Registro automático del pago - Cantidad Total
+                    <li class="button">Auto Register Payment Full Amount
                         <span class="guide">f</span>
                     </li>
-                    <li class="button">Enfocar el mouse en el cuadro de búsqueda de Productos
+                    <li class="button">Focus Your Mouse to Search Products Box
                         <span class="guide">s</span>
                     </li>
-                    <li class="button">Enfocar el mouse en el cuadro de búsqueda de Clientes
+                    <li class="button">Focus Your Mouse to Search Partner Box
                         <span class="guide">k</span>
                     </li>
-                    <li class="button">Agregar nueva Orden
+                    <li class="button">Add New Order
                         <span class="guide">n</span>
                     </li>
-                    <li class="button">Quitar la Orden actual
+                    <li class="button">Remove Current Order
                         <span class="guide">r</span>
                     </li>
-                    <li class="button">Agregar nuevo Cliente
+                    <li class="button">Add New Customer
                         <span class="guide">a</span>
                     </li>
-                    <li class="button">Agregar nuevo Producto
+                    <li class="button">Add New Product
                         <span class="guide">e</span>
                     </li>
-                    <li class="button">Agregar nueva Categoría del POS
+                    <li class="button">Add New POS Category
                         <span class="guide">w</span>
                     </li>
-                    <li class="button">Cambiar a Vista de Productos
+                    <li class="button">Switch Product View
                         <span class="guide">v</span>
                     </li>
-                    <li class="button">Mostrar/Ocultar Diseño de Botones
+                    <li class="button">Show/Hide Buttons Layout
                         <span class="guide">b</span>
                     </li>
-                    <li class="button">Mostrar/Ocultar Diseño del Teclado Numérico
+                    <li class="button">Show/Hide Numpad Layout
                         <span class="guide">h</span>
                     </li>
-                    <li class="button">Bloquear Pantalla
+                    <li class="button">Lock Screen
                         <span class="guide">l</span>
                     </li>
-                    <li class="button">Ir a la Pantalla de Ordenes
+                    <li class="button">Go Orders Screen
                         <span class="guide">o</span>
                     </li>
-                    <li class="button">Ir a la Pantalla de Facturas
+                    <li class="button">Go Invoices Screen
                         <span class="guide">i</span>
                     </li>
-                    <li class="button">Ir a la Pantalla de Clientes
+                    <li class="button">Go Clients screen
                         <span class="guide">c</span>
                     </li>
-                    <li class="button">Ir a la Pantalla de Pagos
-                        <span class="guide">Espacio</span>
+                    <li class="button">Go Payment Screen
+                        <span class="guide">Space</span>
                     </li>
                 </ul>
 
-                <p class="category">Pantalla de Pagos</p>
+                <p class="category">Payment Screen</p>
                 <ul>
-                    <li class="button">Entrada numérica
+                    <li class="button">Input number
                         <span class="guide">0 to 9</span>
                     </li>
-                    <li class="button">Regresar a la pantalla de Productos
+                    <li class="button">Back Products Screen
                         <span class="guide">b or esc</span>
                     </li>
-                    <li class="button">Pre-llenado del Pago
+                    <li class="button">Prefill Cash Payment
                         <span class="guide">f</span>
                     </li>
-                    <li class="button">Pago Parcial
+                    <li class="button">Parital Payment
                         <span class="guide">p</span>
                     </li>
-                    <li class="button">Validar
-                        <span class="guide">Espacio</span>
+                    <li class="button">Validate
+                        <span class="guide">Space</span>
                     </li>
-                    <li class="button">Seleccionar Cliente
+                    <li class="button">Set Customer
                         <span class="guide">c</span>
                     </li>
-                    <li class="button">Entrada de Voucher
+                    <li class="button">Input Voucher
                         <span class="guide">v</span>
                     </li>
-                    <li class="button">Firmar el recibo
+                    <li class="button">Signature Receipt
                         <span class="guide">s</span>
                     </li>
-                    <li class="button">Agregar Notas
+                    <li class="button">Set Note
                         <span class="guide">n</span>
                     </li>
-                    <li class="button">Establecer Factura
+                    <li class="button">Set Invoice
                         <span class="guide">i</span>
                     </li>
-                    <li class="button">Establecer cambio a la Tarjeta Electrónica
+                    <li class="button">Set Change Due to Wallet
                         <span class="guide">w</span>
                     </li>
                 </ul>

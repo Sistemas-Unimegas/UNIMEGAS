@@ -163,7 +163,7 @@
     <t t-extend="PaymentScreenWidget">
         <t t-jquery="span[class='button next']" t-operation="replace">
             <span class="button next highlight" data-tag="next" style="">
-                Finalizar
+                Check Out
                 <span class="keyboard-shortcut">Enter</span>
             </span>
         </t>
@@ -180,6 +180,34 @@
         <t t-jquery="div[class*='left-content']" t-operation="replace">
             <div class='left-content pc40 touch-scrollable scrollable-y'>
                 <div class='paymentmethods-container'>
+                </div>
+                <div>
+                    <span class="label">Uso : </span>
+                    <select id="l10n_mx_edi_usage" class="form-control l10n_mx_edi_usage" name='l10n_mx_edi_usage' style="max-width:250px;padding:0">
+                        <option value="">None</option>
+                        <option value="G01">G01 - Adquisicion de mercancias</option>
+                        <option value="G02">G02 - Devoluciones, descuentos o bonificaciones</option>
+                        <option value="G03">G03 - Gastos en genera</option>
+                        <option value="I01">I01 - Construcciones</option>
+                        <option value="I02">I02 - Mobilario y equipo de oficina por inversiones</option>
+                        <option value="I03">I03 - Equipo de transporte</option>
+                        <option value="I04">I04 - Equipo de computo y accesorios</option>
+                        <option value="I05">I05 - Dados, troqueles, moldes, matrices y herramienta</option>
+                        <option value="I06">I06 - Comunicaciones telefonicas</option>
+                        <option value="I07">I07 - Comunicaciones satelitales</option>
+                        <option value="I08">I08 - Otra maquinaria y equipo</option>
+                        <option value="D01">D01 - Honorarios medicos, dentales y gastos hospitalarios.</option>
+                        <option value="D02">D02 - Gastos medicos por incapacidad o discapacidad</option>
+                        <option value="D03">D03 - Gastos funerales</option>
+                        <option value="D04">D04 - Donativos</option>
+                        <option value="D05">D05 - Intereses reales efectivamente pagados por creditos hipotecarios (casa habitacion)</option>
+                        <option value="D06">D06 - Aportaciones voluntarias al SAR</option>
+                        <option value="D07">D07 - Primas por seguros de gastos medicos</option>
+                        <option value="D08">D08 - Gastos de transportacion escolar obligatoria</option>
+                        <option value="D09">D09 - Depositos en cuentas para el ahorro, primas que tengan como base planes de pensiones.</option>
+                        <option value="D10" >D10 - Pagos por servicios educativos (colegiaturas)</option>
+                        <option value="P01" >P01 - Por definir</option>
+                    </select>
                 </div>
             </div>
         </t>

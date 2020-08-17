@@ -18,7 +18,7 @@ odoo.define('pos_retail.big_data', function (require) {
     var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
     if (!indexedDB) {
-        window.alert("Su navegador no admite una versión estable de IndexedDB.")
+        window.alert("Your browser doesn't support a stable version of IndexedDB.")
     }
 
     // TODO testing case:
@@ -184,7 +184,7 @@ odoo.define('pos_retail.big_data', function (require) {
         sync_with_backend: function (model, datas, dont_check_write_time) {
             var self = this;
             if (datas.length == 0) {
-                console.warn('La sincronización de datos es antigua. Rechazar:' + model);
+                console.warn('Data sync is old times. Reject:' + model);
                 return false;
             }
             this.db.set_last_write_date_by_model(model, datas);
@@ -280,12 +280,12 @@ odoo.define('pos_retail.big_data', function (require) {
             if (error && error.message && error.message.code && error.message.code == -32098) {
                 return this.gui.show_popup('error', {
                     title: error.message.code,
-                    body: 'Tu servidor Odoo sin conexión',
+                    body: 'Your Odoo Server Offline',
                 })
             } else {
                 return this.gui.show_popup('error', {
                     title: 'Error',
-                    body: 'El modo fuera de línea de Odoo o los códigos de backend tienen problemas. Comuníquese con su administrador del sistema',
+                    body: 'Odoo offline mode or backend codes have issues. Please contact your admin system',
                 })
             }
         },
@@ -370,7 +370,7 @@ odoo.define('pos_retail.big_data', function (require) {
             this.get_modifiers_backend_all_models().then(function (total_sync) {
                 setTimeout(_.bind(self._bind_sync_backend, self), 5000);
                 if (total_sync > 0) {
-                    console.log('filas totales de backend actualizadas: ' + total_sync)
+                    console.log('updated direct backend total rows: ' + total_sync)
                 }
             }, function (err) {
                 console.error(err);
@@ -409,12 +409,12 @@ odoo.define('pos_retail.big_data', function (require) {
             if (model == 'product.product') {
                 this.total_products += results.length;
                 var process_time = this.get_process_time(this.total_products, this.model_ids[model]['count']) * 100;
-                this.chrome.loading_message(_t('Productos agregados : ' + process_time.toFixed(0) + ' %'), process_time / 100);
+                this.chrome.loading_message(_t('Products Installed : ' + process_time.toFixed(0) + ' %'), process_time / 100);
             }
             if (model == 'res.partner') {
                 this.total_clients += results.length;
                 var process_time = this.get_process_time(this.total_clients, this.model_ids[model]['count']) * 100;
-                this.chrome.loading_message(_t('Clientes agregados : ' + process_time.toFixed(0) + ' %'), process_time / 100);
+                this.chrome.loading_message(_t('Partners Installed : ' + process_time.toFixed(0) + ' %'), process_time / 100);
 
             }
             var object = _.find(this.model_lock, function (object_loaded) {
@@ -500,10 +500,10 @@ odoo.define('pos_retail.big_data', function (require) {
             for (var i = 0; i <= 50; i++) {
                 indexedDB.deleteDatabase(dbName + '_' + i);
             }
-            console.log('remove_indexed_db exitoso !')
+            console.log('remove_indexed_db succeed !')
         },
         update_turbo_database: function () {
-            console.log('Comenzar la actualización automática de Turbo Cache');
+            console.log('Begin automatic updating Turbo Cache');
             var self = this;
             this.load_server_data_without_loaded().then(function (results) {
                 var cached = [];
@@ -680,7 +680,7 @@ odoo.define('pos_retail.big_data', function (require) {
         },
         do_update_products_cache: function (product_datas) {
             var self = this;
-            console.warn('do_update_products_cache productos en total: ' + product_datas.length);
+            console.warn('do_update_products_cache total products: ' + product_datas.length);
             this.pos.db.add_products(_.map(product_datas, function (product) {
                 var using_company_currency = self.pos.config.currency_id[0] === self.pos.company.currency_id[0];
                 if (self.pos.company_currency) {
@@ -737,7 +737,7 @@ odoo.define('pos_retail.big_data', function (require) {
 
     models.load_models([
         {
-            label: 'Recargar Sesión',
+            label: 'Reload Session',
             condition: function (self) {
                 return self.pos_session.required_reinstall_cache;
             },
@@ -768,7 +768,7 @@ odoo.define('pos_retail.big_data', function (require) {
 
     models.load_models([
         {
-            label: 'Productos : Inventario disponible',
+            label: 'Products Stock On Hand',
             condition: function (self) {
                 return self.config.display_onhand;
             },
@@ -788,14 +788,14 @@ odoo.define('pos_retail.big_data', function (require) {
             retail: true,
         },
         {
-            label: 'Productos',
+            label: 'Products',
             installed: true,
             loaded: function (self) {
                 return self.indexed_db.get_datas(self, 'product.product', self.session.model_ids['product.product']['max_id'] / 100000 + 1)
             }
         },
         {
-            label: 'Instalando Productos',
+            label: 'Installing Products',
             condition: function (self) {
                 return self.total_products == 0;
             },
@@ -804,14 +804,14 @@ odoo.define('pos_retail.big_data', function (require) {
             }
         },
         {
-            label: 'Clientes',
+            label: 'Partners',
             installed: true,
             loaded: function (self) {
                 return self.indexed_db.get_datas(self, 'res.partner', self.session.model_ids['res.partner']['max_id'] / 100000 + 1)
             }
         },
         {
-            label: 'Instalando Clientes',
+            label: 'Installing Partners',
             condition: function (self) {
                 return self.total_clients == 0;
             },
@@ -820,7 +820,7 @@ odoo.define('pos_retail.big_data', function (require) {
             }
         },
         {
-            label: 'POS Órdenes',
+            label: 'POS Orders',
             model: 'pos.order',
             condition: function (self) {
                 return self.config.pos_orders_management;
@@ -896,7 +896,7 @@ odoo.define('pos_retail.big_data', function (require) {
                 self.db.save_pos_orders(orders);
             }
         }, {
-            label: 'POS Líneas de las Órdenes',
+            label: 'POS Order Lines',
             model: 'pos.order.line',
             fields: [
                 'name',
@@ -934,7 +934,7 @@ odoo.define('pos_retail.big_data', function (require) {
                 self.db.save_pos_order_line(order_lines);
             }
         }, {
-            label: 'Órdenes de Ventas',
+            label: 'Sale Orders',
             model: 'sale.order',
             fields: [
                 'create_date',
@@ -1135,8 +1135,8 @@ odoo.define('pos_retail.big_data', function (require) {
             if (client && client['id'] && this.pos.deleted['res.partner'] && this.pos.deleted['res.partner'].indexOf(client['id']) != -1) {
                 client = null;
                 return this.pos.gui.show_popup('confirm', {
-                    title: _t('Advertencia'),
-                    body: _t('Este cliente ha sido borrado del sistema')
+                    title: _t('Warning'),
+                    body: _t('This client deleted from backend')
                 })
             }
             _super_Order.set_client.apply(this, arguments);
