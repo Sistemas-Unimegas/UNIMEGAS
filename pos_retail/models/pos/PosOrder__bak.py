@@ -442,20 +442,7 @@ class POSOrder(models.Model):
             _logger.info(
                 'Order %s exist before, order existed ID %s' % (order['data']['name'], recheck_existing_order.id))
             return recheck_existing_order.id
-        res = super(POSOrder, self)._process_order(order, draft, existing_order)
-        order_obj = self.browse([res])
-        if order_obj and order_obj.account_move:
-            if order_obj and order_obj.payment_ids:
-                l10n_mx_edi_payment_method_id = False
-                for each in order_obj.payment_ids:
-                    l10n_mx_edi_payment_method_id = self.env['l10n_mx_edi.payment.method'].search(
-                        [('name', '=', each.payment_method_id.name)], limit=1)
-                    if l10n_mx_edi_payment_method_id:
-                        break
-            order_obj.account_move.write({'l10n_mx_edi_usage': order.get('data')['uso_code'] or False,
-                                          'l10n_mx_edi_payment_method_id': l10n_mx_edi_payment_method_id.id})
-
-        return res
+        return super(POSOrder, self)._process_order(order, draft, existing_order)
 
     def _process_payment_lines(self, pos_order, order, pos_session, draft):
         """
