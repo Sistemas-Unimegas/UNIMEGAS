@@ -4,7 +4,10 @@
     <t t-name="OrderReceiptHeader">
         <t t-if="receipt.company.logo">
             <div class="receipt-logo-header field_design" data-tag="el_logo_image">
+                <center>
                 <img class="pos-receipt-logo" t-att-src='receipt.company.logo' alt="Logo"/>
+                </center>
+                <br/>
             </div>
         </t>
         <t t-if="!receipt.company.logo">
@@ -25,7 +28,7 @@
                 <div class="receipt-line field_design" data-tag="el_phone">
                     <span><!--Phone--></span>
                     <span class="pos-receipt-right-align">
-                        <t t-esc="receipt.company.phone"/>
+                        <!--<t t-esc="receipt.company.phone"/>-->
                     </span>
                 </div>
             </t>
@@ -41,7 +44,7 @@
                 <div class="receipt-line field_design" data-tag="el_email">
                     <span><!--Email--></span>
                     <span class="pos-receipt-right-align">
-                        <t t-esc="receipt.company.email"/>
+                        <!-- <t t-esc="receipt.company.email"/> -->
                     </span>
                 </div>
             </t>
@@ -49,7 +52,7 @@
                 <div class="receipt-line field_design" data-tag="el_web">
                     <!--Website-->
                     <span class="pos-receipt-right-align">
-                        <t t-esc="receipt.company.website"/>
+                        <!-- <t t-esc="receipt.company.website"/> -->
                     </span>
                 </div>
             </t>
