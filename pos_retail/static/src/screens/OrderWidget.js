@@ -243,7 +243,7 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             }
             if (mode == 'discount' && this.pos.config.discount_limit && line_selected) { // TODO: Security limit discount filter by cashiers
                 this.gui.show_popup('number', {
-                    'title': _t('Which percentage of discount would you apply ?'),
+                    'title': _t('¿Qué porcentaje de descuento aplicaría? ?'),
                     'value': self.pos.config.discount_limit_amount,
                     'confirm': function (discount) {
                         if (discount > self.pos.config.discount_limit_amount) {
@@ -260,29 +260,29 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                                 });
                                 if (manager_validate.length == 0) {
                                     return self.pos.gui.show_popup('confirm', {
-                                        title: _t('Warning'),
-                                        body: _t('Could not set discount bigger than: ') + self.pos.config.discount_limit_amount + _t(' . If is required, need manager approve but your pos not set manager users approve on Security Tab'),
+                                        title: _t('Advertencia'),
+                                        body: _t('No se pudo establecer un descuento mayor que: ') + self.pos.config.discount_limit_amount + _t(' . Si es necesario, necesita la aprobación del administrador, pero los usuarios del administrador no han establecido la posición en la pestaña Seguridad.'),
                                     })
                                 }
                                 return self.pos.gui.show_popup('selection', {
-                                    title: _t('Choice Manager Validate'),
-                                    body: _t('Only Manager can approve this Discount, please ask him'),
+                                    title: _t('Validar la selección del gerente'),
+                                    body: _t('Solo un gerente puede aprobar este descuento, por favor pregúntele.'),
                                     list: manager_validate,
                                     confirm: function (manager_user) {
                                         if (!manager_user.pos_security_pin) {
                                             return self.pos.gui.show_popup('confirm', {
-                                                title: _t('Warning'),
-                                                body: manager_user.name + _t(' have not set pos security pin before. Please set pos security pin first')
+                                                title: _t('Advertencia'),
+                                                body: manager_user.name + _t(' no ha puesto pin de seguridad pos antes. Primero configure el pin de seguridad pos')
                                             })
                                         } else {
                                             return self.pos.gui.show_popup('ask_password', {
-                                                title: _t('Pos Security Pin of Manager'),
-                                                body: _t('Your staff need approve discount is ') + discount + _t(' please approve'),
+                                                title: _t('Pos PIN de seguridad del gerente'),
+                                                body: _t('Su personal necesita aprobar el descuento es ') + discount + _t(' por favor apruébalo'),
                                                 confirm: function (password) {
                                                     if (manager_user['pos_security_pin'] != password) {
                                                         self.pos.gui.show_popup('dialog', {
                                                             title: _t('Error'),
-                                                            body: _t('POS Security pin of ') + manager_user.name + _t(' not correct !')
+                                                            body: _t('PIN de seguridad POS de ') + manager_user.name + _t(' no es correcto !')
                                                         });
                                                     } else {
                                                         var selected_line = order.get_selected_orderline();
@@ -296,8 +296,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                                 })
                             } else {
                                 return self.gui.show_popup('dialog', {
-                                    title: _t('Warning'),
-                                    body: _t('You can not set discount bigger than ') + self.pos.config.discount_limit_amount + _t('. Please contact your pos manager and set bigger than'),
+                                    title: _t('Advertencia'),
+                                    body: _t('No puede establecer un descuento mayor que ') + self.pos.config.discount_limit_amount + _t('. Comuníquese con su gerente de posición y establezca un valor mayor'),
                                 })
                             }
                         } else {
@@ -307,7 +307,7 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                 });
             } else {
                 if (this.pos.config.validate_remove_line && val == 'remove' && this.pos.get_order() && this.pos.get_order().get_selected_orderline()) {
-                    return this.pos._validate_by_manager("this.pos.get_order().remove_orderline(this.pos.get_order().get_selected_orderline())", 'Remove selected Line');
+                    return this.pos._validate_by_manager("this.pos.get_order().remove_orderline(this.pos.get_order().get_selected_orderline())", 'Eliminar línea seleccionada');
                 }
                 this._super(val);
             }
@@ -534,20 +534,20 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                             }
 
                             self.gui.show_popup('popup_selection_extend', {
-                                title: _t('Assign to Shop Session'),
+                                title: _t('Asignar a sesión de tienda'),
                                 fields: ['name', 'email', 'phone', 'mobile'],
                                 sub_datas: sessions,
                                 sub_search_string: self.search_session_string,
                                 sub_record_by_id: self.session_by_id,
                                 sub_template: 'sessions_list',
-                                body: 'Please select one Shop for Assign this Quotation Order',
+                                body: 'Seleccione una tienda para Asignar este pedido de cotización',
                                 confirm: function (session_id) {
                                     var session = self.session_by_id[session_id];
                                     self.selected_session_id = session_id;
                                     self.pos.gui.close_popup();
                                     setTimeout(function () {
                                         self.pos.gui.show_popup('textarea', {
-                                            title: _t('Are you want assign this Quotation Order to POS Shop ' + session.config_id[1] + ' ? Please add some notes for easy to find Order when customer back'),
+                                            title: _t('¿Quiere asignar esta orden de cotización a la tienda POS? ' + session.config_id[1] + ' ? Agregue algunas notas para encontrar fácilmente el pedido cuando el cliente regrese'),
                                             value: self.quotation_order.get_note(),
                                             confirm: function (note) {
                                                 self.quotation_order.set_note(note);
@@ -603,8 +603,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                         });
                     } else {
                         return self.pos.gui.show_popup('dialog', {
-                            title: _t('Warning'),
-                            body: _t('Line selected not active Multi Variant'),
+                            title: _t('Advertencia'),
+                            body: _t('Línea seleccionada no activa Variante múltiple'),
                         })
                     }
                 })
@@ -634,14 +634,14 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                                 for (var j = 0; j < packagings.length; j++) {
                                     var packaging = packagings[j];
                                     list.push({
-                                        'label': packaging.name + ' with price: ' + packaging.list_price + ' and qty: ' + packaging.qty,
+                                        'label': packaging.name + ' con precio: ' + packaging.list_price + ' y cantidad: ' + packaging.qty,
                                         'item': packaging
                                     });
                                 }
                             }
                             if (list.length) {
                                 return self.pos.gui.show_popup('selection', {
-                                    title: _t('Select packaging'),
+                                    title: _t('Seleccionar embalaje'),
                                     list: list,
                                     confirm: function (packaging) {
                                         var order = self.pos.get_order();
@@ -649,22 +649,22 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                                             var selected_orderline = order.selected_orderline;
                                             selected_orderline.packaging = packaging;
                                             return self.pos.gui.show_popup('number', {
-                                                title: 'How many boxes',
-                                                body: 'How many boxes you need to sell ?',
+                                                title: 'Cuantas cajas',
+                                                body: 'Cuantas cajas necesitas vender ?',
                                                 confirm: function (number) {
                                                     if (number > 0) {
                                                         var order = self.pos.get_order();
                                                         if (!order) {
                                                             return self.pos.gui.show_popup('dialog', {
-                                                                title: 'Warning',
-                                                                body: 'Could not find order selected',
+                                                                title: 'Advertencia',
+                                                                body: 'No se pudo encontrar el pedido seleccionado',
                                                             })
                                                         }
                                                         var selected_orderline = order.selected_orderline;
                                                         if (!selected_orderline) {
                                                             return self.pos.gui.show_popup('dialog', {
-                                                                title: 'Warning',
-                                                                body: 'Could not find order line selected',
+                                                                title: 'Advertencia',
+                                                                body: 'No se pudo encontrar la línea de pedido seleccionada',
                                                             })
                                                         }
                                                         selected_orderline.packaging = packaging;
@@ -673,13 +673,13 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                                                         selected_orderline.price_manually_set = true;
                                                         return self.pos.gui.show_popup('dialog', {
                                                             title: 'Success',
-                                                            body: 'Great job ! You just add ' + number + ' box/boxes for ' + selected_orderline.product.display_name,
+                                                            body: 'Gran trabajo ! Solo agrega ' + number + ' cajas para ' + selected_orderline.product.display_name,
                                                             color: 'success'
                                                         })
                                                     } else {
                                                         return self.pos.gui.show_popup('dialog', {
-                                                            title: 'Warning',
-                                                            body: 'Number of packaging/box could not smaller than 0',
+                                                            title: 'Advertencia',
+                                                            body: 'El número de embalaje / caja no puede ser inferior a 0',
                                                         })
                                                     }
                                                 }
@@ -687,16 +687,16 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                                         }
                                         if (packaging.list_price <= 0 || packaging.qty <= 0) {
                                             self.pos.gui.show_popup('dialog', {
-                                                title: 'Warning',
-                                                body: 'Your packaging selected have price or quantity smaller than or equal 0'
+                                                title: 'Advertencia',
+                                                body: 'Su embalaje seleccionado tiene precio o cantidad menor o igual a 0'
                                             })
                                         }
                                     }
                                 });
                             } else {
                                 return self.pos.gui.show_popup('dialog', {
-                                    title: _t('Alert'),
-                                    body: _t('Selected line have not set sale by package')
+                                    title: _t('Alerta'),
+                                    body: _t('La línea seleccionada no ha establecido la venta por paquete')
                                 })
                             }
                         }
@@ -728,8 +728,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                     var selected_line = order.get_selected_orderline();
                     if (!selected_line) {
                         return self.pos.gui.show_popup('confirm', {
-                            title: _t('Warning'),
-                            body: _t('No Line Selected, please selected one line inside order cart before')
+                            title: _t('Advertencia'),
+                            body: _t('No hay línea seleccionada, seleccione una línea dentro del carrito de pedido antes')
                         })
                     }
                     var pos_categories_combo = _.filter(self.pos.pos_categories, function (categ) {
@@ -737,13 +737,13 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                     });
                     if (pos_categories_combo.length == 0) {
                         return self.pos.gui.show_popup('confirm', {
-                            title: _t('Warning'),
-                            body: _t('Your POS Categories have not any Category Combo')
+                            title: _t('Advertencia'),
+                            body: _t('Sus categorías de POS no tienen ninguna combinación de categorías')
                         })
                     }
                     self.pos.gui.show_popup('popup_dynamic_combo', {
-                        title: _t('Please select one Category and Add Combo Items'),
-                        body: _t('Please select combo items and add to line selected'),
+                        title: _t('Seleccione una categoría y agregue elementos combinados'),
+                        body: _t('Seleccione elementos combinados y agréguelos a la línea seleccionada'),
                         selected_combo_items: selected_line.selected_combo_items,
                         confirm: function (selected_combo_items) {
                             // TODO: selected_combo_items is {product_id: quantity}
@@ -761,8 +761,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                         selected_orderline.show_cross_sale();
                     } else {
                         self.pos.gui.show_popup('dialog', {
-                            title: _t('Warning'),
-                            body: _t('Cross selling only active when have one line selected')
+                            title: _t('Advertencia'),
+                            body: _t('Venta cruzada solo activa cuando tiene una línea seleccionada')
                         })
                     }
                 })
@@ -784,20 +784,20 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                     var order = self.pos.get_order();
                     if (order && order.orderlines.models.length == 0) {
                         return self.pos.gui.show_popup('dialog', {
-                            title: _t('Warning'),
-                            body: _t('Please select Customer and add Items to Cart')
+                            title: _t('Advertencia'),
+                            body: _t('Seleccione Cliente y agregue artículos al carrito')
                         });
                     }
                     if (!order || !order.get_client()) {
                         self.pos.gui.show_popup('dialog', {
-                            title: _t('Warning'),
-                            body: _t('Please select Customer and add Items to Cart')
+                            title: _t('Advertencia'),
+                            body: _t('Seleccione Cliente y agregue artículos al carrito')
                         });
                         return self.pos.gui.show_screen('clientlist');
                     } else {
                         return self.pos.gui.show_popup('popup_shipping_address', {
-                            title: _t('Shipping Contact Information and Create COD Order'),
-                            body: _t('Please input information address of Customer, for Delivery Man shipping Order to: ' + order.get_client().name + '. If you check to COD checkbox, this is partial Order with payment amount 0'),
+                            title: _t('Envío de información de contacto y creación de pedido contra reembolso'),
+                            body: _t('Introduzca la dirección de información del cliente, para que el hombre de entrega envíe la orden a: ' + order.get_client().name + '. Si marca la casilla de COD, este es un pedido parcial con un monto de pago 0'),
                             order: self.pos.get_order(),
                             confirm: function (values) {
                                 self.cod = values['cod'];
@@ -845,8 +845,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                                         if (self.cod == 'true') {
                                             order.do_partial_payment();
                                             self.pos.gui.show_popup('dialog', {
-                                                title: _t('Alert'),
-                                                body: _t('Submited new Order COD (Customer Order Delivery) succeed. Please delivery order to customer and made payment full'),
+                                                title: _t('Advertencia'),
+                                                body: _t('El nuevo pedido COD (entrega del pedido del cliente) enviado se realizó correctamente. Envíe el pedido al cliente y realice el pago completo'),
                                                 color: 'success'
                                             })
                                         }
@@ -869,8 +869,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             if (el_discount_value) {
                 el_discount_value.addEventListener('click', function () {
                     self.gui.show_popup('number', {
-                        title: _t('Set Discount Value'),
-                        body: 'Please input discount value, but required smaller than: ' + self.pos.gui.chrome.format_currency(self.pos.discount_value_limit),
+                        title: _t('Establecer valor de descuento'),
+                        body: 'Ingrese el valor de descuento, pero se requiere menor que: ' + self.pos.gui.chrome.format_currency(self.pos.discount_value_limit),
                         confirm: function (discount_value) {
                             var order = self.pos.get_order();
                             if (order) {
@@ -884,8 +884,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             if (el_signature_receipt) {
                 el_signature_receipt.addEventListener('click', function () {
                     self.pos.gui.show_popup('popup_order_signature', {
-                        title: _t('Signature Receipt'),
-                        body: _t('Signature will display on Order Receipt'),
+                        title: _t('Recibo con firma'),
+                        body: _t('La firma se mostrará en el recibo del pedido'),
                         order: self.pos.get_order()
                     });
                 })
@@ -900,13 +900,13 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             if (el_take_note) {
                 el_take_note.addEventListener('click', function () {
                     self.gui.show_popup('textarea', {
-                        title: _t('Add Order Note'),
+                        title: _t('Agregar nota de pedido'),
                         value: selected_order.get_note(),
                         confirm: function (note) {
                             self.pos.get_order().set_note(note);
                             return self.pos.gui.show_popup('dialog', {
-                                title: _t('Succeed'),
-                                body: _t('You set note to order: ' + note),
+                                title: _t('Terminado'),
+                                body: _t('Pones nota a la orden: ' + note),
                                 color: 'success'
                             })
                         },
@@ -917,8 +917,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             if (el_signature_note) {
                 el_signature_note.addEventListener('click', function () {
                     self.gui.show_popup('popup_order_signature', {
-                        title: _t('Please Signature'),
-                        body: _t('Signature will display on receipt'),
+                        title: _t('Por favor firma'),
+                        body: _t('La firma se mostrará al recibirla'),
                         order: selected_order
                     });
                 })
