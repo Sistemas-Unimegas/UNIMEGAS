@@ -15,17 +15,17 @@
                         <div class="client-details-box clearfix">
                             <div class="client-details-left">
                                 <div class="row">
-                                    <span class="label voucher-label">Quantity</span>
+                                    <span class="label voucher-label">Cantidad</span>
                                     <input data-mode='quantity' class='form-control mode field_line' type="number"
                                            t-att-value='line.quantity || 0' name="quantity"/>
                                 </div>
                                 <div class="row">
-                                    <span class="label voucher-label">Disc (%)</span>
+                                    <span class="label voucher-label">Desc (%)</span>
                                     <input data-mode='discount' class='form-control mode field_line'
                                            t-att-value='line.discount || 0' name="discount"/>
                                 </div>
                                 <div class="row">
-                                    <span class="label voucher-label">Taxes</span>
+                                    <span class="label voucher-label">Impuesto</span>
                                     <input data-mode='discount' class='form-control mode field_line'
                                            disabled="disabled"
                                            t-att-value='widget.format_currency(line.get_tax())' name="taxes"/>
@@ -33,13 +33,13 @@
                             </div>
                             <div class="client-details-right">
                                 <div class="row">
-                                    <span class="label voucher-label">Base Price</span>
+                                    <span class="label voucher-label">Precio base</span>
                                     <input data-mode='price' class='form-control mode field_line' type="number"
                                            t-att-value='line.get_price_without_tax()' name="price"/>
                                 </div>
                                 <t t-if="widget.pos.config.display_amount_discount and line.get_price_discount() > 0">
                                     <div class="row">
-                                        <span class="label voucher-label">Disc Value</span>
+                                        <span class="label voucher-label">Descuento</span>
                                         <input class='form-control'
                                                disabled="disabled"
                                                t-att-value='widget.format_currency_no_symbol(line.get_price_discount())'
@@ -48,7 +48,7 @@
                                 </t>
                                 <t t-if="line.product.description">
                                     <div class="row">
-                                        <span class="label voucher-label">Product Notes</span>
+                                        <span class="label voucher-label">Notas</span>
                                         <input data-mode='discount' class='form-control mode field_line'
                                                disabled="disabled"
                                                t-att-value='line.product.description' name="description"/>
@@ -56,7 +56,7 @@
                                 </t>
                                 <t t-if="widget.pos.get_picking_source_location()">
                                     <div class="row">
-                                        <span class="label voucher-label">Stock Location</span>
+                                        <span class="label voucher-label">Almacén</span>
                                         <input class='form-control'
                                                disabled="disabled"
                                                t-att-value='widget.pos.get_picking_source_location().name'
@@ -65,7 +65,7 @@
                                 </t>
                                 <t t-if="line.qty_available != underfine">
                                     <div class="row">
-                                        <span class="label voucher-label">Qty Available</span>
+                                        <span class="label voucher-label">Disponible</span>
                                         <input class='form-control'
                                                disabled="disabled"
                                                t-att-value='line.qty_available' name="stock"/>
@@ -78,76 +78,76 @@
                     <div class="placeholder-NumpadWidgetWidget"></div>
                     <div class="form-footer text-center">
                         <div class="btn btn-success save">
-                            Save Changes
+                            Guardar cambios
                         </div>
                         <div class="btn btn-default close" style="float: left">
-                            <i class="material-icons">visibility</i> Hide Box
+                            <i class="material-icons">visibilidad</i> Ocultar caja
                         </div>
                     </div>
                     <div class="line-detail">
                         <t t-if="widget.pos.config.sync_multi_session and widget.pos.config.display_person_add_line and line.session_info and line.session_info.user and line.session_info.date">
                             <div class="info">
                                 <t t-esc="line.session_info.user.name"/>
-                                added at
+                                agregado en 
                                 <t t-esc="line.session_info.date"/>
                             </div>
                         </t>
                         <t t-if="line.get_discount_str() !== '0'">
                             <div class="info">
-                                With a
+                                Con un 
                                 <t t-esc="line.get_discount_str()"/>%
-                                Discount
+                                Descuento
                             </div>
                         </t>
                         <t t-if="widget.pos.config.display_margin">
                             <div class="info line-margin">
-                                With Margin
+                                Con margen
                                 <t t-esc="line.get_margin().toFixed(2)"/>%
                             </div>
                         </t>
                         <t t-if="line.discount_extra">
                             <div class="info">
-                                Discount Extra: <t t-esc="line.discount_extra"/>
+                                Descuento extra: <t t-esc="line.discount_extra"/>
                                 %
                             </div>
                         </t>
                         <t t-if="line.price_extra">
                             <div class="info">
-                                Price Extra: <t t-esc="widget.format_currency(line.price_extra,'Product Price')"/>
+                                Precio extra: <t t-esc="widget.format_currency(line.price_extra,'Product Price')"/>
                             </div>
                         </t>
                         <div class="info">
                             <t t-if="line.promotion_amount">
                                 <ul class="bus-info">
-                                    Promotion Amount: <t t-esc="widget.format_currency(line.promotion_amount)"/>
+                                    Promoción $: <t t-esc="widget.format_currency(line.promotion_amount)"/>
                                 </ul>
                             </t>
                             <t t-if="line.promotion_discount">
                                 <ul class="bus-info">
-                                    Promotion Disc: <t t-esc="line.promotion_discount"/>
+                                    Descuento promo: <t t-esc="line.promotion_discount"/>
                                     %
                                 </ul>
                             </t>
                             <t t-if="line.promotion_reason">
                                 <ul class="bus-info">
-                                    Promotion: <t t-esc="line.promotion_reason"/>
+                                    Promoción: <t t-esc="line.promotion_reason"/>
                                 </ul>
                             </t>
                             <t t-if="line.discount">
                                 <div>
-                                    Amount discount: <t t-esc="widget.format_currency(line.get_price_discount())"/>
+                                    Descuento $: <t t-esc="widget.format_currency(line.get_price_discount())"/>
                                 </div>
                             </t>
                             <t t-if="line.voucher">
                                 <div>
-                                    Voucher No: <t t-esc="line.voucher.number"/>
+                                    Voucher Num: <t t-esc="line.voucher.number"/>
                                 </div>
                                 <div>
-                                    Period Expired: <t t-esc="line.voucher.period_days"/>
-                                    (Days)
+                                    Expira: <t t-esc="line.voucher.period_days"/>
+                                    (Días)
                                 </div>
                                 <div>
-                                    Voucher Value:
+                                    Valor del Voucher:
                                     <t t-if="line.voucher.apply_type == 'fixed_amount'">
                                         <t t-esc="widget.pos.gui.chrome.format_currency(line.voucher.value)"/>
                                     </t>
@@ -159,33 +159,33 @@
                             </t>
                             <t t-if="line.plus_point != 0">
                                 <div class="line_plus_point">
-                                    Plus point: <t t-esc="line._get_plus_point()"/>
+                                    Punto extra: <t t-esc="line._get_plus_point()"/>
                                 </div>
                             </t>
                             <t t-if="line.redeem_point != 0">
                                 <div class="line_redeem_point">
-                                    Redeem point: <t t-esc="line.redeem_point"/>
+                                    Canjear punto: <t t-esc="line.redeem_point"/>
                                 </div>
                             </t>
                             <t t-if="line.get_packaging_added()">
                                 <div class="packaging">
                                     <t t-if="line.get_packaging_added()">
-                                        Packaging: <t t-esc="line.get_packaging_added().name"/>
+                                        Embalaje: <t t-esc="line.get_packaging_added().name"/>
                                     </t>
                                 </div>
                             </t>
                             <t t-if="line.get_product_price_quantity_item()">
                                 <ul class="bus-info">
                                     <t t-set="product_price_quantity" t-value="line.get_product_price_quantity_item()"/>
-                                    Applied Price
+                                    Precio aplicado
                                     <t t-esc="widget.format_currency(product_price_quantity['price_unit'])"/>
-                                    if bigger than or equal
+                                    si es mayor o igual que
                                     <t t-esc="product_price_quantity['quantity']"/>
-                                    items
+                                    artículos
                                 </ul>
                             </t>
                             <t t-if="line.combo_items">
-                                Combo Bundle/Package:
+                                Combo / Paquete:
                                 <br/>
                                 <t t-foreach="line.combo_items" t-as="combo_item">
                                     <t t-if="combo_item.quantity > 0">
@@ -193,13 +193,13 @@
                                             + <t t-esc="combo_item.quantity * line['quantity']"/>
                                             <t t-esc="widget.pos.generate_wrapped_name(combo_item.product_id[1])[0]"/>
                                             <t t-if="combo_item.lot_number">
-                                                , with Lot/Serial number : <t t-esc="combo_item.lot_number"/>
+                                                , con número de lote / serie : <t t-esc="combo_item.lot_number"/>
                                             </t>
                                             <t t-if="combo_item.use_date">
-                                                , with Expired Date of Lot: <t t-esc="combo_item.use_date"/>
+                                                , con fecha de vencimiento del lote: <t t-esc="combo_item.use_date"/>
                                             </t>
                                             <t t-if="combo_item.price_extra">
-                                                , with Price Extra: <t
+                                                , con precio extra: <t
                                                     t-esc="widget.format_currency(combo_item.price_extra)"/>
                                             </t>
                                         </ul>
@@ -219,18 +219,18 @@
                             <t t-if="line.is_return">
                                 <ul class="bus-info">
                                     <li class="return_line">
-                                        Is Return
+                                        Es retorno
                                     </li>
                                 </ul>
                             </t>
                             <t t-if="line.get_sale_person()">
                                 <ul class="bus-info">
-                                    Seller: <t t-esc="line.get_sale_person().display_name"/>
+                                    Vendedor: <t t-esc="line.get_sale_person().display_name"/>
                                 </ul>
                             </t>
                             <t t-if="widget.pos.employee">
                                 <ul class="bus-info">
-                                    Employee: <t t-esc="widget.pos.employee.name"/>
+                                    Empleado: <t t-esc="widget.pos.employee.name"/>
                                 </ul>
                             </t>
                             <t t-if="line.variants and line.variants.length">
@@ -251,10 +251,10 @@
                                         Lot: <t t-esc="lot_values['lot_name']"/>
                                         <t t-if="lot_values['lot']">
                                             <t t-if="lot_values['lot']['barcode']">
-                                                Lot Barcode: <t t-esc="lot_values['lot']['barcode']"/>
+                                                Código de barras lote: <t t-esc="lot_values['lot']['barcode']"/>
                                             </t>
                                             <t t-if="lot_values['lot']['life_date']">
-                                                Expired date: <t t-esc="lot_values['lot']['life_date']"/>
+                                                Fecha de vencimiento: <t t-esc="lot_values['lot']['life_date']"/>
                                             </t>
                                         </t>
                                     </ul>
@@ -264,7 +264,7 @@
                                 <ul class="bus-info">
                                     <t t-foreach="line.lot_ids" t-as="lot">
                                         <div>
-                                            Lot Serial:
+                                            Lote / serie:
                                             <t t-esc="lot.name"/>
                                             x
                                             <t t-esc="lot.quantity"/>
@@ -288,7 +288,7 @@
                             </t>
                             <t t-if="line.discount_reason">
                                 <ul class="bus-info">
-                                    Discount reason: <t t-esc="line.discount_reason"/>
+                                    Motivo de descuento: <t t-esc="line.discount_reason"/>
                                 </ul>
                             </t>
                         </div>
@@ -301,46 +301,46 @@
     <t t-name="ProductSortBy">
         <div class="category-list product-sort-by">
             <span class="category-simple-button js-category-switch service" id="a_z">
-                Name: A to Z
+                Nombre: A a Z
             </span>
             <span class="category-simple-button js-category-switch service" id="z_a">
-                Name: Z to A
+                Nombre: Z a A
             </span>
             <span class="category-simple-button js-category-switch service" id="low_price">
-                Low Price
+                Menor precio
             </span>
             <span class="category-simple-button js-category-switch service" id="high_price">
-                High Price
+                Mayor precio
             </span>
             <span class="category-simple-button js-category-switch service" id="pos_sequence">
-                Product Sequence
+                Secuencia del producto
             </span>
             <span class="category-simple-button js-category-switch service" id="low_stock">
-                Low Stock
+                Inventario bajo
             </span>
             <span class="category-simple-button js-category-switch service" id="high_stock">
-                High Stock
+                Inventario alto
             </span>
             <span class="category-simple-button js-category-switch service" id="voucher">
                 Voucher
             </span>
             <span class="category-simple-button js-category-switch service" id="credit">
-                Credit
+                Credito
             </span>
             <span class="category-simple-button js-category-switch service" id="cross_selling">
-                Cross Selling
+                Venta cruzada
             </span>
             <span class="category-simple-button js-category-switch service" id="service">
-                Only Service
+                Solo servicio
             </span>
             <span class="category-simple-button js-category-switch service" id="lot">
-                Tracking By Lot
+                Seguimiento por lote
             </span>
             <span class="category-simple-button js-category-switch service" id="serial">
-                Tracking By Serial
+                Seguimiento por serie
             </span>
             <span class="category-simple-button js-category-switch service" id="all">
-                Show All
+                Mostrar todo
             </span>
             <span class="category-simple-button js-category-switch numpad-backspace">
                 <img src="/point_of_sale/static/src/img/backspace.png" width="24" height="21" alt="Backspace"/>
@@ -390,19 +390,19 @@
                         <input class="form-control quantity" disabled="disabled" t-att-value="widget.gui.chrome.format_currency(widget.selected_line.price)"/>
                     </t>
                     <button class="btn btn-success pull-left plus" style="margin: 0px;border-radius: 0px;max-width: 5%;font-size: 13px">
-                        <i class="material-icons">add</i>
+                        <i class="material-icons">agregar</i>
                     </button>
                     <t t-if="widget.selected_line">
                         <input class="form-control quantity" disabled="disabled" t-att-value="widget.selected_line.quantity"/>
                     </t>
                     <button class="btn btn-danger pull-left minus" style="margin: 0px;border-radius: 0px;max-width: 5%;font-size: 13px">
-                        <i class="material-icons">remove</i>
+                        <i class="material-icons">quitar</i>
                     </button>
                     <t t-if="widget.selected_line">
                         <input class="form-control quantity" disabled="disabled" t-att-value="widget.gui.chrome.format_currency(widget.selected_line.get_display_price())"/>
                     </t>
                     <button class="btn btn-danger pull-left remove" style="margin: 0px;border-radius: 0px;max-width: 5%;font-size: 13px">
-                        <i class="material-icons">clear</i>
+                        <i class="material-icons">limpiar</i>
                     </button>
                 </div>
             </div>
@@ -413,21 +413,21 @@
         <div class="view-cart-list">
             <t t-if="!widget.pos.display_cart_list">
                 <div class="total_items_in_bottom_cart">
-                    <i class="material-icons">shopping_cart</i>
+                    <i class="material-icons">carrito</i>
                     <span class="items-incart">
                         <t t-esc="widget.total_items"/>
                     </span>
                 </div>
             </t>
             <button class="btn btn-success pull-left add-new-order">
-                <i class="material-icons">add</i>
+                <i class="material-icons">agregar</i>
                 <span class="keyboard-shortcut">
                     <i class="fa fa-keyboard"/>
                     N
                 </span>
             </button>
             <button class="btn btn-danger pull-left remove-selected-order">
-                <i class="material-icons">remove</i>
+                <i class="material-icons">quitar</i>
                 <span class="keyboard-shortcut">
                     <i class="fa fa-keyboard"/>
                     R
