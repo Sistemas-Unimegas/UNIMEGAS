@@ -476,7 +476,8 @@
     </t>
 
     <t t-name="RightPaneScreen">
-        <div class="pos-screens-list">
+        <!-- <div class="pos-screens-list"> -->
+        <div>
         </div>
     </t>
 
