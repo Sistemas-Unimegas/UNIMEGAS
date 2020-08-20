@@ -124,7 +124,7 @@
                         Regresar
                     </span>
                     <span class='searchbox search-invoice'>
-                        <input placeholder='Search Invoice' />
+                        <input placeholder='Buscar Factura' />
                         <span class="search-clear left">
                             <i class="fa fa-search"></i>
                         </span>
