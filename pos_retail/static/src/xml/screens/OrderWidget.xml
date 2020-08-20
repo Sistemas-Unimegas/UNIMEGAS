@@ -51,7 +51,7 @@
                 <t t-if="widget.pos.config.quickly_payment_full">
                     <div class='button quickly_paid'>
                         <span class="pricelist-name">
-                            Check Out Completo
+                            Finalizar Completo
                         </span>
                     </div>
                 </t>
@@ -71,7 +71,7 @@
                 <t t-if="widget.pos.config.allow_payment">
                     <div class='button pay'>
                         <span class="customer-name">
-                            Check Out
+                            Finalizar
                         </span>
                     </div>
                 </t>
