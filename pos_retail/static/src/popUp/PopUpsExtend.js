@@ -348,20 +348,20 @@ odoo.define('pos_retail.popups', function (require) {
                     self.pos.gui.close_popup();
                     if (self.move_lines.length == 0) {
                         return self.pos.gui.show_popup('dialog', {
-                            title: 'Warning',
-                            body: 'Please select line for return'
+                            title: 'Advertencia',
+                            body: 'Seleccione un producto para devolución'
                         })
                     }
                     if (self.sale.picking_ids.length == 0) {
                         return self.pos.gui.show_popup('dialog', {
-                            title: 'Warning',
-                            body: 'Sale order have not delivery order, could not made return'
+                            title: 'Advertencia',
+                            body: 'La orden de venta no tiene orden de entrega, no se pudo realizar la devolución'
                         })
                     }
                     if (self.sale.picking_ids.length > 1) {
                         return self.pos.gui.show_popup('dialog', {
-                            title: 'Warning',
-                            body: 'Sale order have delivery orders bigger than 2, could not made return'
+                            title: 'Advertencia',
+                            body: 'Los pedidos de venta tienen pedidos de entrega mayores a 2, no se pudieron devolver'
                         })
                     }
                     if (self.sale.picking_ids.length == 1) {
@@ -411,13 +411,13 @@ odoo.define('pos_retail.popups', function (require) {
                                         }).then(function (picking_name) {
                                             if (picking_name) {
                                                 return self.pos.gui.show_popup('dialog', {
-                                                    title: 'Succeed',
-                                                    body: 'Return Delivery Order ' + picking_name + ' processed to Done',
+                                                    title: 'Finalizado',
+                                                    body: 'Orden de devolución ' + picking_name + ' procesada con éxito',
                                                 });
                                             } else {
                                                 return self.pos.gui.show_popup('dialog', {
-                                                    title: 'Warning',
-                                                    body: 'Have not any delivery order of this sale order',
+                                                    title: 'Advertencia',
+                                                    body: 'No tiene ninguna orden de entrega en esta orden de venta',
                                                 });
                                             }
                                         }).catch(function (error) {
@@ -958,7 +958,7 @@ odoo.define('pos_retail.popups', function (require) {
             this.$('.add_taxes').click(function () {
                 var line_selected = self.line_selected;
                 if (self.taxes_selected.length == 0) {
-                    return self.wrong_input("div[class='body']", '(*) Please select one tax');
+                    return self.wrong_input("div[class='body']", '(*) Seleccione un impuesto');
                 }
                 var tax_ids = _.pluck(self.taxes_selected, 'id');
                 line_selected.set_taxes(tax_ids);
@@ -1050,7 +1050,7 @@ odoo.define('pos_retail.popups', function (require) {
                 }
                 var selected_line = order.get_selected_orderline();
                 if (variants.length == 0) {
-                    return self.wrong_input("div[class='body']", '(*) No variants select, please select one variant and back to confirm')
+                    return self.wrong_input("div[class='body']", '(*) No hay variantes seleccionadas, seleccione una variante y vueva a confirmar')
                 }
                 if (selected_line) {
                     selected_line.set_variants(variant_ids);
@@ -1065,8 +1065,8 @@ odoo.define('pos_retail.popups', function (require) {
                 var selected_orderline = self.pos.get_order().selected_orderline;
                 if (!selected_orderline) {
                     return self.gui.show_popup('dialog', {
-                        title: 'Warning !',
-                        body: _t('Please select line'),
+                        title: 'Advertencia !',
+                        body: _t('Por favor seleccione línea'),
                     });
                 } else {
                     selected_orderline.set_variants([])
@@ -1074,8 +1074,8 @@ odoo.define('pos_retail.popups', function (require) {
                 self.remove_variant_selected();
                 self.pos.gui.close_popup();
                 self.pos.gui.show_popup('dialog', {
-                    title: _t('Succeed'),
-                    body: _t('All variants removed'),
+                    title: _t('Terminado'),
+                    body: _t('Todas las variantes han sido removidas'),
                     color: 'success'
                 })
             })

@@ -76,8 +76,8 @@ odoo.define('pos_retail.multi_locations', function (require) {
                             self.pos.gui.screen_instances["products_operation"].refresh_screen();
                         }
                         return self.gui.show_popup('dialog', {
-                            title: _t('Succeed'),
-                            body: _t('Products Screen with display stock available with your stock locations selected'),
+                            title: _t('Terminado'),
+                            body: _t('Pantalla de productos con stock de exhibición disponible con sus ubicaciones de stock seleccionadas'),
                             color: 'success'
                         });
                     });
@@ -99,13 +99,13 @@ odoo.define('pos_retail.multi_locations', function (require) {
             this.pos.show_products_type_only_product();
             if (this.pos.stock_locations.length != 0) {
                 this.gui.show_popup('popup_set_locations', {
-                    title: _t('Please Choice Stock Locations'),
-                    body: _t('Please select locations and see all qty on hand of products')
+                    title: _t('Elija ubicaciones de stock'),
+                    body: _t('Seleccione ubicaciones y vea toda la cantidad disponible de productos')
                 })
             } else {
                 this.gui.show_popup('dialog', {
-                    'title': 'Warning',
-                    'body': 'Your stock locations have not any location checked to checkbox [Available in POS]. Please back to backend and config it'
+                    'title': 'Advertencia',
+                    'body': 'Sus ubicaciones de stock no tienen ninguna ubicación marcada en la casilla de verificación [Disponible en POS]. Vuelve al backend y configúralo'
                 })
             }
         }
@@ -145,8 +145,8 @@ odoo.define('pos_retail.multi_locations', function (require) {
                     self.pos.gui.close_popup();
                 } else {
                     self.pos.gui.show_popup('confirm', {
-                        title: 'Warning',
-                        body: 'Order is null or location not found'
+                        title: 'Advertencia',
+                        body: 'El pedido es nulo o no se encuentra la ubicación'
                     });
                 }
                 return self.pos._get_stock_on_hand_by_location_ids([], [location_id]).then(function (stock_datas_by_location_id) {
@@ -167,8 +167,8 @@ odoo.define('pos_retail.multi_locations', function (require) {
                         self.pos.gui.screen_instances["products_operation"].refresh_screen();
                     }
                     return self.gui.show_popup('dialog', {
-                        title: _t('Succeed'),
-                        body: _t('Delivery Order of Selected Order will set Source Location from ' + location.name),
+                        title: _t('Terminado'),
+                        body: _t('Orden de entrega de la orden seleccionada establecerá la ubicación de origen desde ' + location.name),
                         color: 'success'
                     });
                 })
@@ -195,13 +195,13 @@ odoo.define('pos_retail.multi_locations', function (require) {
             this.pos.show_products_type_only_product();
             if (this.pos.stock_locations.length != 0) {
                 this.gui.show_popup('popup_set_location', {
-                    title: _t('Change Default Stock Location of Orders'),
-                    body: _t('This is list location have company the same your user company, Please choice location and add to order, when order done quantity available of product will reduce from location selected')
+                    title: _t('Cambiar la ubicación de stock predeterminada de los pedidos'),
+                    body: _t('Esta es la ubicación de la lista que tiene la misma empresa que su empresa de usuario, Elija la ubicación y agregue al pedido, cuando el pedido finalice, la cantidad disponible de producto se reducirá desde la ubicación seleccionada')
                 })
             } else {
                 this.gui.show_popup('dialog', {
-                    'title': _t('Warning'),
-                    'body': _t('Your stock locations have not any location checked to checkbox [Available in POS]. Please back to backend and config it')
+                    'title': _t('Advertencia'),
+                    'body': _t('Sus ubicaciones de stock no tienen ninguna ubicación marcada en la casilla de verificación [Disponible en POS]. Vuelve al backend y configúralo')
                 })
             }
         }
@@ -220,21 +220,21 @@ odoo.define('pos_retail.multi_locations', function (require) {
             var order = this.pos.get_order();
             if (!order) {
                 return this.pos.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: _t('Have not order selected, please select order')
+                    title: _t('Advertencia'),
+                    body: _t('No ha seleccionado el pedido, seleccione el pedido')
                 })
             }
             var selected_line = order.get_selected_orderline();
             if (!selected_line) {
                 return this.pos.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: _t('Have not line selected, please select line')
+                    title: _t('Advertencia'),
+                    body: _t('No ha seleccionado la línea, seleccione la línea')
                 })
             }
             if (selected_line.product.type != 'product') {
                 return this.pos.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: _t('Product selected have type is not Storable Product')
+                    title: _t('Advertencia'),
+                    body: _t('El tipo de producto seleccionado no es producto almacenable')
                 })
             }
             return this.pos.update_onhand_by_product(selected_line.product)

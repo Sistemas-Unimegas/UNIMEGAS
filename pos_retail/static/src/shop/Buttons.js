@@ -65,14 +65,14 @@ odoo.define('pos_retail.buttons', function (require) {
             }
             var amount_with_tax = selected_line.get_price_with_tax();
             this.gui.show_popup('number', {
-                'title': _t('Which value of discount would you apply ?'),
+                'title': _t('¿Qué valor de descuento aplicará?'),
                 'value': self.pos.config.discount_sale_price_limit,
                 'confirm': function (discount_value) {
                     discount_value = parseFloat(discount_value);
                     if (amount_with_tax < discount_value) {
                         return self.pos.gui.show_popup('dialog', {
-                            title: 'Warning',
-                            body: _t('We could not set amount bigger than amount of line')
+                            title: 'Advertencia',
+                            body: _t('No pudimos establecer una cantidad mayor que la cantidad de línea')
                         })
                     } else {
                         if (discount_value > self.pos.config.discount_sale_price_limit) {
@@ -89,29 +89,29 @@ odoo.define('pos_retail.buttons', function (require) {
                                 });
                                 if (manager_validate.length == 0) {
                                     return self.pos.gui.show_popup('confirm', {
-                                        title: 'Warning',
-                                        body: _t('Could not set discount bigger than: ' + self.pos.gui.chrome.format_currency(discount_value) + ' . If is required, need manager approve but your pos not set manager users approve on Security Tab'),
+                                        title: 'Advertencia',
+                                        body: _t('No se pudo establecer un descuento mayor que: ' + self.pos.gui.chrome.format_currency(discount_value) + ' . Si es necesario, necesita la aprobación del administrador, pero los usuarios del administrador no han establecido la posición en la pestaña Seguridad.'),
                                     })
                                 }
                                 return self.pos.gui.show_popup('selection', {
-                                    title: 'Choice Manager Validate',
-                                    body: _t('Only Manager can approve this Discount, please ask him'),
+                                    title: 'Validacion por parte del Gerente',
+                                    body: _t('Solo el Gerente puede aprobar este descuento, pregúntele'),
                                     list: manager_validate,
                                     confirm: function (manager_user) {
                                         if (!manager_user.pos_security_pin) {
                                             return self.pos.gui.show_popup('confirm', {
-                                                title: 'Warning',
-                                                body: _t(user.name + ' have not set pos security pin before. Please set pos security pin first')
+                                                title: 'Advertencia',
+                                                body: _t(user.name + ' no está establecido pin de seguridad pos antes. Primero configure el pin de seguridad pos')
                                             })
                                         } else {
                                             return self.pos.gui.show_popup('ask_password', {
-                                                title: 'Pos Security Pin of Manager',
-                                                body: _t('Your staff need approve discount value is ' + self.pos.gui.chrome.format_currency(discount_value) + ', please approve'),
+                                                title: 'Pos PIN de seguridad del gerente',
+                                                body: _t('Su personal necesita aprobar el valor de descuento es ' + self.pos.gui.chrome.format_currency(discount_value) + ', por favor apruébalo'),
                                                 confirm: function (password) {
                                                     if (manager_user['pos_security_pin'] != password) {
                                                         self.pos.gui.show_popup('dialog', {
                                                             title: 'Error',
-                                                            body: _t('POS Security pin of ' + manager_user.name + ' not correct !')
+                                                            body: _t('PIN de seguridad POS de ' + manager_user.name + ' no es correcto !')
                                                         });
                                                     } else {
                                                         var taxes_ids = selected_line.product.taxes_id;
@@ -137,8 +137,8 @@ odoo.define('pos_retail.buttons', function (require) {
                                 })
                             } else {
                                 return self.gui.show_popup('dialog', {
-                                    title: _t('Warning'),
-                                    body: _t('You can not set discount bigger than ' + self.pos.config.discount_limit_amount + '. Please contact your pos manager and set bigger than'),
+                                    title: _t('Advertencia'),
+                                    body: _t('No puede establecer un descuento mayor que ' + self.pos.config.discount_limit_amount + '. Comuníquese con su gerente y establezca un valor mayor'),
                                 })
                             }
                         } else {
@@ -178,11 +178,11 @@ odoo.define('pos_retail.buttons', function (require) {
             var self = this;
             var sellers = this.pos.sellers;
             return this.pos.gui.show_popup('popup_selection_extend', {
-                title: 'Select Sale Person',
+                title: 'Selecciona persona de ventas',
                 fields: ['name', 'email', 'id'],
                 sub_datas: sellers,
                 sub_template: 'sale_persons',
-                body: _t('Please select one sale person'),
+                body: _t('Selecciona una persona de ventas'),
                 confirm: function (user_id) {
                     var seller = self.pos.user_by_id[user_id];
                     var order = self.pos.get_order();
@@ -191,8 +191,8 @@ odoo.define('pos_retail.buttons', function (require) {
                         selected_line.set_sale_person(seller)
                     } else {
                         self.pos.gui.show_popup('dialog', {
-                            title: 'Warning',
-                            body: _t('Please select line first')
+                            title: 'Advertencia',
+                            body: _t('Selecciona una línea primero')
                         })
                     }
 
@@ -219,14 +219,14 @@ odoo.define('pos_retail.buttons', function (require) {
                     title: 'Error',
                     from: 'top',
                     align: 'center',
-                    body: _t('Please selected line before add lot'),
+                    body: _t('Seleccione la línea antes de agregar el lote'),
                     color: 'danger',
                     timer: 2000
                 });
                 return;
             } else {
                 this.pos.gui.show_popup('popup_add_lot_to_combo_items', {
-                    'title': _t('Lot/Serial Number(s) Combo Items'),
+                    'title': _t('Elementos combinados de lote / número de serie'),
                     'combo_items': selected_orderline['combo_items'],
                     'orderline': selected_orderline,
                     'widget': this,
@@ -255,11 +255,11 @@ odoo.define('pos_retail.buttons', function (require) {
             if (length == 0) {
                 return this.gui.show_popup('dialog', {
                     title: 'Error',
-                    body: 'Your order lines is blank',
+                    body: 'Sus líneas de pedido están en blanco',
                 });
             } else {
                 this.pos.gui.show_popup('popup_internal_transfer', {
-                    title: _t('Transfer Between Stock'),
+                    title: _t('Transferencia entre stock'),
                 })
             }
         }
@@ -277,7 +277,7 @@ odoo.define('pos_retail.buttons', function (require) {
         template: 'button_create_purchase_order',
         button_click: function () {
             this.gui.show_popup('popup_create_purchase_order', {
-                title: _t('Create Purchase Order'),
+                title: _t('Crear orden de compra'),
                 widget: this,
             });
         }
@@ -390,7 +390,7 @@ odoo.define('pos_retail.buttons', function (require) {
             }
             if (list.length > 0) {
                 this.gui.show_popup('selection', {
-                    title: _t('Switch to user'),
+                    title: _t('Cambiar usuario'),
                     list: list,
                     confirm: function (config) {
                         def.resolve(config);
@@ -398,8 +398,8 @@ odoo.define('pos_retail.buttons', function (require) {
                 });
             } else {
                 return this.pos.gui.show_popup('dialog', {
-                    title: 'Warning',
-                    body: 'Your system have only one config'
+                    title: 'Advertencia',
+                    body: 'Su sistema tiene solo una configuración'
                 });
             }
             return def.then(function (config) {
@@ -457,7 +457,7 @@ odoo.define('pos_retail.buttons', function (require) {
             } else {
                 this.gui.show_popup('dialog', {
                     'title': _t('Error'),
-                    'body': _t('Could not find last order'),
+                    'body': _t('No se pudo encontrar el último pedido'),
                 });
             }
         },
@@ -604,8 +604,8 @@ odoo.define('pos_retail.buttons', function (require) {
                 });
             } else {
                 return this.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: ('Please select line before add taxes or update taxes on pos config not setting')
+                    title: _t('Advertencia'),
+                    body: ('Seleccione la línea antes de agregar impuestos o actualizar los impuestos en la configuración de posición que no se establece')
                 });
             }
         }
@@ -624,14 +624,14 @@ odoo.define('pos_retail.buttons', function (require) {
         button_click: function () {
             if (this.pos.proxy.printer && this.pos.proxy.print_receipt) {
                 this.pos.gui.show_popup('dialog', {
-                    title: 'Turn on',
-                    body: 'Your printer ready for print any orders receipt',
+                    title: 'Impresora lista',
+                    body: 'Tu impresora lista para imprimir cualquier recibo de pedido',
                     color: 'success'
                 })
             } else {
                 this.pos.gui.show_popup('dialog', {
-                    title: 'Turn off',
-                    body: 'Your printer turn off, orders receipt will print via web browse'
+                    title: 'Apagada',
+                    body: 'Su impresora está apagada, el recibo de los pedidos se imprimirá a través de la navegación web'
                 })
             }
             this.pos.proxy.printer = !this.pos.proxy.printer;

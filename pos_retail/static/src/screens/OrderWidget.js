@@ -123,8 +123,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                 order.remove_orderline(selected_orderline);
             } else {
                 return self.pos.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: _t('Your shopping cart is empty'),
+                    title: _t('Advertencia'),
+                    body: _t('El carrito de compras está vacío'),
                 })
             }
         },
@@ -135,12 +135,12 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                 var selected_orderline = order.selected_orderline;
                 return self.gui.show_popup('popup_selection_tags', {
                     selected_orderline: selected_orderline,
-                    title: _t('Add Tags')
+                    title: _t('Agregar etiquetas')
                 });
             } else {
                 return self.pos.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: _t('Your shopping cart is empty'),
+                    title: _t('Advertencia'),
+                    body: _t('El carrito de compras está vacío'),
                 })
             }
         },
@@ -150,7 +150,7 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             if (order && order.selected_orderline) {
                 return self.gui.show_popup('popup_selection_tags', {
                     selected_orderline: order.selected_orderline,
-                    title: _t('Add Reasons Return'),
+                    title: _t('Agregar motivos de devolución'),
                     tags: self.pos.return_reasons,
                 });
             }
@@ -161,7 +161,7 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             if (order && order.selected_orderline) {
                 var selected_orderline = order.selected_orderline;
                 self.pos.gui.show_popup('popup_add_order_line_note', {
-                    title: _t('Add Note to Selected Line'),
+                    title: _t('Agregar una nota a la línea seleccionada'),
                     value: selected_orderline.get_line_note(),
                     confirm: function (note) {
                         selected_orderline.set_line_note(note);
@@ -169,8 +169,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                 });
             } else {
                 return self.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: _t('Your shopping cart is empty'),
+                    title: _t('Advertencia'),
+                    body: _t('Su carrito de compras está vacío'),
                 })
             }
         },
@@ -183,14 +183,14 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                     selected_orderline.change_unit();
                 } else {
                     return self.pos.gui.show_popup('dialog', {
-                        title: _t('Warning'),
-                        body: _t('Please select line'),
+                        title: _t('Advertencia'),
+                        body: _t('Selecciona una línea'),
                     });
                 }
             } else {
                 return self.pos.gui.show_popup('dialog', {
-                    title: _t('Warning'),
-                    body: _t('Order Lines is empty'),
+                    title: _t('Advertencia'),
+                    body: _t('Líneas de la Orden está vacía'),
                 });
             }
         },
@@ -198,11 +198,11 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             var self = this;
             var sellers = self.pos.sellers;
             return self.pos.gui.show_popup('popup_selection_extend', {
-                title: _t('Select Sale Person'),
+                title: _t('Selecciona el vendedor'),
                 fields: ['name', 'email', 'id'],
                 sub_datas: sellers,
                 sub_template: 'sale_persons',
-                body: _t('Please select one sale person'),
+                body: _t('Selecciona un vendedor (a)'),
                 confirm: function (user_id) {
                     var seller = self.pos.user_by_id[user_id];
                     var order = self.pos.get_order();
@@ -210,8 +210,8 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
                         return order.get_selected_orderline().set_sale_person(seller)
                     } else {
                         self.pos.gui.show_popup('dialog', {
-                            title: _t('Warning'),
-                            body: _t('Have not Line selected, please select one line before add seller')
+                            title: _t('Advertencia'),
+                            body: _t('No ha seleccionado la línea, seleccione una línea antes de agregar al vendedor')
                         })
                     }
                 }
@@ -221,7 +221,7 @@ odoo.define('pos_retail.screen_order_widget', function (require) {
             try {
                 this._super(order_line);
             } catch (ex) {
-                console.error('dont worries, client without table select: ' + ex);
+                console.error('no te preocupes, cliente sin mesa seleccionada: ' + ex);
             }
             this.pos.trigger('selected:line', null);
             var order = this.pos.get_order();
