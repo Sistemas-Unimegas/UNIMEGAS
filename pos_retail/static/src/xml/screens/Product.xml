@@ -359,7 +359,7 @@
 
     <t t-name="product_onhand">
         <t t-if="product['type'] == 'product'">
-            <span class="qty_available" title="Stock disponible del producto">
+            <span class="qty_available" title="Stock disponible">
                 <span class="value">
                     <t t-if="product.qty_available &gt; 0 or product.qty_available &lt; 0">
                         <t t-esc="product.qty_available.toFixed(0)"/>
@@ -548,7 +548,7 @@
     <t t-name="ProductPrice">
         <t t-if="widget.pos.config.display_sale_price_within_tax">
             <t t-if="!product.to_weight">
-                <span class="price-tag" title="Impuesto no incluido" data-tag="price-tag"
+                <span class="price-tag" title="IVA no incluido" data-tag="price-tag"
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <t t-esc="widget.format_currency(widget.pos.get_price_with_tax(product, pricelist), 'Product Price')"/>
                     <span class="cart_qty oe_hidden">
@@ -558,7 +558,7 @@
                 </span>
             </t>
             <t t-if="product.to_weight">
-                <span class="price-tag" title="Impuesto no incluido" data-tag="price-tag"
+                <span class="price-tag" title="IVA no incluido" data-tag="price-tag"
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <t t-esc="widget.format_currency(widget.pos.get_price_with_tax(product, pricelist), 'Product Price') + '/' + widget.pos.units_by_id[product.uom_id[0]].name"/>
                     <span class="cart_qty oe_hidden">
@@ -570,7 +570,7 @@
         </t>
         <t t-if="!widget.pos.config.display_sale_price_within_tax">
             <t t-if="!product.to_weight">
-                <span class="price-tag" title="Impuesto incluido" data-tag="price-tag"
+                <span class="price-tag" title="IVA incluido" data-tag="price-tag"
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <i class="fa fa-compress-alt"/>
                     <t t-esc="widget.format_currency(product.get_price(pricelist, 1), 'Product Price')"/>
@@ -581,7 +581,7 @@
                 </span>
             </t>
             <t t-if="product.to_weight">
-                <span class="price-tag" title="Impuesto incluido" data-tag="price-tag"
+                <span class="price-tag" title="IVA incluido" data-tag="price-tag"
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <i class="fa fa-compress-alt"/>
                     <t t-esc="widget.format_currency(product.get_price(pricelist, 1), 'Product Price')  + '/' + widget.pos.units_by_id[product.uom_id[0]].name"/>
@@ -851,14 +851,16 @@
                         <span class="search-clear left">
                             <i class="fa fa-search"></i>
                         </span>
+                        <!--
                         <t t-if="widget.pos.config.add_client">
                             <button class="btn add-new-client">
                                 <i class="material-icons" style="margin-top: 5px">agregar_persona</i>
                                 <span class="keyboard-shortcut">A</span>
                             </button>
                         </t>
+                    -->
                         <button class="btn open-clientlist">
-                            <i class="material-icons" style="margin-top: 5px">list</i>
+                            <i class="material-icons" style="margin-top: 5px">lista</i>
                             <span class="keyboard-shortcut">
                                 <i class="fa fa-keyboard"/>
                                 C o Espacio
