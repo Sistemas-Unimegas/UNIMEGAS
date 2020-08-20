@@ -13,29 +13,29 @@
                     <div class="card-content">
                         <t t-if="widget.options.invoice">
                             <div class="row">
-                                <label class="label voucher-label">Credit Method</label>
+                                <label class="label voucher-label">Método de crédito</label>
                                 <select class='form-control voucher-select field' name='refund_method'>
                                     <option value='refund'>
-                                        Partial Refund
+                                        Reembolso parcial
                                     </option>
                                     <option value='cancel'>
-                                        Full Refund
+                                        Reembolso completo
                                     </option>
                                     <option value='modify'>
-                                        Full Refund and Draft Invoice
+                                        Reembolso total y borrador de factura
                                     </option>
                                 </select>
                             </div>
                             <div class="row">
-                                <label class="label voucher-label">Reason</label>
+                                <label class="label voucher-label">Razón</label>
                                 <input type="text" class="form-control field" name="reason"/>
                             </div>
                             <div class="row">
-                                <label class="label voucher-label">Refund Date<i class="fa fa-calendar"></i></label>
+                                <label class="label voucher-label">Fecha de Devolución<i class="fa fa-calendar"></i></label>
                                 <input type="text" class="form-control datepicker field" name="date"/>
                             </div>
                             <div class="row">
-                                <span class="label voucher-label">Use Special Journal</span>
+                                <span class="label voucher-label">Usar diario especial</span>
                                 <select class='form-control voucher-select field' name='journal_id'>
                                     <t t-if="widget.pos.account_journals">
                                         <t t-foreach='widget.pos.account_journals' t-as='journal'>
@@ -51,10 +51,10 @@
                             <span class="card-issue"/>
                             <div class="form-footer text-center">
                                 <div class="btn btn-success pull-right confirm">
-                                    Confirm <i class='fa fa-keyboard'/> (Enter)
+                                    Confirmar <i class='fa fa-keyboard'/> (Enter)
                                 </div>
                                 <div class="btn btn-danger pull-left cancel">
-                                    Close <i class='fa fa-keyboard'/> (ESC)
+                                    Cerrar <i class='fa fa-keyboard'/> (ESC)
                                 </div>
                             </div>
                         </t>
@@ -76,12 +76,12 @@
                         </t>
                         <t t-if="widget.options.invoice">
                             <div class="row">
-                                <label class="label voucher-label">Amount</label>
+                                <label class="label voucher-label">Importe</label>
                                 <input type="number" class="form-control field" t-att-value="widget.options.invoice.amount_residual" name="residual"/>
                             </div>
                             <t t-if="widget.pos.account_journals">
                                 <div class="row">
-                                    <span class="label voucher-label">Journal</span>
+                                    <span class="label voucher-label">Diario</span>
                                     <select class='form-control voucher-select field' name='journal_id'>
                                         <t t-foreach='widget.pos.account_journals' t-as='journal'>
                                             <t t-if="journal.pos_method_type == 'default'">
@@ -98,10 +98,10 @@
                     <span class="card-issue"/>
                     <div class="form-footer text-center">
                         <div class="btn btn-success pull-right confirm">
-                            Register <i class='fa fa-keyboard'/> (Enter)
+                            Registrar <i class='fa fa-keyboard'/> (Enter)
                         </div>
                         <div class="btn btn-danger pull-left cancel">
-                            Close <i class='fa fa-keyboard'/> (ESC)
+                            Cerrar <i class='fa fa-keyboard'/> (ESC)
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
     </t>
 
     <t t-name="InvoiceScreenHeader">
-        <div class="oe_status shop_logo invoices-screen" title="Invoices Screen">
+        <div class="oe_status shop_logo invoices-screen" title="Pantalla de facturas">
             <img class="logo_shop_header" src="/pos_retail/static/src/icons/invoice.png"/>
             <span class="keyboard-shortcut">I</span>
         </div>
@@ -121,7 +121,7 @@
             <div class="full_width screen-content">
                 <section class="top-content">
                     <span class='button back'>
-                        Back
+                        Regresar
                     </span>
                     <span class='searchbox search-invoice'>
                         <input placeholder='Search Invoice' />
@@ -134,7 +134,7 @@
                     </span>
                     <span class='searchbox'></span>
                     <span class='button button-top-right highlight invoices_draft'>
-                        Only Draft
+                        Solo borrador
                         <i class='fa fa-info'></i>
                     </span>
                 </section>
@@ -153,18 +153,18 @@
                                         <thead>
                                             <tr>
                                                 <th><a href="#" class="sort sort_by_invoice_id">ID</a></th>
-                                                <th><a href="#" class="sort sort_by_invoice_create_date">Create date</a></th>
-                                                <th><a href="#" class="sort sort_by_invoice_name">Name</a></th>
-                                                <th>Ref</th>
-                                                <th><a href="#" class="sort sort_by_invoice_origin">Origin</a></th>
-                                                <th><a href="#" class="sort sort_by_invoice_partner_name">Partner</a></th>
-                                                <th><a href="#" class="sort sort_by_invoice_payment_term_id">Payment term</a></th>
-                                                <th><a href="#" class="sort sort_by_invoice_date_invoice">Invoice Date</a></th>
-                                                <th><a href="#" class="sort sort_by_invoice_user_id">Sale Person</a></th>
-                                                <th class="text-right"><a href="#" class="sort sort_by_invoice_amount_tax">Tax</a></th>
+                                                <th><a href="#" class="sort sort_by_invoice_create_date">Fecha factura</a></th>
+                                                <th><a href="#" class="sort sort_by_invoice_name">Nombre</a></th>
+                                                <th>Referencia</th>
+                                                <th><a href="#" class="sort sort_by_invoice_origin">Origen</a></th>
+                                                <th><a href="#" class="sort sort_by_invoice_partner_name">Cliente</a></th>
+                                                <th><a href="#" class="sort sort_by_invoice_payment_term_id">Condiciones de pago</a></th>
+                                                <th><a href="#" class="sort sort_by_invoice_date_invoice">Fecha factura</a></th>
+                                                <th><a href="#" class="sort sort_by_invoice_user_id">Vendedor</a></th>
+                                                <th class="text-right"><a href="#" class="sort sort_by_invoice_amount_tax">IVA</a></th>
                                                 <th class="text-right"><a href="#" class="sort sort_by_invoice_amount_total">Total</a></th>
-                                                <th class="text-right"><a href="#" class="sort sort_by_invoice_residual">Amount due</a></th>
-                                                <th class="text-right"><a href="#" class="sort sort_by_invoice_state">State</a></th>
+                                                <th class="text-right"><a href="#" class="sort sort_by_invoice_residual">Importe adeudado</a></th>
+                                                <th class="text-right"><a href="#" class="sort sort_by_invoice_state">Estado</a></th>
                                             </tr>
                                         </thead>
                                         <tbody class='client-list-contents invoice-list'>
@@ -253,8 +253,8 @@
                 <t t-esc='widget.format_currency_no_symbol(invoice.amount_residual)'/>
             </td>
             <td class="text-right">
-                <t t-if="invoice.state == 'draft'">Draft</t>
-                <t t-if="invoice.state == 'posted'">Posted</t>
+                <t t-if="invoice.state == 'draft'">Borrador</t>
+                <t t-if="invoice.state == 'posted'">Publicado</t>
             </td>
         </tr>
     </t>
@@ -280,7 +280,7 @@
             <div class='client-details-box clearfix'>
                 <div class='client-details-left'>
                     <div class='client-detail'>
-                        <span class='label'>Partner</span>
+                        <span class='label'>Cliente</span>
                         <t t-if='invoice.partner_id'>
                             <span class='detail client-address'><t t-esc='invoice.partner_id[1]' /></span>
                         </t>
@@ -289,7 +289,7 @@
                         </t>
                     </div>
                     <div class='client-detail'>
-                        <span class='label'>Origin</span>
+                        <span class='label'>Origen</span>
                         <t t-if='invoice.invoice_origin'>
                             <span class='detail client-origin'><t t-esc='invoice.invoice_origin' /></span>
                         </t>
@@ -298,7 +298,7 @@
                         </t>
                     </div>
                     <div class='client-detail'>
-                        <span class='label'>Invoice Date</span>
+                        <span class='label'>Fecha factura</span>
                         <t t-if='invoice.invoice_date'>
                             <span class='detail client-phone'><t t-esc='invoice.invoice_date' /></span>
                         </t>
@@ -313,21 +313,21 @@
                 <div class='client-details-right'>
                     <t t-if="invoice.state == 'draft'">
                         <div class='client-detail invoice-action post'>
-                            <span class='label'>POST</span>
+                            <span class='label'>Publicado</span>
                             <button type="button" rel="tooltip" class="btn btn-default button_form">
                                 <i class="fa fa-check"/>
                             </button>
                         </div>
                     </t>
                     <div class='client-detail invoice-action inv-print-invoice'>
-                        <span class='label'>Print Invoice</span>
+                        <span class='label'>Imprimir factura</span>
                         <button type="button" rel="tooltip" class="btn btn-success button_form">
                             <i class="fa fa-print"/>
                         </button>
                     </div>
                     <t t-if="invoice.amount_residual > 0">
                         <div class='client-detail invoice-action inv-print-invoice-without-payment'>
-                            <span class='label'>Print Invoice (without payment)</span>
+                            <span class='label'>Imprimir factura (sin pagos)</span>
                             <button type="button" rel="tooltip" class="btn btn-success button_form">
                                 <i class="fa fa-print"/>
                             </button>
@@ -335,7 +335,7 @@
                     </t>
                     <t t-if="(invoice.state == 'posted' or invoice.invoice_payment_state != 'not_paid') and ['out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'].indexOf(invoice.type) != -1">
                         <div class='client-detail invoice-action register_payment'>
-                            <span class='label'>Register Payment</span>
+                            <span class='label'>Registrar pagos</span>
                             <button type="button" rel="tooltip" class="btn btn-default button_form">
                                 <i class="fa fa-pencil-square"/>
                             </button>
@@ -343,18 +343,18 @@
                     </t>
                     <t t-if="invoice.state == 'posted' or ['out_invoice', 'in_invoice'].indexOf(invoice.type) == -1">
                         <div class='client-detail invoice-action add_credit_note'>
-                            <span class='label'>Add Credit Note</span>
+                            <span class='label'>Agregar nota de crédito</span>
                             <button type="button" rel="tooltip" class="btn btn-danger button_form">
                                 <i class="fa fa-pencil-square"/>
                             </button>
                         </div>
                     </t>
                     <div class='client-detail'>
-                        <span class='label'>Open Invoice</span>
-                        <a class='so_link' target='_blank' t-att-href="invoice.link">(Click here)</a>
+                        <span class='label'>Abrir facturas</span>
+                        <a class='so_link' target='_blank' t-att-href="invoice.link">(Click aquí)</a>
                     </div>
                     <div class='client-detail'>
-                        <span class='label'>Payment term</span>
+                        <span class='label'>Términos de pago</span>
                         <t t-if='invoice.invoice_payment_term_id'>
                             <span class='detail client-email'><t t-esc='invoice.invoice_payment_term_id[1]' /></span>
                         </t>
@@ -364,7 +364,7 @@
                     </div>
 
                     <div class='client-detail state'>
-                        <span class='label'>Tax</span>
+                        <span class='label'>IVA</span>
                         <t t-esc='widget.format_currency(invoice.amount_tax)'/>
                     </div>
                     <div class='client-detail state'>
@@ -372,7 +372,7 @@
                         <t t-esc='widget.format_currency(invoice.amount_total)'/>
                     </div>
                     <div class='client-detail state'>
-                        <span class='label'>Due</span>
+                        <span class='label'>Pendiente</span>
                         <t t-esc='widget.format_currency(invoice.amount_residual)'/>
                     </div>
                 </div>
@@ -387,15 +387,15 @@
         <table class='client-list'>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Qty</th>
-                    <th>Disc</th>
-                    <th>Price</th>
-                    <th>Credit</th>
-                    <th>Debit</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Desc</th>
+                    <th>Precio</th>
+                    <th>Crédito</th>
+                    <th>Débito</th>
                     <th>Balance</th>
                     <th>Sub Total</th>
-                    <th>Price Total</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody class='client-list-contents'>
