@@ -190,7 +190,7 @@ odoo.define('pos_retail.model', function (require) {
                     sub_search_string: this.db.partner_search_string,
                     sub_record_by_id: this.db.partner_by_id,
                     sub_template: 'clients_list',
-                    sub_button: '<div class="btn btn-success pull-right go_clients_screen">Go Clients Screen</div>',
+                    sub_button: '<div class="btn btn-success pull-right go_clients_screen">Ir a Pantalla de Clientes</div>',
                     sub_button_action: function () {
                         self.gui.show_screen('clientlist')
                     },

@@ -229,8 +229,8 @@ odoo.define('pos_retail.screen_payment', function (require) {
                 if (!invoice_journal_id) {
                     order.set_to_invoice(false);
                     return this.pos.gui.show_popup('confirm', {
-                        title: _t('Warning'),
-                        body: _t('Order set to invoice but POS config not setting Invoicing / Invoice Journal. If you wanted order submitted to backend without Invoice please confirm YES'),
+                        title: _t('Advertencia'),
+                        body: _t('Pedido configurado para factura, pero la configuración de POS no establece facturación / diario de facturas. Si desea que el pedido se envíe al backend sin factura, confirme SÍ'),
                         confirm: function () {
                             return self.finalize_validation();
                         }
@@ -252,8 +252,8 @@ odoo.define('pos_retail.screen_payment', function (require) {
                 if (line.amount == 0) {
                     self.hide();
                     return self.pos.gui.show_popup('confirm', {
-                        title: _t('Warning'),
-                        body: _t('Please set amount before set payment reference'),
+                        title: _t('Advertencia'),
+                        body: _t('Establezca el monto antes de establecer la referencia de pago'),
                         confirm: function () {
                             self.show();
                         },
@@ -362,11 +362,11 @@ odoo.define('pos_retail.screen_payment', function (require) {
                 sub_search_string: this.pos.db.partner_search_string,
                 sub_record_by_id: this.pos.db.partner_by_id,
                 sub_template: 'clients_list',
-                sub_button: '<div class="btn btn-success pull-right go_clients_screen">Go Clients Screen</div>',
+                sub_button: '<div class="btn btn-success pull-right go_clients_screen">Ir a Pantalla de Clientes</div>',
                 sub_button_action: function () {
                     self.pos.gui.show_screen('clientlist')
                 },
-                body: 'Please select one client',
+                body: 'Selecciona un Cliente',
                 confirm: function (client_id) {
                     var client = self.pos.db.get_partner_by_id(client_id);
                     if (client) {
@@ -386,8 +386,8 @@ odoo.define('pos_retail.screen_payment', function (require) {
                 order.set_to_invoice(false);
                 this.$('.js_invoice').removeClass('highlight');
                 return this.pos.gui.show_popup('error', {
-                    title: _t('Warning'),
-                    body: _t('Your pos setting not active Invoicing / Invoice Journal. Please close session and setup it before use this future')
+                    title: _t('Advertencia'),
+                    body: _t('Su configuración pos no está activa Facturación / Diario de facturas. Cierre la sesión y configúrela antes de usar esta opción')
                 })
             }
             if (order.is_to_invoice()) {
@@ -507,20 +507,20 @@ odoo.define('pos_retail.screen_payment', function (require) {
                         self.render_paymentlines();
                     } else {
                         return self.pos.gui.show_popup('confirm', {
-                            title: 'Warning',
-                            body: 'Your Order payment full succeed, have not amount due'
+                            title: 'Advertencia',
+                            body: 'El pago de su pedido se realizó correctamente, no tiene monto adeudado'
                         })
                     }
                 } else {
                     self.wrong_input("span[class='left_button paymentmethod']", "Please select payment method");
                     return self.pos.gui.show_popup('dialog', {
-                        title: _t('Warning'),
-                        body: _t('Please select Payment Method on right Page the first')
+                        title: _t('Advertencia'),
+                        body: _t('Seleccione el método de pago en la pantalla')
                     })
                 }
                 return self.pos.gui.show_popup('confirm', {
-                    title: _t('Order Finished'),
-                    body: _t('Submit and Print Receipt now ?'),
+                    title: _t('Pedido terminado'),
+                    body: _t('Envíe e imprima recibo ahora ?'),
                     confirm: function () {
                         self.validate_order();
                     }
@@ -530,8 +530,8 @@ odoo.define('pos_retail.screen_payment', function (require) {
             this.$('.paid_partial').click(function () {
                 var order = self.pos.get_order();
                 return self.gui.show_popup('confirm', {
-                    title: _t('Alert'),
-                    body: _t('Total Amount of Order is: ' + self.gui.chrome.format_currency(order.get_total_with_tax()) + ', and you wanted submit Order with amount paid is: ' + self.gui.chrome.format_currency(order.get_total_paid() - order.get_change())),
+                    title: _t('Advertencia'),
+                    body: _t('La cantidad total del pedido es: ' + self.gui.chrome.format_currency(order.get_total_with_tax()) + ', y deseaba enviar el pedido con el monto pagado es: ' + self.gui.chrome.format_currency(order.get_total_paid() - order.get_change())),
                     confirm: function () {
                         var order = self.pos.get_order();
                         order.do_partial_payment();
@@ -550,8 +550,8 @@ odoo.define('pos_retail.screen_payment', function (require) {
                     }, 500)
                 } else {
                     self.pos.gui.show_popup('confirm', {
-                        title: _t('Warning'),
-                        body: _t('Payments Lines is Blank or Order is not valid')
+                        title: _t('Advertencia'),
+                        body: _t('Las líneas de pago están en blanco o el pedido no es válido')
                     })
                 }
             });
@@ -618,8 +618,8 @@ odoo.define('pos_retail.screen_payment', function (require) {
                 });
                 if (!wallet_journal) {
                     self.pos.gui.show_popup('confirm', {
-                        title: 'Warning',
-                        body: 'Your system missed add Wallet journal, please create journal wallet with pos method is wallet and add it to Payment Method',
+                        title: 'Advertencia',
+                        body: 'Su sistema no pudo agregar el diario de Wallet, cree el monedero del diario con el método pos es billetera y agréguelo al método de pago',
                         confirm: function () {
                             self.show()
                         },
@@ -633,8 +633,8 @@ odoo.define('pos_retail.screen_payment', function (require) {
                 });
                 if (!wallet_method) {
                     return self.pos.gui.show_popup('confirm', {
-                        title: 'Warning',
-                        body: 'Payment method Wallet have not add to your pos config, contact admin and add it before use this future',
+                        title: 'Advertencia',
+                        body: 'El método de pago Wallet no se ha agregado a su configuración pos, comuníquese con el administrador y agréguelo antes de usar este futuro',
                         confirm: function () {
                             self.show()
                         },
@@ -646,14 +646,14 @@ odoo.define('pos_retail.screen_payment', function (require) {
                 if (order && !order.get_client()) {
                     self.pos.gui.show_screen('clientlist');
                     return self.pos.gui.show_popup('confirm', {
-                        title: _t('Warning'),
-                        body: _t('Required select customer for add Wallet Amount'),
+                        title: _t('Advertencia'),
+                        body: _t('Cliente seleccionado requerido para agregar Monto de billetera'),
                     });
                 }
                 if (!change || change == 0) {
                     return self.pos.gui.show_popup('confirm', {
-                        title: _t('Warning'),
-                        body: _t('Order change empty'),
+                        title: _t('Advertencia'),
+                        body: _t('Cambio de orden vacío'),
                         cancel: function () {
                             self.show();
                             self.renderElement();
@@ -680,8 +680,8 @@ odoo.define('pos_retail.screen_payment', function (require) {
                                 order.trigger('change', order);
                             } else {
                                 self.pos.gui.show_popup('confirm', {
-                                    title: _t('Warning'),
-                                    body: _t('It not possible set Wallet amount bigger than Change Amount'),
+                                    title: _t('Advertencia'),
+                                    body: _t('No es posible establecer un monto de billetera mayor que el monto de cambio'),
                                     cancel: function () {
                                         self.show();
                                         return self.pos.gui.close_popup();
@@ -755,16 +755,16 @@ odoo.define('pos_retail.screen_payment', function (require) {
                     } else {
                         self.pos.gui.show_screen('clientlist');
                         return self.pos.gui.show_popup('confirm', {
-                            title: _t('Warning'),
-                            body: _t('Customer email is blank, please update')
+                            title: _t('Advertencia'),
+                            body: _t('El correo electrónico del cliente está en blanco, actualice')
                         })
                     }
 
                 } else {
                     self.pos.gui.show_screen('clientlist');
                     return self.pos.gui.show_popup('confirm', {
-                        title: _t('Warning'),
-                        body: _t('Please select client the first')
+                        title: _t('Advertencia'),
+                        body: _t('Por favor seleccione cliente el primero')
                     })
                 }
             });
@@ -787,15 +787,15 @@ odoo.define('pos_retail.screen_payment', function (require) {
             var amount_change = order.get_change();
             if ((amount_change + amount_total - amount_paid) >= 0.00000001) {
                 this.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: _t('Order not fully paid amount')
+                    title: _t('Advertencia'),
+                    body: _t('Pedido no pagado en su totalidad')
                 });
                 return false
             }
             if (amount_total <= 0 && !this.pos.config.allow_payment_zero) {
                 this.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: _t('It not possible allow Amount Total is Zero')
+                    title: _t('Advertencia'),
+                    body: _t('No es posible permitir que la cantidad total sea cero')
                 });
                 return false
             }
@@ -819,7 +819,7 @@ odoo.define('pos_retail.screen_payment', function (require) {
                         continue
                     } else {
                         return this.pos.gui.show_popup('confirm', {
-                            title: _t('Warning, Your POS setting not allow sale product when products out of stock'),
+                            title: _t('Advertencia, su configuración de POS no permite la venta de productos cuando los productos están agotados'),
                             body: warning_message,
                         });
                     }
@@ -828,8 +828,8 @@ odoo.define('pos_retail.screen_payment', function (require) {
             if (order.is_return) {
                 if (order.paymentlines.models.length == 0) {
                     return this.pos.gui.show_popup('confirm', {
-                        title: _t('Warning'),
-                        body: _t('Please choose Payment Method')
+                        title: _t('Advertencia'),
+                        body: _t('Elija el método de pago')
                     });
                 }
             }
@@ -859,15 +859,15 @@ odoo.define('pos_retail.screen_payment', function (require) {
                 }
                 if (client['wallet'] < wallet && use_wallet == true) {
                     this.pos.gui.show_popup('confirm', {
-                        title: _t('Warning'),
-                        body: client.name + ' have Wallet Amount ' + ' only have ' + this.pos.chrome.format_currency(client['wallet']) + '. It not possible set payment line amount bigger than ' + this.pos.chrome.format_currency(client['wallet'])
+                        title: _t('Advertencia'),
+                        body: client.name + ' tener monto de billetera ' + ' solo tiene ' + this.pos.chrome.format_currency(client['wallet']) + '. No es posible establecer un monto de línea de pago mayor que ' + this.pos.chrome.format_currency(client['wallet'])
                     });
                     return false;
                 }
                 if (!order.is_return && client && (client['balance'] - credit < 0) && use_credit == true) {
                     this.pos.gui.show_popup('confirm', {
                         title: _t('Error'),
-                        body: client.name + ' have Credit Amount ' + this.pos.chrome.format_currency(client['balance']) + '. It not possible set payment line amount bigger than ' + this.pos.chrome.format_currency(client['balance'])
+                        body: client.name + ' tener monto de crédito ' + this.pos.chrome.format_currency(client['balance']) + '. No es posible establecer un monto de línea de pago mayor que ' + this.pos.chrome.format_currency(client['balance'])
                     });
                     return false;
                 }
@@ -886,12 +886,12 @@ odoo.define('pos_retail.screen_payment', function (require) {
                 }, function (err) {
                     if (err.message.code == -32098) {
                         return self.pos.gui.show_popup('confirm', {
-                            title: _t('Warning'),
-                            body: _t('Your Odoo Offline mode or Your Device have problem about internet, please checking your internet connection first'),
+                            title: _t('Advertencia'),
+                            body: _t('Su modo sin conexión de Odoo o su dispositivo tienen problemas con Internet, primero verifique su conexión a Internet'),
                         })
                     } else {
                         return self.pos.gui.show_popup('confirm', {
-                            title: _t('Warning'),
+                            title: _t('Advertencia'),
                             body: err.message.message,
                         })
                     }
