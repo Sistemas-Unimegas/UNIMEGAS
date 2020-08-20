@@ -25,30 +25,30 @@ odoo.define('pos_retail.report', function (require) {
                 var list_report = [];
                 if (self.pos.config.report_product_summary) {
                     list_report.push({
-                        'label': 'Report Products Summary',
+                        'label': 'Informe de resumen de productos',
                         'item': 1
                     })
                 }
                 if (self.pos.config.report_order_summary) {
                     list_report.push({
-                        'label': 'Report Orders Summary',
+                        'label': 'Informe de resumen de pedidos',
                         'item': 2
                     })
                 }
                 if (self.pos.config.report_payment_summary) {
                     list_report.push({
-                        'label': 'Report Payment Summary',
+                        'label': 'Informe Resumen de pagos',
                         'item': 3
                     })
                 }
                 if (self.pos.config.report_sale_summary) {
                     list_report.push({
-                        'label': 'Z-Report (Your Session Sale Summary)',
+                        'label': 'Informe Z (Resumen de ventas de su sesión)',
                         'item': 4
                     })
                 }
                 return self.pos.gui.show_popup('selection', {
-                    title: _t('Please select one report need review'),
+                    title: _t('Seleccione un informe'),
                     list: list_report,
                     confirm: function (report) {
                         if (report == 1) {
@@ -327,18 +327,18 @@ odoo.define('pos_retail.report', function (require) {
                 });
             } else {
                 if (!from_date) {
-                    return this.wrong_input('input[name="from_date"]', '(*) Start date required');
+                    return this.wrong_input('input[name="from_date"]', '(*) Fecha de inicio requerida');
                 } else {
                     this.passed_input('input[name="from_date"]');
                 }
                 if (!to_date) {
-                    return this.wrong_input('input[name="to_date"]', '(*) To Date required');
+                    return this.wrong_input('input[name="to_date"]', '(*) Hasta la fecha requerido');
                 } else {
                     this.passed_input('input[name="to_date"]');
                 }
                 if (from_date > to_date) {
                     this.wrong_input('input[name="from_date"]');
-                    return this.wrong_input('input[name="to_date"]', '(*) From Date could not bigger than To Date');
+                    return this.wrong_input('input[name="to_date"]', '(*) Desde la fecha no puede ser mayor que hasta la fecha');
                 } else {
                     this.passed_input('input[name="from_date"]');
                 }
@@ -525,18 +525,18 @@ odoo.define('pos_retail.report', function (require) {
                 });
             } else {
                 if (!fields['from_date']) {
-                    return this.wrong_input('input[name="from_date"]', '(*) Start date required');
+                    return this.wrong_input('input[name="from_date"]', '(*) Fecha de inicio requerida');
                 } else {
                     this.passed_input('input[name="from_date"]');
                 }
                 if (!fields['to_date']) {
-                    return this.wrong_input('input[name="to_date"]', '(*) To Date required');
+                    return this.wrong_input('input[name="to_date"]', '(*) Hasta la fecha requerido');
                 } else {
                     this.passed_input('input[name="to_date"]');
                 }
                 if (fields['from_date'] > fields['to_date']) {
                     this.wrong_input('input[name="from_date"]');
-                    return this.wrong_input('input[name="to_date"]', '(*) From Date could not bigger than To Date');
+                    return this.wrong_input('input[name="to_date"]', '(*) Desde la fecha no puede ser mayor que hasta la fecha');
                 } else {
                     this.passed_input('input[name="from_date"]');
                 }
@@ -565,8 +565,8 @@ odoo.define('pos_retail.report', function (require) {
                 if (Object.keys(results['category_report']).length == 0 && Object.keys(results['order_report']).length == 0 &&
                     Object.keys(results['payment_report']).length == 0) {
                     this.pos.gui.show_popup('confirm', {
-                        title: _t('Warning'),
-                        body: _t('No record found')
+                        title: _t('Advertencia'),
+                        body: _t('No se encontraron registros')
                     })
                 } else {
                     var category_report;
@@ -669,8 +669,8 @@ odoo.define('pos_retail.report', function (require) {
                     if (res) {
                         if (Object.keys(res['journal_details']).length == 0 && Object.keys(res['salesmen_details']).length == 0) {
                             self.pos.gui.show_popup('confirm', {
-                                title: 'Warning',
-                                body: 'No record found'
+                                title: 'Advertencia',
+                                body: 'No se encontraron registros'
                             })
                         } else {
                             var journal_key = Object.keys(res['journal_details']);
@@ -705,18 +705,18 @@ odoo.define('pos_retail.report', function (require) {
             } else {
                 if (from_date == "" && to_date == "" || from_date != "" && to_date == "" || from_date == "" && to_date != "") {
                     if (!from_date) {
-                        return this.wrong_input('input[name="from_date"]', "(*) From date is required");
+                        return this.wrong_input('input[name="from_date"]', "(*) Se requiere fecha desde");
                     } else {
                         this.passed_input('input[name="from_date"]');
                     }
                     if (!to_date) {
-                        return this.wrong_input('input[name="to_date"]', "(*) To date is required");
+                        return this.wrong_input('input[name="to_date"]', "(*) Hasta la fecha se requiere");
                     } else {
                         this.passed_input('input[name="to_date"]');
                     }
                 } else if (from_date > to_date) {
-                    this.wrong_input('input[name="from_date"]', "(*) Start date required smaller than To date");
-                    return this.wrong_input('input[name="to_date"]', "(*) Start date required smaller than To date");
+                    this.wrong_input('input[name="from_date"]', "(*) Fecha de inicio requerida menor que Hasta la fecha");
+                    return this.wrong_input('input[name="to_date"]', "(*) Fecha de inicio requerida menor que Hasta la fecha");
                 }
                 var val = {
                     'from_date': from_date,
@@ -734,8 +734,8 @@ odoo.define('pos_retail.report', function (require) {
                     if (res) {
                         if (Object.keys(res['journal_details']).length == 0 && Object.keys(res['salesmen_details']).length == 0) {
                             self.pos.gui.show_popup('confirm', {
-                                title: 'Warning',
-                                body: 'No record found'
+                                title: 'Advertencia',
+                                body: 'No se encontraron registros'
                             })
                         } else {
                             var journal_key = Object.keys(res['journal_details']);
