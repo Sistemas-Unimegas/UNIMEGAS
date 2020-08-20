@@ -7,15 +7,15 @@
 
     <t t-name="VisibilityOeStatus">
         <div class="oe_status visibility_status">
-            <a class="oe_green" title="Visible Header Buttons" href="javascript:void(0)">
-                <i class="material-icons">keyboard_arrow_right</i>
+            <a class="oe_green" title="Botones visibles" href="javascript:void(0)">
+                <i class="material-icons">flecha derecha</i>
             </a>
         </div>
     </t>
 
     <t t-name="OpenApps">
-        <div class="oe_status" style="background: #ff5200" title="Open Applications">
-            <i class="material-icons">apps</i>
+        <div class="oe_status" style="background: #ff5200" title="Abrir aplicaciones">
+            <i class="material-icons">aplicaciones</i>
             <span class="keyboard-shortcut">G</span>
         </div>
     </t>
