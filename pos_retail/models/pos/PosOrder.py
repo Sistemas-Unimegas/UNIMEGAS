@@ -839,7 +839,7 @@ class POSOrderLine(models.Model):
         readonly=1)
     promotion = fields.Boolean('Promoción Aplicada', readonly=1)
     promotion_id = fields.Many2one('pos.promotion', 'Promoción', readonly=1, ondelete="set null")
-    promotion_reason = fields.Char(string='Motivo de la promoción', readonly=1)
+    promotion_reason = fields.Char(string='Motivo Promoción', readonly=1)
     is_return = fields.Boolean('Es una devolución')
     order_uid = fields.Text('order_uid', readonly=1)
     user_id = fields.Many2one('res.users', 'Vendedor')
