@@ -435,7 +435,7 @@
             </button>
             <t t-if="widget.pos.config.quickly_payment_full">
                 <button class="btn btn-default checkout-full">
-                    CheckOut Full
+                    Finalizar
                     <span class="keyboard-shortcut">F</span>
                 </button>
             </t>
@@ -445,15 +445,15 @@
                         <t t-esc="widget.selected_order.get_client().name"/>
                     </t>
                     <t t-else="">
-                        Set Customer
+                        Clientes
                     </t>
                     <span class="keyboard-shortcut">
                         <i class="fa fa-keyboard"/>
-                        C or Space
+                        C o Espacio
                     </span>
                 </span>
                 <button class="button checkout">
-                    CheckOut
+                    Finalizar
                     <span class="keyboard-shortcut">
                         <i class="fa fa-keyboard"/>
                         Enter
@@ -461,10 +461,10 @@
                 </button>
                 <span style="padding-left: 20px; float: right; color: blue" class="cart-detail">
                     <t t-if="widget.pos.display_cart_list == false">
-                        View Cart <i class="material-icons">receipt</i>
+                        Ver carrito <i class="material-icons">recibo</i>
                     </t>
                     <t t-else="">
-                        Hide Cart <i class="material-icons">receipt</i>
+                        Ocultar carrito <i class="material-icons">recibo</i>
                     </t>
                     <span class="keyboard-shortcut">m</span>
                     <span class="amount_total">
@@ -497,17 +497,17 @@
                                     <t t-if="!widget.pos.config.hide_product_image">
                                         <th></th>
                                     </t>
-                                    <th class="text-left"><a href="#" class="sort sort_by_product_default_code">Default Code</a></th>
-                                    <th class="text-left"><a href="#" class="sort sort_by_product_name">Name</a></th>
-                                    <th class="text-right"><a href="#" class="sort sort_by_product_list_price">Sale Price</a></th>
+                                    <th class="text-left"><a href="#" class="sort sort_by_product_default_code">Código</a></th>
+                                    <th class="text-left"><a href="#" class="sort sort_by_product_name">Nombre</a></th>
+                                    <th class="text-right"><a href="#" class="sort sort_by_product_list_price">Precio de Venta</a></th>
                                     <t t-if="widget.pos.config.display_cost_price">
-                                        <th class="text-right"><a href="#" class="sort sort_by_product_standard_price">Cost</a></th>
+                                        <th class="text-right"><a href="#" class="sort sort_by_product_standard_price">Costo</a></th>
                                     </t>
                                     <t t-if="widget.pos.config.display_sale_price_within_tax">
-                                        <th class="text-right">Price with Taxes</th>
+                                        <th class="text-right">Precio con IVA</th>
                                     </t>
                                     <t t-if="widget.pos.config.display_onhand">
-                                        <th class="text-right"><a href="#" class="sort sort_by_product_qty_available">Stock</a></th>
+                                        <th class="text-right"><a href="#" class="sort sort_by_product_qty_available">Inventario</a></th>
                                     </t>
                                 </tr>
                             </thead>
@@ -552,7 +552,7 @@
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <t t-esc="widget.format_currency(widget.pos.get_price_with_tax(product, pricelist), 'Product Price')"/>
                     <span class="cart_qty oe_hidden">
-                        <i class="material-icons">shopping_cart</i>
+                        <i class="material-icons">carrito</i>
                         <span class="add_shopping_cart">0</span>
                     </span>
                 </span>
@@ -562,7 +562,7 @@
                       t-att-style="widget.pos._get_style_by_element_tag('price-tag')">
                     <t t-esc="widget.format_currency(widget.pos.get_price_with_tax(product, pricelist), 'Product Price') + '/' + widget.pos.units_by_id[product.uom_id[0]].name"/>
                     <span class="cart_qty oe_hidden">
-                        <i class="material-icons">shopping_cart</i>
+                        <i class="material-icons">carrito</i>
                         <span class="add_shopping_cart">0</span>
                     </span>
                 </span>
@@ -575,7 +575,7 @@
                     <i class="fa fa-compress-alt"/>
                     <t t-esc="widget.format_currency(product.get_price(pricelist, 1), 'Product Price')"/>
                     <span class="cart_qty oe_hidden">
-                        <i class="material-icons">shopping_cart</i>
+                        <i class="material-icons">carrito</i>
                         <span class="add_shopping_cart">0</span>
                     </span>
                 </span>
@@ -586,7 +586,7 @@
                     <i class="fa fa-compress-alt"/>
                     <t t-esc="widget.format_currency(product.get_price(pricelist, 1), 'Product Price')  + '/' + widget.pos.units_by_id[product.uom_id[0]].name"/>
                     <span class="cart_qty oe_hidden">
-                        <i class="material-icons">shopping_cart</i>
+                        <i class="material-icons">carrito</i>
                         <span class="add_shopping_cart">0</span>
                     </span>
                 </span>
@@ -670,7 +670,7 @@
                 </t>
                 <t t-if="product.pos_sequence">
                     <span class="product_sequence">
-                        Sequence: <t t-esc="product.pos_sequence"/>
+                        Secuencia: <t t-esc="product.pos_sequence"/>
                     </span>
                 </t>
                 <t t-call="ProductPrice"/>
@@ -678,30 +678,30 @@
                     <t t-if="product['type'] == 'product'">
                         <t t-set="warning_out_stock" t-value="product.qty_available - product.qty_warning_out_stock"/>
                         <t t-if="out_stock">
-                             <div class="ribbon"><span style="background: #f44336">Out Stock</span></div>
+                             <div class="ribbon"><span style="background: #f44336">Sin Inventario</span></div>
                         </t>
                         <t t-if="!out_stock and warning_out_stock &lt; 0">
-                            <div class="ribbon"><span style="background: #f44336">Limit Stock</span></div>
+                            <div class="ribbon"><span style="background: #f44336">Inventario mínimo</span></div>
                         </t>
                     </t>
                 </t>
                 <t t-if="product.is_combo">
-                    <div class="ribbon"><span>Combo Bundle/Pack</span></div>
+                    <div class="ribbon"><span>Combo/Paquete</span></div>
                 </t>
                 <t t-if="product.sale_extra">
-                    <div class="ribbon"><span>Sale Extra</span></div>
+                    <div class="ribbon"><span>Venta extra</span></div>
                 </t>
                 <t t-if="product.is_credit">
-                    <div class="ribbon"><span>Credit</span></div>
+                    <div class="ribbon"><span>Crédito</span></div>
                 </t>
                 <t t-if="product.multi_uom">
-                    <div class="ribbon"><span>Multi Unit</span></div>
+                    <div class="ribbon"><span>Unidades</span></div>
                 </t>
                 <t t-if="product.multi_variant">
-                    <div class="ribbon"><span>Multi Variants</span></div>
+                    <div class="ribbon"><span>Variantes</span></div>
                 </t>
                 <t t-if="product.cross_selling">
-                    <div class="ribbon"><span>Cross Selling</span></div>
+                    <div class="ribbon"><span>Venta cruzada</span></div>
                 </t>
                 <t t-if="product.is_voucher">
                     <div class="ribbon"><span>Voucher</span></div>
@@ -713,13 +713,13 @@
                             [ <t t-esc="product['default_code']"/> ]
                         </t>
                         <t t-if="widget.pos.config.display_cost_price">
-                             [ Cost: <t t-esc="widget.format_currency(product.standard_price, 'Product Price')"/> ]
+                             [ Costo: <t t-esc="widget.format_currency(product.standard_price, 'Product Price')"/> ]
                         </t>
                     </t>
                     <t t-if="!widget.pos.config.display_product_ref">
                         <t t-call="product_name"/>
                         <t t-if="widget.pos.config.display_cost_price">
-                            [ Cost: <t t-esc="widget.format_currency(product.standard_price, 'Product Price')"/>]
+                            [ Costo: <t t-esc="widget.format_currency(product.standard_price, 'Product Price')"/>]
                         </t>
                     </t>
                     <t t-if="widget.pos.config.display_onhand">
@@ -808,7 +808,7 @@
             <div class="breadcrumbs">
                 <t t-foreach="widget.breadcrumb" t-as="category">
                     <span class="breadcrumb">
-                        <i class="material-icons">keyboard_arrow_right</i>
+                        <i class="material-icons">fecha_derecha</i>
                         <span class="breadcrumb-button js-category-switch" t-att-data-category-id="category.id">
                             <t t-esc="category.name"/>
                         </span>
@@ -836,10 +836,10 @@
                 </span>
                 <span class="show_hide_categories categories-list">
                     <t t-if="!widget.hidden_categories">
-                        <i class="material-icons">visibility_off</i>
+                        <i class="material-icons">no_visible</i>
                     </t>
                     <t t-else="">
-                        <i class="material-icons oe_red">visibility</i>
+                        <i class="material-icons oe_red">visible</i>
                     </t>
                 </span>
                 <t t-if="widget.pos.config.allow_customer">
@@ -853,7 +853,7 @@
                         </span>
                         <t t-if="widget.pos.config.add_client">
                             <button class="btn add-new-client">
-                                <i class="material-icons" style="margin-top: 5px">person_add</i>
+                                <i class="material-icons" style="margin-top: 5px">agregar_persona</i>
                                 <span class="keyboard-shortcut">A</span>
                             </button>
                         </t>
@@ -861,7 +861,7 @@
                             <i class="material-icons" style="margin-top: 5px">list</i>
                             <span class="keyboard-shortcut">
                                 <i class="fa fa-keyboard"/>
-                                C or Space
+                                C o Espacio
                             </span>
                         </button>
                     </div>
@@ -876,11 +876,11 @@
                     </span>
                     <t t-if="widget.pos.config.product_operation and !widget.pos.pos_session.mobile_responsive">
                         <button class="btn btn-default btn-round btn-just-icon new-product">
-                            <i class="material-icons">add</i>
+                            <i class="material-icons">agregar</i>
                             <span class="keyboard-shortcut">E</span>
                         </button>
                         <button class="btn btn-default btn-round btn-just-icon new-product-categ">
-                            <i class="material-icons">create</i>
+                            <i class="material-icons">crear</i>
                             <span class="keyboard-shortcut">W</span>
                         </button>
                     </t>
