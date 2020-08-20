@@ -14,8 +14,11 @@
     </t>
 
     <t t-name="OpenApps">
+        <!--
         <div class="oe_status" style="background: #ff5200" title="Abrir aplicaciones">
-            <i class="material-icons">aplicaciones</i>
+        -->
+        <div class="oe_status" title="Abrir aplicaciones">
+            <i class="material-icons">apps</i>
             <span class="keyboard-shortcut">G</span>
         </div>
     </t>
