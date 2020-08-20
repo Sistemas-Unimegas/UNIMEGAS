@@ -66,160 +66,160 @@ odoo.define('pos_retail.gui', function (require) {
                 var guide_elements = [
                     {
                         element_id: '.apps',
-                        title: _t('All Apps'),
-                        content: _t('All apps and features in here')
+                        title: _t('Todas las aplicaciones'),
+                        content: _t('Todas las aplicaciones y funciones aquí')
                     },
                     {
                         element_id: '.new-product-categ',
-                        title: _t('Create New Category'),
+                        title: _t('Crear nueva categoría'),
                     },
                     {
                         element_id: '.new-product',
-                        title: _t('Create New Product'),
+                        title: _t('Crear nuevo producto'),
                     },
                     {
                         element_id: '.add-new-client',
-                        title: _t('Create New Customer'),
+                        title: _t('Crear nuevo cliente'),
                     },
                     {
                         element_id: '.find-order',
-                        title: _t('Find Order'),
+                        title: _t('Buscar orden'),
                     },
                     {
                         element_id: '.set-customer',
-                        title: _t('Set Customer to Order'),
+                        title: _t('Establecer cliente a pedido'),
                     },
                     {
                         element_id: '.pay',
-                        title: _t('Payment Order'),
+                        title: _t('Orden de pago'),
                     },
                     {
                         element_id: '.total_amount',
-                        title: _t('Total Due'),
+                        title: _t('Total'),
                     },
                     {
                         element_id: '.multi_variant',
-                        title: _t('Set Variants'),
+                        title: _t('Establecer variantes'),
                     },
                     {
                         element_id: '.change_cross_selling',
-                        title: _t('Cross Selling'),
+                        title: _t('Venta cruzada'),
                     },
                     {
                         element_id: '.add_discount',
-                        title: _t('Add Discount'),
+                        title: _t('Agregar descuento'),
                     },
                     {
                         element_id: '.product_packaging',
-                        title: _t('Show Product Package'),
+                        title: _t('Mostrar paquete de producto'),
                     },
                     {
                         element_id: '.button-combo',
-                        title: _t('Set Combo Items'),
+                        title: _t('Establecer elementos combinados'),
                     },
                     {
                         element_id: '.service-charge',
-                        title: _t('Add Service'),
+                        title: _t('Agregar servicio'),
                     },
                     {
                         element_id: '.search-product',
-                        title: _t('Find Products'),
-                        content: _t('You can find Product and add to cart here')
+                        title: _t('Buscar productos'),
+                        content: _t('Puede encontrar el producto y agregarlo al carrito aquí')
                     },
                     {
                         element_id: '.find_customer',
-                        title: _t('Find Customer'),
-                        content: _t('You can fast find customer via mobile/phone number of customer here')
+                        title: _t('Encontrar cliente'),
+                        content: _t('Puede encontrar al cliente rápidamente a través del teléfono móvil / número de teléfono del cliente aquí')
                     },
                     {
                         element_id: '.category_home',
-                        title: _t('Go back Home'),
-                        content: _t('And show all Products')
+                        title: _t('Inicio'),
+                        content: _t('Y mostrar todos los productos')
                     },
                     {
                         element_id: '.screen-mode',
-                        title: _t('Screen Mode'),
-                        content: _t('You can click here and switch between Dark and Light Mode')
+                        title: _t('Modo de pantalla'),
+                        content: _t('Puede hacer clic aquí y cambiar entre el modo oscuro y claro')
                     },
                     {
                         element_id: '.keyboard-guide',
-                        title: _t('Keyboard Guide'),
-                        content: _t('Click show all keyboard shortcut supported of Module')
+                        title: _t('Guía de teclado'),
+                        content: _t('Haga clic en mostrar todos los atajos de teclado compatibles con el módulo')
                     },
                     {
                         element_id: '.lock-session',
-                        title: _t('Lock your Session'),
-                        content: _t('You can lock your session and unlock via POS Pass Pin of User Setting / Point Of Sale')
+                        title: _t('Bloquea tu sesión'),
+                        content: _t('Puede bloquear su sesión y desbloquearla a través del PIN de paso de POS de configuración de usuario / punto de venta')
                     },
                     {
                         element_id: '.remove-orders-blank',
-                        title: _t('Remove Order blank'),
-                        content: _t('Click here for remove orders blank lines')
+                        title: _t('Eliminar pedido en blanco'),
+                        content: _t('Haga clic aquí para eliminar pedidos con líneas en blanco')
                     },
                     {
                         element_id: '.report-analytic',
-                        title: _t('Report Analytic'),
-                        content: _t('If you want print some report about selling, you can try it here')
+                        title: _t('Informe analítico'),
+                        content: _t('Si quieres imprimir algún informe sobre ventas, puedes probarlo aquí')
                     },
                     {
                         element_id: '.shop',
-                        title: _t('Logo your POS Location'),
-                        content: _t('You can click here and change your Logo Shop')
+                        title: _t('Logo de su POS'),
+                        content: _t('Puede hacer clic aquí y cambiar su logotipo POS')
                     },
                     {
                         element_id: '.mobile-mode',
-                        title: _t('Go to Mobile Mode'),
-                        content: _t('If your Odoo is EE license, or you used mobile web app. You can try it')
+                        title: _t('Ir al modo móvil'),
+                        content: _t('Si su Odoo es una licencia EE, o utilizó la aplicación web móvil. Puedes probarlo')
                     },
                     {
                         element_id: '.booked-orders',
-                        title: _t('Booked Orders Screen'),
-                        content: _t('Click here and go to Booked Orders Screen')
+                        title: _t('Pantalla de pedidos reservados'),
+                        content: _t('Haga clic aquí y vaya a la pantalla de pedidos reservados')
                     },
                     {
                         element_id: '.customer-facing-screen',
-                        title: _t('Customer Facing Screen'),
-                        content: _t('Click here for open new tab and facing order screen to customer')
+                        title: _t('Pantalla de cara al cliente'),
+                        content: _t('Haga clic aquí para abrir una nueva pestaña y mirar la pantalla de pedido al cliente')
                     },
                     {
                         element_id: '.invoices-screen',
-                        title: _t('Invoices Screen'),
-                        content: _t('Show all invoices of your pos shop')
+                        title: _t('Pantalla de facturas'),
+                        content: _t('Muestra todas las facturas de tu tienda pos')
                     },
                     {
                         element_id: '.pos-orders-screen',
-                        title: _t('POS Orders Screen'),
-                        content: _t('Show all pos orders of your pos shop')
+                        title: _t('Pantalla de pedidos POS'),
+                        content: _t('Mostrar todos los pedidos pos de su tienda pos')
                     },
                     {
                         element_id: '.products-sort-by',
-                        title: _t('Sort By'),
-                        content: _t('You can short by Products, Filter by Products')
+                        title: _t('Ordenar por'),
+                        content: _t('Puede abreviar por productos, filtrar por productos')
                     },
                     {
                         element_id: '.products-view-type',
-                        title: _t('Products View Type'),
-                        content: _t('Click it for switch between Box View and List View Products')
+                        title: _t('Tipo de vista de productos'),
+                        content: _t('Haga clic en él para cambiar entre la vista de caja y los productos de vista de lista')
                     },
                     {
                         element_id: '.products-operation',
-                        title: _t('Products Operation'),
-                        content: _t('Go to Products Operation screen, you can create new category, new products, edit products information')
+                        title: _t('Operación de productos'),
+                        content: _t('Vaya a la pantalla Operación de productos, puede crear una nueva categoría, nuevos productos, editar la información de los productos')
                     },
                     {
                         element_id: '.quickly-return-products',
-                        title: _t('Quickly Return Products'),
-                        content: _t('Go to Quickly Return Products, you can active your scanner and scan products return')
+                        title: _t('Devolver productos rápidamente'),
+                        content: _t('Vaya a Devolver productos rápidamente, puede activar su escáner y devolver los productos de escaneo')
                     },
                     {
                         element_id: '.review-receipt',
-                        title: _t('Print Bill without Payment Order'),
-                        content: _t('Click here for print Bill of Order Selected, without payment')
+                        title: _t('Imprimir factura sin orden de pago'),
+                        content: _t('Haga clic aquí para imprimir la factura de pedido seleccionada, sin pago')
                     },
                     {
                         element_id: '.select-pricelist',
-                        title: _t('Set Pricelist'),
-                        content: _t('Click here for for ')
+                        title: _t('Establecer lista de precios'),
+                        content: _t('Haga clic aquí para ')
                     },
                 ];
                 this.guide_elements = guide_elements;
