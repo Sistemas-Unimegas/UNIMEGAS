@@ -63,9 +63,10 @@
             </t>
             <t t-if='receipt.cashier'>
                 <div class="receipt-line field_design" data-tag="el_user">
-                    <span>Cajero</span>
+                    <br/>
+                    <span><!--Cajero--></span>
                     <span class="pos-receipt-right-align">
-                        <t t-esc="receipt.cashier"/>
+                        Cajero : <t t-esc="receipt.cashier"/>
                     </span>
                 </div>
             </t>
@@ -194,9 +195,9 @@
             </t>
             <t t-if="order.location and order.location.name and widget.pos.config.receipt_display_warehouse">
                 <div class="receipt-line field_design" data-tag="el_location">
-                    Inventario
+                    <!--Inventario-->
                     <span class="pos-receipt-right-align">
-                        <t t-esc="order.location.name"/>
+                        <!--<t t-esc="order.location.name"/>-->
                     </span>
                 </div>
             </t>
