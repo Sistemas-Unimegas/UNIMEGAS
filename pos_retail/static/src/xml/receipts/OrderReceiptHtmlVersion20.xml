@@ -3,18 +3,32 @@
 
     <t t-name="OrderReceiptHeader">
         <t t-if="receipt.company.logo">
+            <center>
             <div class="receipt-logo-header field_design" data-tag="el_logo_image">
-                <center>
+                
                 <img class="pos-receipt-logo" t-att-src='receipt.company.logo' alt="Logo"/>
-                </center>
-                <br/>
+
             </div>
+                </center>
+                <br/><br/>
         </t>
         <t t-if="!receipt.company.logo">
             <div class="receipt-line field_design" data-tag="el_company_name">
                 <h5><t t-esc='receipt.company.name' /></h5>
             </div>
         </t>
+
+
+            <t t-if='receipt.company.company_registry'>
+                <div class="receipt-line field_design" data-tag="el_company_regis">
+                    <!--Register No:-->
+                    <span class="pos-receipt-right-align">
+                        <t t-esc="receipt.company.company_registry"/>
+                    </span>
+                </div>
+            </t>
+
+
         <t class="receipt-header" data-tag="el_header">
             <t t-if='receipt.company.contact_address'>
                 <div class="receipt-line field_design" data-tag="el_address">
@@ -56,14 +70,7 @@
                     </span>
                 </div>
             </t>
-            <t t-if='receipt.company.company_registry'>
-                <div class="receipt-line field_design" data-tag="el_company_regis">
-                    <!--Register No:-->
-                    <span class="pos-receipt-right-align">
-                        <t t-esc="receipt.company.company_registry"/>
-                    </span>
-                </div>
-            </t>
+
             <t t-if='receipt.cashier'>
                 <div class="receipt-line field_design" data-tag="el_user">
                     <br/>
