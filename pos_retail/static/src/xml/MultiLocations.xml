@@ -16,10 +16,10 @@
                     <span class="card-issue"/>
                     <div class="form-footer text-center">
                         <div class="btn btn-success pull-right confirm">
-                            Apply <i class='fa fa-keyboard'/> (Enter)
+                            Aplicar <i class='fa fa-keyboard'/> (Enter)
                         </div>
                         <div class="btn btn-danger pull-left cancel">
-                            Close <i class='fa fa-keyboard'/> (ESC)
+                            Cerrar <i class='fa fa-keyboard'/> (ESC)
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <span class="card-issue"/>
                     <div class="form-footer text-center">
                         <span class="btn btn-danger pull-left cancel">
-                            Close <i class='fa fa-keyboard'/> (ESC)
+                            Cerrar <i class='fa fa-keyboard'/> (ESC)
                         </span>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <img src="/pos_retail/static/src/icons/categories.png" width="100%"/>
                 </div>
                 <div class="launchpad-app-label">
-                    Check All Locations
+                    Ver todas las ubicaciones
                 </div>
             </a>
         </div>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="launchpad-app-label">
                     <t t-if="widget.pos.get_picking_source_location()">
-                        Location selected: <t t-esc="widget.pos.get_picking_source_location()['name']"/>
+                        Ubicación seleccionada: <t t-esc="widget.pos.get_picking_source_location()['name']"/>
                     </t>
                 </div>
             </a>
@@ -100,7 +100,7 @@
                     <img src="/pos_retail/static/src/icons/warehouse.png" width="100%"/>
                 </div>
                 <div class="launchpad-app-label">
-                    Checking Stock Inventories
+                    Comprobación de existencias 
                 </div>
             </a>
         </div>
