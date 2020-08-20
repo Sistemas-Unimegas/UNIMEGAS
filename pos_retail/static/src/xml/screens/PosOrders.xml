@@ -22,39 +22,39 @@
                             <div class="client-details-box clearfix">
                                 <div class="client-details-left">
                                     <div class="row">
-                                        <span class="label voucher-label">Customer Name</span>
+                                        <span class="label voucher-label">Cliente</span>
                                         <input class='form-control booking_field input_required'
                                                t-att-value='client.name || ""' name="name"/>
                                     </div>
                                     <div class="row">
-                                        <span class="label voucher-label">Phone</span>
+                                        <span class="label voucher-label">Teléfono</span>
                                         <input class='form-control booking_field input_required'
                                                t-att-value='client.phone || ""' name="phone"/>
                                     </div>
                                     <div class="row">
-                                        <span class="label voucher-label">Mobile</span>
+                                        <span class="label voucher-label">Móvil</span>
                                         <input class='form-control booking_field input_required'
                                                t-att-value='client.mobile || ""' name="mobile"/>
                                     </div>
                                     <div class="row">
-                                        <span class='label voucher-label'>Street</span>
+                                        <span class='label voucher-label'>Calle</span>
                                         <input type="text" class="form-control booking_field input_required"
                                                name="street" t-att-value="client.street || ''"/>
                                     </div>
                                     <div class="row">
-                                        <span class='label voucher-label'>Street 2</span>
+                                        <span class='label voucher-label'>Calle 2</span>
                                         <input type="text" class="form-control booking_field input_required"
                                                name="street2" t-att-value="client.street2 || ''"/>
                                     </div>
                                     <div class="row">
-                                        <span class='label voucher-label'>City</span>
+                                        <span class='label voucher-label'>Ciudad</span>
                                         <input type="text" class="form-control booking_field" name="city"
                                                t-att-value="client.city || ''"/>
                                     </div>
                                 </div>
                                 <div class="client-details-right">
                                     <div class="row">
-                                        <span class='label voucher-label'>Customer Notes</span>
+                                        <span class='label voucher-label'>Notas</span>
                                         <input type="text" class="form-control booking_field" name="comment"
                                                t-att-value="client.comment || ''"/>
                                     </div>
@@ -64,16 +64,16 @@
                                                t-att-value="client.email || ''"/>
                                     </div>
                                     <div class="row">
-                                        <span class="label voucher-label">Signature</span>
+                                        <span class="label voucher-label">Firma</span>
                                         <div class="pos_signature" name="pos_signature"/>
                                     </div>
                                     <div class="row">
-                                        <span class='label voucher-label'>Shipping Notes</span>
+                                        <span class='label voucher-label'>Notas de envío</span>
                                         <input type="text" class="form-control booking_field" name="shipping_notes"
                                                t-att-value="widget.options.order.get_note() || ''"/>
                                     </div>
                                     <div class="row">
-                                        <label class="label checkbox-label">Save to New Shipping Address</label>
+                                        <label class="label checkbox-label">Guardar en nueva dirección de envío</label>
                                         <input type="checkbox"
                                                name="new_shipping_address"
                                                style="box-shadow:none;width: 20px;margin-top: -8px;"
@@ -82,7 +82,7 @@
                                         </input>
                                     </div>
                                     <div class="row">
-                                        <label class="label checkbox-label">COD 100% (Shipping Order to Customer and get Total Amount)</label>
+                                        <label class="label checkbox-label">COD 100% (Envíe la orden al cliente y obtenga la cantidad total)</label>
                                         <input type="checkbox"
                                                name="cod"
                                                checked="true"
@@ -97,10 +97,10 @@
                         <span class="card-issue"/>
                         <div class="form-footer text-center">
                             <div class="btn btn-success pull-right confirm">
-                                Confirm <i class="fa fa-keyboard"></i> (Enter)
+                                Confirmar <i class="fa fa-keyboard"></i> (Enter)
                             </div>
                             <div class="btn btn-danger pull-left cancel">
-                                Close <i class="fa fa-keyboard"></i> (ESC)
+                                Cerrar <i class="fa fa-keyboard"></i> (ESC)
                             </div>
                         </div>
                     </div>
@@ -116,13 +116,13 @@
                     <div class="card-content">
                         <h4 class="card-title">
                             <t t-if="widget.options.order">
-                                Register payment for Order ref: <t t-esc="widget.options.order.pos_reference"/>
+                                Registro de pago para ref. de pedido: <t t-esc="widget.options.order.pos_reference"/>
                             </t>
                         </h4>
                         <div class="card">
                             <div class="card-content">
                                 <div class="row">
-                                    <label class="label voucher-label">Debit</label>
+                                    <label class="label voucher-label">Debito</label>
                                     <input class="form-control field input_required"
                                            type="number"
                                            name="amount"
@@ -130,14 +130,14 @@
                                            required="true"/>
                                 </div>
                                 <div class="row">
-                                    <label class="label voucher-label">Payment Reference</label>
+                                    <label class="label voucher-label">Referencia de pago</label>
                                     <input class="form-control field input_required"
                                            type="text"
                                            name="payment_reference"
                                            required="true"/>
                                 </div>
                                 <div class="row">
-                                    <label class="label voucher-label">Payment Date</label>
+                                    <label class="label voucher-label">Fecha de pago</label>
                                     <input class="form-control datepicker field input_required"
                                            type="text"
                                            name="payment_date"
@@ -145,7 +145,7 @@
                                 </div>
                                 <t t-if="widget.pos.payment_methods">
                                     <div class="row">
-                                        <label class="label voucher-label">Payment Mode (Method)</label>
+                                        <label class="label voucher-label">Método de pago</label>
                                         <select class='form-control voucher-select field input_required'
                                                 name='payment_method_id'>
                                             <t t-foreach='widget.pos.payment_methods' t-as='payment_method'>
@@ -160,14 +160,14 @@
                             <span class="card-issue"/>
                             <div class="form-footer text-center">
                                 <span class="btn confirm">
-                                    Payment <i class='fa fa-keyboard'/>
+                                    Pagar <i class='fa fa-keyboard'/>
                                     (Enter)
                                 </span>
                                 <span class="btn btn-success payment-full">
-                                    Payment Full
+                                    Pago total
                                 </span>
                                 <span class="btn btn-danger cancel">
-                                    Close <i class='fa fa-keyboard'/>
+                                    Cerrar <i class='fa fa-keyboard'/>
                                     (ESC)
                                 </span>
                             </div>
@@ -185,7 +185,7 @@
                     <div class="card-content">
                         <t t-if="widget.options.order">
                             <h4 class="card-title">
-                                Return : <t t-esc="widget.options.order.name"/>
+                                Regreso : <t t-esc="widget.options.order.name"/>
                             </h4>
                         </t>
                         <div class="table-responsive">
@@ -199,19 +199,19 @@
                     <footer>
                         <div class="card-footer text-center">
                             <div class="btn btn-success confirm_return_order">
-                                Confirm <i class='fa fa-keyboard'/>
+                                Confirmar <i class='fa fa-keyboard'/>
                                 (Enter)
                             </div>
                             <div class="btn btn-default select_all">
                                 <i class="fa fa-check"/>
-                                Select All
+                                Seleccionar todo
                             </div>
                             <div class="btn btn-default un_select_all">
                                 <i class="fa fa-check"/>
-                                Un Select All
+                                Deselecciona todo
                             </div>
                             <div class="btn btn-danger cancel">
-                                Close <i class='fa fa-keyboard'/>
+                                Cerrar <i class='fa fa-keyboard'/>
                                 (ESC)
                             </div>
                         </div>
@@ -228,7 +228,7 @@
                     <div class="card-content">
                         <t t-if="widget.options.order">
                             <h4 class="card-title">
-                                Refill like Order: <t t-esc="widget.options.order.name"/>
+                                Rellenar orden: <t t-esc="widget.options.order.name"/>
                             </h4>
                         </t>
                         <div class="table-responsive">
@@ -243,10 +243,10 @@
                         <div class="card-footer text-center">
                             <div class="btn btn-success confirm_refill_order">
                                 <i class="fa fa-check"/>
-                                Confirm Refill Selected Lines
+                                Confirmar rellenar líneas seleccionadas
                             </div>
                             <div class="btn btn-danger cancel">
-                                Close <i class='fa fa-keyboard'/>
+                                Cerrar <i class='fa fa-keyboard'/>
                                 (ESC)
                             </div>
                         </div>
@@ -259,12 +259,12 @@
     <t t-name="return_pos_order_line">
         <tr style="border-bottom: 1px solid">
             <td class="text-left"></td>
-            <td class="text-left">Select</td>
-            <td class="text-left">Product</td>
-            <td class="text-left">Price Unit</td>
-            <td class="text-center">Return Qty</td>
-            <td class="text-center">Minus Qty</td>
-            <td class="text-right">Plus Qty</td>
+            <td class="text-left">Selección</td>
+            <td class="text-left">Producto</td>
+            <td class="text-left">Precio</td>
+            <td class="text-center">Cantidad</td>
+            <td class="text-center">Menos Cant</td>
+            <td class="text-right">Más Cant</td>
             <td class="text-right">Sub Total</td>
         </tr>
         <t t-set="count" t-value="1"/>
@@ -314,7 +314,7 @@
             <div class="full_width screen-content">
                 <section class="top-content">
                     <span class='button back'>
-                        Back
+                        Regresar
                     </span>
                     <span class='searchbox search-pos-order'>
                         <input placeholder='Find POS Order'/>
@@ -326,11 +326,11 @@
                         </span>
                     </span>
                     <span class="button button_sync">
-                        Sync
+                        Sincronizar
                         <i class="fa fa-refresh"></i>
                     </span>
                     <span class='button button-top-right highlight only_partial_payment_orders'>
-                        Partial Orders not Paid full
+                        Órdenes parciales no pagadas en su totalidad
                         <i class='fa fa-info'></i>
                     </span>
                 </section>
@@ -349,19 +349,19 @@
                                         <thead>
                                             <tr>
                                                 <th><a href="#" class="sort sort_by_pos_order_id">ID</a></th>
-                                                <th><a href="#" class="sort sort_by_session">Session</a></th>
-                                                <th><a href="#" class="sort sort_by_order_date">Date</a></th>
-                                                <th><a href="#" class="sort sort_by_order_ref">Ref</a></th>
-                                                <th><a href="#" class="sort sort_by_pos_order_name">Name</a></th>
-                                                <th><a href="#" class="sort sort_by_pos_order_barcode">Barcode</a></th>
-                                                <th><a href="#" class="sort sort_by_pos_order_sale_person">Sale Person</a></th>
-                                                <th><a href="#" class="sort sort_by_pos_order_partner_name">Partner</a></th>
+                                                <th><a href="#" class="sort sort_by_session">Sesión</a></th>
+                                                <th><a href="#" class="sort sort_by_order_date">Fecha</a></th>
+                                                <th><a href="#" class="sort sort_by_order_ref">Referenciaa</a></th>
+                                                <th><a href="#" class="sort sort_by_pos_order_name">Nombre</a></th>
+                                                <th><a href="#" class="sort sort_by_pos_order_barcode">Código de barras</a></th>
+                                                <th><a href="#" class="sort sort_by_pos_order_sale_person">Vendedor</a></th>
+                                                <th><a href="#" class="sort sort_by_pos_order_partner_name">Cliente</a></th>
                                                 <th><a href="#" class="sort sort_by_pos_order_amount_total">Total</a></th>
-                                                <th><a href="#" class="sort sort_by_pos_order_amount_paid">Paid</a></th>
-                                                <th><a href="#" class="sort sort_by_pos_order_amount_tax">Tax</a></th>
-                                                <th><a href="#">Debit</a></th>
-                                                <th name="state"><a href="#" class="sort sort_by_pos_order_state">State</a></th>
-                                                <th>Is Returned</th>
+                                                <th><a href="#" class="sort sort_by_pos_order_amount_paid">Pago</a></th>
+                                                <th><a href="#" class="sort sort_by_pos_order_amount_tax">Impuesto</a></th>
+                                                <th><a href="#">Débito</a></th>
+                                                <th name="state"><a href="#" class="sort sort_by_pos_order_state">Estado</a></th>
+                                                <th>Es devolución</th>
                                             </tr>
                                         </thead>
                                         <tbody class='client-list-contents pos_order_list'>
@@ -383,12 +383,12 @@
                     <table class='client-list'>
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Qty</th>
-                                <th>Returned Qty</th>
-                                <th>Price</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Devolución (Cant)</th>
+                                <th>Precio</th>
                                 <th>Sub total</th>
-                                <th>Seller</th>
+                                <th>Vendedor</th>
                             </tr>
                         </thead>
                         <tbody class='client-list-contents'>
@@ -442,19 +442,19 @@
             <td><t t-esc='widget.format_currency(order.amount_tax)'/></td>
             <td><t t-esc='widget.format_currency(order.amount_total - order.amount_paid)'/></td>
             <td name="state">
-                <t t-if="order.state == 'draft'">Draft</t>
-                <t t-if="order.state == 'cancel'">Cancelled</t>
-                <t t-if="order.state == 'paid'">Paid</t>
-                <t t-if="order.state == 'done'">Posted</t>
-                <t t-if="order.state == 'invoiced'">Invoiced</t>
-                <t t-if="order.state == 'washed'">Washed</t>
-                <t t-if="order.state == 'delivery'">Delivery</t>
-                <t t-if="order.state == 'delivered'">Delivered</t>
-                <t t-if="order.state == 'received'">Received</t>
+                <t t-if="order.state == 'draft'">Borrador</t>
+                <t t-if="order.state == 'cancel'">Cancelado</t>
+                <t t-if="order.state == 'paid'">Pagado</t>
+                <t t-if="order.state == 'done'">Publicado</t>
+                <t t-if="order.state == 'invoiced'">Facturado</t>
+                <t t-if="order.state == 'washed'">LAB</t>
+                <t t-if="order.state == 'delivery'">Por entregar</t>
+                <t t-if="order.state == 'delivered'">Entregado</t>
+                <t t-if="order.state == 'received'">Recibido</t>
             </td>
             <td>
                 <t t-if="order.is_returned">
-                    Returned
+                    Regresado
                 </t>
                 <t t-if="!order.is_returned">
                     N/A
@@ -467,26 +467,26 @@
         <div class="header">
             <t t-if="order.state == 'draft' or order.state == 'quotation'">
                 <button class="btn btn-default button register_amount" title="Register Payment">
-                    Register Payment
+                    Registro del pago
                 </button>
             </t>
             <t t-if="order.state == 'paid' and order.partner">
                 <button class="btn btn-danger button create_invoice" title="Create Invoice">
-                    Invoice
+                    Factura
                 </button>
             </t>
             <button class="btn btn-default button reprint_order" title="RePrint Print Receipt">
-                Print Receipt
+                Imprimir recibo
             </button>
             <t t-if="order.state != 'draft' and widget.pos.config.return_products and !order.is_return">
                 <button class="btn btn-danger button return_order" title="Return Order">
-                    Return Order
+                    Orden de devolución
                 </button>
             </t>
             <button type="button" class="btn btn-default button refill_order">
-                ReOrder
+                ReOrden
             </button>
-            <a class='so_link' target='_blank' t-att-href="order.link" title="Open Order">(Open Order)</a>
+            <a class='so_link' target='_blank' t-att-href="order.link" title="Open Order">(Abrir orden)</a>
         </div>
         <section class='touch-scrollable scrollable-y client-details'
                  style="max-height: 600px;min-height: 300px;height: fit-content;">
@@ -507,7 +507,7 @@
                 <div class='client-details-left'>
                     <t t-if="order.partner">
                         <div class='client-detail'>
-                            <span class='label'>Customer</span>
+                            <span class='label'>Cliente</span>
                             <t t-esc="order.partner.name"/>
                         </div>
                         <t t-if="order.partner.email">
@@ -518,7 +518,7 @@
                         </t>
                         <t t-if="order.partner.phone || order.partner.mobile">
                             <div class='client-detail'>
-                                <span class='label'>Phone/Mobile</span>
+                                <span class='label'>Teléfono</span>
                                 <t t-esc="order.partner.phone || order.partner.mobile"/>
                             </div>
                         </t>
@@ -542,18 +542,18 @@
                         </t>
                     </div>
                     <div class='client-detail'>
-                        <span class='label'>Date</span>
+                        <span class='label'>Fecha</span>
                         <t t-esc='order.date_order'/>
                     </div>
                     <t t-if="order.note">
                         <div class='client-detail'>
-                            <span class='label'>Note</span>
+                            <span class='label'>Notas</span>
                             <t t-esc='order.note'/>
                         </div>
                     </t>
                     <t t-if="order.user_id">
                         <div class='client-detail'>
-                            <span class='label'>Cashier</span>
+                            <span class='label'>Cajero</span>
                             <t t-esc='order.user_id[1]'/>
                         </div>
                     </t>
@@ -562,15 +562,15 @@
                          <t t-esc='widget.format_currency(order.amount_total)'/>
                     </div>
                     <div class='client-detail'>
-                        <span class='label'>Tax</span>
+                        <span class='label'>IVA</span>
                         <t t-esc='widget.format_currency(order.amount_tax)'/>
                     </div>
                     <div class='client-detail'>
-                        <span class='label'>Paid</span>
+                        <span class='label'>Pagado</span>
                         <t t-esc='widget.format_currency(order.amount_paid)'/>
                     </div>
                     <div class='client-detail'>
-                        <span class='label'>Debit</span>
+                        <span class='label'>Debito</span>
                         <t t-esc='widget.format_currency(order.amount_total - order.amount_paid)'/>
                     </div>
                 </div>
@@ -582,12 +582,12 @@
             </div>
             <div class="ribbon ribbon-top-right o_widget">
                 <span>
-                    <t t-if="order.state == 'draft'">Draft</t>
-                    <t t-if="order.state == 'quotation'">Quotation</t>
-                    <t t-if="order.state == 'cancel'">Cancelled</t>
-                    <t t-if="order.state == 'paid'">Paid</t>
-                    <t t-if="order.state == 'done'">Posted</t>
-                    <t t-if="order.state == 'invoiced'">Invoiced</t>
+                    <t t-if="order.state == 'draft'">Borrador</t>
+                    <t t-if="order.state == 'quotation'">Cotización</t>
+                    <t t-if="order.state == 'cancel'">Cancelado</t>
+                    <t t-if="order.state == 'paid'">Pagado</t>
+                    <t t-if="order.state == 'done'">Publicado</t>
+                    <t t-if="order.state == 'invoiced'">Facturado</t>
                 </span>
             </div>
         </section>
