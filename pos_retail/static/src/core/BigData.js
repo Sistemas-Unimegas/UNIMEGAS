@@ -409,12 +409,12 @@ odoo.define('pos_retail.big_data', function (require) {
             if (model == 'product.product') {
                 this.total_products += results.length;
                 var process_time = this.get_process_time(this.total_products, this.model_ids[model]['count']) * 100;
-                this.chrome.loading_message(_t('Products Installed : ' + process_time.toFixed(0) + ' %'), process_time / 100);
+                this.chrome.loading_message(_t('Productos instalados : ' + process_time.toFixed(0) + ' %'), process_time / 100);
             }
             if (model == 'res.partner') {
                 this.total_clients += results.length;
                 var process_time = this.get_process_time(this.total_clients, this.model_ids[model]['count']) * 100;
-                this.chrome.loading_message(_t('Partners Installed : ' + process_time.toFixed(0) + ' %'), process_time / 100);
+                this.chrome.loading_message(_t('Clientes instalados : ' + process_time.toFixed(0) + ' %'), process_time / 100);
 
             }
             var object = _.find(this.model_lock, function (object_loaded) {
@@ -423,7 +423,7 @@ odoo.define('pos_retail.big_data', function (require) {
             if (object) {
                 object.loaded(this, results, {})
             } else {
-                console.error('Could not find model: ' + model + ' for restoring datas');
+                console.error('Ocurrió un error: ' + model + ' es necesario restaurar los datos');
                 return false;
             }
             this.load_datas_cache = true;
@@ -439,7 +439,7 @@ odoo.define('pos_retail.big_data', function (require) {
             });
             var installed = new Promise(function (resolve, reject) {
                 function installing_data(model_name, min_id, max_id) {
-                    self.chrome.loading_message(_t('Installing Model: ' + model_name + ' from ID: ' + min_id + ' to ID: ' + max_id));
+                    self.chrome.loading_message(_t('Instalando: ' + model_name + ' del ID: ' + min_id + ' a ID: ' + max_id));
                     var domain = [['id', '>=', min_id], ['id', '<', max_id]];
                     var context = {};
                     if (model['model'] == 'product.product') {
@@ -737,7 +737,7 @@ odoo.define('pos_retail.big_data', function (require) {
 
     models.load_models([
         {
-            label: 'Reload Session',
+            label: 'Reiniciar sesión',
             condition: function (self) {
                 return self.pos_session.required_reinstall_cache;
             },
@@ -768,7 +768,7 @@ odoo.define('pos_retail.big_data', function (require) {
 
     models.load_models([
         {
-            label: 'Products Stock On Hand',
+            label: 'Productos - Inventario',
             condition: function (self) {
                 return self.config.display_onhand;
             },
@@ -788,14 +788,14 @@ odoo.define('pos_retail.big_data', function (require) {
             retail: true,
         },
         {
-            label: 'Products',
+            label: 'Productos',
             installed: true,
             loaded: function (self) {
                 return self.indexed_db.get_datas(self, 'product.product', self.session.model_ids['product.product']['max_id'] / 100000 + 1)
             }
         },
         {
-            label: 'Installing Products',
+            label: 'Instalando productos',
             condition: function (self) {
                 return self.total_products == 0;
             },
@@ -804,14 +804,14 @@ odoo.define('pos_retail.big_data', function (require) {
             }
         },
         {
-            label: 'Partners',
+            label: 'Clientes',
             installed: true,
             loaded: function (self) {
                 return self.indexed_db.get_datas(self, 'res.partner', self.session.model_ids['res.partner']['max_id'] / 100000 + 1)
             }
         },
         {
-            label: 'Installing Partners',
+            label: 'Instalando Clientes',
             condition: function (self) {
                 return self.total_clients == 0;
             },
@@ -820,7 +820,7 @@ odoo.define('pos_retail.big_data', function (require) {
             }
         },
         {
-            label: 'POS Orders',
+            label: 'POS Ordenes',
             model: 'pos.order',
             condition: function (self) {
                 return self.config.pos_orders_management;
@@ -1135,8 +1135,8 @@ odoo.define('pos_retail.big_data', function (require) {
             if (client && client['id'] && this.pos.deleted['res.partner'] && this.pos.deleted['res.partner'].indexOf(client['id']) != -1) {
                 client = null;
                 return this.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: _t('This client deleted from backend')
+                    title: _t('Advertencia'),
+                    body: _t('Este cliente ha sido borrado')
                 })
             }
             _super_Order.set_client.apply(this, arguments);
