@@ -322,9 +322,9 @@
 <!--    </t>-->
 
     <t t-name="DesignUiButtonWidget">
-        <div class="oe_status js_synch" title="Click Active Design Tool">
+        <div class="oe_status js_synch" title="Haga clic en Herramienta de diseño activo">
             <div class="js_connected oe_icon oe_green">
-                <i class='fa fa-fw fa-crop' role="img" aria-label="Click Active Design Tool" title="Click Active Design Tool"></i>
+                <i class='fa fa-fw fa-crop' role="img" aria-label="Haga clic en Herramienta de diseño activo" title="Haga clic en Herramienta de diseño activo"></i>
             </div>
             <div class="js_disconnected oe_hidden oe_icon oe_green" style="width: 150px; font-size: 13px; color: #fff">
                 <span class="button"><i class="fa fa-save"/><span class="js_msg oe_hidden"></span></span>
@@ -335,52 +335,52 @@
     <t t-name="UndoDesignUiButtonWidget">
         <div class="oe_status js_synch" title="Print Bill">
             <div class="js_connected oe_icon oe_green">
-                <i class='fa fa-fw fa-undo' role="img" aria-label="Remove All Design and Back to Default Theme" title="Remove All Design and Back to Default Theme"></i>
+                <i class='fa fa-fw fa-undo' role="img" aria-label="Eliminar todo el diseño y volver al tema predeterminado" title="Eliminar todo el diseño y volver al tema predeterminado"></i>
             </div>
         </div>
     </t>
 
     <t t-name="DesignFormWidget">
         <div class="debug-widget design-widget oe_hidden">
-            <h1>Design Form</h1>
+            <h1>Formulario de diseño</h1>
             <div class="toggle" title="Dismiss" role="img" aria-label="Dismiss"><i class='fa fa-times' /></div>
             <div class="content">
                 <ul>
-                    <p class="category">BackGround Color</p>
+                    <p class="category">Color de fondo</p>
                     <li><input type="color" id="background" class="background" t-att-value="widget.style_element_selected['background'] or ''"/></li>
-                    <p class="category">Text Color</p>
+                    <p class="category">Color de texto</p>
                     <li><input type="color" id="color" class="color" t-att-value="widget.style_element_selected['color'] or ''"></input></li>
-                    <p class="category">Font Size (Suggest from 12 to 20)</p>
+                    <p class="category">Tamaño de fuente (sugerido de 12 a 20)</p>
                     <li><input type="number" id="font-size" class="font-size" t-att-value="widget.style_element_selected['fontsize'] or 14"/></li>
-                    <p class="category">Line Height (Suggest from 10 to 20)</p>
+                    <p class="category">Altura de la línea (sugerencia de 10 a 20)</p>
                     <li><input type="number" id="line-height" class="line-height" t-att-value="widget.style_element_selected['lineheight'] or 10"/></li>
-                    <p class="category">Font Weight (Suggest from 400 to 900)</p>
+                    <p class="category">Peso de fuente (sugerencia de 400 a 900)</p>
                     <li><input type="number" id="font-weight" class="font-weight" t-att-value="widget.style_element_selected['fontweight'] or 400"/></li>
-                    <p class="category">Text Padding (Suggest from 5 to 10)</p>
+                    <p class="category">Relleno de texto (sugerencia de 5 a 10)</p>
                     <li><input type="number" id="padding" class="padding" t-att-value="widget.style_element_selected['padding'] or 5"/></li>
-                    <p class="category">Box Margin (Suggest from 5 to 10)</p>
+                    <p class="category">Margen de caja (Sugerir de 5 a 10)</p>
                     <li><input type="number" id="margin" class="margin" t-att-value="widget.style_element_selected['margin'] or 5"/></li>
-                    <p class="category">Border Radius (Suggest from 3 to 20)</p>
+                    <p class="category">Radio de borde (sugiera de 3 a 20)</p>
                     <li><input type="number" id="border-radius" class="border-radius" t-att-value="widget.style_element_selected['borderradius'] or 3"/></li>
-                    <p class="category">Text Align</p>
+                    <p class="category">Texto alineado</p>
                     <li>
                         <select class='form-control detail text-align' id="text-align">
-                            <option value='center' t-att-selected="widget.style_element_selected['textalign'] == 'center' ? true : undefined">Center</option>
-                            <option value='left' t-att-selected="widget.style_element_selected['textalign'] == 'left' ? true : undefined">Left</option>
-                            <option value='right' t-att-selected="widget.style_element_selected['textalign'] == 'right' ? true : undefined">Right</option>
+                            <option value='center' t-att-selected="widget.style_element_selected['textalign'] == 'center' ? true : undefined">Centrar</option>
+                            <option value='left' t-att-selected="widget.style_element_selected['textalign'] == 'left' ? true : undefined">Izquierda</option>
+                            <option value='right' t-att-selected="widget.style_element_selected['textalign'] == 'right' ? true : undefined">Derecha</option>
                         </select>
                     </li>
-                    <p class="category">Display</p>
+                    <p class="category">Desplegar</p>
                     <li>
                         <select class='form-control detail display' id="display">
-                            <option value='inline-block'>Inline Block</option>
-                            <option value='none'>Hidden</option>
+                            <option value='inline-block'>Bloque en línea</option>
+                            <option value='none'>Oculto</option>
                         </select>
                     </li>
                     <p class="category"></p>
                     <div class="form-footer text-center" style="margin-left: 0px">
-                        <span class="btn btn-success confirm"><i class="fa fa-check"/> Apply Change</span>
-                        <span class="btn btn-danger save"><i class="fa fa-save"/> Save All</span>
+                        <span class="btn btn-success confirm"><i class="fa fa-check"/> Aplicar cambio</span>
+                        <span class="btn btn-danger save"><i class="fa fa-save"/> Guardar todo</span>
                     </div>
                 </ul>
             </div>

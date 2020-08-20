@@ -2,7 +2,7 @@
 <templates name="template" xml:space="preserve">
 
     <t t-name="ReportScreenHeader">
-        <div class="oe_status shop_logo report-analytic" title="Report Analytic">
+        <div class="oe_status shop_logo report-analytic" title="Reportes analíticos">
             <img class="logo_shop_header" src="/pos_retail/static/src/icons/report.png"/>
             <span class="keyboard-shortcut">F9</span>
         </div>
