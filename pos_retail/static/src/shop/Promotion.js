@@ -490,8 +490,8 @@ odoo.define('pos_retail.promotion', function (require) {
                 if (!this.pos.config.promotion_auto_add) {
                     this.pos.gui.show_screen('products');
                     this.pos.gui.show_popup('confirm', {
-                        title: _t('Promotions Active'),
-                        body: _t('Have some Promotions active, Do you want apply promotions on this order ?'),
+                        title: _t('Promociones activas'),
+                        body: _t('Tiene promociones disponibles activas, Aplicar promociones en esta venta ?'),
                         confirm: function () {
                             self.remove_all_promotion_line();
                             self.apply_promotion();
@@ -539,8 +539,8 @@ odoo.define('pos_retail.promotion', function (require) {
              */
             if (this.is_return) {
                 return this.pos.gui.show_popup('confirm', {
-                    title: _t('Warning'),
-                    body: _t('Return order not allow apply promotions'),
+                    title: _t('Advertencia'),
+                    body: _t('No se permiten aplicar devoluciones en la promoción actual'),
                 });
             }
             if (!promotions) {
@@ -1097,7 +1097,7 @@ odoo.define('pos_retail.promotion', function (require) {
         compute_pack_free_gift: function (promotion) { // TODO: 5_pack_free_gift
             var gifts = this.pos.promotion_gift_free_by_promotion_id[promotion.id];
             if (!gifts) {
-                console.warn('gifts not found');
+                console.warn('No se encontraron regalos');
                 return;
             }
             var condition_items = this.pos.promotion_gift_condition_by_promotion_id[promotion.id];
@@ -1169,8 +1169,8 @@ odoo.define('pos_retail.promotion', function (require) {
                     })
                 } else {
                     this.pos.gui.show_popup('dialog', {
-                        title: _t('Warning'),
-                        body: gift.product_id[1] + _t(' not available in POS, please contact your admin')
+                        title: _t('Advertencia'),
+                        body: gift.product_id[1] + _t(' no está disponible en el POS, contacte al administrador')
                     })
                 }
                 i++;
@@ -1250,7 +1250,7 @@ odoo.define('pos_retail.promotion', function (require) {
                                 this.add_promotion_gift(product_free, 0, promotion_line['qty_free'], {
                                     promotion: true,
                                     promotion_id: promotion.id,
-                                    promotion_reason: 'Buy bigger than or equal ' + promotion_line['count'] + ' product of ' + promotion_line['category_id'][1] + ' free ' + promotion_line['qty_free'] + ' ' + product_free['display_name']
+                                    promotion_reason: 'Compra mayor o igual que ' + promotion_line['count'] + ' producto de ' + promotion_line['category_id'][1] + ' gratis ' + promotion_line['qty_free'] + ' ' + product_free['display_name']
                                 })
                             }
                         }
@@ -1332,14 +1332,14 @@ odoo.define('pos_retail.promotion', function (require) {
                     }
                 }
                 var promotion_amount = 0;
-                var promotion_reason = 'Buy ';
+                var promotion_reason = 'Compra ';
                 for (var product_id in product_promotion) {
                     var product = this.pos.db.get_product_by_id(product_id);
                     promotion_amount += (product.lst_price - rule.list_price) * product_promotion[product_id];
                     promotion_reason += product_promotion[product_id] + ' ' + product.display_name;
                     promotion_reason += ' , '
                 }
-                promotion_reason += ' Set price each item ' + this.pos.gui.chrome.format_currency(rule.list_price);
+                promotion_reason += ' Establecer el precio de cada producto ' + this.pos.gui.chrome.format_currency(rule.list_price);
                 this.add_promotion_gift(product_discount, promotion_amount, -1, {
                     promotion: true,
                     promotion_reason: promotion_reason
@@ -1357,7 +1357,7 @@ odoo.define('pos_retail.promotion', function (require) {
                     if (!product) {
                         return this.pos.gui.show_popup('confirm', {
                             title: _t('Error'),
-                            body: 'Product id ' + product_id + ' not available in pos'
+                            body: 'Id del producto ' + product_id + ' no disponible en el POS'
                         })
                     }
                     this.add_promotion_gift(product, 0, -qty_free, {
@@ -1380,7 +1380,7 @@ odoo.define('pos_retail.promotion', function (require) {
         compute_buy_total_items_free_items: function (promotion) { // TODO: 12_buy_total_items_free_items
             var gifts = this.pos.promotion_gift_free_by_promotion_id[promotion.id];
             if (!gifts) {
-                console.warn('gifts not found');
+                console.warn('regalos no disponibles');
                 return false;
             }
             var total_items_ofRules_inCart = 0;
@@ -1399,8 +1399,8 @@ odoo.define('pos_retail.promotion', function (require) {
                 var qty_free = gift.quantity_free;
                 if (!product) {
                     this.pos.gui.show_popup('dialog', {
-                        title: _t('Warning'),
-                        body: gift.product_id[1] + _t(' not available in POS, please contact your admin')
+                        title: _t('Advertencia'),
+                        body: gift.product_id[1] + _t(' no está disponible en el POS, contacte con el administrador')
                     })
                 } else {
                     if (gift.type == 'only_one') {
@@ -1497,7 +1497,7 @@ odoo.define('pos_retail.promotion', function (require) {
                 } else if (promotion['type'] == '5_pack_free_gift' && is_special_customer && is_birthday_customer && is_mem_of_promotion_group) {
                     var promotion_condition_items = this.pos.promotion_gift_condition_by_promotion_id[promotion.id];
                     if (!promotion_condition_items) {
-                        console.warn(promotion.name + 'have not rules');
+                        console.warn(promotion.name + 'no tiene reglas');
                         continue
                     }
                     var checking_pack_discount_and_pack_free = this.checking_pack_discount_and_pack_free_gift(promotion, promotion_condition_items);
@@ -1727,14 +1727,14 @@ odoo.define('pos_retail.promotion', function (require) {
                 var promotions_active = promotion_datas['promotions_active'];
                 if (promotions_active.length) {
                     return this.pos.gui.show_popup('popup_selection_promotions', {
-                        title: 'Promotions',
-                        body: 'Please choice promotions and confirm',
+                        title: 'Promociones',
+                        body: 'Seleccione la promoción y confirme',
                         promotions_active: promotions_active
                     })
                 } else {
                     return this.pos.gui.show_popup('dialog', {
-                        title: 'Warning',
-                        body: 'Nothing promotions active',
+                        title: 'Advertencia',
+                        body: 'No hay promociones activas',
                     })
                 }
 
@@ -1804,8 +1804,8 @@ odoo.define('pos_retail.promotion', function (require) {
                     self.pos.get_order().apply_promotion(promotions)
                 } else {
                     self.pos.gui.show_popup('dialog', {
-                        title: 'Warning',
-                        body: 'Have not any promotions selected, please choice one'
+                        title: 'Advertencia',
+                        body: 'No tiene promociones seleccionadas, seleccione un promoción'
                     })
                 }
             });
@@ -1829,16 +1829,16 @@ odoo.define('pos_retail.promotion', function (require) {
             }
             if (order.orderlines.length == 0) {
                 return this.pos.gui.show_popup('dialog', {
-                    title: 'Warning',
-                    body: 'Your order is blank'
+                    title: 'Advertencia',
+                    body: 'La orden está vacía'
                 })
             }
             var customer = order.get_client();
             order.remove_all_buyer_promotion_line();
             if (!customer) {
                 return this.pos.gui.show_popup('dialog', {
-                    title: 'Warning',
-                    body: 'Please choice customer, customer of order is blank'
+                    title: 'Advertencia',
+                    body: 'Seleccione al Cliente, el cliente en la orden no puede estar vacío'
                 })
             } else {
                 var buyers = this.pos.buyer_by_partner_id[customer.id];
@@ -1878,22 +1878,22 @@ odoo.define('pos_retail.promotion', function (require) {
                                 }
                             } else {
                                 return this.pos.gui.show_popup('dialog', {
-                                    title: 'Warning',
-                                    body: 'Could not find buyer group',
+                                    title: 'Advertencia',
+                                    body: 'No se pudo encontrar el grupo de compradores',
                                 })
                             }
 
                         } else {
                             return this.pos.gui.show_popup('dialog', {
-                                title: 'Warning',
-                                body: 'Could not find promotion',
+                                title: 'Advertencia',
+                                body: 'No se encuentran promociones activas',
                             })
                         }
                     }
                 } else {
                     return this.pos.gui.show_popup('dialog', {
-                        title: 'Warning',
-                        body: 'Customer have not promotion',
+                        title: 'Advertencia',
+                        body: 'Cliente no tiene una promoción activa',
                     })
                 }
             }

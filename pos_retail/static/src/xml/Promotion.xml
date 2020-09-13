@@ -12,14 +12,14 @@
                     </div>
                     <div class="form-footer text-center">
                         <div class="btn btn-success confirm" style="width: 25%;display: inline-block;">
-                            Add Selected <i class='fa fa-keyboard'/> (Enter)
+                            Agregar la promoción <i class='fa fa-keyboard'/> (Enter)
                         </div>
                         <div class="btn btn-danger add_all" style="width: 25%;display: inline-block;">
                             <i class="fa fa-check"/>
-                            Add all
+                            Agregar todo
                         </div>
                         <div class="btn btn-danger cancel" style="width: 25%;display: inline-block;">
-                            Close <i class='fa fa-keyboard'/> (ESC)
+                            Cerrar <i class='fa fa-keyboard'/> (ESC)
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <img src="/pos_retail/static/src/icons/promotions.png" width="100%"/>
                 </div>
                 <div class="launchpad-app-label">
-                    Promotions
+                    Promociones
                 </div>
             </a>
         </div>
@@ -62,7 +62,7 @@
                     <img src="/pos_retail/static/src/icons/trash.png" width="100%"/>
                 </div>
                 <div class="launchpad-app-label">
-                    Remove Promotions selected
+                    Eliminar promociones seleccionadas
                 </div>
             </a>
         </div>
@@ -71,7 +71,7 @@
     <t t-name="promotion_recommend_customer">
         <t t-if="promotions">
             <div class="promotion-label">
-                Promotions active:
+                Promociones activas:
                 <span class="keyboard-shortcut">Tab</span>
             </div>
             <ul class="info-list">
@@ -121,7 +121,7 @@
          <t t-jquery="line[class*='total']" t-operation="before">
             <t t-if="pos.config.promotion == true and receipt.promotion_amount">
                 <line class='total' size='double-height'>
-                    <left><pre>        Promotions</pre></left>
+                    <left><pre>        Promociones</pre></left>
                     <right><value><t t-esc='receipt.promotion_amount || 0.00' /></value></right>
                 </line>
                 <br/>
@@ -137,7 +137,7 @@
                     <img src="/pos_retail/static/src/icons/promotions.png" width="100%"/>
                 </div>
                 <div class="launchpad-app-label">
-                    Buyer Promotion
+                    Promoción de compras
                 </div>
             </a>
         </div>
@@ -146,7 +146,7 @@
     <t t-extend="ClientDetails">
         <t t-jquery="div[class*='client-details-right']" t-operation="append">
             <div class='client-detail'>
-                <span class='label'>Birthday</span>
+                <span class='label'>Cumpleaños</span>
                 <span class='detail'>
                     <t t-if="!partner.birthday_date">
                         N/A
@@ -176,17 +176,17 @@
         <t t-jquery="div[class*='receipt-line']:eq(0)" t-operation="after">
             <t t-if="line.promotion_amount">
                 <div class="receipt-line pos-receipt-left-padding">
-                    Promotion Amount: <t t-esc="widget.format_currency(line.promotion_amount)"/>
+                    Importe de la promoción: <t t-esc="widget.format_currency(line.promotion_amount)"/>
                 </div>
             </t>
             <t t-if="line.promotion_discount">
                 <div class="receipt-line pos-receipt-left-padding">
-                    Promotion Disc: <t t-esc="line.promotion_discount"/> %
+                    Promoción Desc: <t t-esc="line.promotion_discount"/> %
                 </div>
             </t>
             <t t-if="line.promotion_reason">
                 <div class="receipt-line pos-receipt-left-padding">
-                    Promotion: <t t-esc="line.promotion_reason"/>
+                    Promoción: <t t-esc="line.promotion_reason"/>
                 </div>
             </t>
         </t>
