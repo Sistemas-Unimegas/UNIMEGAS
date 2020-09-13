@@ -618,7 +618,9 @@
                         <t t-if="widget.pos.config.display_image_receipt">
                             <div class="receipt-line">
                                 <div class="pos-receipt-left-padding">
+                                    <!--
                                     <img class='receipt_line_image' t-att-src="line.get_line_image()"/>
+                                -->
                                 </div>
                             </div>
                         </t>
