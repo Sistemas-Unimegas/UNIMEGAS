@@ -263,7 +263,7 @@ odoo.define('pos_retail.screen_payment', function (require) {
                     })
                 }
                 self.pos.gui.show_popup('textarea', {
-                    title: _t('Set Reference to Payment Line selected'),
+                    title: _t('Ultimos  dígitos de la tarjeta'),
                     value: line.ref,
                     confirm: function (ref) {
                         line.set_reference(ref);
