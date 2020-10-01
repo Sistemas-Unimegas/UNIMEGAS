@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="zk_create_users_view" model="ir.ui.view">
+            <field name="name">Invoice Orders</field>
+            <field name="model">zk.create.user</field>
+            <field name="arch" type="xml">
+                <form string="Zk create users">
+                    <group>
+						<field name="machine_id" invisible="0"/>
+						<field name="type"/>
+						<field name="employee_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="zknumber"/>
+                            </tree>
+                        </field>
+					</group>
+					<footer>
+						<button name="create_users_zk" string="Create" type="object" default_focus="1" class="oe_highlight"/>
+						or 
+						<button string="Cancel" class="btn-secondary" special="cancel" />
+				</footer>         
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_create_user_zk" model="ir.actions.act_window">
+            <field name="name">Create Users zkteco</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">zk.create.user</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <!-- TODO: check if we need this -->
+            <field name="binding_model_id" ref="model_zk_machine" />
+            <field name="binding_view_types">list</field>
+        </record>
+
+</odoo>
